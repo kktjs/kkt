@@ -1,0 +1,22 @@
+{
+  "name": "{{name}}",
+  "version": "1.0.0",
+  "description": "Describe {{name}} here",
+  "private": true,
+  "scripts": {
+    "build": "kkt build-web-app",
+    "clean": "kkt clean-app",
+    "start": "kkt serve-web-app --reload",
+    "test": "kkt test",
+    "test:coverage": "kkt test --coverage",
+    "test:watch": "kkt test --server"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "kkt": "{{kktVersion}}"
+  },
+  "author": "",
+  "license": "MIT",
+  "repository": ""
+}
