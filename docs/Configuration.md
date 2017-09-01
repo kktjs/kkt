@@ -53,7 +53,7 @@ module.exports = {
 import {Button, Model, Tag} from 'uiw'
 ```
 
-上面的解决方法，通常是单独导入子模块，这在你代码中是繁琐的，如下：
+> 上面的解决方法，通常是单独导入子模块，这在你代码中是繁琐的，如下：
 
 ```js
 import Button from 'uiw/lib/button'
@@ -61,7 +61,7 @@ import Model from 'uiw/lib/model'
 import Tag from 'uiw/lib/tag'
 ```
 
-如果您使用`cherryPick`配置，您可以像第一个示例一样编写代码，但是通过指定要将cherryPick应用到的模块名称，可以转换为与第二个例子相同的代码：
+> 如果您使用`cherryPick`配置，您可以像第一个示例一样编写代码，但是通过指定要将cherryPick应用到的模块名称，可以转换为与第二个例子相同的代码：
 
 ```js
 module.exports = {
@@ -71,7 +71,7 @@ module.exports = {
 }
 ```
 
-这是使用[babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash)实现的 - 请检查其问题与您正在使用cherryPick的模块的兼容性问题并报告您找到的任何新的模块。
+> 这是使用[babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash)实现的 - 请检查其问题与您正在使用cherryPick的模块的兼容性问题并报告您找到的任何新的模块。
 
 </details>
 
@@ -82,8 +82,8 @@ module.exports = {
 > 一些Babel插件具有[松散的模式](http://www.2ality.com/2015/12/babel6-loose-mode.html)，它们输出更简单，潜在更快的代码，而不是严格遵循ES6规范的语义。
 > 
 > `默认启用松散模式`。
-
-如果要禁用松散模式（例如，为了检查您的代码是否在更严格的正常模式下工作以实现远程兼容性），请将其设置为false。例如 仅在运行测试时禁用松开模式：
+> 
+> 如果要禁用松散模式（例如，为了检查您的代码是否在更严格的正常模式下工作以实现远程兼容性），请将其设置为false。例如 仅在运行测试时禁用松开模式：
 
 ```js
 module.exports = {
@@ -137,7 +137,7 @@ module.exports = {
 }
 ```
 
-[transform](https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types#options)，提供一个配置对象
+> [transform](https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types#options)，提供一个配置对象
 
 ```
 module.exports = {
@@ -171,7 +171,7 @@ module.exports = {
 > 2. 在您的代码中使用新的ES6内置（`Promise`）和静态方法（例如`Object.assign`）时，导入本地`polyfill`。
 > 3. 导入在需要时使用 `async`/`await` 所需的再生器运行时。
 
-默认配置将重新启动运行时导入，以便您可以使用 `async`/`await` 和 `generator`。要启用其他功能，您可以命名（`'helpers'`或`'polyfill'`）：
+> 默认配置将重新启动运行时导入，以便您可以使用 `async`/`await` 和 `generator`。要启用其他功能，您可以命名（`'helpers'`或`'polyfill'`）：
 
 ```js
 module.exports = {
@@ -181,8 +181,8 @@ module.exports = {
 }
 ```
 
-要启用所有功能，请将`runtime`设置为`true`。
-要禁用使用运行时转换，请将`runtime`设置为`false`。
+> 要启用所有功能，请将`runtime`设置为`true`。
+> 要禁用使用运行时转换，请将`runtime`设置为`false`。
 
 </details>
 
@@ -210,14 +210,14 @@ module.exports = {
 <summary>webpack.rules - 默认Rules配置</summary>
 
 
-- `babel` - 处理 `.js` 文件使用 [babel-loader](https://github.com/babel/babel-loader)
-- `graphics` - 处理 `.gif`, `.png` 和 `.webp` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
-- `svg` - 处理 `.svg` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
-- `jpeg` - 处理 `.jpg` 和 `.jpeg` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
-- `fonts` - 处理 `.eot`, `.otf`, `.ttf`, `.woff` 和 `.woff2` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
-- `video` - 处理 `.mp4`, `.ogg` 和 `.webm` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
-- `audio` - 处理 `.wav`, `.mp3`, `.m4a`, `.aac`, 和 `.oga` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
- 
+> - `babel` - 处理 `.js` 文件使用 [babel-loader](https://github.com/babel/babel-loader)
+> - `graphics` - 处理 `.gif`, `.png` 和 `.webp` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
+> - `svg` - 处理 `.svg` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
+> - `jpeg` - 处理 `.jpg` 和 `.jpeg` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
+> - `fonts` - 处理 `.eot`, `.otf`, `.ttf`, `.woff` 和 `.woff2` 文件使用 [url-loader](https://github.com/> webpack-contrib/url-loader)
+> - `video` - 处理 `.mp4`, `.ogg` 和 `.webm` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
+> - `audio` - 处理 `.wav`, `.mp3`, `.m4a`, `.aac`, 和 `.oga` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
+> 
 > 所有url-loader的默认配置为 `{options: {limit: 1, name: '[name].[hash:8].[ext]'}}`  
 > 设置 `graphics=false` 不适用默认配置
 > babel默认配置: `{exclude: /node_modules/, options: {babelrc: false, cacheDirectory: true}}`
@@ -254,7 +254,7 @@ module.exports = {
 
 > 默认情况下，`kkt`将使用Webpack的[`DefinePlugin`](https://webpack.js.org/plugins/define-plugin/) 将所有出现的`process.env.NODE_ENV`替换为包含`NODE_ENV`的字符串 当前值。
 
-您可以配置一个`define`对象来添加你自己的常量值。例如 用`__VERSION__`替换所有出现的`__VERSION__`，包含你的应用程序版本的
+> 您可以配置一个`define`对象来添加你自己的常量值。例如 用`__VERSION__`替换所有出现的`__VERSION__`，包含你的应用程序版本的
 
 ```js
 module.exports = {
@@ -273,8 +273,8 @@ module.exports = {
 <summary>webpack.extra - 一个用于额外的Webpack的配置，它将被合并到生成的配置中</summary>
 
 > 使用 [webpack-merge](https://github.com/survivejs/webpack-merge#webpack-merge---merge-designed-for-webpack) 将额外的配置合并到生成的Webpack配置中 - 请参阅 [Webpack配置](https://webpack.js.org/configuration/)。
-
-要添加一个不由 `kkt` 自己的`webpack.rules`配置管理的额外规则，您需要在 `webpack.extra.module.rules` 中提供一个规则列表。在 `webpack。rules` 中定义也是可以的
+> 
+> 要添加一个不由 `kkt` 自己的`webpack.rules`配置管理的额外规则，您需要在 `webpack.extra.module.rules` 中提供一个规则列表。在 `webpack。rules` 中定义也是可以的
 
 ```js
 var path = require('path')
