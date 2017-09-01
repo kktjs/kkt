@@ -39,6 +39,7 @@ module.exports = {
 <details>
 <summary>babel</summary>
 
+> 
 > 可以使用以下属性在Babel对象中提供Babel配置。
 
 </details>
@@ -46,6 +47,7 @@ module.exports = {
 <details>
 <summary>babel.cherryPick - 启用cherry-pick只有你用到的那部分代码会被最终打包</summary>
 
+> 
 > 此功能仅在您使用导入语法时有效。
 > 如果导入模块里面相关模块，整个模块通常会包含在构建中，即使您只使用特定的部分：
 
@@ -79,6 +81,7 @@ module.exports = {
 <details>
 <summary>babel.loose - 启用支持它的Babel插件的松散模式</summary>
 
+> 
 > 一些Babel插件具有[松散的模式](http://www.2ality.com/2015/12/babel6-loose-mode.html)，它们输出更简单，潜在更快的代码，而不是严格遵循ES6规范的语义。
 > 
 > `默认启用松散模式`。
@@ -99,6 +102,7 @@ module.exports = {
 <details>
 <summary>babel.plugins - 使用额外的Babel插件</summary>
 
+> 
 > 参数 `plugins` 可以指定为一个字符串，或者使用多个插件使用数组。例如：安装使用 [babel-plugin-react-html-attrs](https://github.com/insin/babel-plugin-react-html-attrs#readme) 插件
 
 ```bash
@@ -119,6 +123,7 @@ module.exports = {
 <details>
 <summary>babel.presets - 使用额外的Babel预设</summary>
 
+> 
 > 参数 `presets` 可以指定为一个字符串，或者使用多个Babel预设使用数组。
 
 </details>
@@ -127,6 +132,7 @@ module.exports = {
 <details>
 <summary>babel.removePropTypes - 禁用或配置在生产构建中删除React组件propTypes</summary>
 
+> 
 > 此功能通过[react-remove-prop-types](https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types)实现，设置为false以禁止使用此转换：
 
 ```js
@@ -157,6 +163,7 @@ module.exports = {
 <details>
 <summary>babel.reactConstantElements - 禁用在生产构建中使用React常数元素提升</summary>
 
+> 
 > [React constant elements transformer](https://babeljs.io/docs/plugins/transform-react-constant-elements/)
 
 </details>
@@ -165,12 +172,13 @@ module.exports = {
 <details>
 <summary>babel.runtime - 启用具有不同配置的transform-runtime插件</summary>
 
+> 
 > 默认情况下，Babel的[runtime transform](https://babeljs.io/docs/plugins/transform-runtime/)有3件事情：
 > 
 > 1. 从babel-runtime导入辅助模块。
 > 2. 在您的代码中使用新的ES6内置（`Promise`）和静态方法（例如`Object.assign`）时，导入本地`polyfill`。
 > 3. 导入在需要时使用 `async`/`await` 所需的再生器运行时。
-
+> 
 > 默认配置将重新启动运行时导入，以便您可以使用 `async`/`await` 和 `generator`。要启用其他功能，您可以命名（`'helpers'`或`'polyfill'`）：
 
 ```js
@@ -190,6 +198,7 @@ module.exports = {
 <details>
 <summary>babel.stage - 控制可以使用哪些实验和即将到来的JavaScript功能</summary>
 
+> 
 > 默认情况下启用 stage-2 - 完全禁用`stage`预设的使用，将`stage`设置为`false`：
 
 ```js
@@ -209,7 +218,7 @@ module.exports = {
 <details>
 <summary>webpack.rules - 默认Rules配置</summary>
 
-
+> 
 > - `babel` - 处理 `.js` 文件使用 [babel-loader](https://github.com/babel/babel-loader)
 > - `graphics` - 处理 `.gif`, `.png` 和 `.webp` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
 > - `svg` - 处理 `.svg` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
@@ -252,8 +261,9 @@ module.exports = {
 <details>
 <summary>webpack.define - DefinePlugin的选项，用于用值替换某些表达式</summary>
 
+> 
 > 默认情况下，`kkt`将使用Webpack的[`DefinePlugin`](https://webpack.js.org/plugins/define-plugin/) 将所有出现的`process.env.NODE_ENV`替换为包含`NODE_ENV`的字符串 当前值。
-
+> 
 > 您可以配置一个`define`对象来添加你自己的常量值。例如 用`__VERSION__`替换所有出现的`__VERSION__`，包含你的应用程序版本的
 
 ```js
@@ -272,6 +282,7 @@ module.exports = {
 <details>
 <summary>webpack.extra - 一个用于额外的Webpack的配置，它将被合并到生成的配置中</summary>
 
+> 
 > 使用 [webpack-merge](https://github.com/survivejs/webpack-merge#webpack-merge---merge-designed-for-webpack) 将额外的配置合并到生成的Webpack配置中 - 请参阅 [Webpack配置](https://webpack.js.org/configuration/)。
 > 
 > 要添加一个不由 `kkt` 自己的`webpack.rules`配置管理的额外规则，您需要在 `webpack.extra.module.rules` 中提供一个规则列表。在 `webpack。rules` 中定义也是可以的
