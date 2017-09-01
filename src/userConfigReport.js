@@ -12,7 +12,9 @@ export class UserConfigReport {
     this.errors = []
     this.hints = []
   }
-
+  hasErrors() {
+    return this.errors.length > 0
+  }
   error(path, value, message) {
     this.errors.push({path, value, message})
   }
@@ -23,6 +25,10 @@ export class UserConfigReport {
   log() {
     console.log(`\n${'kkt'.cyan} config report for ${this.configPath.underline}`)
     console.log()
+    if (!this.hasSomethingToReport()) {
+      console.log(chalk.green(`${figures.tick} Nothing to report!`))
+      return
+    }
     if (this.errors.length) {
       let count = this.errors.length > 1 ? `${this.errors.length} ` : ''
       console.log(`${count}Error${s(this.errors.length)}`.red)

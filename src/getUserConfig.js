@@ -1,10 +1,12 @@
 import fs from 'fs'
 import path from 'path'
 import * as color from 'colors-cli/toxic'
+import webpack from 'webpack'
 import debug from './debug'
-import {typeOf} from './utils'
-import {CONFIG_FILE_NAME} from './constants'
+import {typeOf,deepToString} from './utils'
+import {CONFIG_FILE_NAME,PROJECT_TYPES} from './constants'
 import {UserConfigReport} from './userConfigReport'
+import {ConfigValidationError} from './errors'
 const DEFAULT_REQUIRED = false
 
 
@@ -18,6 +20,23 @@ export function processUserConfig({
     userConfigPath,
 }){
 
+  // 配置模块可以导出一个函数，
+  // 如果他们需要访问当前命令或web应用程序依赖kkt管理它们。
+  if (typeOf(userConfig) === 'function') {
+    userConfig = userConfig({
+      args,
+      command: args._[0],
+      webpack,
+    })
+  }
+
+  let report = new UserConfigReport(userConfigPath)
+
+  // 判断配置文件类型
+  if ((required || 'type' in userConfig) && !PROJECT_TYPES.has(userConfig.type)) {
+    report.error('type', userConfig.type, `Must be one of: ${[...PROJECT_TYPES].join(', ')}`)
+  }
+
   let argumentOverrides = {}
   void ['babel', 'devServer', 'karma', 'npm', 'webpack'].forEach(prop => {
     // 设置顶级配置对象的默认值，这样我们就不必存在了 - 检查它们到处都是。
@@ -29,8 +48,6 @@ export function processUserConfig({
       argumentOverrides[prop] = args[prop]
     }
   })
-
-  let report = new UserConfigReport(userConfigPath)
 
   // Babel 关键配置，错误情况
   if (!!userConfig.babel.stage || userConfig.babel.stage === 0) {
@@ -59,10 +76,18 @@ export function processUserConfig({
       report.error('webpack.rules', `type: ${typeOf(userConfig.webpack.rules)}`, `Must be an ${'Object'.cyan}.`)
     }
   }
-
+  
+  if (report.hasErrors()) {
+    throw new ConfigValidationError(report)
+  }
+  if (check) {
+    throw report
+  }
   if (report.hasSomethingToReport()) {
     report.log()
   }
+
+  debug('user config: %s', deepToString(userConfig))
   
   return userConfig
 }
@@ -101,7 +126,6 @@ export default function getUserConfig(args = {}, options = {}) {
       throw new Error(`Couldn't import the config file at ${userConfigPath}: ${e.message}\n${e.stack}`)
     }
   }
-
   // 检查用户配置
   userConfig = processUserConfig({args, check, pluginConfig, required, userConfig, userConfigPath})
 
