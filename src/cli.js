@@ -1,3 +1,4 @@
+import path from 'path'
 import parseArgs from 'minimist'
 import {help,version} from './help'
 
@@ -48,7 +49,14 @@ export default function cli(argv,cb){
     return unknownCommand()
   }
 
-  if (/^(clean|test)/.test(command)) {
+  if (/^(build|clean|test)/.test(command)) {
+    let localKktPath = null
+    try {
+      localKktPath = modulePath('kkt')
+    }catch (e) {
+      // kkt 不是本地安装在运行命令的地方
+    }
+    let runningKktPath = path.dirname(require.resolve('../package'))
 
   }
 

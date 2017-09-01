@@ -24,6 +24,10 @@ export var help = `
   Project types: ${projectTypes}
   Project creation commands: ${news}
 
+  Project type-specific commands:
+    ${'kkt build-web-app'.green} ${'[entry] [dist-dir]'.x51}
+    ${'->'.green} Build a web app from ${'entry'.x51} to ${'dist-dir'.x51}.
+
 `
 export var version = `
   kkt v${pkg.version.green}

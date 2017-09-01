@@ -1,4 +1,5 @@
-
+// 将配置放入 kkt.config.js 中
+export const CONFIG_FILE_NAME = 'kkt.config.js'
 
 export const DEFAULT_PORT = process.env.PORT || 3333
 
