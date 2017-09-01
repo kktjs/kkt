@@ -330,17 +330,20 @@ module.exports = function(kkt) {
 提供的任何`devServer`选项将被合并在以下默认选项之上`kkt`使用：
 
 ```js
-{
-  historyApiFallback: true,
-  hot: true,
-  noInfo: true,
-  overlay: true,
-  publicPath: webpackConfig.output.publicPath,
-  quiet: true,
-  watchOptions: {
-    ignored: /node_modules/,
-  },
+module.exports = {
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    noInfo: true,
+    overlay: true,
+    publicPath: webpackConfig.output.publicPath,
+    quiet: true,
+    watchOptions: {
+      ignored: /node_modules/,
+    },
+  }
 }
+
 ```
 
 您可以使用以下选项配置这些的功能：
