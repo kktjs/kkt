@@ -36,9 +36,6 @@ module.exports = {
 
 ## Babel
 
-## Webpack配置
-
-
 <details>
 <summary>babel</summary>
 
@@ -207,7 +204,12 @@ module.exports = {
 </details>
 
 
-### 默认Rules配置
+## Webpack配置
+
+
+<details>
+<summary>webpack.rules - 默认Rules配置</summary>
+
 
 - `babel` - 处理 `.js` 文件使用 [babel-loader](https://github.com/babel/babel-loader)
 - `graphics` - 处理 `.gif`, `.png` 和 `.webp` 文件使用 [url-loader](https://github.com/webpack-contrib/url-loader)
@@ -245,7 +247,11 @@ module.exports = {
 }
 ```
 
-### define
+</details>
+
+
+<details>
+<summary>webpack.define - DefinePlugin的选项，用于用值替换某些表达式</summary>
 
 默认情况下，`kkt`将使用Webpack的[`DefinePlugin`](https://webpack.js.org/plugins/define-plugin/) 将所有出现的`process.env.NODE_ENV`替换为包含`NODE_ENV`的字符串 当前值。
 
@@ -261,7 +267,11 @@ module.exports = {
 }
 ```
 
-### extra
+</details>
+
+
+<details>
+<summary>webpack.extra - 一个用于额外的Webpack的配置，它将被合并到生成的配置中</summary>
 
 使用 [webpack-merge](https://github.com/survivejs/webpack-merge#webpack-merge---merge-designed-for-webpack) 将额外的配置合并到生成的Webpack配置中 - 请参阅 [Webpack配置](https://webpack.js.org/configuration/)。
 
@@ -293,6 +303,11 @@ module.exports = function(kkt) {
   }
 }
 ```
+
+</details>
+
+
+
 
 ## 开发模式的配置
 
