@@ -6,31 +6,50 @@ const Start = require('../script/start');
 const Build = require('../script/build');
 
 program
-  .description('Cli tool for creating react apps.')
-  .option('build', 'Builds the app for production to the dist folder.')
-  .option('start', 'Runs the app in development mode.')
-  .option('-h, --host <host>', 'The port and host.', '0.0.0.0:19870')
   .version(pkg.version, '-v, --version')
-  .on('--help', function () {
-    console.log('\n  Examples:');
-    console.log();
-    console.log('    $ kkt start');
-    console.log('    $ kkt build');
-    console.log();
-  })
-  .parse(process.argv);
+  .usage('<command> [options]')
 
 if (program.host) {
   program.host = program.host.split(':');
   process.env.HOST = program.host[0] || '0.0.0.0';
   process.env.PORT = parseInt(program.host[1]) || 19870;
 }
-// console.log('process.env:', process.env)
-if (program.start) {
-  // console.log('program:', program);
-  Start()
-} else if (program.build) {
-  Build()
-} else {
+
+program
+  .command('create <app-name>')
+  .description('create a new project powered by kkt')
+  .option('-c, --clone', 'Use git clone when fetching remote preset')
+  .action((name, cmd) => {
+    console.log('create:app-name');
+    // require('../lib/create')(name, cleanArgs(cmd))
+  })
+
+program
+  .command('build')
+  .description('Builds the app for production to the dist folder.')
+  .option('--host <host>', 'The port and host.', '0.0.0.0:19870')
+  .action((name, cmd) => {
+    Build(name, cmd);
+  })
+
+program
+  .command('start')
+  .description('Runs the app in development mode.')
+  .option('--host <host>', 'The port and host.', '0.0.0.0:19870')
+  .action((name, cmd) => {
+    Start(name, cmd)
+  })
+
+program.on('--help', function () {
+  console.log('\n  Examples:');
+  console.log();
+  console.log('    $ kkt start');
+  console.log('    $ kkt build');
+  console.log();
+})
+
+if (!process.argv.slice(2).length) {
   program.outputHelp();
 }
+
+program.parse(process.argv);
