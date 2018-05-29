@@ -1,5 +1,4 @@
 const autoprefixer = require('autoprefixer');
-const PATH = require('path');
 const paths = require('./path');
 
 module.exports = {
@@ -38,6 +37,7 @@ module.exports = {
           {
             // Process JS with Babel.
             test: /\.(js|jsx|mjs)$/,
+            exclude: [/node_modules/],
             use: [
               {
                 loader: require.resolve('babel-loader'),

@@ -20,7 +20,8 @@ module.exports = function serve() {
       chunks: false,
       modules: false,
       moduleTrace: false,
-      warningsFilter: (warning) => {
+      warningsFilter: () => {
+        // console.log('warning: ', warning);
         return true
       }
     }));

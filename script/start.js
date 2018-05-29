@@ -36,4 +36,4 @@ module.exports = function server() {
   }).catch((err) => {
     console.log('~~~::::', err); // eslint-disable-line
   });
-}
+};

@@ -1,7 +1,5 @@
 const webpack = require('webpack');
-const PATH = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CreateSpareWebpackPlugin = require('create-spare-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@nuxtjs/friendly-errors-webpack-plugin');
 const config = require('./webpack.config');
 const paths = require('./path');
