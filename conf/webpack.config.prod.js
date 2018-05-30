@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@nuxtjs/friendly-errors-webpack-plugin');
 const config = require('./webpack.config');
 const paths = require('./path');
@@ -30,6 +31,10 @@ module.exports = function () {
         removeComments: true,
         removeEmptyAttributes: true,
       },
+    }),
+    new ProgressBarPlugin({
+      format: ` build [:bar] ${':percent'.green} (:elapsed seconds)`,
+      clear: false,
     }),
     // new webpack.DefinePlugin({
     //   VERSION: JSON.stringify(pkg.version),
