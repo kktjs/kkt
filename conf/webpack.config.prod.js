@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@nuxtjs/friendly-errors-webpack-plugin');
@@ -19,6 +20,7 @@ module.exports = function () {
   });
 
   config.plugins = config.plugins.concat([
+    new CleanWebpackPlugin(paths.appBuildDist),
     new HtmlWebpackPlugin({
       inject: true,
       favicon: paths.defaultFaviconPath,
