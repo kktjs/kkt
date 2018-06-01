@@ -16,6 +16,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "gh-pages": "^1.2.0",
+    "loading-cli": "^1.0.6"
   },
   "devDependencies": {
     "@nuxtjs/friendly-errors-webpack-plugin": "^2.0.2",

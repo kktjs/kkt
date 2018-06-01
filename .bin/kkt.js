@@ -4,6 +4,8 @@ const program = require('commander');
 const pkg = require('../package.json');
 const Start = require('../script/start');
 const Build = require('../script/build');
+const Deploy = require('../script/deploy');
+// const paths = require('../conf/path');
 
 program
   .version(pkg.version, '-v, --version')
@@ -38,6 +40,17 @@ program
   .option('--host <host>', 'The port and host.', '0.0.0.0:19870')
   .action((name, cmd) => {
     Start(name, cmd)
+  })
+
+program
+  .command('deploy')
+  .description('Runs the app in development mode.')
+  .option('-b, --branch [name]', 'Specify branch.', 'gh-pages')
+  .option('-d, --dir [path]', 'Specify the deployment directory.', 'dist')
+  .option('-u, --url <dir>', 'Specify repository URL.')
+  .action((name, cmd) => {
+    console.log('cmd:', name.dir)
+    Deploy(name, cmd);
   })
 
 program.on('--help', function () {

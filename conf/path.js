@@ -11,7 +11,7 @@ const resolveApp = relativePath => PATH.resolve(appDirectory, relativePath);
 
 module.exports = {
   appBuildDist: resolveApp('dist'),
-  appPublicPath: '/',
+  appPublicPath: '',
   appIndex: resolveApp('src/index.js'),
   defaultHTMLPath: resolveApp('public/index.html'),
 };
