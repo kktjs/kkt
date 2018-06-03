@@ -1,4 +1,5 @@
 const autoprefixer = require('autoprefixer');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const paths = require('./path');
 
 module.exports = {
@@ -37,7 +38,7 @@ module.exports = {
           {
             // Process JS with Babel.
             test: /\.(js|jsx|mjs)$/,
-            exclude: [/node_modules/],
+            exclude: /node_modules/,
             use: [
               {
                 loader: require.resolve('babel-loader'),
@@ -97,7 +98,12 @@ module.exports = {
       },
     ],
   },
-  plugins: [],
+  plugins: [
+    new ProgressBarPlugin({
+      format: ` build [:bar] ${':percent'.green} (:elapsed seconds)`,
+      clear: false,
+    }),
+  ],
   node: {
     dgram: 'empty',
     fs: 'empty',

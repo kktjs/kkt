@@ -10,8 +10,10 @@ const resolveApp = relativePath => PATH.resolve(appDirectory, relativePath);
 // const resolveTool = relativePath => PATH.resolve(toolDirectory, relativePath);
 
 module.exports = {
+  resolveApp,
+  appDirectory,
   appBuildDist: resolveApp('dist'),
-  appPublicPath: '',
+  appPublicPath: '/',
   appIndex: resolveApp('src/index.js'),
   defaultHTMLPath: resolveApp('public/index.html'),
 };

@@ -1,18 +1,13 @@
 const FS = require('fs');
-const PATH = require('path');
 const ghpages = require('gh-pages');
 const loading = require('loading-cli');
+const paths = require('../conf/path');
 require('colors-cli/toxic');
 
 const log = console.log; // eslint-disable-line
 
-const appDirectory = FS.realpathSync(process.cwd());
-// const toolDirectory = FS.realpathSync(__dirname);
-// Markdown 所在目录
-const resolveApp = relativePath => PATH.resolve(appDirectory, relativePath);
-
 module.exports = function server(cmd) {
-  const dir = resolveApp(cmd.dir);
+  const dir = paths.resolveApp(cmd.dir);
   if (!FS.existsSync(dir)) {
     log(`You need to run the ${`\"npm run build\"`.yellow} command.`); // eslint-disable-line
     log(`The ${(cmd.dir).red} folder does net exist!\n`);

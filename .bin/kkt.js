@@ -22,7 +22,7 @@ program
   .description('create a new project powered by kkt')
   .option('-c, --clone', 'Use git clone when fetching remote preset')
   .action((name, cmd) => {
-    console.log('create:app-name');
+    // console.log('create:app-name');
     // require('../lib/create')(name, cleanArgs(cmd))
   })
 
@@ -49,7 +49,6 @@ program
   .option('-d, --dir [path]', 'Specify the deployment directory.', 'dist')
   .option('-u, --url <dir>', 'Specify repository URL.')
   .action((name, cmd) => {
-    console.log('cmd:', name.dir)
     Deploy(name, cmd);
   })
 

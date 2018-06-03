@@ -1,4 +1,5 @@
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+const paths = require('./path');
 
 module.exports = (webpackConf) => {
   return {
@@ -22,7 +23,8 @@ module.exports = (webpackConf) => {
     // 如果HTTPS环境变量设置为“true”，则启用HTTPS
     https: protocol === 'https',
     // 告诉服务器从哪里提供内容。提供静态文件，这只是必要的。
-    // contentBase: cmd.markdownPaths,
+    // contentBase: [paths.appBuildDist, '/Users/kenny/git/kkt/kkt/'],
+    contentBase: [paths.appDirectory],
     // 通知服务器观察由devServer.contentBase选项提供的文件。
     // 文件更改将触发整页重新加载。
     watchContentBase: true,
