@@ -5,9 +5,9 @@ const pkg = require('../package.json');
 const Start = require('../script/start');
 const Build = require('../script/build');
 const Deploy = require('../script/deploy');
-// const paths = require('../conf/path');
 
 program
+  .description('Rapid React development, Cli tool for creating react apps.')
   .version(pkg.version, '-v, --version')
   .usage('<command> [options]')
 
@@ -29,7 +29,7 @@ program
 program
   .command('build')
   .description('Builds the app for production to the dist folder.')
-  .option('--host <host>', 'The port and host.', '0.0.0.0:19870')
+  .option('--host <host>', 'The port and host.', `${process.env.HOST}:${process.env.PORT}`)
   .action((name, cmd) => {
     Build(name, cmd);
   })
@@ -37,14 +37,14 @@ program
 program
   .command('start')
   .description('Runs the app in development mode.')
-  .option('--host <host>', 'The port and host.', '0.0.0.0:19870')
+  .option('--host <host>', 'The port and host.', `${process.env.HOST}:${process.env.PORT}`)
   .action((name, cmd) => {
     Start(name, cmd)
   })
 
 program
   .command('deploy')
-  .description('Runs the app in development mode.')
+  .description('Push the specified directory to the gh-pages branch.')
   .option('-b, --branch [name]', 'Specify branch.', 'gh-pages')
   .option('-d, --dir [path]', 'Specify the deployment directory.', 'dist')
   .option('-u, --url <dir>', 'Specify repository URL.')

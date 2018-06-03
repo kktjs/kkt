@@ -1,8 +1,12 @@
-const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+const FS = require('fs');
+const PATH = require('path');
+const apiMocker = require('webpack-api-mocker');
 const paths = require('./path');
 
+const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+
 module.exports = (webpackConf) => {
-  return {
+  const serverConf = {
     // 启用生成文件的gzip压缩。
     compress: true,
     // 沉默WebpackDevServer自己的日志，因为它们通常没有用处。
@@ -23,7 +27,6 @@ module.exports = (webpackConf) => {
     // 如果HTTPS环境变量设置为“true”，则启用HTTPS
     https: protocol === 'https',
     // 告诉服务器从哪里提供内容。提供静态文件，这只是必要的。
-    // contentBase: [paths.appBuildDist, '/Users/kenny/git/kkt/kkt/'],
     contentBase: [paths.appDirectory],
     // 通知服务器观察由devServer.contentBase选项提供的文件。
     // 文件更改将触发整页重新加载。
@@ -33,4 +36,14 @@ module.exports = (webpackConf) => {
       ignored: /node_modules/,
     },
   };
+
+  if (FS.existsSync(paths.appMockAPI)) {
+    serverConf.before = (app) => {
+      apiMocker(app, PATH.resolve(paths.appMockAPI), {
+        changeHost: true,
+      });
+    };
+  }
+
+  return serverConf;
 };
