@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Cli tool for creating react apps.",
   "bin": {
     "kkt": "./.bin/kkt.js"
