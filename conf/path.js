@@ -24,7 +24,7 @@ module.exports = {
   appMockAPI: resolveApp('.kktmock.js'),
   appKKTRC: getKKTRCPath('.kktrc.js'),
   appBuildDist: resolveApp('dist'),
-  appPublicPath: '',
+  appPublicPath: '/',
   appIndex: resolveApp('src/index.js'),
   defaultHTMLPath: resolveApp('public/index.html'),
 };
