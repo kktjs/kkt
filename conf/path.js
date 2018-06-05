@@ -10,12 +10,21 @@ const resolveApp = relativePath => PATH.resolve(appDirectory, relativePath);
 // const resolveTool = relativePath => PATH.resolve(toolDirectory, relativePath);
 // const appMockAPI = relativePath => PATH.resolve(appDirectory, relativePath);
 
+function getKKTRCPath(_path) {
+  const pathRc = resolveApp(_path);
+  if (!FS.existsSync(pathRc)) {
+    return null;
+  }
+  return pathRc;
+}
+
 module.exports = {
   resolveApp,
   appDirectory,
   appMockAPI: resolveApp('.kktmock.js'),
+  appKKTRC: getKKTRCPath('.kktrc.js'),
   appBuildDist: resolveApp('dist'),
-  appPublicPath: '/',
+  appPublicPath: '',
   appIndex: resolveApp('src/index.js'),
   defaultHTMLPath: resolveApp('public/index.html'),
 };
