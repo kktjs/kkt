@@ -17,8 +17,8 @@ module.exports = function server() {
   let webpackServerConf = null;
   if (paths.appKKTRC) {
     const kktrc = require(paths.appKKTRC); // eslint-disable-line
-    compiler = webpack(kktrc(webpackConf, null));
-    webpackServerConf = createDevServerConfig(kktrc(null, webpackConf));
+    compiler = webpack(kktrc(webpackConf, null) || webpackConf);
+    webpackServerConf = kktrc(null, createDevServerConfig(webpackConf)) || createDevServerConfig(webpackConf);
   } else {
     compiler = webpack(webpackConf);
     webpackServerConf = createDevServerConfig(webpackConf);
