@@ -8,7 +8,7 @@ module.exports = function serve() {
   let compiler = null;
   if (paths.appKKTRC) {
     const kktrc = require(paths.appKKTRC); // eslint-disable-line
-    compiler = webpack(kktrc(webpackConf, null));
+    compiler = webpack(kktrc(webpackConf, null) || webpackConf);
   } else {
     compiler = webpack(webpackConf);
   }
