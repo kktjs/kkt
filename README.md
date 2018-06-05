@@ -14,14 +14,6 @@ npm install -g kkt
 在根目录新建 `.kktrc.js` 这里返回两个参数 `webpackConf` 和 `ServerConf`，返回的是 `webpack` 配置，webpack 配置，区分开发模式和生成模式，是通过 `webpackConf.mode` 的值为 `development | production` 来判断;
 
 ```js
-module.exports = function (webpackConf, webpackServerConf) {
-  if (webpackConf.mode == 'development') { }
-  if (webpackConf.mode == 'production') { }
-  // console.log('webpackConf:', webpackConf);
-  // console.log('webpackServerConf:', webpackServerConf);
-  if (webpackConf) return webpackConf;
-  if (webpackServerConf) return webpackServerConf;
-}
 module.exports = function (webpackConf, ServerConf) {
   if (webpackConf) {
     if (webpackConf.mode == 'development') {
