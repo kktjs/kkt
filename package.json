@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "Cli tool for creating react apps.",
   "bin": {
     "kkt": "./.bin/kkt.js"
@@ -44,6 +44,7 @@
     "file-loader": "^1.1.11",
     "gh-pages": "^1.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "inquirer": "^6.0.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "loading-cli": "^1.0.6",
