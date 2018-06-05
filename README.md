@@ -11,7 +11,7 @@ npm install -g kkt
 
 ## webpack 配置修改
 
-在根目录新建 `.kktrc.js` 这里返回两个参数 `webpackConf` 和 `webpackServerConf`，返回的是 `webpack` 配置，webpack 配置，区分开发模式和生成模式是通过 `webpackConf.mode` 的值为 development 或者是 ;
+在根目录新建 `.kktrc.js` 这里返回两个参数 `webpackConf` 和 `ServerConf`，返回的是 `webpack` 配置，webpack 配置，区分开发模式和生成模式，是通过 `webpackConf.mode` 的值为 `development | production` 来判断;
 
 ```js
 module.exports = function (webpackConf, webpackServerConf) {
@@ -21,6 +21,26 @@ module.exports = function (webpackConf, webpackServerConf) {
   // console.log('webpackServerConf:', webpackServerConf);
   if (webpackConf) return webpackConf;
   if (webpackServerConf) return webpackServerConf;
+}
+module.exports = function (webpackConf, ServerConf) {
+  if (webpackConf) {
+    if (webpackConf.mode == 'development') {
+      // 开发模式下更改的 webpack 配置
+    }
+    if (webpackConf.mode == 'production') {
+      // 生产模式下更改的 webpack 配置
+    }
+    return webpackConf
+  };
+  if (ServerConf) {
+    ServerConf.proxy = {
+      '/api': {
+        target: 'http://127.0.0.1:1130',
+        changeOrigin: true,
+      },
+    }
+    return ServerConf;
+  }
 }
 ```
 
