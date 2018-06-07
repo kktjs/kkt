@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const opn = require('opn');
+const openBrowsers = require('open-browsers');
 const detect = require('detect-port');
 require('colors-cli/toxic');
 const paths = require('../conf/path');
@@ -36,8 +36,7 @@ module.exports = function server() {
       if (err) {
         return console.log(err); // eslint-disable-line
       }
-      // open browser
-      opn(`http://${HOST}:${DEFAULT_PORT}`);
+      openBrowsers(`http://${HOST}:${DEFAULT_PORT}`);
     });
   }).catch((err) => {
     console.log('~~~::::', err); // eslint-disable-line
