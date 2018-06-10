@@ -9,29 +9,36 @@ Cli tool for creating react apps.
 npm install -g kkt
 ```
 
+## 使用
+
+```bash
+$ kkt create my-project
+$ cd my-project && npm start
+```
+
 ## webpack 配置修改
 
-在根目录新建 `.kktrc.js` 这里返回两个参数 `webpackConf` 和 `ServerConf`，返回的是 `webpack` 配置，webpack 配置，区分开发模式和生成模式，是通过 `webpackConf.mode` 的值为 `development | production` 来判断;
+在根目录新建 `.kktrc.js` 这里返回两个参数 `webpackConf` 和 `devServer`，返回的是 `webpack` 配置，webpack 配置，区分开发模式和生成模式，是通过 `webpackConf.mode` 的值为 `development | production` 来判断;
 
 ```js
-module.exports = function (webpackConf, ServerConf) {
+module.exports = function (webpackConf, devServer) {
   if (webpackConf) {
-    if (webpackConf.mode == 'development') {
+    if (webpackConf.mode === 'development') {
       // 开发模式下更改的 webpack 配置
     }
-    if (webpackConf.mode == 'production') {
+    if (webpackConf.mode === 'production') {
       // 生产模式下更改的 webpack 配置
     }
     return webpackConf
   };
-  if (ServerConf) {
-    ServerConf.proxy = {
+  if (devServer) {
+    devServer.proxy = {
       '/api': {
         target: 'http://127.0.0.1:1130',
         changeOrigin: true,
       },
     }
-    return ServerConf;
+    return devServer;
   }
 }
 ```
@@ -45,7 +52,7 @@ const proxy = {
   'GET /api/user': { id: 1, username: 'kenny', sex: 6 },
   'GET /api/user/list': [
     { id: 1, username: 'kenny', sex: 6 }, 
-    { id: 2, username: 'kenny', sex: 6 }
+    { id: 2, username: 'kkt', sex: 6 }
   ],
   'POST /api/login/account': (req, res) => {
     const { password, username } = req.body;
@@ -53,8 +60,8 @@ const proxy = {
       return res.json({
         status: 'ok',
         code: 0,
-        token: "sdfsdfsdfdsf",
-        data: { id: 1, username: 'kenny', sex: 6 }
+        token: "kkt",
+        data: { id: 1, username: 'kktname', sex: 6 }
       });
     } else {
       return res.json({

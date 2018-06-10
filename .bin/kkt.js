@@ -15,7 +15,7 @@ program
 program
   .command('create <app-name>')
   .description('create a new project powered by kkt')
-  .option('-c, --clone', 'Use git clone when fetching remote preset')
+  .option('-r, --registry <url>', 'Use specified npm registry when installing dependencies (only for npm)')
   .option('-f, --force', 'Overwrite target directory if it exists')
   .on('--help', () => {
     console.log()
@@ -28,8 +28,8 @@ program
     console.log('    $ kkt init username/repo my-project')
     console.log()
   })
-  .action((cmd) => {
-    // require('../src/create')(cmd)
+  .action((name, cmd) => {
+    require('../src/create')(name, cleanArgs(cmd))
   })
 
 program
@@ -85,4 +85,19 @@ program.parse(process.argv);
 
 if (!process.argv.slice(2).length) {
   program.outputHelp();
+}
+
+// 命令将Command对象本身作为选项传递，
+// 仅将实际选项提取到新对象中。
+function cleanArgs(cmd) {
+  const args = {}
+  cmd.options.forEach(o => {
+    const key = o.long.replace(/^--/, '')
+    // 如果一个选项不存在并且Command有一个同名的方法
+    // 它不应该被复制
+    if (typeof cmd[key] !== 'function') {
+      args[key] = cmd[key]
+    }
+  })
+  return args
 }
