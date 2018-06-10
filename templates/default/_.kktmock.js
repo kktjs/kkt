@@ -1,6 +1,6 @@
 const proxy = {
   'GET /api/userinfo/:id': (req, res) => {
-    console.log('---->', req.params);
+    // console.log('---->', req.params);
     return res.json({
       id: 1,
       username: 'kenny',
@@ -27,8 +27,8 @@ const proxy = {
     });
   },
   'DELETE /api/user/:id': (req, res) => {
-    console.log('---->', req.body);
-    console.log('---->', req.params.id);
+    // console.log('---->', req.body);
+    // console.log('---->', req.params.id);
     res.send({ status: 'ok', message: '删除成功！' });
   },
 };
