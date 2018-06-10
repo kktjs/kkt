@@ -36,7 +36,7 @@ program
   .command('build')
   .description('Builds the app for production to the dist folder.')
   .action((cmd) => {
-    require('../src/build')(cmd)
+    require('../script/build')(cmd)
   })
 
 program
@@ -51,7 +51,7 @@ program
     console.log()
   })
   .action((cmd) => {
-    require('../src/start')(cmd)
+    require('../script/start')(cmd)
   })
 
 program
@@ -61,7 +61,7 @@ program
   .option('-d, --dir [path]', 'Specify the deployment directory.', 'dist')
   .option('-u, --url <dir>', 'Specify repository URL.')
   .action((cmd) => {
-    require('../src/deploy')(cmd)
+    require('../script/deploy')(cmd)
   })
 
 program
