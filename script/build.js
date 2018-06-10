@@ -4,15 +4,13 @@ const paths = require('../conf/path');
 require('colors-cli/toxic');
 
 module.exports = function serve() {
-  const webpackConf = conf();
-  let compiler = null;
+  let webpackConf = conf();
   if (paths.appKKTRC) {
     const kktrc = require(paths.appKKTRC); // eslint-disable-line
-    compiler = webpack(kktrc(webpackConf, null) || webpackConf);
-  } else {
-    compiler = webpack(webpackConf);
+    webpackConf = kktrc(webpackConf, null) || webpackConf;
   }
 
+  const compiler = webpack(webpackConf);
   compiler.run((err, stats) => {
     // 官方输出参数
     // https://webpack.js.org/configuration/stats/

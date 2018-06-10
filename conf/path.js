@@ -12,10 +12,8 @@ const resolveApp = relativePath => PATH.resolve(appDirectory, relativePath);
 
 function getKKTRCPath(_path) {
   const pathRc = resolveApp(_path);
-  if (!FS.existsSync(pathRc)) {
-    return null;
-  }
-  return pathRc;
+  if (FS.existsSync(pathRc)) return pathRc;
+  return null;
 }
 
 module.exports = {
