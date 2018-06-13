@@ -15,6 +15,7 @@ program
 program
   .command('create <app-name>')
   .description('create a new project powered by kkt')
+  .option('-g, --git [message]', 'Force / skip git intialization, optionally specify initial commit message')
   .option('-r, --registry <url>', 'Use specified npm registry when installing dependencies (only for npm)')
   .option('-f, --force', 'Overwrite target directory if it exists')
   .on('--help', () => {

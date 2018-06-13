@@ -2,7 +2,7 @@ const execa = require('execa');
 const path = require('path');
 const fs = require('fs-extra');
 const inquirer = require('inquirer');
-const copyTemplate = require('copy-template-dir');
+const { copyTemplate } = require('./util/copyTemplate');
 const kktpkg = require('../package.json');
 const { installDeps } = require('./util/installDeps');
 const { logSpinner, stopSpinner } = require('./util/spinner');
@@ -49,15 +49,12 @@ module.exports = class Creator {
       await this.run('git init');
     }
     stopSpinner();
-
+    // commit initial state
+    let gitCommitFailed = false;
     if (tempDir) {
-      await copyTemplate(tempDir, targetDir, {
-        name,
-        kktVersion: KKT_VERSION,
-      }, async (err, createdFiles) => {
-        if (err) return log(`  Copy Tamplate Error: ${err} !!!`.red);
-        log('');
-        createdFiles.sort().forEach((createdFile) => {
+      const copyTemp = await copyTemplate(tempDir, targetDir, { name, KKT_VERSION });
+      if (copyTemp && copyTemp.length > 0) {
+        copyTemp.sort().forEach((createdFile) => {
           log(`   ${'create'.green} ${createdFile.replace(targetDir, `${name}`)}`);
         });
         log('\n⚙  Installing dependencies. This might take a while...\n');
@@ -68,7 +65,27 @@ module.exports = class Creator {
           `${targetDir === process.cwd() ? '' : chalk.cyan(`   ${chalk.white('$')} cd ${name}\n`)}` +
           `   ${chalk.cyan(`${chalk.white('$')} npm run start\n\n`)}`
         );
-      });
+        // 提交第一次记录
+        if (shouldInitGit) {
+          await this.run('pwd');
+          await this.run('git add -A');
+          const msg = typeof cliOptions.git === 'string' ? cliOptions.git : 'Initial commit';
+          try {
+            await this.run('git', ['commit', '-m', msg]);
+          } catch (e) {
+            gitCommitFailed = true;
+          }
+        }
+      } else {
+        return log(`  Copy Tamplate Error: ${copyTemp} !!!`.red);
+      }
+    }
+
+    if (gitCommitFailed) {
+      log(
+        'Skipped git commit due to missing username and email in git config.\n'.red +
+        'You will need to perform the initial commit yourself.\n'.red
+      );
     }
   }
 

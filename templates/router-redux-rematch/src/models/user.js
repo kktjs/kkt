@@ -36,7 +36,7 @@ export const user = {
     async logout() {
       await localStorage.removeItem('token');
       await localStorage.removeItem('username');
-      await this.addUserData({ username: null, token: null });
+      await this.updateState({ username: null, token: null });
     },
   },
 };
