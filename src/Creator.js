@@ -6,7 +6,7 @@ const copyTemplate = require('copy-template-dir');
 const kktpkg = require('../package.json');
 const { installDeps } = require('./util/installDeps');
 const { logSpinner, stopSpinner } = require('./util/spinner');
-const chalk = require('colors-cli');
+const chalk = require('colors-cli/safe');
 require('colors-cli/toxic');
 
 const log = console.log; // eslint-disable-line
@@ -28,6 +28,7 @@ module.exports = class Creator {
         message: ` Create a template to the target directory ${targetDir.cyan} !\n   Pick an action:`,
         choices: [
           { name: ' react + react-dom', value: 'default' },
+          { name: ' react/react-dom + router + redux', value: 'router-redux-rematch' },
           { name: ' Cancel', value: false },
         ],
       },
@@ -36,9 +37,8 @@ module.exports = class Creator {
 
     if (!action) {
       return null;
-    } else if (action === 'default') {
-      tempDir = path.resolve(path.join(__dirname, '..', 'templates', action));
     }
+    tempDir = path.resolve(path.join(__dirname, '..', 'templates', action));
 
     // 创建目录
     await fs.ensureDir(targetDir);
@@ -62,7 +62,7 @@ module.exports = class Creator {
         });
         log('\n⚙  Installing dependencies. This might take a while...\n');
         await installDeps(targetDir, 'npm', cliOptions.registry);
-        log(`\n${'✔'.green} 🎉  Successfully created project ${name.yellow}.`);
+        log(`\n🎉 ${'✔'.green} Successfully created project ${name.yellow}.`);
         log(
           '👉 Get started with the following commands:\n\n' +
           `${targetDir === process.cwd() ? '' : chalk.cyan(`   ${chalk.white('$')} cd ${name}\n`)}` +
@@ -71,10 +71,6 @@ module.exports = class Creator {
       });
     }
   }
-
-
-  // (this.context === process.cwd() ? `` : chalk.cyan(` ${chalk.gray('$')} cd ${name}\n`)) +
-  // chalk.cyan(` ${chalk.gray('$')} 'npm run start'`)
 
   async copyTemplateCallback(err, createdFiles) {
     if (err) return log(`Copy Tamplate Error: ${err} !!!`.red);
