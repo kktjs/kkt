@@ -1,12 +1,12 @@
 {
   "name": "kkt",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "bin": {
     "kkt": "./.bin/kkt.js"
   },
   "scripts": {
-    "release": "release-it",
+    "release": "release-it --src.tagName='v%s'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
