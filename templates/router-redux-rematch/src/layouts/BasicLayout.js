@@ -25,7 +25,7 @@ class BasicLayout extends PureComponent {
               return (
                 <ChildComp {...props} isNavShow />
               );
-            }}
+            } }
           />
         );
       }
