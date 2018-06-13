@@ -14,6 +14,15 @@ const babelrc = {
     "syntax-dynamic-import",
     "transform-async-to-generator",
     "transform-class-properties",
+    [
+      "transform-runtime",
+      {
+        "helpers": false,
+        "polyfill": false,
+        "regenerator": true,
+        "moduleName": "babel-runtime"
+      }
+    ]
   ],
   "env": {
     "production": {}
