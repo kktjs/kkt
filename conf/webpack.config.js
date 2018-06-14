@@ -1,5 +1,6 @@
 const autoprefixer = require('autoprefixer');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+// const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const WebpackBar = require('webpackbar');
 const paths = require('./path');
 
 module.exports = {
@@ -99,10 +100,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new ProgressBarPlugin({
-      format: ` build [:bar] ${':percent'.green} (:elapsed seconds)`,
-      clear: false,
-    }),
+    new WebpackBar(),
   ],
   node: {
     dgram: 'empty',
