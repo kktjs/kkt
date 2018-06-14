@@ -33,15 +33,16 @@ class Login extends PureComponent {
   }
   onChange(type, e) {
     const { form } = this.state;
-    form[type] = e.target.value;
-    this.setState({ form });
+    const formData = { ...form };
+    formData[type] = e.target.value;
+    this.setState({ form: formData });
   }
   render() {
     const { form } = this.state;
     return (
       <div className={styles.login}>
         <FormItem label="Username" value={form.username} onChange={this.onChange.bind(this, 'username')} placeholder="Username" />
-        <FormItem label="Password" value={form.password} onChange={this.onChange.bind(this, 'username')} placeholder="Type your password" />
+        <FormItem label="Password" type="password" value={form.password} onChange={this.onChange.bind(this, 'password')} placeholder="Type your password" />
         <button className={styles.btn} onClick={this.login.bind(this)}>
           Login
         </button>
