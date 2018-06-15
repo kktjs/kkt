@@ -28,7 +28,8 @@ module.exports = class Creator {
         message: ` Create a template to the target directory ${targetDir.cyan} !\n   Pick an action:`,
         choices: [
           { name: ' react + react-dom', value: 'default' },
-          { name: ' react/react-dom + router + redux', value: 'router-redux-rematch' },
+          { name: ' react + router + redux', value: 'router-redux-rematch' },
+          { name: ' react + router + redux + uiw', value: 'router-redux-rematch-uiw' },
           { name: ' Cancel', value: false },
         ],
       },
