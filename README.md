@@ -55,7 +55,7 @@ module.exports = function (webpackConf, devServer) {
         item = item.oneOf.map((childItem) => {
           if (String(/\.(css|less)$/) === String(childItem.test)) {
             childItem.use = childItem.use.map((_childItem) => {
-              if (_childItem.loader === require.resolve('css-loader')) {
+              if (/node_modules\/css-loader/.test(_childItem.loader)) {
                 // 这里将 css-loader 配置替换了重新配置
                 _childItem = {
                   loader: require.resolve('css-loader'),
