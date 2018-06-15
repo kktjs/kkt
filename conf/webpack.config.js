@@ -100,7 +100,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new WebpackBar(),
+    new WebpackBar({ name: 'kkt' }),
   ],
   node: {
     dgram: 'empty',
