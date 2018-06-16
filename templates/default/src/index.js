@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from './index.less';
+import App from './app/App';
+import './index.less';
 
 
 ReactDOM.render(
-  <div className={styles.box}>
-    test2
-  </div>,
+  <App />,
   document.getElementById('root'),
 );
