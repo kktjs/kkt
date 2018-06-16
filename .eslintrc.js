@@ -66,6 +66,7 @@ const eslintrc = {
     "react/default-props-match-prop-types": 0,
     "react/jsx-curly-spacing": 0,
     "react/no-render-return-value": 0,
+    "react/prefer-stateless-function": 0,
     "object-curly-newline": 0,
     "no-param-reassign": 0,
     "no-return-assign": 0,
