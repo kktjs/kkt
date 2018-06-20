@@ -179,7 +179,7 @@ module.exports = function (WebpackConf, devServer) {
 <details>
 <summary>devServer - 默认配置</summary>
 
-`Webpack Dev Server`的配置 - 有关可用选项，请参阅`Webpack`的[`devServer`配置文档](https://webpack.js.org/configuration/dev-server/#devserver)。
+`Webpack Dev Server` 的配置 - 有关可用选项，请参阅 `Webpack` 的 [devServer配置文档](https://webpack.js.org/configuration/dev-server/#devserver)。
 
 提供的任何 `devServer` 选项将被合并在以下默认选项之上`kkt`使用（[webpack.config.server.js](./conf/webpack.config.server.js)）：
 
