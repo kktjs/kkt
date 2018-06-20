@@ -3,6 +3,8 @@ kkt
 
 Create React apps with no build configuration, Cli tool for creating react apps.
 
+![](./kkt.gif)
+
 ## 安装
 
 ```bash
