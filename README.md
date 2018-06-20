@@ -9,11 +9,47 @@ Create React apps with no build configuration, Cli tool for creating react apps.
 npm install -g kkt
 ```
 
-## 使用
+## 初始化一个项目
+
+目前工程自带实例，在创建项目的时候可以选择。
 
 ```bash
-$ kkt create my-project
+$ kkt create my-app
+
+❯  react + react-dom
+   react + router + redux
+   react + router + redux + uiw
+```
+
+选择项目之后，将自动安装依赖，完成之后直接进入项目，运行自动开启浏览器预览。
+
+```bash
 $ cd my-project && npm start
+```
+
+## 命令帮助
+
+```bash
+Usage: kkt <command> [options]
+
+Rapid React development, Cli tool for creating react apps.
+
+Options:
+
+  -v, --version                output the version number
+  -h, --help                   output usage information
+
+Commands:
+
+  create [options] <app-name>  create a new project powered by kkt
+  build                        Builds the app for production to the dist folder.
+  start                        Runs the app in development mode.
+  deploy [options]             Push the specified directory to the gh-pages branch.
+
+Examples:
+
+  $ kkt start
+  $ kkt build
 ```
 
 ## Webpack 配置修改
