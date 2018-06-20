@@ -77,7 +77,7 @@ module.exports = function (WebpackConf, devServer) {
 <details>
 <summary>修改默认Rules配置</summary>
 
-下面实例是通过 `.kktrc.js` 文件去修改 `Webpack Rules`, 这个实例修改 `/\.(css|less)$/` 样式处理`loader` 配置，引用组件库之后
+下面实例是通过 `.kktrc.js` 文件去修改 `Webpack Rules`, 这个实例修改默认规则 `/\.(css|less)$/` 样式处理`loader` 配置，引用 [uiw](https://uiw-react.github.io/) 组件库之后, 由于默认开启 [css-modules](https://github.com/css-modules/css-modules) 导致组件库里面的样式名字被处理了，样式展示不出来，下面实例 [css-modules](https://github.com/css-modules/css-modules) 过滤 [uiw](https://uiw-react.github.io/) 里面的所有 `className` 都不做处理。
 
 ```js
 module.exports = function (WebpackConf, devServer) {
