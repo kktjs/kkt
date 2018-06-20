@@ -16,7 +16,7 @@ $ kkt create my-project
 $ cd my-project && npm start
 ```
 
-## webpack 配置修改
+## Webpack 配置修改
 
 在根目录新建 `.kktrc.js` 这里返回两个参数 `webpackConf` 和 `devServer`，返回的是 `webpack` 配置，webpack 配置，区分开发模式和生成模式，是通过 `webpackConf.mode` 的值为 `development | production` 来判断;
 
@@ -36,6 +36,33 @@ module.exports = function (webpackConf, devServer) {
       '/api': {
         target: 'http://127.0.0.1:1130',
         changeOrigin: true,
+      },
+    }
+    return devServer;
+  }
+}
+```
+
+### Proxy
+
+开发过程中需要模拟后台 API，当后台 API 完成，需要去调用真实后台 API ，这个时候你需要用 Proxy 来代理访问后台服务。
+
+```js
+module.exports = function (webpackConf, devServer) {
+  if (webpackConf) {
+    // ....
+    return webpackConf
+  };
+  if (devServer) {
+    devServer.proxy = {
+      '/api': {
+        target: 'http://127.0.0.1:1130',
+        changeOrigin: true,
+      },
+      // websokect proxy
+      '/api/ws': {
+        target: 'ws://localhost:9981',
+        ws: true
       },
     }
     return devServer;
