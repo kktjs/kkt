@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const openBrowsers = require('open-browsers');
 const detect = require('detect-port');
+const prepareUrls = require('local-ip-url/prepareUrls');
 require('colors-cli/toxic');
 const paths = require('../conf/path');
 const webpackDevConf = require('../conf/webpack.config.dev');
@@ -26,23 +27,29 @@ module.exports = function server() {
     webpackServerConf = createDevServerConfig(webpackConf);
   }
 
-  const compiler = webpack(webpackConf);
-  // https://webpack.js.org/api/compiler-hooks/#aftercompile
-  // 编译完成之后打印日志
-  compiler.hooks.done.tap('done', () => {
-    // eslint-disable-next-line
-    console.log(`\nDev Server Listening at ${`http://${HOST}:${DEFAULT_PORT}`.green}`);
-  });
 
   detect(DEFAULT_PORT).then((_port) => {
     if (DEFAULT_PORT !== _port) DEFAULT_PORT = _port;
+
+    const compiler = webpack(webpackConf);
+    const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+    const urls = prepareUrls({ protocol, host: HOST, port: DEFAULT_PORT });
+    // https://webpack.js.org/api/compiler-hooks/#aftercompile
+    // 编译完成之后打印日志
+    compiler.hooks.done.tap('done', () => {
+      // eslint-disable-next-line
+      console.log(`Dev Server Listening at Local: ${urls.localUrl.green}`);
+      console.log(`              On Your Network: ${urls.lanUrl.green}`);
+      console.log(`\nTo create a production build, use ${'npm run build'.blue_bt}.`);
+    });
+
     const devServer = new WebpackDevServer(compiler, webpackServerConf);
     devServer.listen(DEFAULT_PORT, HOST, (err) => {
       if (err) {
         return console.log(err); // eslint-disable-line
       }
       clearConsole();
-      openBrowsers(`http://${HOST}:${DEFAULT_PORT}`);
+      openBrowsers(urls.localUrl);
     });
 
     ['SIGINT', 'SIGTERM'].forEach((sig) => {
