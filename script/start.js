@@ -37,10 +37,11 @@ module.exports = function server() {
     // https://webpack.js.org/api/compiler-hooks/#aftercompile
     // 编译完成之后打印日志
     compiler.hooks.done.tap('done', () => {
-      // eslint-disable-next-line
+      /* eslint-disable */
       console.log(`Dev Server Listening at Local: ${urls.localUrl.green}`);
       console.log(`              On Your Network: ${urls.lanUrl.green}`);
       console.log(`\nTo create a production build, use ${'npm run build'.blue_bt}.`);
+      /* eslint-enable */
     });
 
     const devServer = new WebpackDevServer(compiler, webpackServerConf);
