@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "1.9.15",
+  "version": "1.9.16",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "bin": {
     "kkt": "./.bin/kkt.js"
