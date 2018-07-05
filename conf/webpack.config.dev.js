@@ -6,6 +6,7 @@ const paths = require('./path');
 
 module.exports = function () {
   config.mode = 'development';
+  config.devtool = 'source-map';
   config.entry = [
     require.resolve('webpack-hot-dev-clients/webpackHotDevClient'),
     paths.appIndex,
