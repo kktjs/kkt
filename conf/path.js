@@ -19,7 +19,7 @@ function getKKTRCPath(_path) {
 module.exports = {
   resolveApp,
   appDirectory,
-  appMockAPI: resolveApp('.kktmock.js'),
+  appMockAPI: resolveApp('mocker/index.js'),
   appKKTRC: getKKTRCPath('.kktrc.js'),
   appBuildDist: resolveApp('dist'),
   appPublicPath: '/',
