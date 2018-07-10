@@ -56,10 +56,10 @@ Examples:
 
 ## Webpack 配置修改
 
-在根目录新建 `.kktrc.js` 这里返回两个参数 `WebpackConf` 和 `devServer`，返回的是 `webpack` 配置，webpack 配置，区分开发模式和生成模式，是通过 `WebpackConf.mode` 的值为 `development | production` 来判断;
+在根目录新建 `mocker/index.js` 这里返回两个参数 `WebpackConf` 和 `devServer`，返回的是 `webpack` 配置，webpack 配置，区分开发模式和生成模式，是通过 `WebpackConf.mode` 的值为 `development | production` 来判断;
 
 <details>
-<summary>配置文件 .kktrc.js 简单实例</summary>
+<summary>配置文件 mocker/index.js 简单实例</summary>
 
 ```js
 module.exports = function (WebpackConf, devServer) {
@@ -287,7 +287,7 @@ module.exports = function (WebpackConf, devServer) {
 
 ## Mock API
 
-在项目根目录添加 `.kktmock.js` 文件，再在文件中添加需要模拟的API，相关文档在这里[webpack-api-mocker](https://github.com/jaywcjlove/webpack-api-mocker)，下面来个实例：
+在项目根目录添加 `mocker/index.js` 文件，再在文件中添加需要模拟的API，相关文档在这里[webpack-api-mocker](https://github.com/jaywcjlove/webpack-api-mocker)，下面来个实例：
 
 ```js
 const proxy = {
