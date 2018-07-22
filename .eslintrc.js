@@ -18,8 +18,12 @@ const eslintrc = {
   },
   "rules": {
     "linebreak-style": 0,
+    "lines-between-class-members": 0,
     "func-names": 0,
     "sort-imports": 0,
+    "no-else-return": 0,
+    "operator-linebreak": 0,
+    "no-multiple-empty-lines": 0,
     "arrow-body-style": 0,
     "prefer-destructuring": 0,
     "max-len": 0,
@@ -43,14 +47,19 @@ const eslintrc = {
     "jsx-a11y/mouse-events-have-key-events": 0,
     "react/sort-comp": 0,
     "react/prop-types": 0,
-    "react/jsx-first-prop-new-line": 0,
     "react/require-extension": 0,
-    "react/jsx-filename-extension": [ 1,
-      { "extensions": [ ".js", ".jsx" ] }
+    "react/jsx-filename-extension": [1,
+      { "extensions": [".js", ".jsx"] }
     ],
     "react/no-unescaped-entities": 0,
+    "react/destructuring-assignment": 0,
+    "react/no-access-state-in-setstate": 0,
     "react/no-danger": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "react/jsx-first-prop-new-line": 0,
+    "react/jsx-tag-spacing": 0,
     "react/jsx-no-bind": 0,
+    "react/jsx-wrap-multilines": 0,
     "react/forbid-prop-types": 0,
     "react/require-default-props": 0,
     "react/no-did-mount-set-state": 0,
@@ -75,10 +84,10 @@ const eslintrc = {
 
 if (process.env.NODE_ENV === 'development') {
   Object.assign(eslintrc.rules,
-  {
-    'no-console': 0,
-    'no-unused-vars': 0,
-  });
+    {
+      'no-console': 0,
+      'no-unused-vars': 0,
+    });
 }
 
 module.exports = eslintrc
