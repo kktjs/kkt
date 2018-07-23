@@ -123,7 +123,9 @@ module.exports = function (WebpackConf, devServer) {
     WebpackConf.module.rules.map((item) => {
       if (item.oneOf) {
         item = item.oneOf.map((childItem) => {
-          if (String(/\.(css|less)$/) === String(childItem.test)) {
+          // kkt@1.9.23+ less 和 CSS 配置 分开
+          // 之前的配置判断需要 String(/\.(css|less)$/)
+          if (String(/\.(less)$/) === String(childItem.test)) {
             childItem.use = childItem.use.map((_childItem) => {
               if (/node_modules\/css-loader/.test(_childItem.loader)) {
                 // 这里将 css-loader 配置替换了重新配置
