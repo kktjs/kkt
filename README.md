@@ -123,7 +123,7 @@ module.exports = function (WebpackConf, devServer) {
     WebpackConf.module.rules.map((item) => {
       if (item.oneOf) {
         item = item.oneOf.map((childItem) => {
-          // kkt@1.9.23+ less 和 CSS 配置 分开
+          // kkt@1.9.24+ less 和 CSS 配置 分开
           // 之前的配置判断需要 String(/\.(css|less)$/)
           if (String(/\.(less)$/) === String(childItem.test)) {
             childItem.use = childItem.use.map((_childItem) => {
