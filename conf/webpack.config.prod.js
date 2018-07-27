@@ -19,7 +19,9 @@ module.exports = function () {
   });
 
   config.plugins = config.plugins.concat([
-    new CleanWebpackPlugin(paths.appBuildDist),
+    new CleanWebpackPlugin(paths.appBuildDist, {
+      root: process.cwd(),
+    }),
     new HtmlWebpackPlugin({
       inject: true,
       favicon: paths.defaultFaviconPath,

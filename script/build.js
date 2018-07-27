@@ -15,14 +15,16 @@ module.exports = function serve() {
     // 官方输出参数
     // https://webpack.js.org/configuration/stats/
     // https://github.com/webpack/webpack/issues/538#issuecomment-59586196
-    const message = stats.toString({
-      colors: true,
-      children: false,
-      chunks: false,
-      modules: false,
-      moduleTrace: false,
-      warningsFilter: () => true,
-    });
-    console.log(message); // eslint-disable-line
+    if (stats && stats.toString) {
+      const message = stats.toString({
+        colors: true,
+        children: false,
+        chunks: false,
+        modules: false,
+        moduleTrace: false,
+        warningsFilter: () => true,
+      });
+      console.log(message); // eslint-disable-line
+    }
   });
 };
