@@ -25,4 +25,5 @@ module.exports = {
   appPublicPath: '/',
   appIndex: resolveApp('src/index.js'),
   defaultHTMLPath: resolveApp('public/index.html'),
+  defaultFaviconPath: resolveApp('public/favicon.ico'),
 };

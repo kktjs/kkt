@@ -25,7 +25,7 @@ module.exports = function () {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
-      // favicon: paths.defaultFaviconPath,
+      favicon: paths.defaultFaviconPath,
       template: paths.defaultHTMLPath,
     }),
     // new webpack.DefinePlugin({
