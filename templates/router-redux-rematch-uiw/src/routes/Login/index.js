@@ -45,7 +45,7 @@ class Login extends PureComponent {
       <div className={styles.login}>
         <FormItem label="Username" value={form.username} onChange={this.onChange.bind(this, 'username')} placeholder="Username" />
         <FormItem label="Password" type="password" value={form.password} onChange={this.onChange.bind(this, 'password')} placeholder="Type your password" />
-        <button className={styles.btn} onClick={this.login.bind(this)}>
+        <button type="button" className={styles.btn} onClick={this.login.bind(this)}>
           Login
         </button>
       </div>

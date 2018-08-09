@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getMenuData } from '../common/menu';
-import SiderMenu from '../components/SiderMenu/';
-import GlobalHeader from '../components/GlobalHeader/';
+import SiderMenu from '../components/SiderMenu';
+import GlobalHeader from '../components/GlobalHeader';
 import styles from './BasicLayout.less';
 
 
