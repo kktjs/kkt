@@ -171,6 +171,36 @@ module.exports = function (WebpackConf, devServer) {
 
 </details>
 
+<details>
+<summary>添加一个 Webpack plugins</summary>
+
+下面是添加一个 Webpack plugins 的实例
+
+```js
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+module.exports = function (WebpackConf, devServer) {
+  if (WebpackConf) {
+
+    WebpackConf.plugins = WebpackConf.plugins.concat([
+      new CleanWebpackPlugin(paths.appBuildDist, {
+        root: process.cwd(),
+      }),
+    ]);
+
+    if (WebpackConf.mode === 'development') {
+      // 开发模式下更改的 webpack 配置
+    }
+    if (WebpackConf.mode === 'production') {
+      // 生产模式下更改的 webpack 配置
+    }
+    return WebpackConf
+  };
+}
+```
+
+</details>
+
 
 ## 开发模式的配置
 
