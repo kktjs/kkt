@@ -1,26 +1,24 @@
 const babelrc = {
   "presets": [
     [
-      "env", {
+      "@babel/preset-env", {
         "targets": {
           "browsers": ["last 2 versions", "ie >= 10"]
         }
       }
     ],
-    "react"
+    "@babel/preset-react"
   ],
   "plugins": [
-    "transform-object-rest-spread",
-    "syntax-dynamic-import",
-    "transform-async-to-generator",
-    "transform-class-properties",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-async-to-generator",
+    ["@babel/plugin-proposal-object-rest-spread", { "loose": true, "useBuiltIns": true }],
     [
-      "transform-runtime",
-      {
-        "helpers": false,
-        "polyfill": false,
+      "@babel/plugin-transform-runtime", {
+        "corejs": false,
+        "helpers": true,
         "regenerator": true,
-        "moduleName": "babel-runtime"
+        "useESModules": false
       }
     ]
   ],
@@ -28,7 +26,6 @@ const babelrc = {
     "production": {}
   },
 }
-
 
 if (process.env.NODE_ENV === 'development') {
   // 不要包含多余的空格字符和行结束符。
