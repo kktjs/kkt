@@ -14,10 +14,10 @@
     "axios": "^0.18.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-dynamic-loadable": "^1.0.8",
+    "react-dynamic-loadable": "^1.0.9",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "uiw": "^1.13.5"
+    "uiw": "^1.15.10"
   },
   "devDependencies": {
     "kkt": "{{KKT_VERSION}}"
