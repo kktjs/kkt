@@ -2,11 +2,11 @@ const execa = require('execa');
 const path = require('path');
 const fs = require('fs-extra');
 const inquirer = require('inquirer');
+const chalk = require('colors-cli/safe');
 const { copyTemplate } = require('./util/copyTemplate');
 const kktpkg = require('../package.json');
 const { installDeps } = require('./util/installDeps');
 const { logSpinner, stopSpinner } = require('./util/spinner');
-const chalk = require('colors-cli/safe');
 require('colors-cli/toxic');
 
 const log = console.log; // eslint-disable-line
