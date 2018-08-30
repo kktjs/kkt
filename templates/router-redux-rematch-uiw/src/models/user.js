@@ -1,20 +1,12 @@
 import request from '../utils/request';
 
 const getToken = () => localStorage.getItem('token');
-const getUsername = () => {
-  let user = localStorage.getItem('userData');
-  try {
-    user = JSON.parse(user) || {};
-  } catch (error) {
-    user = {};
-  }
-  return user;
-};
+const getUsername = () => localStorage.getItem('username');
 
 export const user = {
   state: {
     token: getToken(),
-    userData: getUsername(),
+    username: getUsername(),
     loading: false,
     message: '',
   },
@@ -28,22 +20,23 @@ export const user = {
       // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
       // Fetch 请求实例
       this.updateState({ loading: true });
-      const data = await request('/api/user/login', {
+      const data = await request('/api/login', {
         method: 'POST',
         body: { username, password },
       });
-      if (data.data) {
-        await this.updateState({ userData: data.data });
-        await localStorage.setItem('userData', JSON.stringify(data.data));
+      if (data.token) {
+        await this.updateState(data);
+        await localStorage.setItem('token', data.token);
+        await localStorage.setItem('username', data.username);
       } else if (data.error) {
         await this.updateState({ message: data.error });
       }
       this.updateState({ loading: false });
     },
     async logout() {
-      // await localStorage.removeItem('token');
-      await localStorage.removeItem('userData');
-      await this.updateState({ userData: {}, token: null });
+      await localStorage.removeItem('token');
+      await localStorage.removeItem('username');
+      await this.updateState({ username: null, token: null });
     },
   },
 };

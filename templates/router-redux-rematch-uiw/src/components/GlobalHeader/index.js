@@ -8,14 +8,14 @@ export default class index extends Component {
     this.state = {};
   }
   render() {
-    const { userData } = this.props;
+    const { username } = this.props;
     return (
       <div className={styles.header}>
         <div className={styles.inner}>
           <Link to="/"> 首页 </Link>
           <div className={styles.right}>
-            {userData.username ? <Link to="/"> 你好！{userData.username || '-'} </Link> : <Link to="/login"> 登录 </Link>}
-            {userData.username && <Link to="/login"> 退出登录 </Link>}
+            {username ? <Link to="/"> 你好！{username || '-'} </Link> : <Link to="/login"> 登录 </Link>}
+            {username && <Link to="/login"> 退出登录 </Link>}
           </div>
         </div>
       </div>

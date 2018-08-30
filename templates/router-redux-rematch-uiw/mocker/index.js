@@ -4,15 +4,8 @@ const proxy = {
     const { password, username } = req.body;
     if (password === 'KKT' && username === 'KKT') {
       return res.json({
-        code: 0,
-        message: '登录成功！',
-        data: {
-          id: 1,
-          username: 'admin',
-          email: 'admin@admin.com',
-          create_at: '2018-06-13T18:57:41.958Z',
-          update_at: '2018-06-13T18:57:41.958Z',
-        },
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
+        username: 'KKT',
       });
     }
     return res.status(401).json({

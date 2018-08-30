@@ -29,7 +29,7 @@ class BasicLayout extends PureComponent {
     this.props.logout();
   }
   render() {
-    const { routerData, userData } = this.props;
+    const { routerData, username } = this.props;
     const RouteComponents = [];
     Object.keys(routerData).forEach((path, idx) => {
       if (path === '/') {
@@ -46,7 +46,7 @@ class BasicLayout extends PureComponent {
               return (
                 <ChildComp {...props} isNavShow />
               );
-            } }
+            }}
           />
         );
       }
@@ -55,7 +55,7 @@ class BasicLayout extends PureComponent {
       <div className={styles.wapper}>
         <SiderMenu menuData={getMenuData()} />
         <div className={styles.container}>
-          <GlobalHeader userData={userData} />
+          <GlobalHeader username={username} />
           <Switch>
             {RouteComponents}
             <Route render={() => <Redirect to="/home" />} />
@@ -69,7 +69,7 @@ class BasicLayout extends PureComponent {
 const mapState = ({ global, user }) => ({
   test: global.test,
   token: user.token,
-  userData: user.userData,
+  username: user.username,
 });
 
 export default connect(mapState)(BasicLayout);
