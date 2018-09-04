@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "bin": {
     "kkt": "./.bin/kkt.js"
@@ -72,7 +72,7 @@
     "raw-loader": "^0.5.1",
     "style-loader": "^0.21.0",
     "webpack": "^4.17.1",
-    "webpack-api-mocker": "^1.5.13",
+    "webpack-api-mocker": "^1.5.14",
     "webpack-cli": "^3.1.0",
     "webpack-dev-middleware": "^3.2.0",
     "webpack-dev-server": "^3.1.7",
