@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "bin": {
     "kkt": "./.bin/kkt.js"
@@ -39,7 +39,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "@nuxtjs/friendly-errors-webpack-plugin": "^2.0.2",
-    "autoprefixer": "^8.6.0",
+    "autoprefixer": "^9.1.5",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^8.0.0-beta.6",
     "babel-plugin-import": "^1.7.0",
@@ -72,7 +72,7 @@
     "raw-loader": "^0.5.1",
     "style-loader": "^0.21.0",
     "webpack": "^4.17.1",
-    "webpack-api-mocker": "^1.5.12",
+    "webpack-api-mocker": "^1.5.13",
     "webpack-cli": "^3.1.0",
     "webpack-dev-middleware": "^3.2.0",
     "webpack-dev-server": "^3.1.7",
