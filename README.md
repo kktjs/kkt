@@ -111,7 +111,6 @@ module.exports = function (WebpackConf, devServer) {
 
 </details>
 
-
 <details>
 <summary>修改默认Rules配置</summary>
 
@@ -168,6 +167,19 @@ module.exports = function (WebpackConf, devServer) {
   };
 }
 ```
+
+</details>
+
+<details>
+<summary>ESLint 配置</summary>
+
+ESLint 配置报错可以通过标识到下面三个地方去找解决方法，`kkt` 使用的较为严格的代码规范，通常为了保持项目代码一直，尽量避免代码乱，这些都是必要的。
+
+- [Rules in ESLint](https://eslint.org/docs/rules/)
+- [React specific linting rules for ESLint](https://github.com/yannickcr/eslint-plugin-react)
+- [Static AST checker for a11y rules on JSX elements.](https://github.com/evcohen/eslint-plugin-jsx-a11y)
+
+如果你是在想禁用，目前没有提供什么好的方法，只能通过上面 `修改默认Rules配置` 将 webpack 默认配置冲掉。
 
 </details>
 
