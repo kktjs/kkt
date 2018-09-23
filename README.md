@@ -5,7 +5,7 @@ Create React apps with no build configuration, Cli tool for creating react apps.
 
 <p align="center">
   <a href="https://github.com/jaywcjlove/kkt">
-    <img alt="kkt document" src="https://github.com/jaywcjlove/kkt/blob/master/kkt.svg?raw=true">
+    <img alt="kkt document" src="https://jaywcjlove.github.io/kkt/kkt.svg">
   </a>
 </p>
 
