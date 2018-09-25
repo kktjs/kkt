@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
+import styles from './index.less';
 
-export default class Detail extends PureComponent {
+export default class Dashboard extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
     return (
-      <div>
-        详情页
+      <div className={styles.warpper}>
+        帮助页面首页
       </div>
     );
   }

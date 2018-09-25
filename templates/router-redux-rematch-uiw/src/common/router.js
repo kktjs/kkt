@@ -15,17 +15,23 @@ const dynamicWrapper = (models, component) => dynamic({
 
 export const getRouterData = () => {
   const conf = {
+    '/help': {
+      component: dynamicWrapper(['user'], () => import('../layouts/HelpLayout')),
+    },
+    '/help/': {
+      component: dynamicWrapper(['user'], () => import('../routes/help/dashboard')),
+    },
+    '/login': {
+      component: dynamicWrapper(['user'], () => import('../layouts/UserLayout')),
+    },
+    '/login/': {
+      component: dynamicWrapper(['user'], () => import('../routes/login')),
+    },
     '/': {
       component: dynamicWrapper(['user'], () => import('../layouts/BasicLayout')),
     },
     '/home': {
-      component: dynamicWrapper([], () => import('../routes/Home')),
-    },
-    '/login': {
-      component: dynamicWrapper(['user'], () => import('../routes/Login')),
-    },
-    '/user': {
-      component: dynamicWrapper([], () => import('../routes/Users')),
+      component: dynamicWrapper([], () => import('../routes/home')),
     },
   };
   return conf;
