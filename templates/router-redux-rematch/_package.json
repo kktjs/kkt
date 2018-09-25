@@ -11,6 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "@rematch/core": "^0.5.4",
+    "axios": "^0.18.0",
+    "history": "^4.7.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-dynamic-loadable": "^1.0.9",

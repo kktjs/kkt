@@ -1,35 +1,43 @@
 import React from 'react';
-import { model } from '@rematch/core';
-import dynamic from 'react-dynamic-loadable';
+import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-// wrapper of dynamic
-const dynamicWrapper = (models, component) => dynamic({
-  models: () => models.map((m) => {
-    return import(`./models/${m}.js`).then((md) => {
-      model({ name: m, ...md[m] });
-    });
-  }),
-  component,
-  LoadingComponent: () => <span>loading....</span>,
+class RoutersController extends React.PureComponent {
+  componentDidMount() {
+    this.props.verify();
+  }
+  render() {
+    const { resetProps, token, userData } = this.props;
+    const BasicLayout = resetProps.routerData['/'].component;
+    const UserLayout = resetProps.routerData['/login'].component;
+    const HelpLayout = resetProps.routerData['/help'].component;
+    // isAuthenticated = true 表示身份经过验证
+    // 请求是否登录验证
+    if (!this.props.isAuthenticated) {
+      return (
+        <span>是否登录的验证</span>
+      );
+    }
+    resetProps.token = token;
+    resetProps.userData = userData;
+    return (
+      <Switch>
+        <Route path="/login" render={props => <UserLayout {...props} {...resetProps} />} />
+        <Route path="/help" render={props => <HelpLayout {...props} {...resetProps} />} />
+        <Route path="/" render={props => <BasicLayout {...props} {...resetProps} />} />
+      </Switch>
+    );
+  }
+}
+
+const mapState = ({ global }) => ({
+  isAuthenticated: global.isAuthenticated,
+  token: global.token,
+  userData: global.userData,
 });
 
-export const getRouterData = () => {
-  const conf = {
-    '/': {
-      component: dynamicWrapper(['user'], () => import('./layouts/BasicLayout')),
-    },
-    '/home': {
-      component: dynamicWrapper([], () => import('./routes/Home')),
-    },
-    '/login': {
-      component: dynamicWrapper(['user'], () => import('./routes/Login')),
-    },
-    '/detail/@:scope/:package': {
-      component: dynamicWrapper([], () => import('./routes/Detail')),
-    },
-    '/detail/:package': {
-      component: dynamicWrapper([], () => import('./routes/Detail')),
-    },
-  };
-  return conf;
-};
+const mapDispatch = ({ global }) => ({
+  verify: global.verify,
+});
+
+export default connect(mapState, mapDispatch)(RoutersController);

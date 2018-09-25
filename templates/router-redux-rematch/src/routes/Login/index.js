@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import styles from './index.less';
 
+
 const FormItem = ({ label, onChange = () => { }, type = 'text', value }) => (
   <div className={styles.formItem}>
     <label>{label}:</label>
@@ -54,6 +55,7 @@ class Login extends PureComponent {
 const mapState = ({ global, user }) => ({
   test: global.test,
   token: user.token,
+  userData: user.userData,
   message: user.message,
   loading: user.loading,
 });
