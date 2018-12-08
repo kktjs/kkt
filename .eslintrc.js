@@ -28,6 +28,7 @@ const eslintrc = {
     "prefer-destructuring": 0,
     "max-len": 0,
     "consistent-return": 0,
+    "camelcase": 0,
     "comma-dangle": [
       "error",
       "always-multiline"
