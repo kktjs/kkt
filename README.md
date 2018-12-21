@@ -22,10 +22,6 @@ npm install -g kkt
 
 ```bash
 $ kkt create my-app
-
-❯  react + react-dom
-   react + router + redux
-   react + router + redux + uiw
 ```
 
 选择项目之后，将自动安装依赖，完成之后直接进入项目，运行自动开启浏览器预览。
@@ -61,12 +57,28 @@ Examples:
 
 ## Webpack 配置修改
 
-在根目录新建 `mocker/index.js` 这里返回两个参数 `WebpackConf` 和 `devServer`，返回的是 `webpack` 配置，webpack 配置，区分开发模式和生成模式，是通过 `WebpackConf.mode` 的值为 `development | production` 来判断;
+在根目录新建 `mocker/index.js`
 
 <details>
 <summary>配置文件 mocker/index.js 简单实例</summary>
 
 ```js
+
+module.exports = {
+  config: (conf, { dev, env }, webpack) => {
+    if (dev) {
+      conf.devServer.before = (app) => {
+        apiMocker(app, path.resolve('./mocker/index.js'), {
+          proxy: {
+            '/repos/*': 'https://api.github.com/',
+          },
+          changeHost: true,
+        });
+      };
+    }
+    return conf;
+  },
+};
 module.exports = function (WebpackConf, devServer) {
   if (WebpackConf) {
     if (WebpackConf.mode === 'development') {
@@ -122,55 +134,17 @@ module.exports = function (WebpackConf, devServer) {
 下面实例是通过 `.kktrc.js` 文件去修改 `Webpack Rules`, 这个实例修改默认规则 `/\.(css|less)$/` 样式处理`loader` 配置，引用 [uiw](https://uiw-react.github.io/) 组件库之后, 由于默认开启 [css-modules](https://github.com/css-modules/css-modules) 导致组件库里面的样式名字被处理了，样式展示不出来，下面实例 [css-modules](https://github.com/css-modules/css-modules) 过滤 [uiw](https://uiw-react.github.io/) 里面的所有 `className` 都不做处理。
 
 ```js
-module.exports = function (WebpackConf, devServer) {
-  if (WebpackConf) {
-    WebpackConf.module.rules.map((item) => {
-      if (item.oneOf) {
-        item = item.oneOf.map((childItem) => {
-          // kkt@1.9.24+ less 和 CSS 配置 分开
-          // 之前的配置判断需要 String(/\.(css|less)$/)
-          if (String(/\.(less)$/) === String(childItem.test)) {
-            childItem.use = childItem.use.map((_childItem) => {
-              if (/node_modules\/css-loader/.test(_childItem.loader)) {
-                // 这里将 css-loader 配置替换了重新配置
-                _childItem = {
-                  loader: require.resolve('css-loader'),
-                  options: {
-                    root: '.',
-                    modules: true,
-                    // minimize: true,
-                    localIdentName: '[local]',
-                    importLoaders: 1,
-                    getLocalIdent: (context, localIdentName, localName) => {
-                      // 过滤 uiw 组件库，因为 modules=true 参数，会将 className替换成Hash，导致uiw样式无法加载
-                      const hash = loaderUtils.getHashDigest(context.resourcePath + localIdentName, 'md5', 'base64', 5);
-                      const uiwpath = path.join(process.cwd(), 'node_modules', 'uiw');
-                      if ((new RegExp(`^${uiwpath}`)).test(context.resourcePath)) {
-                        return localName;
-                      }
-                      return localName + hash;
-                    },
-                  },
-                }
-              }
-              return _childItem;
-            });
-          }
-          return childItem;
-        });
+module.exports = {
+  config: (conf, { dev, env }, webpack) => {
+    conf.module.rules = [
+      ...conf.module.rules,
+      {
+        //.... Add rules
       }
-      return item;
-    });
-
-    if (WebpackConf.mode === 'development') {
-      // 开发模式下更改的 webpack 配置
-    }
-    if (WebpackConf.mode === 'production') {
-      // 生产模式下更改的 webpack 配置
-    }
-    return WebpackConf
-  };
-}
+    ]
+    return conf;
+  },
+};
 ```
 
 </details>
@@ -196,24 +170,17 @@ ESLint 配置报错可以通过标识到下面三个地方去找解决方法，
 ```js
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-module.exports = function (WebpackConf, devServer) {
-  if (WebpackConf) {
-
-    WebpackConf.plugins = WebpackConf.plugins.concat([
+module.exports = {
+  config: (conf, { dev, env }, webpack) => {
+    conf.plugins = [
+      ...conf.plugins,
       new CleanWebpackPlugin(paths.appBuildDist, {
         root: process.cwd(),
       }),
-    ]);
-
-    if (WebpackConf.mode === 'development') {
-      // 开发模式下更改的 webpack 配置
-    }
-    if (WebpackConf.mode === 'production') {
-      // 生产模式下更改的 webpack 配置
-    }
-    return WebpackConf
-  };
-}
+    ]
+    return conf;
+  },
+};
 ```
 
 </details>
@@ -288,16 +255,14 @@ module.exports = (webpackConf) => {
 <summary>devServer.https - 启用HTTPS</summary>
 
 ```js
-module.exports = function (WebpackConf, devServer) {
-  if (WebpackConf) {
-    // ....
-    return WebpackConf
-  };
-  if (devServer) {
-    devServer.https = true
-    return devServer;
-  }
-}
+module.exports = {
+  config: (conf, { dev, env }, webpack) => {
+    if (dev) {
+      conf.devServer.https = true;
+    }
+    return conf;
+  },
+};
 ```
 
 </details>
@@ -309,26 +274,41 @@ module.exports = function (WebpackConf, devServer) {
 > 开发过程中需要模拟后台 API，当后台 API 完成，需要去调用真实后台 API ，这个时候你需要用 Proxy 来代理访问后台服务。  
 
 ```js
-module.exports = function (WebpackConf, devServer) {
-  if (WebpackConf) {
-    // ....
-    return WebpackConf
-  };
-  if (devServer) {
-    devServer.proxy = {
-      '/api': {
-        target: 'http://127.0.0.1:1130',
-        changeOrigin: true,
-      },
-      // websokect proxy
-      '/api/ws': {
-        target: 'ws://localhost:9981',
-        ws: true
-      },
+const path = require('path');
+const apiMocker = require('mocker-api');
+
+module.exports = {
+  plugins: [
+    require.resolve('@kkt/plugin-less'),
+  ],
+  // Modify the webpack config
+  config: (conf, { dev, env }, webpack) => {
+    if (env === 'prod') {
     }
-    return devServer;
-  }
-}
+    if (dev) {
+      conf.devServer.proxy = {
+        '/api': {
+          target: 'http://127.0.0.1:1130',
+          changeOrigin: true,
+        },
+        // websokect proxy
+        '/api/ws': {
+          target: 'ws://localhost:9981',
+          ws: true
+        },
+      }
+      conf.devServer.before = (app) => {
+        apiMocker(app, path.resolve('./mocker/index.js'), {
+          proxy: {
+            '/repos/*': 'https://api.github.com/',
+          },
+          changeHost: true,
+        });
+      };
+    }
+    return conf;
+  },
+};
 ```
 
 </details>
