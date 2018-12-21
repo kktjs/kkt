@@ -1,0 +1,32 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "kkt start",
+    "build": "kkt build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaywcjlove/kkt.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@rematch/core": "^1.0.6",
+    "axios": "^0.18.0",
+    "history": "^4.7.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-dynamic-loadable": "^1.1.2",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "uiw": "^1.16.12"
+  },
+  "devDependencies": {
+    "@kkt/plugin-less": "^1.0.2",
+    "kkt": "file:../../",
+    "mocker-api": "^1.6.6"
+  }
+}

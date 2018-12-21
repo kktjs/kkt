@@ -1,68 +1,64 @@
+// Do this as the first thing so that any code reading it knows the right env.
+process.env.BABEL_ENV = 'development';
+process.env.NODE_ENV = 'development';
+
+require('colors-cli/toxic');
+const prepareUrls = require('local-ip-url/prepareUrls');
+// const fs = require('fs-extra');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const openBrowsers = require('open-browsers');
 const detect = require('detect-port');
-const prepareUrls = require('local-ip-url/prepareUrls');
-require('colors-cli/toxic');
-const paths = require('../conf/path');
-const webpackDevConf = require('../conf/webpack.config.dev');
-const createDevServerConfig = require('../conf/webpack.config.server');
+const createConfig = require('../conf/webpack.config');
+// const paths = require('../conf');
 
-function clearConsole() {
-  process.stdout.write(process.platform === 'win32' ? '\x1B[2J\x1B[0f' : '\x1B[2J\x1B[3J\x1B[H');
-}
+const logs = console.log; // eslint-disable-line
 
-module.exports = function server() {
+// Webpack compile in a try-catch
+// function compile(config) {
+//   let compiler;
+//   try {
+//     compiler = webpack(config);
+//   } catch (e) {
+//     logs('Failed to compile.', [e]); // eslint-disable-line
+//     process.exit(1);
+//   }
+//   return compiler;
+// }
+
+module.exports = async () => {
   let DEFAULT_PORT = parseInt(process.env.PORT, 10) || 19870;
   const HOST = process.env.HOST || '0.0.0.0';
-  let webpackConf = webpackDevConf();
-
-  let webpackServerConf = null;
-  // 如果配置文件存在读取配置文件
-  if (paths.appKKTRC) {
-    const kktrc = require(paths.appKKTRC); // eslint-disable-line
-    webpackConf = kktrc(webpackConf, null) || webpackConf;
-    webpackServerConf = kktrc(null, createDevServerConfig(webpackConf)) || createDevServerConfig(webpackConf);
-  } else {
-    webpackServerConf = createDevServerConfig(webpackConf);
-  }
-
-
-  detect(DEFAULT_PORT).then((_port) => {
-    if (DEFAULT_PORT !== _port) DEFAULT_PORT = _port;
-
-    const compiler = webpack(webpackConf);
-    const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-    const urls = prepareUrls({ protocol, host: HOST, port: DEFAULT_PORT });
-    // https://webpack.js.org/api/compiler-hooks/#aftercompile
-    // 编译完成之后打印日志
-    compiler.hooks.done.tap('done', () => {
-      /* eslint-disable */
-      console.log(`Dev Server Listening at Local: ${urls.localUrl.green}`);
-      console.log(`              On Your Network: ${urls.lanUrl.green}`);
-      console.log(`\nTo create a production build, use ${'npm run build'.blue_bt}.`);
-      /* eslint-enable */
-    });
-
-    const devServer = new WebpackDevServer(compiler, webpackServerConf);
-    devServer.listen(DEFAULT_PORT, HOST, (err) => {
-      if (err) {
-        return console.log(err); // eslint-disable-line
-      }
-      clearConsole();
-      openBrowsers(urls.localUrl);
-    });
-
-    ['SIGINT', 'SIGTERM'].forEach((sig) => {
-      process.on(sig, () => {
-        devServer.close();
-        process.exit();
-      });
-    });
-  }).catch((err) => {
-    if (err && err.message) {
-      console.log(err.message); // eslint-disable-line
+  const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+  try {
+    const PORT = await detect(DEFAULT_PORT);
+    if (DEFAULT_PORT !== PORT) {
+      DEFAULT_PORT = PORT;
     }
-    process.exit(1);
-  });
+    process.env.PORT = DEFAULT_PORT;
+
+    const clientConfig = createConfig('dev');
+    const compiler = webpack(clientConfig);
+    const urls = prepareUrls({ protocol, host: HOST, port: DEFAULT_PORT });
+    // Start our server webpack instance in watch mode after assets compile
+    compiler.hooks.done.tap('done', () => {
+      logs('🚀 started!');
+      logs(`Dev Server Listening at Local: ${urls.localUrl.green}`);
+      logs(`              On Your Network: ${urls.lanUrl.green}`);
+      logs(`\nTo create a production build, use ${'npm run build'.blue_bt}.`);
+    });
+    // Create a new instance of Webpack-dev-server for our client assets.
+    // This will actually run on a different port than the users app.
+    const clientDevServer = new WebpackDevServer(compiler, clientConfig.devServer);
+
+    // Start Webpack-dev-server
+    clientDevServer.listen(DEFAULT_PORT, HOST, (err) => {
+      console.log(':::::::2error::', err);
+      if (err) {
+        logs('clientDevServer:', err); // eslint-disable-line
+      }
+      logs('clientDevServer22:', DEFAULT_PORT);
+    });
+  } catch (error) {
+    console.log(':::::::3error::', error);
+  }
 };

@@ -1,22 +1,52 @@
+#! /usr/bin/env node
+
+// Do this as the first thing so that any code reading it knows the right env.
+process.env.NODE_ENV = 'production';
+
+// Makes the script crash on unhandled rejections instead of silently
+// ignoring them. In the future, promise rejections that are not handled will
+// terminate the Node.js process with a non-zero exit code.
+process.on('unhandledRejection', (err) => {
+  throw err;
+});
+
+// Ensure environment variables are read.
+require('../conf/env');
+
 const webpack = require('webpack');
-const conf = require('../conf/webpack.config.prod');
-const paths = require('../conf/path');
+const fs = require('fs-extra');
 require('colors-cli/toxic');
 
-module.exports = function serve() {
-  let webpackConf = conf();
-  if (paths.appKKTRC) {
-    const kktrc = require(paths.appKKTRC); // eslint-disable-line
-    webpackConf = kktrc(webpackConf, null) || webpackConf;
-  }
+const createConfig = require('../conf/webpack.config');
+const paths = require('../conf');
 
-  const compiler = webpack(webpackConf);
-  compiler.run((err, stats) => {
-    // 官方输出参数
-    // https://webpack.js.org/configuration/stats/
-    // https://github.com/webpack/webpack/issues/538#issuecomment-59586196
-    if (stats && stats.toString) {
-      const message = stats.toString({
+// Wrap webpack compile in a try catch.
+function compile(config) {
+  return new Promise((resolve, reject) => {
+    let compiler;
+    try {
+      compiler = webpack(config);
+    } catch (e) {
+      console.log('compile errors:', [e]); // eslint-disable-line
+      reject(e);
+      process.exit(1);
+    }
+    compiler.run((err, stats) => {
+      err ? reject(err) : resolve(stats);
+    });
+  });
+}
+
+module.exports = async () => {
+  fs.emptyDirSync(paths.appBuildDist);
+
+  const clientConfig = createConfig('prod');
+  process.noDeprecation = true; // turns off that loadQuery clutter.
+  try {
+    const clientResult = await compile(clientConfig);
+    let message;
+    if (clientResult) {
+      message = clientResult.toString({
         colors: true,
         children: false,
         chunks: false,
@@ -26,5 +56,8 @@ module.exports = function serve() {
       });
       console.log(message); // eslint-disable-line
     }
-  });
+  } catch (error) {
+    console.log('--->', error); // eslint-disable-line
+  }
 };
+

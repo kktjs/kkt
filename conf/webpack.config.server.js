@@ -1,49 +1,39 @@
-const FS = require('fs');
-const PATH = require('path');
-const apiMocker = require('webpack-api-mocker');
-const paths = require('./path');
 
-const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-
-module.exports = (webpackConf) => {
+module.exports = (dotenv) => {
   const serverConf = {
-    // 启用生成文件的gzip压缩。
-    compress: true,
     // 沉默WebpackDevServer自己的日志，因为它们通常没有用处。
     // 这个设置仍然会显示编译警告和错误。
     clientLogLevel: 'none',
-    // contentBase: conf.output.appPublic,
-    publicPath: webpackConf.output.publicPath,
-    hot: true,
+    // Enable gzip compression of generated files.
+    compress: true,
+    // Tell dev- server to watch the files served by the devServer.contentBase option.
+    // It is disabled by default.When enabled, file changes will trigger a full page reload.
+    watchContentBase: true,
+    publicPath: dotenv.raw.PUBLIC_PATH,
+    contentBase: [dotenv.raw.APPDIRECTORY],
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
     historyApiFallback: {
-      // 带点的路径仍应使用历史回退。
+      // Paths with dots should still use the history fallback.
       // See https://github.com/facebookincubator/create-react-app/issues/387.
       disableDotRule: true,
     },
-    // historyApiFallback: true,
+    https: process.env.HTTPS, // true
+    host: dotenv.raw.HOST,
+    hot: true,
+    noInfo: true,
+    overlay: false,
+    port: parseInt(dotenv.raw.PORT, 10),
     // WebpackDevServer默认是嘈杂的，所以我们发出自定义消息
     // 通过上面的`compiler.plugin`调用来监听编译器事件。
     quiet: true,
-    // 如果HTTPS环境变量设置为“true”，则启用HTTPS
-    https: protocol === 'https',
-    // 告诉服务器从哪里提供内容。提供静态文件，这只是必要的。
-    contentBase: [paths.appDirectory],
-    // 通知服务器观察由devServer.contentBase选项提供的文件。
-    // 文件更改将触发整页重新加载。
-    watchContentBase: true,
-    // 这样可以避免某些系统的CPU过载。
+    // By default files from `contentBase` will not trigger a page reload.
+    // Reportedly, this avoids CPU overload on some systems.
+    // https://github.com/facebookincubator/create-react-app/issues/293
     watchOptions: {
       ignored: /node_modules/,
     },
   };
-
-  if (FS.existsSync(paths.appMockAPI)) {
-    serverConf.before = (app) => {
-      apiMocker(app, PATH.resolve(paths.appMockAPI), {
-        changeHost: true,
-      });
-    };
-  }
-
   return serverConf;
 };

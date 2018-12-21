@@ -4,9 +4,6 @@ const program = require('commander');
 const chalk = require('colors-cli');
 const pkg = require('../package.json');
 
-process.env.HOST = '0.0.0.0';
-process.env.PORT = 19870;
-
 program
   .description('Rapid React development, Cli tool for creating react apps.')
   .version(pkg.version, '-v, --version')
