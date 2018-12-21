@@ -14,11 +14,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "kkt": "file:../../",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },
   "devDependencies": {
+    "kkt": "file:../../",
     "@kkt/plugin-less": "^1.0.2"
   }
 }
