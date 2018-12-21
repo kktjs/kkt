@@ -3,6 +3,7 @@
 const program = require('commander');
 const chalk = require('colors-cli');
 const pkg = require('../package.json');
+const exampleHelp = 'Example from https://github.com/jaywcjlove/kkt/tree/master/example example-path';
 
 program
   .description('Rapid React development, Cli tool for creating react apps.')
@@ -12,7 +13,8 @@ program
 program
   .command('create <app-name>')
   .description('create a new project powered by kkt')
-  .option('-g, --git [message]', 'Force / skip git intialization, optionally specify initial commit message')
+  .option('-e, --example <example-path>', exampleHelp, 'default')
+  // .option('-g, --git [message]', 'Force / skip git intialization, optionally specify initial commit message')
   .option('-r, --registry <url>', 'Use specified npm registry when installing dependencies (only for npm)')
   .option('-f, --force', 'Overwrite target directory if it exists')
   .on('--help', () => {
@@ -21,13 +23,15 @@ program
     console.log()
     console.log('    # create a new project with an official template')
     console.log('    $ kkt create my-project')
+    console.log('    $ kkt create my-project --example rematch')
+    console.log('    $ kkt create my-project -e rematch')
     // console.log()
     // console.log('    # create a new project straight from a gitlab.net template')
     // console.log('    $ kkt init username/repo my-project')
     console.log()
   })
   .action((name, cmd) => {
-    require('../src/create')(name, cleanArgs(cmd))
+    require('../script/create')({ projectName: name, ...cmd })
   })
 
 program
@@ -83,19 +87,4 @@ program.parse(process.argv);
 
 if (!process.argv.slice(2).length) {
   program.outputHelp();
-}
-
-// 命令将Command对象本身作为选项传递，
-// 仅将实际选项提取到新对象中。
-function cleanArgs(cmd) {
-  const args = {}
-  cmd.options.forEach(o => {
-    const key = o.long.replace(/^--/, '')
-    // 如果一个选项不存在并且Command有一个同名的方法
-    // 它不应该被复制
-    if (typeof cmd[key] !== 'function') {
-      args[key] = cmd[key]
-    }
-  })
-  return args
 }
