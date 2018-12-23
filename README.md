@@ -1,36 +1,66 @@
-kkt
---- 
-
-Create React apps with no build configuration, Cli tool for creating react apps.
-
 <p align="center">
   <a href="https://github.com/jaywcjlove/kkt">
-    <img alt="kkt document" src="https://jaywcjlove.github.io/kkt/kkt.svg">
+    <img src="./website/kkt.svg?sanitize=true">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/jaywcjlove/kkt/issues">
+    <img src="https://img.shields.io/github/issues/jaywcjlove/kkt.svg">
+  </a>
+  <a href="https://github.com/jaywcjlove/kkt/network">
+    <img src="https://img.shields.io/github/forks/jaywcjlove/kkt.svg">
+  </a>
+  <a href="https://github.com/jaywcjlove/kkt/stargazers">
+    <img src="https://img.shields.io/github/stars/jaywcjlove/kkt.svg">
+  </a>
+  <a href="https://github.com/jaywcjlove/kkt/releases">
+    <img src="https://img.shields.io/github/release/jaywcjlove/kkt.svg">
+  </a>
+  <a href="https://www.npmjs.com/package/kkt">
+    <img src="https://img.shields.io/npm/v/kkt.svg">
   </a>
 </p>
 
 
-## 安装
+Create React apps with no build configuration, Cli tool for creating react apps.
+
+## Usage
+
+You will need [`Node.js`](https://nodejs.org) installed on your system.
 
 ```bash
 npm install -g kkt
+kkt create my-app # create project
 ```
 
-## 初始化一个项目
-
-目前工程自带实例，在创建项目的时候可以选择。
+## Quick Start
 
 ```bash
-$ kkt create my-app
+npx kkt create my-app
+cd my-app
+npm start
 ```
 
-选择项目之后，将自动安装依赖，完成之后直接进入项目，运行自动开启浏览器预览。
+You can also initialize a project from one of the examples. Example from [jaywcjlove/kkt](./example) example-path. 
 
 ```bash
-$ cd my-project && npm start
+# Using the template method
+npx kkt create my-app -e rematch
 ```
 
-## 命令帮助
+or
+
+```bash
+npm install -g kkt
+# Create project, Using the template method
+kkt my-app -e rematch
+cd my-app # Enter the directory
+npm start # Start service
+```
+
+
+## KKT Help
 
 ```bash
 Usage: kkt <command> [options]
@@ -38,21 +68,19 @@ Usage: kkt <command> [options]
 Rapid React development, Cli tool for creating react apps.
 
 Options:
-
   -v, --version                output the version number
   -h, --help                   output usage information
 
 Commands:
-
   create [options] <app-name>  create a new project powered by kkt
   build                        Builds the app for production to the dist folder.
   start                        Runs the app in development mode.
   deploy [options]             Push the specified directory to the gh-pages branch.
 
-Examples:
+  Examples:
 
-  $ kkt start
-  $ kkt build
+    $ kkt start
+    $ kkt build
 ```
 
 ## Webpack 配置修改
@@ -357,3 +385,7 @@ const proxy = {
 }
 module.exports = proxy;
 ```
+
+## License
+
+[MIT © Kenny Wong](./LICENSE)
