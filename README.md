@@ -23,9 +23,7 @@
 </p>
 
 
-Create React apps with no build configuration, Cli tool for creating react apps.
-
-> [kkt-ssr](https://github.com/jaywcjlove/kkt-ssr) Create React server-side rendering universal JavaScript applications with no configuration.
+Create React apps with no build configuration, Cli tool for creating react apps. Another tool, [`kkt-ssr`](https://github.com/jaywcjlove/kkt-ssr), is used to create a generic JavaScript application on the server side where React is created.
 
 ## Usage
 
