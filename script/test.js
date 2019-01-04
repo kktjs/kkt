@@ -1,7 +1,6 @@
 
 const jest = require('jest');
 const path = require('path');
-// const execSync = require('child_process').execSync;
 const createJestConfig = require('../conf/jest.config');
 const paths = require('../conf');
 
@@ -30,6 +29,5 @@ module.exports = async (args) => {
       )
     )
   );
-  console.log('args:', args);
   jest.run(args);
 };
