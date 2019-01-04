@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "start": "kkt start",
-    "build": "kkt build"
+    "build": "kkt build",
+    "test": "kkt test --env=jsdom",
+    "test:coverage": "kkt test --env=jsdom --coverage"
   },
   "repository": {
     "type": "git",

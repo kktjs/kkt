@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from './index.module.css';
-import './index.css';
+import App from './App';
 
 ReactDOM.render(
-  <div className={styles.app}>
-    Welcome KKT!
-  </div>,
+  <App />,
   document.getElementById('root'),
 );

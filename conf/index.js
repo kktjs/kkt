@@ -52,8 +52,10 @@ module.exports = {
   appIndex: resolveApp('src/index.js'),
   appHtml: resolveApp('public/index.html'),
   defaultFaviconPath: resolveApp('public/favicon.ico'),
+  appBabelRc: resolveApp('.babelrc'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
+  testsSetup: resolveApp('src/setupTests.js'),
 };
 
 module.exports.moduleFileExtensions = [
