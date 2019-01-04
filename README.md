@@ -75,12 +75,15 @@ Commands:
   create [options] <app-name>  create a new project powered by kkt
   build                        Builds the app for production to the dist folder.
   start                        Runs the app in development mode.
+  test [options]               Runs the app in development mode.
   deploy [options]             Push the specified directory to the gh-pages branch.
 
   Examples:
 
     $ kkt start
     $ kkt build
+    $ kkt test --env=jsdom
+    $ kkt test --env=jsdom --coverage
 ```
 
 ## Webpack 配置修改
