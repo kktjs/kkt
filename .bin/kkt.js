@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-const chalk = require('colors-cli');
+const colors = require('colors-cli/safe')
 const pkg = require('../package.json');
 const exampleHelp = 'Example from https://github.com/jaywcjlove/kkt/tree/master/example example-path';
+
+const logs = console.log; // eslint-disable-line
 
 program
   .description('Rapid React development, Cli tool for creating react apps.')
@@ -18,17 +20,17 @@ program
   .option('-r, --registry <url>', 'Use specified npm registry when installing dependencies (only for npm)')
   .option('-f, --force', 'Overwrite target directory if it exists')
   .on('--help', () => {
-    console.log()
-    console.log('  Examples:')
-    console.log()
-    console.log('    # create a new project with an official template')
-    console.log('    $ kkt create my-project')
-    console.log('    $ kkt create my-project --example rematch')
-    console.log('    $ kkt create my-project -e rematch')
-    // console.log()
-    // console.log('    # create a new project straight from a gitlab.net template')
-    // console.log('    $ kkt init username/repo my-project')
-    console.log()
+    logs()
+    logs('  Examples:')
+    logs()
+    logs('    # create a new project with an official template')
+    logs('    $ kkt create my-project')
+    logs('    $ kkt create my-project --example rematch')
+    logs('    $ kkt create my-project -e rematch')
+    // logs()
+    // logs('    # create a new project straight from a gitlab.net template')
+    // logs('    $ kkt init username/repo my-project')
+    logs()
   })
   .action((name, cmd) => {
     require('../script/create')({ projectName: name, ...cmd })
@@ -45,12 +47,12 @@ program
   .command('start')
   .description('Runs the app in development mode.')
   .on('--help', () => {
-    console.log()
-    console.log('  Examples:')
-    console.log()
-    console.log('    $ kkt start')
-    console.log('    $ kkt start --host 127.0.0.0:8118')
-    console.log()
+    logs()
+    logs('  Examples:')
+    logs()
+    logs('    $ kkt start')
+    logs('    $ kkt start --host 127.0.0.0:8118')
+    logs()
   })
   .action((cmd) => {
     require('../script/start')(cmd)
@@ -65,8 +67,8 @@ program
     logs();
     logs('  Examples:');
     logs();
-    logs(`    $ ${'kkt test --env=jsdom'.green}`);
-    logs(`    $ ${'kkt test --env=jsdom --coverage'.green}`);
+    logs(`    $ ${colors.green('kkt test --env=jsdom')}`);
+    logs(`    $ ${colors.green('kkt test --env=jsdom --coverage')}`);
     logs();
   })
   .action((env, coverage, cmd) => {
@@ -97,17 +99,19 @@ program
   .arguments('<command>')
   .action((cmd) => {
     program.outputHelp()
-    console.log(`  ` + chalk.red(`Unknown command ${chalk.yellow(cmd)}.`))
-    console.log()
+    logs(`  ` + colors.red(`Unknown command ${colors.yellow(cmd)}.`))
+    logs()
   })
 
 program.on('--help', function () {
-  console.log('\n  Examples:');
-  console.log();
-  console.log('    $ kkt start');
-  console.log('    $ kkt build');
-  console.log();
-  console.log();
+  logs('\n  Examples:');
+  logs();
+  logs(`    $ ${colors.green('kkt')} start`);
+  logs(`    $ ${colors.green('kkt')} build`);
+  logs(`    $ ${colors.green('kkt')} test --env=jsdom`);
+  logs(`    $ ${colors.green('kkt')} test --env=jsdom --coverage`);
+  logs();
+  logs();
 })
 
 program.parse(process.argv);
