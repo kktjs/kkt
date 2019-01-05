@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "3.0.0-beta.8",
+  "version": "3.0.0-beta.9",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "bin": {
     "kkt": "./.bin/kkt.js"
@@ -32,6 +32,7 @@
     "@kkt/simple-progress-webpack-plugin": "^1.1.5",
     "ansi-escapes": "^3.1.0",
     "axios": "^0.18.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
