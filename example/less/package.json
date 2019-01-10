@@ -14,6 +14,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@kkt/button": "file:./button",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },
