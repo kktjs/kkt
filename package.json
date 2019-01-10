@@ -37,6 +37,7 @@
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "babel-preset-kkt": "^1.1.0",
+    "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "clean-webpack-plugin": "^1.0.0",
     "colors-cli": "^1.0.20",
     "commander": "^2.19.0",

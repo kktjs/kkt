@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const SimpleProgressWebpackPlugin = require('@kkt/simple-progress-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('./');
@@ -111,6 +112,10 @@ module.exports = (env = 'dev') => {
       favicon: paths.defaultFaviconPath,
       template: paths.appHtml,
     }));
+    // Watcher doesn't work well if you mistype casing in a path so we use
+    // a plugin that prints an error when you attempt to do this.
+    // See https://github.com/facebook/create-react-app/issues/240
+    conf.plugins.push(new CaseSensitivePathsPlugin());
   } else {
     // Specify production entry point (/client/index.js)
     conf.entry = {
@@ -141,6 +146,13 @@ module.exports = (env = 'dev') => {
       },
     }));
   }
+
+  // Moment.js is an extremely popular library that bundles large locale files
+  // by default due to how Webpack interprets its code. This is a practical
+  // solution that requires the user to opt into importing specific locales.
+  // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
+  // You can remove this if you don't use Moment.js:
+  conf.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
 
   conf.plugins.push(new MiniCssExtractPlugin({
     // Options similar to the same options in webpackOptions.output
