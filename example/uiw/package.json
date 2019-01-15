@@ -1,0 +1,27 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "kkt start",
+    "build": "kkt build",
+    "test": "kkt test --env=jsdom",
+    "test:coverage": "kkt test --env=jsdom --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaywcjlove/kkt.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@kkt/plugin-less": "^1.0.4",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "uiw": "^1.16.12"
+  },
+  "devDependencies": {
+    "kkt": "file:../../"
+  }
+}
