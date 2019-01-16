@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "bin": {
     "kkt": "./.bin/kkt.js"
@@ -70,14 +70,13 @@
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.5.0",
     "postcss-safe-parser": "^4.0.1",
-    "react-dev-utils": "^6.1.1",
     "source-map-support": "^0.5.9",
     "start-server-webpack-plugin": "^2.2.5",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.1.0",
     "url-loader": "^1.1.2",
-    "webpack": "^4.28.0",
-    "webpack-dev-server": "^3.1.11",
+    "webpack": "^4.28.4",
+    "webpack-dev-server": "^3.1.14",
     "webpack-hot-dev-clients": "^2.0.2",
     "webpack-node-externals": "^1.7.2"
   }

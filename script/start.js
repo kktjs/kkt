@@ -4,12 +4,10 @@ process.env.NODE_ENV = 'development';
 
 require('colors-cli/toxic');
 const prepareUrls = require('local-ip-url/prepareUrls');
-// const fs = require('fs-extra');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const detect = require('detect-port');
 const createConfig = require('../conf/webpack.config');
-// const paths = require('../conf');
 
 const logs = console.log; // eslint-disable-line
 
@@ -52,13 +50,12 @@ module.exports = async () => {
 
     // Start Webpack-dev-server
     clientDevServer.listen(DEFAULT_PORT, HOST, (err) => {
-      console.log(':::::::2error::', err);
       if (err) {
         logs('clientDevServer:', err); // eslint-disable-line
       }
       logs('clientDevServer22:', DEFAULT_PORT);
     });
   } catch (error) {
-    console.log(':::::::3error::', error);
+    logs(':::::::3error::', error);
   }
 };
