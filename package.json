@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "bin": {
     "kkt": "./.bin/kkt.js"
@@ -76,6 +76,7 @@
     "terser-webpack-plugin": "^1.1.0",
     "url-loader": "^1.1.2",
     "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
     "webpack-hot-dev-clients": "^2.0.2",
     "webpack-node-externals": "^1.7.2"
