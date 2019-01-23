@@ -1,0 +1,33 @@
+{
+  "name": "chrome-plugin-example",
+  "version": "1.0.0",
+  "description": "Chrome plugin example.",
+  "icons": {
+    "128": "logo.png"
+  },
+  "permissions": [
+    "*://*/*",
+    "tabs",
+    "unlimitedStorage",
+    "storage",
+    "history",
+    "chrome://favicon/",
+    "management",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "browser_action": {
+    "default_title": "",
+    "default_icon": "logo.png"
+  },
+  "offline_enabled": true,
+  "manifest_version": 2,
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}

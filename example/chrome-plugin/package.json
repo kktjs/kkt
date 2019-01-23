@@ -1,0 +1,27 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "kkt watch",
+    "build": "kkt build",
+    "test": "kkt test --env=jsdom",
+    "test:coverage": "kkt test --env=jsdom --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaywcjlove/kkt.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^1.0.1",
+    "filemanager-webpack-plugin": "^2.0.5",
+    "kkt": "file:../../"
+  }
+}
