@@ -45,7 +45,7 @@ program
 
 program
   .command('start')
-  .description('Runs the app in development mode.')
+  .description('Will create a web server, Runs the app in development mode.')
   .on('--help', () => {
     logs()
     logs('  Examples:')
@@ -56,6 +56,22 @@ program
   })
   .action((cmd) => {
     require('../script/start')(cmd)
+  })
+
+program
+  .command('watch')
+  .description('Does not provide web server, Listen only for file change generation files')
+  .on('--help', () => {
+    logs()
+    logs('  Examples:')
+    logs('    https://webpack.docschina.org/configuration/watch/#watchoptions')
+    logs(`    May be used for ${colors.green('Electron')} or ${colors.green('Chrome-Plugin')} project development.`)
+    logs()
+    logs('    $ kkt watch')
+    logs()
+  })
+  .action((cmd) => {
+    require('../script/watch')(cmd)
   })
 
 program
@@ -108,6 +124,7 @@ program.on('--help', function () {
   logs();
   logs(`    $ ${colors.green('kkt')} start`);
   logs(`    $ ${colors.green('kkt')} build`);
+  logs(`    $ ${colors.green('kkt')} watch`);
   logs(`    $ ${colors.green('kkt')} test --env=jsdom`);
   logs(`    $ ${colors.green('kkt')} test --env=jsdom --coverage`);
   logs();
