@@ -7,6 +7,7 @@ module.exports = {
   config: (conf, { dev, env, ...other }, webpack) => {
     conf = {
       ...conf,
+      mode: env === 'prod' ? 'production' : 'development',
       devtool: 'source-map',
       entry: other.appIndex,
       output: {
