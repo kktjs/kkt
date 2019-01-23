@@ -75,6 +75,7 @@ Commands:
   create [options] <app-name>  create a new project powered by kkt
   build                        Builds the app for production to the dist folder.
   start                        Runs the app in development mode.
+  watch                        Does not provide web server, Listen only for file change generation files
   test [options]               Runs the app in development mode.
   deploy [options]             Push the specified directory to the gh-pages branch.
 
