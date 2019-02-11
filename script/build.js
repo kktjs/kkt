@@ -37,8 +37,11 @@ function compile(config) {
   });
 }
 
-module.exports = async () => {
-  fs.emptyDirSync(paths.appBuildDist);
+module.exports = async (bundle, emptyDir) => {
+  if (bundle) {
+    process.env.BUNDLE = bundle || false;
+  }
+  if (emptyDir) fs.emptyDirSync(paths.appBuildDist);
 
   const clientConfig = createConfig('prod');
   process.noDeprecation = true; // turns off that loadQuery clutter.

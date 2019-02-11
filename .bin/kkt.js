@@ -39,8 +39,12 @@ program
 program
   .command('build')
   .description('Builds the app for production to the dist folder.')
-  .action((cmd) => {
-    require('../script/build')(cmd)
+  .option('-b, --bundle [value]', 'Bundles a minified and unminified version.')
+  .option('-e, --emptyDir [value]', 'Empty the DIST directory before compiling.', true)
+  .option('--no-emptyDir', 'Empty the DIST directory before compiling.')
+  .action((...cmd) => {
+    cmd = cmd[cmd.length - 1];
+    require('../script/build')(cmd.bundle, cmd.emptyDir)
   })
 
 program
@@ -54,7 +58,8 @@ program
     logs('    $ kkt start --host 127.0.0.0:8118')
     logs()
   })
-  .action((cmd) => {
+  .action((...cmd) => {
+    cmd = cmd[cmd.length - 1];
     require('../script/start')(cmd)
   })
 

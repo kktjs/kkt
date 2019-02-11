@@ -74,7 +74,7 @@ module.exports = (env = 'dev') => {
   conf.module.rules.push({ parser: { requireEnsure: false } });
 
   const kktrc = require('../utils/loadKKTRC')(paths.appKKTRC); // eslint-disable-line
-  const optionConf = { env, dev: IS_DEV, kktrc, ...paths };
+  const optionConf = { env, dev: IS_DEV, kktrc, ...dotenv, ...paths };
 
   conf = require('../plugs/rule-eslint')(conf, optionConf); // eslint-disable-line
   conf = require('../plugs/rule-url')(conf, optionConf); // eslint-disable-line
@@ -132,19 +132,21 @@ module.exports = (env = 'dev') => {
       libraryTarget: 'var',
     };
     conf = require('../plugs/optimization')(conf, { env }); // eslint-disable-line
-    conf.plugins.push(new HtmlWebpackPlugin({
-      inject: true,
-      favicon: paths.defaultFaviconPath,
-      template: paths.appHtml,
-      minify: {
-        removeAttributeQuotes: true,
-        collapseWhitespace: true,
-        html5: true,
-        minifyCSS: true,
-        removeComments: true,
-        removeEmptyAttributes: true,
-      },
-    }));
+    if (!optionConf.raw.BUNDLE) {
+      conf.plugins.push(new HtmlWebpackPlugin({
+        inject: true,
+        favicon: paths.defaultFaviconPath,
+        template: paths.appHtml,
+        minify: {
+          removeAttributeQuotes: true,
+          collapseWhitespace: true,
+          html5: true,
+          minifyCSS: true,
+          removeComments: true,
+          removeEmptyAttributes: true,
+        },
+      }));
+    }
   }
 
   // Moment.js is an extremely popular library that bundles large locale files
@@ -154,16 +156,18 @@ module.exports = (env = 'dev') => {
   // You can remove this if you don't use Moment.js:
   conf.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
 
-  conf.plugins.push(new MiniCssExtractPlugin({
-    // Options similar to the same options in webpackOptions.output
-    // both options are optional
-    filename: 'static/css/bundle.[contenthash:8].css',
-    chunkFilename: 'static/css/[contenthash:8].chunk.css',
-    // allChunks: true because we want all css to be included in the main
-    // css bundle when doing code splitting to avoid FOUC:
-    // https://github.com/facebook/create-react-app/issues/2415
-    allChunks: true,
-  }));
+  if (!optionConf.raw.BUNDLE) {
+    conf.plugins.push(new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: 'static/css/bundle.[contenthash:8].css',
+      chunkFilename: 'static/css/[contenthash:8].chunk.css',
+      // allChunks: true because we want all css to be included in the main
+      // css bundle when doing code splitting to avoid FOUC:
+      // https://github.com/facebook/create-react-app/issues/2415
+      allChunks: true,
+    }));
+  }
 
   conf.plugins.filter(Boolean);
   // Some libraries import Node modules but don't use them in the browser.

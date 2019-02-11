@@ -69,6 +69,7 @@ function getClientEnvironment() {
         NODE_ENV: process.env.NODE_ENV || 'development',
         PORT: process.env.PORT || 3000,
         HOST: process.env.HOST || 'localhost',
+        BUNDLE: process.env.BUNDLE || false,
         APPDIRECTORY: appDirectory,
         // only for production builds. Useful if you need to serve from a CDN
         PUBLIC_PATH: process.env.PUBLIC_PATH || '/',
