@@ -1,12 +1,12 @@
 
 // First, run the linter.
 // It's important to do this before Babel processes the JS.
-module.exports = (conf, options) => {
+module.exports = (conf, { raw }) => {
   conf.module.rules = [
     ...conf.module.rules,
     {
       test: /\.(js|mjs|jsx)$/,
-      include: options.appSrc,
+      include: raw.APPSRC,
       enforce: 'pre',
       use: [
         {

@@ -21,6 +21,7 @@ module.exports = (env = 'dev') => {
   const IS_DEV = env === 'dev';
 
   process.env.NODE_ENV = IS_PROD ? 'production' : 'development';
+  const kktrc = require('../utils/loadKKTRC')(paths.appKKTRC); // eslint-disable-line
   const dotenv = getClientEnv();
   let conf = {
     mode: IS_DEV ? 'development' : 'production',
@@ -73,7 +74,6 @@ module.exports = (env = 'dev') => {
   // Disable require.ensure as it's not a standard language feature.
   conf.module.rules.push({ parser: { requireEnsure: false } });
 
-  const kktrc = require('../utils/loadKKTRC')(paths.appKKTRC); // eslint-disable-line
   const optionConf = { env, dev: IS_DEV, kktrc, ...dotenv, ...paths };
 
   conf = require('../plugs/rule-eslint')(conf, optionConf); // eslint-disable-line

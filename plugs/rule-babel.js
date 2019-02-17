@@ -1,6 +1,6 @@
 // Process application JS with Babel.
 // The preset includes JSX, Flow, TypeScript and some ESnext features.
-module.exports = (conf, { appSrc, kktrc, ...otherOption }) => {
+module.exports = (conf, { raw, kktrc, ...otherOption }) => {
   const mainBabelOptions = {
     babelrc: true,
     cacheDirectory: true,
@@ -10,14 +10,14 @@ module.exports = (conf, { appSrc, kktrc, ...otherOption }) => {
 
   // Allow app to override babel options
   const babelOptions = kktrc && kktrc.babel
-    ? kktrc.babel(mainBabelOptions, { appSrc, ...otherOption })
+    ? kktrc.babel(mainBabelOptions, { raw, ...otherOption })
     : mainBabelOptions;
 
   conf.module.rules = [
     ...conf.module.rules,
     {
       test: /\.(js|mjs|jsx|ts|tsx)$/,
-      include: appSrc,
+      include: raw.APPSRC,
       use: [
         {
           loader: require.resolve('babel-loader'),

@@ -71,6 +71,7 @@ function getClientEnvironment() {
         HOST: process.env.HOST || 'localhost',
         BUNDLE: process.env.BUNDLE || false,
         APPDIRECTORY: appDirectory,
+        APPSRC: process.env.APPSRC || paths.appSrc,
         // only for production builds. Useful if you need to serve from a CDN
         PUBLIC_PATH: process.env.PUBLIC_PATH || '/',
         // The public dir changes between dev and prod, so we use an environment
