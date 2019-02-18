@@ -314,7 +314,9 @@ module.exports = {
 
 ## Example
 
-> npx kkt create my-app -e `<Example Nmame>`
+```bash
+$ npx kkt create my-app -e `<Example Nmame>`
+```
 
 - [**`default`**](example/default) - The [react](https://github.com/facebook/react) base application.
 - [**`chrome-plugin`**](example/chrome-plugin) - For chrome browser plugin development example.
