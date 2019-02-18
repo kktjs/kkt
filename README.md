@@ -121,7 +121,7 @@ Options:
   -e, --emptyDir [value]  Empty the DIST directory before compiling. (default: true)
   --no-emptyDir           Empty the DIST directory before compiling.
   -h, --help              output usage information
-``
+```
 
 ## Config
 
