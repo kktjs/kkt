@@ -13,11 +13,13 @@ module.exports = (conf, { raw, kktrc, ...otherOption }) => {
     ? kktrc.babel(mainBabelOptions, { raw, ...otherOption })
     : mainBabelOptions;
 
+  const babelInclude = kktrc.babelInclude || [];
+
   conf.module.rules = [
     ...conf.module.rules,
     {
       test: /\.(js|mjs|jsx|ts|tsx)$/,
-      include: raw.APPSRC,
+      include: [raw.APPSRC, ...babelInclude],
       use: [
         {
           loader: require.resolve('babel-loader'),
