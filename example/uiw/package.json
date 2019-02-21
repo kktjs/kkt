@@ -19,7 +19,7 @@
     "@kkt/plugin-less": "^1.0.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "uiw": "^2.0.0-beta.3"
+    "uiw": "^2.0.0-beta.26"
   },
   "devDependencies": {
     "kkt": "file:../../"
