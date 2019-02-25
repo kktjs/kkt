@@ -39,12 +39,13 @@ program
 program
   .command('build')
   .description('Builds the app for production to the dist folder.')
+  .option('-w, --watch', 'Empty the DIST directory before compiling.')
   .option('-b, --bundle [value]', 'Bundles a minified and unminified version.')
   .option('-e, --emptyDir [value]', 'Empty the DIST directory before compiling.', true)
   .option('--no-emptyDir', 'Empty the DIST directory before compiling.')
   .action((...cmd) => {
     cmd = cmd[cmd.length - 1];
-    require('../script/build')(cmd.bundle, cmd.emptyDir)
+    require('../script/build')(cmd.bundle, cmd.emptyDir, cmd.watch)
   })
 
 program

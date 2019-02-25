@@ -20,6 +20,8 @@ require('colors-cli/toxic');
 const createConfig = require('../conf/webpack.config');
 const paths = require('../conf');
 
+const logs = console.log; // eslint-disable-line
+
 // Wrap webpack compile in a try catch.
 function compile(config) {
   return new Promise((resolve, reject) => {
@@ -37,7 +39,7 @@ function compile(config) {
   });
 }
 
-module.exports = async (bundle, emptyDir) => {
+module.exports = async (bundle, emptyDir, isWatch) => {
   if (bundle) {
     process.env.BUNDLE = bundle || false;
   }
@@ -46,10 +48,28 @@ module.exports = async (bundle, emptyDir) => {
   const clientConfig = createConfig('prod');
   process.noDeprecation = true; // turns off that loadQuery clutter.
   try {
-    const clientResult = await compile(clientConfig);
+    // bundle
+    if (isWatch) {
+      const compiler = webpack(clientConfig);
+      const watchOptions = {
+        ignored: /node_modules/,
+      };
+      // eslint-disable-next-line
+      compiler.watch({ ...clientConfig.watchOptions, ...watchOptions }, (err, stats) => {
+        if (err) {
+          logs('❌ errors:', err);
+          return;
+        }
+        logs('🚀 started!');
+        // logs(`\nTo create a production build, use.`);
+      });
+      return;
+    }
+
+    const compiler = await compile(clientConfig);
     let message;
-    if (clientResult) {
-      message = clientResult.toString({
+    if (compiler) {
+      message = compiler.toString({
         colors: true,
         children: false,
         chunks: false,
@@ -63,4 +83,3 @@ module.exports = async (bundle, emptyDir) => {
     console.log('--->', error); // eslint-disable-line
   }
 };
-
