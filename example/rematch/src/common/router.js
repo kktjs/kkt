@@ -22,6 +22,9 @@ export const getRouterData = () => {
     '/help/': {
       component: dynamicWrapper(['user'], () => import('../routes/help/dashboard')),
     },
+    '/help/:id': {
+      component: dynamicWrapper(['user'], () => import('../routes/help/dashboard')),
+    },
     '/login': {
       component: dynamicWrapper(['user'], () => import('../layouts/UserLayout')),
     },
