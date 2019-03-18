@@ -22,7 +22,7 @@
     "react-dynamic-loadable": "^1.1.2",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
-    "uiw": "^1.16.12"
+    "uiw": "^2.0.0-beta.70"
   },
   "devDependencies": {
     "@kkt/plugin-less": "^1.0.2",
