@@ -54,7 +54,7 @@ or
 ```bash
 npm install -g kkt
 # Create project, Using the template method
-kkt my-app -e rematch
+kkt create my-app -e rematch
 cd my-app # Enter the directory
 npm start # Start service
 ```
