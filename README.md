@@ -314,6 +314,8 @@ module.exports = {
 
 ## Example
 
+Initialize the project from one of the examples:
+
 ```bash
 $ npx kkt create my-app -e `<Example Name>`
 ```
