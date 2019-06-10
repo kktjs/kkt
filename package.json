@@ -29,6 +29,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@babel/preset-typescript": "^7.3.3",
     "@kkt/simple-progress-webpack-plugin": "^1.1.5",
     "ansi-escapes": "^3.1.0",
     "axios": "^0.18.0",
@@ -36,7 +37,7 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.4",
-    "babel-preset-kkt": "^1.1.0",
+    "babel-preset-kkt": "^1.2.0",
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "clean-webpack-plugin": "^1.0.0",
     "colors-cli": "^1.0.20",
@@ -74,11 +75,14 @@
     "start-server-webpack-plugin": "^2.2.5",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.1.0",
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.5.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
     "webpack-hot-dev-clients": "^2.0.2",
     "webpack-node-externals": "^1.7.2"
-  }
+  },
+  "devDependencies": {}
 }

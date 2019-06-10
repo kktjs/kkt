@@ -49,7 +49,7 @@ module.exports = {
   appBuildDist: resolveApp('dist'),
   appPackageJson: resolveApp('package.json'),
   appTsConfig: resolveApp('tsconfig.json'),
-  appIndex: resolveApp('src/index.js'),
+  appIndex: resolveApp('src/index'),
   appHtml: resolveApp('public/index.html'),
   defaultFaviconPath: resolveApp('public/favicon.ico'),
   appBabelRc: resolveApp('.babelrc'),

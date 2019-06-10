@@ -40,7 +40,7 @@ module.exports = (env = 'dev') => {
         // It is guaranteed to exist because we tweak it in `env.js`
         nodePath.split(path.delimiter).filter(Boolean)
       ),
-      extensions: ['.mjs', '.jsx', '.js', '.json'],
+      extensions: ['.mjs', '.jsx', '.js', '.json', '.ts', '.tsx'],
       alias: {
         // This is required so symlinks work during development.
         'webpack/hot/poll': require.resolve('webpack/hot/poll'),
@@ -78,6 +78,7 @@ module.exports = (env = 'dev') => {
 
   conf = require('../plugs/rule-eslint')(conf, optionConf); // eslint-disable-line
   conf = require('../plugs/rule-url')(conf, optionConf); // eslint-disable-line
+  conf = require('../plugs/rule-ts')(conf, optionConf); // eslint-disable-line
   conf = require('../plugs/rule-babel')(conf, optionConf); // eslint-disable-line
   conf = require('../plugs/rule-css')(conf, optionConf); // eslint-disable-line
   conf = require('../plugs/rule-file')(conf, optionConf); // eslint-disable-line

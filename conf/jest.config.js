@@ -18,8 +18,8 @@ module.exports = (resolve, rootDir) => {
     ],
     setupTestFrameworkScriptFile: setupTestsFile,
     testMatch: [
-      '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
-      '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}',
+      '<rootDir>/**/__tests__/**/*.{ts,tsx}',
+      '<rootDir>/**/?(*.)(spec|test).{ts,tsx}',
     ],
     testEnvironment: 'node',
     // testEnvironment: 'jsdom',
@@ -35,7 +35,7 @@ module.exports = (resolve, rootDir) => {
     ],
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
-      '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+      '^.+\\.module\\.(css|less|sass|scss)$': 'identity-obj-proxy',
     },
   };
   if (rootDir) {

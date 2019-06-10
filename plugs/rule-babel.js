@@ -18,7 +18,7 @@ module.exports = (conf, { raw, kktrc, ...otherOption }) => {
   conf.module.rules = [
     ...conf.module.rules,
     {
-      test: /\.(js|mjs|jsx|ts|tsx)$/,
+      test: /\.(js|mjs|jsx)$/,
       include: [raw.APPSRC, ...babelInclude],
       use: [
         {

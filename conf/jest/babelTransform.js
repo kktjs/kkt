@@ -1,12 +1,10 @@
 const babelJest = require('babel-jest');
-const fs = require('fs-extra');
-const paths = require('../');
 
-const hasBabelRc = fs.existsSync(paths.appBabelRc);
-
-const config = {
-  presets: !hasBabelRc && [require.resolve('babel-preset-kkt')],
-  babelrc: !!hasBabelRc,
-};
-
-module.exports = babelJest.createTransformer(config);
+module.exports = babelJest.createTransformer({
+  presets: ['@babel/preset-env', '@babel/preset-typescript', '@babel/preset-react'],
+  plugins: [
+    '@babel/plugin-transform-runtime',
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-object-rest-spread',
+  ],
+});
