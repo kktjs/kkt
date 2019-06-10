@@ -323,6 +323,7 @@ $ npx kkt create my-app -e `<Example Name>`
 - [**`default`**](example/default) - The [react](https://github.com/facebook/react) base application.
 - [**`chrome-plugin`**](example/chrome-plugin) - For chrome browser plugin development example.
 - [**`bundle`**](example/bundle) - For chrome browser plugin development.
+- [**`typescript`**](example/typescript) - Use an example of `typescript`.
 - [**`less`**](example/less) - Use an example of `less`.
 - [**`scss`**](example/scss) - Use an example of `scss`.
 - [**`markdown`**](example/markdown) - Use an example of `markdown`.

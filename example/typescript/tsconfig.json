@@ -1,0 +1,32 @@
+
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "jsx": "react",
+    "declaration": true,
+    "outDir": "lib",
+    "rootDir": ".",
+    "strict": true, /* Enable all strict type-checking options. */
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "baseUrl": "./src"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
+  "typeRoots": [
+    "./node_modules/@types"
+  ],
+}
