@@ -6,7 +6,25 @@ module.exports = (conf, { raw, kktrc, ...otherOption }) => {
     cacheDirectory: true,
     presets: [],
   };
-  mainBabelOptions.presets.push(require.resolve('../babel'));
+  mainBabelOptions.presets.push(require.resolve('@babel/preset-react'));
+  mainBabelOptions.presets.push([
+    require.resolve('@tsbb/babel-preset-tsbb'), {
+      modules: false,
+      targets: {
+        browsers: ['last 2 versions', 'ie >= 10'],
+      },
+      transformRuntime: {
+        corejs: false,
+        helpers: true,
+        regenerator: true,
+        useESModules: false,
+      },
+    },
+  ]);
+
+  if (process.env.NODE_ENV === 'production') {
+    mainBabelOptions.compact = true;
+  }
 
   // Allow app to override babel options
   const babelOptions = kktrc && kktrc.babel
