@@ -1,7 +1,8 @@
 {
   "name": "kkt",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
+  "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "bin": {
     "kkt": "./.bin/kkt.js"
   },
@@ -26,7 +27,14 @@
     "framework",
     "frontend"
   ],
-  "author": "",
+  "files": [
+    ".bin",
+    "conf",
+    "plugs",
+    "script",
+    "utils",
+    ".eslintrc.js"
+  ],
   "license": "MIT",
   "dependencies": {
     "@babel/preset-typescript": "^7.3.3",
