@@ -6,7 +6,6 @@ module.exports = (conf, { raw, kktrc, ...otherOption }) => {
     cacheDirectory: true,
     presets: [],
   };
-  mainBabelOptions.presets.push(require.resolve('@babel/preset-react'));
   mainBabelOptions.presets.push([
     require.resolve('@tsbb/babel-preset-tsbb'), {
       modules: false,
@@ -21,6 +20,7 @@ module.exports = (conf, { raw, kktrc, ...otherOption }) => {
       },
     },
   ]);
+  mainBabelOptions.presets.push(require.resolve('@babel/preset-react'));
 
   if (process.env.NODE_ENV === 'production') {
     mainBabelOptions.compact = true;
