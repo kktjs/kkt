@@ -3,7 +3,7 @@
 const program = require('commander');
 const colors = require('colors-cli/safe')
 const pkg = require('../package.json');
-const exampleHelp = 'Example from https://github.com/jaywcjlove/kkt/tree/master/example example-path';
+const exampleHelp = 'Example from https://github.com/kktjs/kkt/tree/master/example example-path';
 
 const logs = console.log; // eslint-disable-line
 
