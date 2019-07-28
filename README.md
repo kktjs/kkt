@@ -1,21 +1,21 @@
 <p align="center">
-  <a href="https://github.com/jaywcjlove/kkt">
+  <a href="https://github.com/kktjs/kkt">
     <img src="./website/kkt.svg?sanitize=true">
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/jaywcjlove/kkt/issues">
-    <img src="https://img.shields.io/github/issues/jaywcjlove/kkt.svg">
+  <a href="https://github.com/kktjs/kkt/issues">
+    <img src="https://img.shields.io/github/issues/kktjs/kkt.svg">
   </a>
-  <a href="https://github.com/jaywcjlove/kkt/network">
-    <img src="https://img.shields.io/github/forks/jaywcjlove/kkt.svg">
+  <a href="https://github.com/kktjs/kkt/network">
+    <img src="https://img.shields.io/github/forks/kktjs/kkt.svg">
   </a>
-  <a href="https://github.com/jaywcjlove/kkt/stargazers">
-    <img src="https://img.shields.io/github/stars/jaywcjlove/kkt.svg">
+  <a href="https://github.com/kktjs/kkt/stargazers">
+    <img src="https://img.shields.io/github/stars/kktjs/kkt.svg">
   </a>
-  <a href="https://github.com/jaywcjlove/kkt/releases">
-    <img src="https://img.shields.io/github/release/jaywcjlove/kkt.svg">
+  <a href="https://github.com/kktjs/kkt/releases">
+    <img src="https://img.shields.io/github/release/kktjs/kkt.svg">
   </a>
   <a href="https://www.npmjs.com/package/kkt">
     <img src="https://img.shields.io/npm/v/kkt.svg">
@@ -23,7 +23,7 @@
 </p>
 
 
-Create React apps with no build configuration, Cli tool for creating react apps. Another tool, [`kkt-ssr`](https://github.com/jaywcjlove/kkt-ssr), Is a lightweight framework for static and server-rendered applications.
+Create React apps with no build configuration, Cli tool for creating react apps. Another tool, [`kkt-ssr`](https://github.com/kktjs/kkt-ssr), Is a lightweight framework for static and server-rendered applications.
 
 ## Usage
 
@@ -42,7 +42,7 @@ cd my-app
 npm start
 ```
 
-You can also initialize a project from one of the examples. Example from [jaywcjlove/kkt](./example) example-path. 
+You can also initialize a project from one of the examples. Example from [kktjs/kkt](./example) example-path. 
 
 ```bash
 # Using the template method
@@ -96,7 +96,7 @@ Usage: create [options] <app-name>
 create a new project powered by kkt
 
 Options:
-  -e, --example <example-path>  Example from https://github.com/jaywcjlove/kkt/tree/master/example example-path (default: "default")
+  -e, --example <example-path>  Example from https://github.com/kktjs/kkt/tree/master/example example-path (default: "default")
   -r, --registry <url>          Use specified npm registry when installing dependencies (only for npm)
   -f, --force                   Overwrite target directory if it exists
   -h, --help                    output usage information
@@ -257,7 +257,7 @@ module.exports = {
 
 ## Mock API
 
-Use the [`mocker-api`](https://github.com/jaywcjlove/mocker-api) simulation API. Add the `mocker/index.js` file to the project root directory
+Use the [`mocker-api`](https://github.com/kktjs/mocker-api) simulation API. Add the `mocker/index.js` file to the project root directory
 
 ```js
 const proxy = {
