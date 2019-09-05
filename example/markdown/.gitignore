@@ -1,0 +1,14 @@
+node_modules
+build
+npm-debug.log*
+package-lock.json
+.DS_Store
+.cache
+.vscode
+
+*.bak
+*.tem
+*.temp
+#.swp
+*.*~
+~*.*
