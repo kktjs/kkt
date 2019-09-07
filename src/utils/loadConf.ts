@@ -6,14 +6,20 @@ import color from 'colors-cli/safe';
 export default async function(rcPath: string): Promise<any> {
   let kktrc = () => {};
   try {
-    const exists = fs.existsSync(rcPath);
+    let exists = fs.existsSync(rcPath);
+    // Support TS conf file.
+    if(!exists) {
+      rcPath = rcPath.replace(/\.js$/, '.ts');
+      exists = fs.existsSync(rcPath);
+    }
     if (exists) {
       const { code } = babel.transformFileSync(rcPath, {
         presets: [
           [require.resolve('@tsbb/babel-preset-tsbb'), {
             targets: false,
-          }]
-        ]
+            presetReact: true,
+          }],
+        ],
       });
       const kktrcPath = path.resolve(process.cwd(), 'node_modules/.cache/kkt/.kktrc.js');
       await fs.ensureDir(path.dirname(kktrcPath));
