@@ -12,7 +12,6 @@ export default async function(rcPath: string): Promise<any> {
         presets: [
           [require.resolve('@tsbb/babel-preset-tsbb'), {
             targets: false,
-            presetReact: true,
           }]
         ]
       });
