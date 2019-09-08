@@ -20,6 +20,7 @@ import { choosePort, createCompiler, prepareProxy, prepareUrls } from 'react-dev
 import configFactory from '../../config/webpack.config';
 import createDevServerConfig from '../../config/webpack.config.server';
 import * as paths from '../../config/paths';
+import { IMyYargsArgs } from '../../type/type';
 
 
 // We require that you explicitly set browsers and do not fall back to
@@ -36,7 +37,7 @@ process.on('unhandledRejection', err => {
   throw err;
 });
 
-export default async function () {
+export default async function (args: IMyYargsArgs) {
   // Tools like Cloud9 rely on this.
   const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 19870;
   const HOST = process.env.HOST || '0.0.0.0';
@@ -54,7 +55,7 @@ export default async function () {
   try {
     await checkBrowsers(paths.appPath, isInteractive);
     const PORT = await choosePort(HOST, DEFAULT_PORT);
-    const config = await configFactory('development');
+    const config = await configFactory('development', args);
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
     const appName = require(paths.appPackageJson as string).name;
     const useTypeScript = fs.existsSync(paths.appTsConfig);

@@ -11,9 +11,10 @@ import checkRequiredFiles from 'react-dev-utils/checkRequiredFiles';
 import { measureFileSizesBeforeBuild, printFileSizesAfterBuild} from 'react-dev-utils/FileSizeReporter';
 import printHostingInstructions from 'react-dev-utils/printHostingInstructions';
 import { checkBrowsers } from 'react-dev-utils/browsersHelper';
+import build from './build';
 import configFactory from '../../config/webpack.config';
 import * as paths from '../../config/paths';
-import build from './build';
+import { IMyYargsArgs } from '../../type/type';
 
 const useYarn = fs.existsSync(paths.yarnLockFile);
 
@@ -29,24 +30,30 @@ function copyPublicFolder() {
 }
 
 const isInteractive = process.stdout.isTTY;
-
-export default async () => {
+export default async (args: IMyYargsArgs) => {
   // Generate configuration
-  const config = await configFactory('production');
+  const config = await configFactory('production', args);
   // Warn and crash if required files are missing
   if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
     process.exit(1);
   }
 
+  let appBuild = paths.appBuild;
+  if (config.output && config.output.path) {
+    appBuild = config.output.path;
+  }
+
   await checkBrowsers(paths.appPath, isInteractive);
+  // Remove all content but keep the directory so that
+  // if you're in it, you don't end up in Trash
+  if (args.emptyDir) {
+    await fs.emptyDir(appBuild);
+  }
 
   // First, read the current file sizes in build directory.
   // This lets us display how much they changed later.
-  const previousFileSizes = await measureFileSizesBeforeBuild(paths.appBuild);
+  const previousFileSizes = await measureFileSizesBeforeBuild(appBuild);
 
-  // Remove all content but keep the directory so that
-  // if you're in it, you don't end up in Trash
-  await fs.emptyDir(paths.appBuild);
   // Merge with the public folder
   copyPublicFolder();
 

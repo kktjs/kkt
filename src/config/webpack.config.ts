@@ -4,6 +4,7 @@ import fs from 'fs';
 import * as paths from './paths';
 import { ClientEnvironment } from '../type/type';
 import loadConfHandle from '../utils/loadConf';
+import { IMyYargsArgs } from '../type/type';
 
 export interface OptionConf {
   /**
@@ -17,6 +18,7 @@ export interface OptionConf {
   publicPath: string;
   publicUrl: string;
   useTypeScript: boolean;
+  yargsArgs: IMyYargsArgs;
   paths: {
     moduleFileExtensions: string[];
   };
@@ -28,7 +30,8 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
-export default async (env: string = 'development', conf: Configuration = {}) => {
+export default async (env: string = 'development', args?: IMyYargsArgs) => {
+  let conf: Configuration = {};
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';
 
@@ -125,7 +128,11 @@ export default async (env: string = 'development', conf: Configuration = {}) => 
   }
   // =============================================
   // Disable require.ensure as it's not a standard language feature.
-  const optionConf: OptionConf = { env, dotenv, paths, isEnvDevelopment, isEnvProduction, shouldUseSourceMap, publicPath, publicUrl, useTypeScript };
+  const optionConf: OptionConf = {
+    env, dotenv, paths, isEnvDevelopment, isEnvProduction,
+    shouldUseSourceMap, publicPath, publicUrl, useTypeScript,
+    yargsArgs: args,
+  };
 
   conf = require('../plugs/optimization')(conf, optionConf);
   conf = require('../plugs/resolve')(conf, optionConf);

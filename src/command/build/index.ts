@@ -6,14 +6,14 @@ export const describe = 'Builds the app for production to the dist folder.';
 
 export function builder(yarg: IMyYargsArgs) {
   return yarg.option({
-      emptyDir: {
-        alias: 'e',
-        describe: 'Empty the DIST directory before compiling.',
-        default: true,
-      },
-    })
-    .example('$ kkt build ', 'Build your project.')
-    .example('$ kkt build --no-emptyDir', 'Build your project.');
+    emptyDir: {
+      alias: 'e',
+      describe: 'Empty the DIST directory before compiling.',
+      default: true,
+    },
+  })
+  .example('$ kkt build ', 'Build your project.')
+  .example('$ kkt build --no-emptyDir', 'Build your project.');
 }
 
 export const handler = handlerBuild;
