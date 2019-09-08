@@ -103,6 +103,7 @@ typings/
 *.tem
 *.temp
 #.swp
+*.swp
 *.*~
 ~*.*
 
