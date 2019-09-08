@@ -41,8 +41,8 @@ export default (options: JestConfOptions) => {
       ? '<rootDir>/src/setupTests.js'
       : undefined,
     testMatch: [
-      '<rootDir>/**/__tests__/**/*.{ts,tsx}',
-      '<rootDir>/**/?(*.)(spec|test).{ts,tsx}',
+      '<rootDir>/**/__tests__/**/*.{ts,tsx,js,jsx}',
+      '<rootDir>/**/?(*.)(spec|test).{ts,tsx,js,jsx}',
     ],
     testEnvironment: options.env || 'jsdom',
     testURL: 'http://localhost',
