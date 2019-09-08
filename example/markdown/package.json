@@ -18,7 +18,6 @@
     "react-dom": "^16.4.0"
   },
   "devDependencies": {
-    "@kkt/plugin-less": "^1.0.2",
     "kkt": "file:../../",
     "raw-loader": "^1.0.0"
   },
