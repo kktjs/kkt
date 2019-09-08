@@ -4,8 +4,9 @@ import path from 'path';
 export default (conf, options) => {
   if (options.yargsArgs && options.yargsArgs.bundle) {
     conf.devtool = false;
+    const regexp = /(HtmlWebpackPlugin|InlineChunkHtmlPlugin|MiniCssExtractPlugin|ManifestPlugin|GenerateSW)/;
     conf.plugins = conf.plugins.map((item) => {
-      if (item.constructor && item.constructor.name && /(HtmlWebpackPlugin|MiniCssExtractPlugin|ManifestPlugin|GenerateSW)/.test(item.constructor.name)) {
+      if (item.constructor && item.constructor.name && regexp.test(item.constructor.name)) {
         return null;
       }
       return item;
