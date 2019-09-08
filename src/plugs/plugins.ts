@@ -51,7 +51,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
   ));
 
   if (options.isEnvProduction && shouldInlineRuntimeChunk) {
-    // conf.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]))
+    conf.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]));
   }
   // Makes some environment variables available in index.html.
   // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
@@ -59,7 +59,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
   // In production, it will be an empty string unless you specify "homepage"
   // in `package.json`, in which case it will be the pathname of that URL.
   // In development, this will be an empty string.
-  // conf.plugins.push(new InterpolateHtmlPlugin(HtmlWebpackPlugin, options.dotenv.raw));
+  conf.plugins.push(new InterpolateHtmlPlugin(HtmlWebpackPlugin, options.dotenv.raw));
   // This gives some necessary context to module not found errors, such as
   // the requesting resource.
   conf.plugins.push(new ModuleNotFoundPlugin(paths.appPath as string));
