@@ -1,0 +1,37 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "kkt start",
+    "build": "kkt build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kktjs/kkt.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@kkt/button": "file:./button",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  },
+  "devDependencies": {
+    "@kkt/plugin-less": "^1.0.4",
+    "kkt": "file:../../"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
