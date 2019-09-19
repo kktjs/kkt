@@ -18,7 +18,7 @@
     "react-dom": "^16.4.0"
   },
   "devDependencies": {
-    "@kkt/loader-scss": "^1.0.2",
+    "@kkt/loader-stylus": "^1.0.2",
     "kkt": "file:../../"
   },
   "browserslist": {
