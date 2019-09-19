@@ -78,7 +78,7 @@ export default (cssOptions: CssOptions, options: OptionConf, preProcessor?: stri
       },
     });
     loaders.push({
-      loader: require.resolve(preProcessor),
+      loader: preProcessor,
       options: {
         sourceMap: true,
       },

@@ -136,18 +136,52 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
 
   conf = require('../plugs/optimization')(conf, optionConf);
   conf = require('../plugs/resolve')(conf, optionConf);
-  conf = require('../plugs/eslint-loader')(conf, optionConf);
+  /**
+   * Add loader
+   * ============================
+   */
+  conf.module.rules = [...(require('../plugs/eslint-loader')(conf, optionConf))];
+  // console.log('conf.module.rules:', conf.module.rules);
+  const kktConf = await loadConfHandle(paths.appKKTRC);
+  let loaderDefault: { [key: string]: any } = {
+    url: require('../plugs/url-loader'),
+    babel: require('../plugs/babel-loader'),
+    css: require('../plugs/css-loader'),
+    file: require('../plugs/file-loader'),
+  }
+  if (kktConf && kktConf.loaderDefault && typeof kktConf.loaderDefault === 'function') {
+    let loaderConf = kktConf.loaderDefault(loaderDefault, conf, optionConf);
+    if (loaderConf) loaderDefault = loaderConf;
+  }
+
+  let loaderOneOf: any[] = [];
+  if (kktConf && kktConf.loaderOneOf && Array.isArray(kktConf.loaderOneOf)) {
+    loaderOneOf = await Promise.all(kktConf.loaderOneOf.map(async (item: any) => {
+      return Array.isArray(item) ? (await require(item[0])(conf, optionConf, item[1] ? item[1] : {}))
+        : (await require(item)(conf, optionConf, {}));
+    }));
+  }
+  const defaultLoader = await Promise.all(Object.keys(loaderDefault).map(async (keyName) => {
+    if (loaderDefault[keyName] && typeof loaderDefault[keyName] == 'function') {
+      return await loaderDefault[keyName](conf, optionConf);
+    }
+  }));
+  let loader: any[] = [];
+  [...loaderOneOf, ...defaultLoader].filter(Boolean).forEach((item) => {
+    loader = loader.concat(item);
+  });
   // "oneOf" will traverse all following loaders until one will
   // match the requirements. When no loader matches it will fall
   // back to the "file" loader at the end of the loader list.
-  conf.module.rules.push({ oneOf: [] });
-  conf = require('../plugs/url-loader')(conf, optionConf);
-  conf = require('../plugs/babel-loader')(conf, optionConf);
-  conf = require('../plugs/css-loader')(conf, optionConf);
-  conf = require('../plugs/file-loader')(conf, optionConf);
+  conf.module.rules.push({ oneOf: [...loader] });
+
   // Use webpack plugins.
   conf = require('../plugs/plugins')(conf, optionConf);
-  const kktConf = await loadConfHandle(paths.appKKTRC);
-  conf = (kktConf.default || kktConf)(conf, optionConf) || conf;
+  conf = require('../plugs/devServer')(conf, optionConf);
+
+  const deafultKKTConf = (kktConf.default || kktConf)
+  if (deafultKKTConf && typeof deafultKKTConf === 'function'){
+    conf = deafultKKTConf(conf, optionConf) || conf;
+  }
   return conf;
 }

@@ -7,25 +7,19 @@ import { OptionConf } from '../config/webpack.config';
 // This loader doesn't use a "test" so it will catch all modules
 // that fall through the other loaders.
 module.exports = (conf: Configuration, options: OptionConf) => {
-  conf.module.rules = conf.module.rules.map((item) => {
-    if (item.oneOf) {
-      // Process application JS with Babel.
-      // The preset includes JSX, Flow, TypeScript, and some ESnext features.
-      item.oneOf.push({
-        loader: require.resolve('file-loader'),
-        // Exclude `js` files to keep "css" loader working as it injects
-        // its runtime that would otherwise be processed through "file" loader.
-        // Also exclude `html` and `json` extensions so they get processed
-        // by webpacks internal loaders.
-        exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
-        options: {
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
-      });
-      // ** STOP ** Are you adding a new loader?
-      // Make sure to add the new loader(s) before the "file" loader.
+  return [
+    {
+      loader: require.resolve('file-loader'),
+      // Exclude `js` files to keep "css" loader working as it injects
+      // its runtime that would otherwise be processed through "file" loader.
+      // Also exclude `html` and `json` extensions so they get processed
+      // by webpacks internal loaders.
+      exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+      options: {
+        name: 'static/media/[name].[hash:8].[ext]',
+      },
     }
-    return item;
-  });
-  return conf;
+    // ** STOP ** Are you adding a new loader?
+    // Make sure to add the new loader(s) before the "file" loader.
+  ];
 };

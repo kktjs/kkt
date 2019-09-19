@@ -16,6 +16,7 @@ export default (options: JestConfOptions) => {
     'coverageThreshold',
     'globals',
     'mapCoverage',
+    'maxWorkers',
     'moduleFileExtensions',
     'moduleNameMapper',
     'modulePaths',
@@ -29,6 +30,14 @@ export default (options: JestConfOptions) => {
     'reporters',
   ];
   const conf: Config.InitialOptions = {
+    /**
+     * Specifies the maximum number of workers the
+     * worker-pool will spawn for running tests. This
+     * defaults to the number of the cores available
+     * on your machine. (its usually best not to
+     * override this default) [number]
+     */
+    maxWorkers: 1,
     "roots": [
       "<rootDir>/src"
     ],

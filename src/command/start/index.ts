@@ -12,6 +12,11 @@ export function builder(yarg: IMyYargsArgs) {
       describe: 'Empty the DIST directory before compiling.',
       default: true,
     },
+    port: {
+      describe: 'port.',
+      type: Number,
+      default: 19870
+    }
   })
     .example(`$ ${color.green('kkt')} start `, 'Runs the app in development mode.')
     .example(`$ ${color.green('kkt')} start --emptyDir`, 'Build your project.');
