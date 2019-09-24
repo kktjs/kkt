@@ -38,7 +38,8 @@ module.exports = (conf: Configuration, options: OptionConf) => {
         // It enables caching results in ./node_modules/.cache/babel-loader/
         // directory for faster rebuilds.
         cacheDirectory: true,
-        cacheCompression: options.isEnvProduction,
+        // https://github.com/facebook/create-react-app/issues/6846
+        cacheCompression: false,
         compact: options.isEnvProduction,
       },
     },
