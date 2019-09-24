@@ -115,8 +115,8 @@ module.exports = (conf: Configuration, options: OptionConf) => {
   // You can remove this if you don't use Moment.js:
   conf.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
 
-      // Generate a service worker script that will precache, and keep up to date,
-      // the HTML & assets that are part of the Webpack build.
+  // Generate a service worker script that will precache, and keep up to date,
+  // the HTML & assets that are part of the Webpack build.
   if (options.isEnvProduction) {
     conf.plugins.push(new WorkboxWebpackPlugin.GenerateSW({
       clientsClaim: true,

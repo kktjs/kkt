@@ -1,0 +1,32 @@
+{
+  "name": "electron-example",
+  "version": "1.0.0",
+  "description": "Electron example.",
+  "main": "app/main.js",
+  "scripts": {
+    "dev": "kkt start --port 1909",
+    "build": "kkt build",
+    "app": "NODE_ENV=dev electron .",
+    "app:build": "electron ."
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "electron": "^6.0.10",
+    "kkt": "^5.0.0-alpha.3"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}
