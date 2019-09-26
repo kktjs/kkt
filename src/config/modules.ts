@@ -2,7 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import resolve from 'resolve';
-import color from 'colors-cli'
+import color from 'colors-cli/safe';
 import * as paths from './paths';
 
 export interface ModulePathOptions {
