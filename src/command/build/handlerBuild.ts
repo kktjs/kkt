@@ -34,7 +34,7 @@ export default async (args: IMyYargsArgs) => {
   // Generate configuration
   const config = await configFactory('production', args);
   // Warn and crash if required files are missing
-  if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
+  if (args.checkRequiredFiles && !checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
     process.exit(1);
   }
 

@@ -11,6 +11,10 @@ export function builder(yarg: IMyYargsArgs) {
       describe: 'Empty the DIST directory before compiling.',
       default: true,
     },
+    checkRequiredFiles: {
+      describe: 'Warn and crash if required files are missing.',
+      default: true,
+    }
   })
   .example('$ kkt build ', 'Build your project.')
   .example('$ kkt build --no-emptyDir', 'Build your project.');
