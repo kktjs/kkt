@@ -6,8 +6,9 @@
   "scripts": {
     "start": "kkt start",
     "build": "kkt build",
+    "released": "npm run bundle && npm run bundle:min",
     "bundle": "kkt build --bundle",
-    "bundle:min": "kkt build --bundle --mini --no-emptyDir",
+    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini --no-emptyDir",
     "test": "kkt test --env=jsdom",
     "test:coverage": "kkt test --env=jsdom --coverage"
   },
@@ -23,6 +24,7 @@
     "react-dom": "^16.4.0"
   },
   "devDependencies": {
+    "@kkt/loader-less": "^1.0.3",
     "kkt": "file:../../"
   },
   "browserslist": {

@@ -1,6 +1,11 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 
+
+export const loaderOneOf = [
+  [require.resolve('@kkt/loader-less'), {} ],
+];
+
 export default (conf, options) => {
   if (options.yargsArgs && options.yargsArgs.bundle) {
     conf.devtool = false;
