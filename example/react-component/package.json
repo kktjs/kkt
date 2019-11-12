@@ -19,7 +19,7 @@
     "react-dom": "^16.4.0"
   },
   "devDependencies": {
-    "@kkt/plugin-less": "^1.0.4",
+    "@kkt/loader-less": "^1.0.3",
     "kkt": "file:../../"
   },
   "browserslist": {
