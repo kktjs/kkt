@@ -1,4 +1,4 @@
-import { Configuration } from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import path from 'path';
 import fs from 'fs';
 import * as paths from './paths';
@@ -181,7 +181,7 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
 
   const deafultKKTConf = (kktConf.default || kktConf)
   if (deafultKKTConf && typeof deafultKKTConf === 'function'){
-    conf = deafultKKTConf(conf, optionConf) || conf;
+    conf = deafultKKTConf(conf, optionConf, webpack) || conf;
   }
   return conf;
 }
