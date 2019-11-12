@@ -18,7 +18,7 @@
   "dependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "uiw": "^3.4.0"
+    "uiw": "^3.8.0"
   },
   "devDependencies": {
     "kkt": "file:../../"

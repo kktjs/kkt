@@ -18,7 +18,6 @@ import clearConsole from 'react-dev-utils/clearConsole';
 import openBrowser from 'react-dev-utils/openBrowser';
 import { choosePort, createCompiler, prepareProxy, prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
 import configFactory from '../../config/webpack.config';
-import createDevServerConfig from '../../config/webpack.config.server';
 import * as paths from '../../config/paths';
 import { IMyYargsArgs } from '../../type/type';
 
@@ -82,7 +81,7 @@ export default async function (args: IMyYargsArgs) {
         return console.log(err);
       }
       if (isInteractive) {
-        // clearConsole();
+        clearConsole();
       }
 
       // We used to support resolving modules according to `NODE_PATH`.
@@ -98,13 +97,13 @@ export default async function (args: IMyYargsArgs) {
       }
 
       console.log(color.cyan('Starting the development server...\n'));
-      // openBrowser(urls.localUrlForBrowser);
+      openBrowser(urls.localUrlForBrowser);
     });
 
     ['SIGINT', 'SIGTERM'].forEach((sig) => {
       process.on(sig as NodeJS.Signals, () => {
         devServer.close();
-        // process.exit();
+        process.exit();
       });
     });
   } catch (error) {

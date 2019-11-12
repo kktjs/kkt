@@ -1,4 +1,4 @@
-import fs, { PathLike } from 'fs';
+import fs, { PathLike } from 'fs-extra';
 import path from 'path';
 import url from 'url';
 
@@ -22,7 +22,11 @@ function ensureSlash(inputPath: string, needsSlash: boolean) {
   }
 }
 
-const getPublicUrl = (appPackageJson: PathLike) => envPublicUrl || require(appPackageJson as string).homepage;
+function getPublicUrl(appPackageJson: PathLike): string {
+  if (envPublicUrl) return envPublicUrl;
+  if (!fs.existsSync(appPackageJson)) return '';
+  return require(appPackageJson as string).homepage
+}
 
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.
@@ -81,8 +85,6 @@ const appNodeModules = resolveApp('node_modules');
 const publicUrl = getPublicUrl(resolveApp('package.json'));
 const servedPath = getServedPath(resolveApp('package.json'));
 
-// export type Des = { [key: string]: string }
-// config after eject: we're in ./config/
 export {
   dotenv,
   appPath,
