@@ -13,6 +13,10 @@ export interface ClientEnvironment {
     NODE_ENV?: 'development' | 'production' | string;
     PUBLIC_URL?: string;
     IMAGE_INLINE_SIZE_LIMIT?: string;
+    /**
+     * The babel contains the entry directory.
+     */
+    APPSRC?: string;
   },
   stringified: {
     'process.env': ClientEnvironment['raw'],
