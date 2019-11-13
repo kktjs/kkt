@@ -47,6 +47,7 @@ $ npx kkt create my-app -e `<Example Name>`
 - [**`less`**](example/less) - Use an example of `less`.
 - [**`markdown`**](example/markdown) - Use an example of `markdown`.
 - [**`react-component`**](example/react-component) - Create a project for the react component library.
+- [**`react-component-tsx`**](example/react-component-tsx) - Create a project containing the website for the react component library.
 - [**`rematch`**](example/rematch) - Use [`Rematch`](https://github.com/rematch/rematch) for the project.
 - [**`scss`**](example/scss) - Use an example of `scss`.
 - [**`stylus`**](example/stylus) - Use an example of `Stylus`.
