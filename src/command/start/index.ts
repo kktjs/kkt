@@ -12,6 +12,10 @@ export function builder(yarg: IMyYargsArgs) {
       describe: 'Empty the DIST directory before compiling.',
       default: true,
     },
+    // entryDir: {
+    //   describe: 'The name of the Entry Points directory folder.',
+    //   default: 'src',
+    // },
     port: {
       describe: 'port.',
       type: Number,

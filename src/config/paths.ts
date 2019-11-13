@@ -67,20 +67,22 @@ const resolveModule = (resolveFn: ResolveApp, filePath: string) => {
   return resolveFn(`${filePath}.js`);
 };
 
+const ENTRYDIR = process.env.ENTRYDIR || 'src';
+
 const dotenv = resolveApp('.env');
 const appPath = resolveApp('.');
 const appBuild = resolveApp('build');
 const appPublic = resolveApp('public');
 const appHtml = resolveApp('public/index.html');
-const appIndexJs = resolveModule(resolveApp, 'src/index');
+const appIndexJs = resolveModule(resolveApp, `${ENTRYDIR}/index`);
 const appPackageJson = resolveApp('package.json');
-const appSrc = resolveApp('src');
+const appSrc = resolveApp(ENTRYDIR);
 const appKKTRC = resolveApp('.kktrc.js');
 const appTsConfig = resolveApp('tsconfig.json');
 const appJsConfig = resolveApp('jsconfig.json');
 const yarnLockFile = resolveApp('yarn.lock');
-const testsSetup = resolveModule(resolveApp, 'src/setupTests');
-const proxySetup = resolveApp('src/setupProxy.js');
+const testsSetup = resolveModule(resolveApp, `${ENTRYDIR}/setupTests`);
+const proxySetup = resolveApp(`${ENTRYDIR}/setupProxy.js`);
 const appNodeModules = resolveApp('node_modules');
 const publicUrl = getPublicUrl(resolveApp('package.json'));
 const servedPath = getServedPath(resolveApp('package.json'));

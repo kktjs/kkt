@@ -31,6 +31,7 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 export default async (env: string = 'development', args?: IMyYargsArgs) => {
+  const kktConf = await loadConfHandle(paths.appKKTRC);
   let conf: Configuration = {};
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';
@@ -57,7 +58,10 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
   };
   conf.module = {
     strictExportPresence: true,
-    rules: [],
+    rules: [
+      // Disable require.ensure as it's not a standard language feature.
+      { parser: { requireEnsure: false } },
+    ],
   }
   conf.devtool = isEnvProduction ? (shouldUseSourceMap ? 'source-map' : false) : (isEnvDevelopment ? 'cheap-module-source-map' : false);
 
@@ -76,7 +80,6 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
   // Turn off performance processing because we utilize
   // our own hints via the FileSizeReporter
   conf.performance = false;
-
   conf.entry = [
     // Include an alternative client for WebpackDevServer. A client's job is to
     // connect to WebpackDevServer by a socket and get notified about changes.
@@ -88,10 +91,9 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
     // the line below with these two lines if you prefer the stock client:
     // require.resolve('webpack-dev-server/client') + '?/',
     // require.resolve('webpack/hot/dev-server'),
-    isEnvDevelopment &&
-    require.resolve('react-dev-utils/webpackHotDevClient'),
+    isEnvDevelopment && require.resolve('react-dev-utils/webpackHotDevClient'),
     // Finally, this is your app's code:
-    paths.appIndexJs as string,
+    paths.appIndexJs,
     // We include the app code last so that if there is a runtime error during
     // initialization, it doesn't blow up the WebpackDevServer client, and
     // changing JS code would still trigger a refresh.
@@ -142,7 +144,6 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
    */
   conf.module.rules = [...(require('../plugs/eslint-loader')(conf, optionConf))];
   // console.log('conf.module.rules:', conf.module.rules);
-  const kktConf = await loadConfHandle(paths.appKKTRC);
   let loaderDefault: { [key: string]: any } = {
     url: require('../plugs/url-loader'),
     babel: require('../plugs/babel-loader'),

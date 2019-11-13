@@ -4,7 +4,6 @@ import yargs from 'yargs';
 
 const command = yargs
   .usage('Usage: $0 [options]')
-  // .command(require('./create'))
   .command(require('./build'))
   .command(require('./start'))
   .command(require('./test'))

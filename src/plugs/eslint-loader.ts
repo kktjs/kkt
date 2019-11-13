@@ -1,9 +1,10 @@
 import { Configuration } from 'webpack';
 import * as paths from '../config/paths';
+import { OptionConf } from '../config/webpack.config';
 
 // First, run the linter.
 // It's important to do this before Babel processes the JS.
-module.exports = (conf: Configuration) => {
+module.exports = (conf: Configuration, { dotenv }: OptionConf) => {
   return [
     {
       test: /\.(js|mjs|jsx|ts|tsx)$/,
@@ -18,7 +19,7 @@ module.exports = (conf: Configuration) => {
       //     loader: require.resolve('eslint-loader'),
       //   },
       // ],
-      include: paths.appSrc as string,
+      include: paths.appSrc,
     }
   ];
 };

@@ -4,8 +4,9 @@ import { Configuration } from 'webpack';
 import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
 import * as paths from '../config/paths';
 import modules from '../config/modules';
+import { OptionConf } from '../config/webpack.config';
 
-module.exports = (conf: Configuration) => {
+module.exports = (conf: Configuration, opts: OptionConf) => {
   // Check if TypeScript is setup
   const useTypeScript = fs.existsSync(paths.appTsConfig);
   conf.resolveLoader = {
