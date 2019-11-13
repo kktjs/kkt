@@ -5,6 +5,7 @@
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "scripts": {
+    "prepare": "npm run build",
     "released": "npm run build && npm run doc",
     "doc": "ENTRYDIR=website kkt build",
     "doc:dev": "ENTRYDIR=website kkt start",
