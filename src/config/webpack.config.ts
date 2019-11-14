@@ -1,9 +1,9 @@
-import webpack, { Configuration } from 'webpack';
+import webpack, { Configuration, RuleSetRule } from 'webpack';
 import path from 'path';
 import fs from 'fs';
 import * as paths from './paths';
 import { ClientEnvironment } from '../type/type';
-import loadConfHandle from '../utils/loadConf';
+import loadConfHandle, { LoaderDefaultResult, KKTRC } from '../utils/loadConf';
 import { IMyYargsArgs } from '../type/type';
 
 export interface OptionConf {
@@ -22,6 +22,7 @@ export interface OptionConf {
   paths: {
     moduleFileExtensions: string[];
   };
+  moduleScopePluginOpts?: KKTRC['moduleScopePluginOpts'];
 }
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -136,6 +137,13 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
     yargsArgs: args,
   };
 
+  /**
+   * Modify `moduleScopePlugin` options.
+   */
+  if(kktConf.moduleScopePluginOpts) {
+    optionConf.moduleScopePluginOpts = kktConf.moduleScopePluginOpts
+  }
+
   conf = require('../plugs/optimization')(conf, optionConf);
   conf = require('../plugs/resolve')(conf, optionConf);
   /**
@@ -143,8 +151,7 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
    * ============================
    */
   conf.module.rules = [...(require('../plugs/eslint-loader')(conf, optionConf))];
-  // console.log('conf.module.rules:', conf.module.rules);
-  let loaderDefault: { [key: string]: any } = {
+  let loaderDefault: LoaderDefaultResult = {
     url: require('../plugs/url-loader'),
     babel: require('../plugs/babel-loader'),
     css: require('../plugs/css-loader'),
@@ -155,20 +162,20 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
     if (loaderConf) loaderDefault = loaderConf;
   }
 
-  let loaderOneOf: any[] = [];
+  let loaderOneOf: RuleSetRule[] = [];
   if (kktConf && kktConf.loaderOneOf && Array.isArray(kktConf.loaderOneOf)) {
-    loaderOneOf = await Promise.all(kktConf.loaderOneOf.map(async (item: any) => {
+    loaderOneOf = await Promise.all((kktConf.loaderOneOf as any).map(async (item: string | [string, object?]) => {
       return Array.isArray(item) ? (await require(item[0])(conf, optionConf, item[1] ? item[1] : {}))
         : (await require(item)(conf, optionConf, {}));
     }));
   }
-  const defaultLoader = await Promise.all(Object.keys(loaderDefault).map(async (keyName) => {
+  const defaultLoader = await Promise.all(Object.keys(loaderDefault).map(async (keyName: keyof LoaderDefaultResult) => {
     if (loaderDefault[keyName] && typeof loaderDefault[keyName] == 'function') {
       return await loaderDefault[keyName](conf, optionConf);
     }
   }));
-  let loader: any[] = [];
-  [...loaderOneOf, ...defaultLoader].filter(Boolean).forEach((item) => {
+  let loader: RuleSetRule[] = [];
+  [...loaderOneOf, ...defaultLoader].filter(Boolean).forEach((item: RuleSetRule) => {
     loader = loader.concat(item);
   });
   // "oneOf" will traverse all following loaders until one will
