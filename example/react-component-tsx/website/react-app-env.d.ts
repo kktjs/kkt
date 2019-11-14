@@ -57,6 +57,11 @@ declare module '*.less' {
   const src: string;
   export default src;
 }
+declare module '*.md' {
+  const src: string;
+  export default src;
+}
+
 declare module '*.module.css' {
   const classes: { readonly [key: string]: string };
   export default classes;

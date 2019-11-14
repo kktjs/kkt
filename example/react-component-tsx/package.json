@@ -36,7 +36,8 @@
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
-    "kkt": "file:../../"
+    "kkt": "file:../../",
+    "raw-loader": "^3.1.0"
   },
   "browserslist": {
     "production": [
