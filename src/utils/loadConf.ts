@@ -14,13 +14,13 @@ export interface LoaderDefaultResult {
 
 export interface KKTRC {
   /**
-   * 默认 loader 修改替换
-   */
-  loaderDefault: (opts: LoaderDefaultResult, conf: Configuration, optionConf: OptionConf) => LoaderDefaultResult;
-  /**
    * 修改 webpack 配置
    */
   default?: (conf: Configuration, optionConf: OptionConf, webpack: any) => Configuration;
+  /**
+   * 默认 loader 修改替换
+   */
+  loaderDefault: (opts: LoaderDefaultResult, conf: Configuration, optionConf: OptionConf) => LoaderDefaultResult;
   /**
    * 默认的 LoaderDefaultResult 之前添加 loader。
    * 参考 [@kkt/loader-less](https://www.npmjs.com/package/@kkt/loader-less)
