@@ -1,6 +1,6 @@
 {
   "name": "@kkt/loader-stylus",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A SCSS loader for KKT. Compiles Less to CSS.",
   "main": "lib/index.js",
   "engines": {
