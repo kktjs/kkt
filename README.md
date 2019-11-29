@@ -1,21 +1,21 @@
 <p align="center">
-  <a href="https://github.com/kktjs/kkt">
+  <a href="https://github.com/kktjs/kkt-next">
     <img src="https://raw.githubusercontent.com/kktjs/kkt/d2bb00dc2d0bd9bb133f3a369d0ad2f5330ed4af/website/kkt.svg?sanitize=true">
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/kktjs/kkt/issues">
-    <img src="https://img.shields.io/github/issues/kktjs/kkt.svg">
+  <a href="https://github.com/kktjs/kkt-next/issues">
+    <img src="https://img.shields.io/github/issues/kktjs/kkt-next.svg">
   </a>
-  <a href="https://github.com/kktjs/kkt/network">
-    <img src="https://img.shields.io/github/forks/kktjs/kkt.svg">
+  <a href="https://github.com/kktjs/kkt-next/network">
+    <img src="https://img.shields.io/github/forks/kktjs/kkt-next.svg">
   </a>
-  <a href="https://github.com/kktjs/kkt/stargazers">
-    <img src="https://img.shields.io/github/stars/kktjs/kkt.svg">
+  <a href="https://github.com/kktjs/kkt-next/stargazers">
+    <img src="https://img.shields.io/github/stars/kktjs/kkt-next.svg">
   </a>
-  <a href="https://github.com/kktjs/kkt/releases">
-    <img src="https://img.shields.io/github/release/kktjs/kkt.svg">
+  <a href="https://github.com/kktjs/kkt-next/releases">
+    <img src="https://img.shields.io/github/release/kktjs/kkt-next.svg">
   </a>
   <a href="https://www.npmjs.com/package/kkt">
     <img src="https://img.shields.io/npm/v/kkt.svg">
