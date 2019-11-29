@@ -47,7 +47,7 @@ npm install kkt
 Initialize the project from one of the examples, Let's quickly create a react application:
 
 ```bash
-$ npx create-kkt my-app -e `<Example Name>`
+$ npx create-kkt my-app -e uiw
 # or npm
 $ npm create kkt my-app -e `<Example Name>`
 # or yarn 
