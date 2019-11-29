@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/kktjs/kkt-next">
-    <img src="https://raw.githubusercontent.com/kktjs/kkt/d2bb00dc2d0bd9bb133f3a369d0ad2f5330ed4af/website/kkt.svg?sanitize=true">
+    <img src="https://raw.githubusercontent.com/kktjs/kkt-next/d2bb00dc2d0bd9bb133f3a369d0ad2f5330ed4af/website/kkt.svg?sanitize=true">
   </a>
 </p>
 
@@ -54,7 +54,7 @@ $ npm create kkt my-app -e `<Example Name>`
 $ yarn create kkt my-app -e `<Example Name>`
 ```
 
-- [**`default`**](example/basic) - The [react](https://github.com/facebook/react) base application.
+- [**`basic`**](example/basic) - The [react](https://github.com/facebook/react) base application.
 - [**`bundle`**](example/bundle) - Package the UMD package for developing the React component library.
 - [**`electron`**](example/electron) - Use an example of [`electronjs`](https://github.com/electron).
 - [**`less`**](example/less) - Use an example of `less`.

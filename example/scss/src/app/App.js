@@ -24,7 +24,7 @@ class App extends Component {
             </a>
             <a
               className={styles.AppLink}
-              href="https://github.com/kktjs/kkt"
+              href="https://github.com/kktjs/kkt-next"
               target="_blank"
               rel="noopener noreferrer"
             >
