@@ -16,9 +16,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "uiw": "^3.8.0"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "uiw": "^3.10.4"
   },
   "devDependencies": {
     "kkt": "file:../../"

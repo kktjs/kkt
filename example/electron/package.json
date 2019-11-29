@@ -20,13 +20,13 @@
   "license": "ISC",
   "devDependencies": {
     "@types/classnames": "^2.2.9",
-    "@types/react": "^16.9.2",
-    "@types/react-dom": "^16.9.0",
-    "electron": "^6.0.10",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
+    "electron": "^6.1.5",
     "kkt": "^5.0.0-alpha.3"
   },
   "dependencies": {
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }

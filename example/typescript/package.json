@@ -20,15 +20,15 @@
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.6",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "@kkt/loader-less": "^1.0.2",
+    "@kkt/loader-less": "^1.0.5",
     "@types/classnames": "^2.2.8",
-    "@types/jest": "^24.0.13",
-    "@types/react": "^16.8.19",
-    "@types/react-dom": "^16.8.4",
+    "@types/jest": "^24.0.23",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
     "kkt": "file:../../"
   },
   "browserslist": {
