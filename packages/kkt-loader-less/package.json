@@ -1,6 +1,6 @@
 {
   "name": "@kkt/loader-less",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A Less loader for KKT. Compiles Less to CSS.",
   "main": "lib/index.js",
   "engines": {
