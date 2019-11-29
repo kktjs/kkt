@@ -1,7 +1,7 @@
 @kkt/loader-stylus
 ---
 
-This package contains a plugin for using [stylus](https://github.com/stylus/stylus/) with [kkt](https://github.com/kktjs/kkt).
+This package contains a plugin for using [stylus](https://github.com/stylus/stylus/) with [kkt](https://github.com/kktjs/kkt-next).
 
 
 ## Usage in kkt Projects

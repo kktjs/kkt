@@ -1,7 +1,7 @@
 @kkt/loader-less
 ---
 
-This package contains a plugin for using [Less](https://github.com/less/less.js) with [kkt](https://github.com/kktjs/kkt).
+This package contains a plugin for using [Less](https://github.com/less/less.js) with [kkt](https://github.com/kktjs/kkt-next).
 
 
 ## Usage in kkt Projects

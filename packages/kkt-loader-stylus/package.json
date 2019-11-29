@@ -1,5 +1,5 @@
 {
-  "name": "@kkt/loader-scss",
+  "name": "@kkt/loader-stylus",
   "version": "1.0.4",
   "description": "A SCSS loader for KKT. Compiles Less to CSS.",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/kktjs/kkt/tree/master/packages/kkt-loader-scss"
+    "url": "https://github.com/kktjs/kkt-next/tree/master/packages/kkt-loader-stylus"
   },
   "author": "Kenny Wong <wowohoo@qq.com>",
   "license": "MIT",
@@ -28,12 +28,11 @@
     "src"
   ],
   "peerDependencies": {
-    "kkt": ">=5.0.0"
+    "kkt": "^5.0.0"
   },
   "dependencies": {
-    "node-sass": "^4.13.0",
-    "sass": "^1.23.7",
-    "sass-loader": "^8.0.0"
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2"
   },
   "devDependencies": {
     "kkt": "^5.0.0",

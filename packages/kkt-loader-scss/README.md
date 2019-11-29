@@ -1,7 +1,7 @@
 @kkt/loader-scss
 ---
 
-This package contains a plugin for using [SCSS/SASS](https://sass-lang.com/) with [kkt](https://github.com/kktjs/kkt).
+This package contains a plugin for using [SCSS/SASS](https://sass-lang.com/) with [kkt](https://github.com/kktjs/kkt-next).
 
 
 ## Usage in kkt Projects
