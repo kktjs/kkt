@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "5.0.0-alpha.12",
+  "version": "5.0.0",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "scripts": {
@@ -9,7 +9,7 @@
     "watch:ts": "tsbb watch",
     "watch:types": "npm run build:types -- --watch",
     "build": "npm run build:ts && npm run build:types",
-    "build:ts": "tsbb build",
+    "build:ts": "tsbb build --source-maps none",
     "build:types": "tsbb types",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
