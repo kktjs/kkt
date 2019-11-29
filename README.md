@@ -30,7 +30,7 @@ Create React apps with no build configuration, Cli tool for creating react apps.
 You will need [`Node.js`](https://nodejs.org) installed on your system.
 
 ```bash
-npm install kkt@next
+npm install kkt
 ```
 
 ## Example
@@ -38,7 +38,11 @@ npm install kkt@next
 Initialize the project from one of the examples:
 
 ```bash
-$ npx kkt create my-app -e `<Example Name>`
+$ npx create kkt my-app -e `<Example Name>`
+# or npm
+$ npm create kkt my-app -e `<Example Name>`
+# or yarn 
+$ yarn create kkt my-app -e `<Example Name>`
 ```
 
 - [**`default`**](example/basic) - The [react](https://github.com/facebook/react) base application.
