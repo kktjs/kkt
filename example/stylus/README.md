@@ -1,4 +1,4 @@
-Basic Example
+Basic Example for Stylus
 ---
 
 React uses the server side rendering of the [stylus](https://github.com/stylus/stylus/) based application.
@@ -8,9 +8,9 @@ React uses the server side rendering of the [stylus](https://github.com/stylus/s
 ## Quick Start
 
 ```bash
-npx create-kkt-app my-app --example stylus
+$ npx create-kkt my-app -e stylus
 cd my-app
-npm start
+npm install
 ```
 
 **development**
@@ -31,9 +31,3 @@ npm run build
 
 The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
-
-Runs the compiled app in production.
-
-```bash
-npm run server
-```

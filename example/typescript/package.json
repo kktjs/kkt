@@ -1,14 +1,11 @@
 {
   "name": "typescript-example",
   "version": "1.0.0",
-  "description": "typescript example",
+  "description": "Use an example of TypeScript.",
   "private": true,
   "scripts": {
     "start": "kkt start",
     "build": "kkt build",
-    "bundle": "kkt build --bundle --no-emptyDir",
-    "bundle:watch": "kkt build --bundle --no-emptyDir -w",
-    "bundle:min": "kkt build --bundle=min --no-emptyDir",
     "test": "kkt test --env=jsdom",
     "test:coverage": "kkt test --env=jsdom --coverage"
   },

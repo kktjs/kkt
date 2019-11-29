@@ -1,7 +1,7 @@
 {
   "name": "basic",
   "version": "1.0.0",
-  "description": "Basic example.",
+  "description": "The react base application.",
   "private": true,
   "scripts": {
     "start": "kkt start",

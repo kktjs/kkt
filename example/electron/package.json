@@ -4,7 +4,7 @@
   "description": "Electron example.",
   "main": "app/main.js",
   "scripts": {
-    "dev": "kkt start --port 1909",
+    "start": "kkt start --port 1909",
     "build": "kkt build",
     "app": "NODE_ENV=dev electron .",
     "app:build": "electron ."

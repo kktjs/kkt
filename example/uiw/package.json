@@ -1,7 +1,7 @@
 {
   "name": "default",
   "version": "1.0.0",
-  "description": "",
+  "description": "Use uiw for the project.",
   "private": true,
   "scripts": {
     "start": "kkt start",

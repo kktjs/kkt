@@ -47,7 +47,7 @@ npm install kkt
 Initialize the project from one of the examples, Let's quickly create a react application:
 
 ```bash
-$ npx create kkt my-app -e `<Example Name>`
+$ npx create-kkt my-app -e `<Example Name>`
 # or npm
 $ npm create kkt my-app -e `<Example Name>`
 # or yarn 
@@ -56,16 +56,16 @@ $ yarn create kkt my-app -e `<Example Name>`
 
 - [**`basic`**](example/basic) - The [react](https://github.com/facebook/react) base application.
 - [**`bundle`**](example/bundle) - Package the UMD package for developing the React component library.
-- [**`electron`**](example/electron) - Use an example of [`electronjs`](https://github.com/electron).
-- [**`less`**](example/less) - Use an example of `less`.
-- [**`markdown`**](example/markdown) - Use an example of `markdown`.
+- [**`electron`**](example/electron) - Use an example of [`Electronjs`](https://github.com/electron).
+- [**`less`**](example/less) - Use an example of `Less`.
+- [**`markdown`**](example/markdown) - Use an example of `Markdown`.
 - [**`react-component`**](example/react-component) - Create a project for the react component library.
 - [**`react-component-tsx`**](example/react-component-tsx) - Create a project containing the website for the react component library.
 - [**`rematch`**](example/rematch) - Use [`Rematch`](https://github.com/rematch/rematch) for the project.
-- [**`scss`**](example/scss) - Use an example of `scss`.
+- [**`scss`**](example/scss) - Use an example of `Scss`.
 - [**`stylus`**](example/stylus) - Use an example of `Stylus`.
-- [**`typescript`**](example/typescript) - Use an example of `typescript`.
-- [**`uiw`**](example/uiw) - Use `uiw` for the project.
+- [**`typescript`**](example/typescript) - Use an example of `TypeScript`.
+- [**`uiw`**](example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project.
 
 ## License
 

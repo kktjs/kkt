@@ -1,12 +1,12 @@
-Basic Example for Scss
-===
+Basic Example
+---
 
-Use an example of `Scss`.
+The [react](https://github.com/facebook/react) base application.
 
 ## Quick Start
 
 ```bash
-$ npx create-kkt my-app -e scss
+$ npx create-kkt my-app -e basic
 cd my-app
 npm install
 ```
@@ -25,6 +25,13 @@ Builds the app for production to the build folder.
 
 ```bash
 npm run build
+```
+
+**test**
+
+```bash
+npm run test
+npm run test:coverage
 ```
 
 The build is minified and the filenames include the hashes.
