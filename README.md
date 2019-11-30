@@ -24,6 +24,8 @@
 
 Create React apps with no build configuration, Cli tool for creating react apps. Another tool, [`kkt-ssr`](https://github.com/kktjs/kkt-ssr), Is a lightweight framework for static and server-rendered applications.
 
+> [Migrate from kkt 4.x](https://github.com/kktjs/kkt-next/issues/1).
+
 ### Features:
 
 - ⏱ The code was rewritten using TypeScript.
@@ -36,7 +38,7 @@ Create React apps with no build configuration, Cli tool for creating react apps.
 
 ## Usage
 
-You will need [`Node.js`](https://nodejs.org) installed on your system.
+You will need [`Node.js`](https://nodejs.org) installed on your system. 
 
 ```bash
 npm install kkt
