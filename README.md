@@ -69,6 +69,42 @@ $ yarn create kkt my-app -e `<Example Name>`
 - [**`typescript`**](example/typescript) - Use an example of `TypeScript`.
 - [**`uiw`**](example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project.
 
+## Configuration
+
+Supports `kktrc.js` and `kktrc.ts`.
+
+```ts
+export interface ClientEnvironment {
+  raw: {
+    NODE_ENV?: 'development' | 'production' | string;
+    PUBLIC_URL?: string;
+    IMAGE_INLINE_SIZE_LIMIT?: string;
+  },
+  stringified: {
+    'process.env': ClientEnvironment['raw'],
+  },
+}
+export interface OptionConf {
+  env: string; // Environment variable
+  dotenv: ClientEnvironment;
+  isEnvDevelopment: boolean;
+  isEnvProduction: boolean;
+  shouldUseSourceMap: boolean;
+  publicPath: string;
+  publicUrl: string;
+  useTypeScript: boolean;
+  yargsArgs: IMyYargsArgs; // Command Parameter
+  paths: {
+    moduleFileExtensions: string[];
+  };
+  // conf.resolve.plugins `ModuleScopePlugin` options.
+  moduleScopePluginOpts?: KKTRC['moduleScopePluginOpts'];
+}
+export default (conf: webpack.Configuration, options: OptionConf, webpack: typeof webpack) => {
+  return conf;
+}
+```
+
 ## License
 
 [MIT © Kenny Wong](./LICENSE)
