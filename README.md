@@ -100,9 +100,38 @@ export interface OptionConf {
   // conf.resolve.plugins `ModuleScopePlugin` options.
   moduleScopePluginOpts?: KKTRC['moduleScopePluginOpts'];
 }
+
+/**
+ * Modify webpack config.
+ * */
 export default (conf: webpack.Configuration, options: OptionConf, webpack: typeof webpack) => {
   return conf;
 }
+
+/**
+ * This is the setting for the Plug-in `new ModuleScopePlugin`.
+ * 
+ * Prevents users from importing files from outside of src/ (or node_modules/).
+ * This often causes confusion because we only process files within src/ with babel.
+ * To fix this, we prevent you from importing files out of src/ -- if you'd like to,
+ * please link the files into your node_modules/ and let module-resolution kick in.
+ * Make sure your source files are compiled, as they will not be processed in any way.
+ * */
+export const moduleScopePluginOpts = [
+  path.resolve(process.cwd(), 'README.md'),
+];
+
+/**
+ * Support for Less.
+ * Opt-in support for Less (using `.scss` or `.less` extensions).
+ * By default we support Less Modules with the
+ * extensions `.module.less` or `.module.less`
+ **/
+export const loaderOneOf = [
+  require.resolve('@kkt/loader-less'), // Support for less.
+  require.resolve('@kkt/loader-scss'), // Support for scss.
+  require.resolve('@kkt/loader-stylus'), // Support for stylus.
+];
 ```
 
 ## License
