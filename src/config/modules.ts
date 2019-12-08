@@ -50,6 +50,50 @@ function getAdditionalModulePaths(options: ModulePathOptions = {}) {
   );
 }
 
+
+/**
+ * Get webpack aliases based on the baseUrl of a compilerOptions object.
+ *
+ * @param {*} options
+ */
+function getWebpackAliases(options = {} as any) {
+  const baseUrl = options.baseUrl;
+
+  if (!baseUrl) {
+    return {};
+  }
+
+  const baseUrlResolved = path.resolve(paths.appPath, baseUrl);
+
+  if (path.relative(paths.appPath, baseUrlResolved) === '') {
+    return {
+      src: paths.appSrc,
+    };
+  }
+}
+
+/**
+ * Get jest aliases based on the baseUrl of a compilerOptions object.
+ *
+ * @param {*} options
+ */
+function getJestAliases(options = {} as any) {
+  const baseUrl = options.baseUrl;
+
+  if (!baseUrl) {
+    return {};
+  }
+
+  const baseUrlResolved = path.resolve(paths.appPath, baseUrl);
+
+  if (path.relative(paths.appPath, baseUrlResolved) === '') {
+    return {
+      '^src/(.*)$': '<rootDir>/src/$1',
+    };
+  }
+}
+
+
 function getModules() {
   // Check if TypeScript is setup
   const hasTsConfig = fs.existsSync(paths.appTsConfig);
@@ -84,6 +128,8 @@ function getModules() {
 
   return {
     additionalModulePaths: additionalModulePaths,
+    webpackAliases: getWebpackAliases(options),
+    jestAliases: getJestAliases(options),
     hasTsConfig,
   };
 }

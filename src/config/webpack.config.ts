@@ -14,6 +14,7 @@ export interface OptionConf {
   dotenv: ClientEnvironment;
   isEnvDevelopment: boolean;
   isEnvProduction: boolean;
+  isEnvProductionProfile: boolean;
   shouldUseSourceMap: boolean;
   publicPath: string;
   publicUrl: string;
@@ -36,6 +37,9 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
   let conf: Configuration = {};
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';
+  // Variable used for enabling profiling in Production
+  // passed into alias object. Uses a flag if passed into the build command
+  const isEnvProductionProfile = isEnvProduction && process.argv.includes('--profile');
 
   const appPackageJson = require(paths.appPackageJson as string);
 
@@ -135,7 +139,7 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
   // =============================================
   // Disable require.ensure as it's not a standard language feature.
   const optionConf: OptionConf = {
-    env, dotenv, paths, isEnvDevelopment, isEnvProduction,
+    env, dotenv, paths, isEnvDevelopment, isEnvProduction, isEnvProductionProfile,
     shouldUseSourceMap, publicPath, publicUrl, useTypeScript,
     yargsArgs: args,
   };

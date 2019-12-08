@@ -7,9 +7,6 @@ import { OptionConf } from '../config/webpack.config';
 // "url" loader works just like "file" loader but it also embeds
 // assets smaller than specified size as data URLs to avoid requests.
 module.exports = (conf: Configuration, options: OptionConf) => {
-  // Variable used for enabling profiling in Production
-  // passed into alias object. Uses a flag if passed into the build command
-  const isEnvProductionProfile = options.isEnvProduction && process.argv.includes('--profile');
 
   conf.optimization = {
     minimize: options.isEnvProduction,
@@ -43,8 +40,8 @@ module.exports = (conf: Configuration, options: OptionConf) => {
             safari10: true,
           },
           // Added for profiling in devtools
-          keep_classnames: isEnvProductionProfile,
-          keep_fnames: isEnvProductionProfile,
+          keep_classnames: options.isEnvProductionProfile,
+          keep_fnames: options.isEnvProductionProfile,
           output: {
             ecma: 5,
             comments: false,
