@@ -90,20 +90,27 @@ module.exports = (conf: Configuration, options: OptionConf) => {
       chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
     }));
   }
-  // Generate a manifest file which contains a mapping of all asset filenames
-  // to their corresponding output file so that tools can pick it up without
-  // having to parse `index.html`.
+  // Generate an asset manifest file with the following content:
+  // - "files" key: Mapping of all asset filenames to their corresponding
+  //   output file so that tools can pick it up without having to parse
+  //   `index.html`
+  // - "entrypoints" key: Array of files which are included in `index.html`,
+  //   can be used to reconstruct the HTML if necessary
   conf.plugins.push(new ManifestPlugin({
     fileName: 'asset-manifest.json',
     publicPath: options.publicPath,
-    generate: (seed: any, files: any) => {
+    generate: (seed: any, files: any, entrypoints: any) => {
       const manifestFiles = files.reduce((manifest: any, file: any) => {
         manifest[file.name] = file.path;
         return manifest;
       }, seed);
 
+      const entrypointFiles = entrypoints.main.filter(
+        (fileName: string) => !fileName.endsWith('.map')
+      );
       return {
         files: manifestFiles,
+        entrypoints: entrypointFiles,
       };
     },
   }));
@@ -157,7 +164,6 @@ module.exports = (conf: Configuration, options: OptionConf) => {
         '!**/src/setupTests.*',
       ],
       watch: paths.appSrc,
-      silent: true,
       // The formatter is invoked directly in WebpackDevServerUtils during development
       formatter: options.isEnvProduction ? typescriptFormatter : undefined,
     }))
