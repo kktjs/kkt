@@ -10,7 +10,12 @@ import * as paths from '../config/paths';
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
 
-export default (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string) => {
+export interface WebpackDevServerConfiguration extends WebpackDevServer.Configuration  {
+  transportMode: string;
+  injectClient: boolean;
+}
+
+export default (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string): WebpackDevServerConfiguration => {
   return {
     // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
     // websites from potentially accessing local content through DNS rebinding:
@@ -34,7 +39,7 @@ export default (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: str
     compress: true,
     // Silence WebpackDevServer's own logs since they're generally not useful.
     // It will still show compile warnings and errors with this setting.
-    // clientLogLevel: 'none',
+    clientLogLevel: 'none',
     // By default WebpackDevServer serves physical files from current directory
     // in addition to all the virtual build products that it serves from memory.
     // This is confusing because those files won’t automatically be available in
@@ -58,6 +63,12 @@ export default (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: str
     // in the Webpack development configuration. Note that only changes
     // to CSS are currently hot reloaded. JS changes will refresh the browser.
     hot: true,
+    // Use 'ws' instead of 'sockjs-node' on server since we're using native
+    // websockets in `webpackHotDevClient`.
+    transportMode: 'ws',
+    // Prevent a WS client from getting injected as we're already including
+    // `webpackHotDevClient`.
+    injectClient: false,
     // It is important to tell WebpackDevServer to use the same "root" path
     // as we specified in the config. In development, we always serve from /.
     publicPath: '/',
@@ -78,7 +89,7 @@ export default (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: str
     historyApiFallback: {
       // Paths with dots should still use the history fallback.
       // See https://github.com/facebook/create-react-app/issues/387.
-      // disableDotRule: true,
+      disableDotRule: true,
     },
     public: allowedHost,
     proxy,

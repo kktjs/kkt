@@ -32,12 +32,20 @@ export default async (previousFileSizes: OpaqueFileSizes, config: Configuration)
         if (!err.message) {
           return reject(err);
         }
+
+        let errMessage = err.message;
+
+        // Add additional information for postcss errors
+        if (Object.prototype.hasOwnProperty.call(err, 'postcssNode')) {
+          errMessage +=
+            '\nCompileError: Begins at CSS selector ' + (err as any)['postcssNode'].selector;
+        }
+
         messages = formatWebpackMessages({
-          _showErrors: true,
-          _showWarnings: true,
-          errors: [err.message],
+          errors: [errMessage],
           warnings: [],
-        });
+        } as any);
+        
       } else {
         messages = formatWebpackMessages(
           stats.toJson({ all: false, warnings: true, errors: true })

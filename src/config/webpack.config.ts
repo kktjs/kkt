@@ -192,7 +192,6 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
 
   // Use webpack plugins.
   conf = require('../plugs/plugins')(conf, optionConf);
-  conf = require('../plugs/devServer')(conf, optionConf);
 
   const deafultKKTConf = (kktConf.default || kktConf)
   if (deafultKKTConf && typeof deafultKKTConf === 'function'){
