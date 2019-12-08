@@ -9,16 +9,17 @@ module.exports = (conf: Configuration, { dotenv }: OptionConf) => {
     {
       test: /\.(js|mjs|jsx|ts|tsx)$/,
       enforce: 'pre',
-      // use: [
-      //   {
-      //     options: {
-      //       formatter: require.resolve('react-dev-utils/eslintFormatter'),
-      //       eslintPath: require.resolve('eslint'),
-      //       resolvePluginsRelativeTo: __dirname,
-      //     },
-      //     loader: require.resolve('eslint-loader'),
-      //   },
-      // ],
+      use: [
+        {
+          options: {
+            cache: true,
+            formatter: require.resolve('react-dev-utils/eslintFormatter'),
+            eslintPath: require.resolve('eslint'),
+            resolvePluginsRelativeTo: __dirname,
+          },
+          loader: require.resolve('eslint-loader'),
+        },
+      ],
       include: paths.appSrc,
     }
   ];
