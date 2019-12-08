@@ -2,12 +2,15 @@ import { Configuration } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import safePostCssParser from 'postcss-safe-parser';
-import isWsl from 'is-wsl';
 import { OptionConf } from '../config/webpack.config';
 
 // "url" loader works just like "file" loader but it also embeds
 // assets smaller than specified size as data URLs to avoid requests.
 module.exports = (conf: Configuration, options: OptionConf) => {
+  // Variable used for enabling profiling in Production
+  // passed into alias object. Uses a flag if passed into the build command
+  const isEnvProductionProfile = options.isEnvProduction && process.argv.includes('--profile');
+
   conf.optimization = {
     minimize: options.isEnvProduction,
     minimizer: [
@@ -39,6 +42,9 @@ module.exports = (conf: Configuration, options: OptionConf) => {
           mangle: {
             safari10: true,
           },
+          // Added for profiling in devtools
+          keep_classnames: isEnvProductionProfile,
+          keep_fnames: isEnvProductionProfile,
           output: {
             ecma: 5,
             comments: false,
@@ -47,13 +53,6 @@ module.exports = (conf: Configuration, options: OptionConf) => {
             ascii_only: true,
           },
         },
-        // Use multi-process parallel running to improve the build speed
-        // Default number of concurrent runs: os.cpus().length - 1
-        // Disabled on WSL (Windows Subsystem for Linux) due to an issue with Terser
-        // https://github.com/webpack-contrib/terser-webpack-plugin/issues/21
-        parallel: !isWsl,
-        // Enable file caching
-        cache: true,
         sourceMap: options.shouldUseSourceMap,
       }),
       // This is only used in production mode
@@ -72,7 +71,20 @@ module.exports = (conf: Configuration, options: OptionConf) => {
             : false,
         },
       }),
-    ]
+    ],
+    // Automatically split vendor and commons
+    // https://twitter.com/wSokra/status/969633336732905474
+    // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
+    splitChunks: {
+      chunks: 'all',
+      name: false,
+    },
+    // Keep the runtime chunk separated to enable long term caching
+    // https://twitter.com/wSokra/status/969679223278505985
+    // https://github.com/facebook/create-react-app/issues/5358
+    runtimeChunk: {
+      name: entrypoint => `runtime-${entrypoint.name}`,
+    },
   }
   return conf;
 };
