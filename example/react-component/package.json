@@ -1,7 +1,8 @@
 {
-  "name": "default",
+  "name": "react-component-example",
   "version": "1.0.0",
-  "description": "",
+  "description": "React Component Example.",
+  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/react-component",
   "private": true,
   "scripts": {
     "start": "kkt start",
@@ -21,6 +22,9 @@
   "devDependencies": {
     "@kkt/loader-less": "^1.0.6",
     "kkt": "file:../../"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [

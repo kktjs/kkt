@@ -2,6 +2,7 @@
   "name": "typescript-example",
   "version": "1.0.0",
   "description": "Use an example of TypeScript.",
+  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/typescript",
   "private": true,
   "scripts": {
     "start": "kkt start",
@@ -27,6 +28,9 @@
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
     "kkt": "file:../../"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [

@@ -2,6 +2,7 @@
   "name": "rematch-example",
   "version": "1.0.0",
   "description": "Use Rematch for the project.",
+  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/rematch",
   "private": true,
   "scripts": {
     "start": "kkt start",
@@ -28,6 +29,9 @@
     "@kkt/loader-less": "^1.0.6",
     "kkt": "file:../../",
     "mocker-api": "^1.9.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [

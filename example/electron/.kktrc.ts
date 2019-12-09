@@ -1,5 +1,5 @@
 export default (conf) => {
-  conf.output.publicPath = '.';
+  conf.output.publicPath = './';
   const regexp = /(GenerateSW)/;
   conf.plugins = conf.plugins.map((item) => {
     if (item.constructor && item.constructor.name && regexp.test(item.constructor.name)) {

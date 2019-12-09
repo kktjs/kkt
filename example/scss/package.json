@@ -1,7 +1,8 @@
 {
-  "name": "default",
+  "name": "scss-example",
   "version": "1.0.0",
-  "description": "Use an example of Scss.",
+  "description": "Use an example of SCSS.",
+  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/scss",
   "private": true,
   "scripts": {
     "start": "kkt start",
@@ -20,6 +21,9 @@
   "devDependencies": {
     "@kkt/loader-scss": "^1.0.5",
     "kkt": "file:../../"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [

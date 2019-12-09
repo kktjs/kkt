@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Electron example.",
   "main": "app/main.js",
+  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/electron",
   "scripts": {
     "start": "kkt start --port 1909",
     "build": "kkt build",
@@ -17,7 +18,7 @@
     "demo"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.13",
@@ -28,5 +29,20 @@
   "dependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

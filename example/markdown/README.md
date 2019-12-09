@@ -1,7 +1,3 @@
-Markdown
-===
-
-
 Basic Example for Markdown
 ===
 

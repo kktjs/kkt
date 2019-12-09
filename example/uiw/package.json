@@ -2,6 +2,7 @@
   "name": "default",
   "version": "1.0.0",
   "description": "Use uiw for the project.",
+  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/uiw",
   "private": true,
   "scripts": {
     "start": "kkt start",
@@ -22,6 +23,9 @@
   },
   "devDependencies": {
     "kkt": "file:../../"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [

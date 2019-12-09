@@ -1,7 +1,8 @@
 {
-  "name": "default",
+  "name": "less-example",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/less",
   "private": true,
   "scripts": {
     "start": "kkt start",
@@ -20,6 +21,9 @@
   "devDependencies": {
     "@kkt/loader-less": "^1.0.6",
     "kkt": "file:../../"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [

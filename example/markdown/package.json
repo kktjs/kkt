@@ -1,7 +1,8 @@
 {
-  "name": "default",
+  "name": "markdown",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/markdown",
   "private": true,
   "scripts": {
     "start": "kkt start",
@@ -20,6 +21,9 @@
   "devDependencies": {
     "kkt": "file:../../",
     "raw-loader": "^1.0.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [

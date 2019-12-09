@@ -1,4 +1,4 @@
-Basic Example for Less
+Basic Example for rematch
 ===
 
 Use [`Rematch`](https://github.com/rematch/rematch) for the project.
@@ -6,7 +6,7 @@ Use [`Rematch`](https://github.com/rematch/rematch) for the project.
 ## Quick Start
 
 ```bash
-$ npx create-kkt my-app -e less
+$ npx create-kkt my-app -e rematch
 cd my-app
 npm install
 ```

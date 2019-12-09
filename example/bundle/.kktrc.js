@@ -1,5 +1,6 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
+// import fs from 'fs-extra';
 
 
 export const loaderOneOf = [
@@ -9,7 +10,7 @@ export const loaderOneOf = [
 export default (conf, options) => {
   if (options.yargsArgs && options.yargsArgs.bundle) {
     conf.devtool = false;
-    const regexp = /(HtmlWebpackPlugin|InlineChunkHtmlPlugin|MiniCssExtractPlugin|ManifestPlugin|GenerateSW)/;
+    const regexp = /(HtmlWebpackPlugin|InlineChunkHtmlPlugin|InterpolateHtmlPlugin|MiniCssExtractPlugin|ManifestPlugin|IgnorePlugin|GenerateSW)/;
     conf.plugins = conf.plugins.map((item) => {
       if (item.constructor && item.constructor.name && regexp.test(item.constructor.name)) {
         return null;
@@ -19,6 +20,7 @@ export default (conf, options) => {
     conf.entry = path.join(process.cwd(), 'src/components/index.js');
     conf.output = {
       path: path.join(process.cwd(), 'dist'),
+      futureEmitAssets: true,
       filename: 'uiw.js',
       library: 'UIW',
       libraryTarget: 'umd',
@@ -37,6 +39,10 @@ export default (conf, options) => {
         amd: 'react-dom',
       },
     }
+    conf.optimization = {
+      minimize: options.isEnvProduction,
+      minimizer: [],
+    };
     if (options.yargsArgs && options.yargsArgs.mini) {
       conf.output.filename = 'uiw.min.js';
       conf.plugins = [
