@@ -6,7 +6,7 @@ import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModul
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import resolve from 'resolve';
-import ManifestPlugin from 'webpack-manifest-plugin';
+import ManifestPlugin, { FileDescriptor } from 'webpack-manifest-plugin';
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
 import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'react-dev-utils/ForkTsCheckerWebpackPlugin';
@@ -99,7 +99,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
   conf.plugins.push(new ManifestPlugin({
     fileName: 'asset-manifest.json',
     publicPath: options.publicPath,
-    generate: (seed: any, files: any, entrypoints: any) => {
+    generate: (seed: object, files: FileDescriptor[], entrypoints: any) => {
       const manifestFiles = files.reduce((manifest: any, file: any) => {
         manifest[file.name] = file.path;
         return manifest;
@@ -113,7 +113,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
         entrypoints: entrypointFiles,
       };
     },
-  }));
+  } as ManifestPlugin.Options));
 
   // Moment.js is an extremely popular library that bundles large locale files
   // by default due to how Webpack interprets its code. This is a practical
