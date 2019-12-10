@@ -18,8 +18,16 @@
     }
   },
   "command": {
+    "create": {
+      "homepage": "https://github.com/kktjs/kkt-next",
+      "license": "MIT"
+    },
     "version": {
-      "allowBranch": "master"
+      "allowBranch": "master",
+      "conventionalCommits": true,
+      "exact": true,
+      "gitRemote": "upstream",
+      "message": "chore(release): %s"
     }
   },
   "npmClientArgs": [
