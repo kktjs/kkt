@@ -8,7 +8,7 @@
     "tsbb": "tsbb",
     "bootstrap": "lerna bootstrap",
     "version": "lerna version",
-    "publish": "lerna publish",
+    "publish": "lerna publish from-package",
     "updated": "lerna updated",
     "clean": "lerna clean"
   },
