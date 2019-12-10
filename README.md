@@ -134,6 +134,12 @@ export const loaderOneOf = [
 ];
 ```
 
+### Loaders
+
+- [@kkt/loader-less](https://github.com/kktjs/kkt-next/tree/master/packages/kkt-loader-less)
+- [@kkt/loader-scss](https://github.com/kktjs/kkt-next/tree/master/packages/kkt-loader-scss)
+- [@kkt/loader-stylus](https://github.com/kktjs/kkt-next/tree/master/packages/kkt-loader-stylus)
+
 ## License
 
 [MIT © Kenny Wong](./LICENSE)
