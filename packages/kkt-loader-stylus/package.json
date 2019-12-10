@@ -22,7 +22,8 @@
   "license": "MIT",
   "files": [
     "lib",
-    "src"
+    "src",
+    "README.md"
   ],
   "peerDependencies": {
     "kkt": "^5.0.0"
