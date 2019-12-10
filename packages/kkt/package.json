@@ -5,7 +5,7 @@
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "scripts": {
     "prepare": "npm run build",
-    "watch": "npm run watch:ts && npm run watch:types",
+    "watch": "npm run watch:ts & npm run watch:types",
     "watch:ts": "tsbb watch",
     "watch:types": "npm run build:types -- --watch",
     "build": "npm run build:ts && npm run build:types",
