@@ -3,14 +3,6 @@
   "version": "1.0.6",
   "description": "A Less loader for KKT. Compiles Less to CSS.",
   "main": "lib/index.js",
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "prepare": "npm run build",
-    "build": "tsbb build",
-    "watch": "tsbb watch"
-  },
   "keywords": [
     "less",
     "react",
@@ -21,22 +13,20 @@
     "type": "git",
     "url": "https://github.com/kktjs/kkt-next/tree/master/packages/kkt-loader-less"
   },
-  "author": "Kenny Wong <wowohoo@qq.com>",
-  "license": "MIT",
   "files": [
     "lib",
     "src"
   ],
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsbb build",
+    "watch": "tsbb watch"
+  },
   "peerDependencies": {
     "kkt": "^5.0.0"
   },
   "dependencies": {
     "less": "^3.10.3",
     "less-loader": "^5.0.0"
-  },
-  "devDependencies": {
-    "kkt": "^5.0.0",
-    "tsbb": "^1.3.6",
-    "webpack": "^4.41.2"
   }
 }

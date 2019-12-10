@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@kkt/loader-stylus": "^1.0.6",
-    "kkt": "file:../../"
+    "kkt": "file:../../packages/kkt"
   },
   "eslintConfig": {
     "extends": "react-app"

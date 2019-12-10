@@ -10,10 +10,7 @@ import * as paths from '../config/paths';
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
 
-export interface WebpackDevServerConfiguration extends WebpackDevServer.Configuration  {
-  transportMode: string;
-  injectClient: boolean;
-}
+export interface WebpackDevServerConfiguration extends WebpackDevServer.Configuration  {}
 
 export default (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string): WebpackDevServerConfiguration => {
   return {

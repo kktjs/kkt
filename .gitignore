@@ -3,7 +3,9 @@
 
 lib
 package-lock.json
+yarn.lock
 __snapshots__
+*.lerna_backup
 
 ### Node ###
 # Logs

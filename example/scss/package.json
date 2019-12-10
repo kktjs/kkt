@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@kkt/loader-scss": "^1.0.5",
-    "kkt": "file:../../"
+    "kkt": "file:../../packages/kkt"
   },
   "eslintConfig": {
     "extends": "react-app"

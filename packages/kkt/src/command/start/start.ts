@@ -85,7 +85,7 @@ export default async function (args: IMyYargsArgs) {
 
     const devServer = new WebpackDevServer(compiler, serverConfig);
     // Launch WebpackDevServer.
-    devServer.listen(PORT, HOST, err => {
+    devServer.listen(PORT, HOST, (err: any) => {
       if (err) {
         return console.log(err);
       }
