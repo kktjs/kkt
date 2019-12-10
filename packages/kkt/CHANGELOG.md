@@ -7,22 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## 5.2.1 (2019-12-10)
-
-
-
 # 5.2.0 (2019-12-10)
 
-**Note:** Version bump only for package @kkt/loader-less
-
-
-
-
-
-## 5.2.1 (2019-12-10)
-
-
-
-# 5.2.0 (2019-12-10)
-
-**Note:** Version bump only for package @kkt/loader-less
+**Note:** Version bump only for package kkt
