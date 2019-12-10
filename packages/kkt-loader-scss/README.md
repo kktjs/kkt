@@ -7,7 +7,7 @@ This package contains a plugin for using [SCSS/SASS](https://sass-lang.com/) wit
 ## Usage in kkt Projects
 
 ```bash
-npm add @kkt/loader-scss --dev
+npm install @kkt/loader-scss --dev
 ```
 
 ### With the loaderOneOf options

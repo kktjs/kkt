@@ -7,7 +7,7 @@ This package contains a plugin for using [stylus](https://github.com/stylus/styl
 ## Usage in kkt Projects
 
 ```bash
-npm add @kkt/loader-stylus --dev
+npm install @kkt/loader-stylus --dev
 ```
 
 ### With the loaderOneOf options

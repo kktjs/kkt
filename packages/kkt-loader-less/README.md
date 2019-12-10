@@ -7,7 +7,7 @@ This package contains a plugin for using [Less](https://github.com/less/less.js)
 ## Usage in kkt Projects
 
 ```bash
-npm add @kkt/loader-less --dev
+npm install @kkt/loader-less --dev
 ```
 
 ### With the loaderOneOf options
