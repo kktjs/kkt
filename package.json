@@ -10,7 +10,8 @@
     "version": "lerna version",
     "publish": "lerna publish from-package",
     "updated": "lerna updated",
-    "clean": "lerna clean"
+    "clean": "lerna clean",
+    "watch:kkt": "lerna run --scope kkt watch --stream"
   },
   "devDependencies": {
     "kkt": "^5.0.0",
