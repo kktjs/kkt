@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "changelog": {
-    "repo": "babel/babel",
+    "repo": "kktjs/kkt-next",
     "cacheDir": ".changelog",
     "labels": {
       "tag: new feature": ":rocket: New Feature",
@@ -25,7 +25,9 @@
     "version": {
       "allowBranch": "master",
       "conventionalCommits": true,
+      "noChangelog": true,
       "exact": true,
+      "forcePublish": true,
       "message": "chore(release): %s"
     }
   },
