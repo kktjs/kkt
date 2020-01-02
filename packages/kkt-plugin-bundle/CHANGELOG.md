@@ -6,23 +6,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # 5.3.0 (2020-01-02)
 
 
+### Features
 
-## 5.2.2 (2019-12-10)
-
-
-
-# 5.2.0 (2019-12-10)
-
-**Note:** Version bump only for package kkt
-
-
-
-
-
-## 5.2.2 (2019-12-10)
-
-
-
-# 5.2.0 (2019-12-10)
-
-**Note:** Version bump only for package kkt
+* Add @kkt/plugin-bundle plugin. ([4c454e2](https://github.com/kktjs/kkt-next/tree/master/packages/kkt-plugin-bundle/commit/4c454e2d80075b21b732f2cea7c4a10d4766a57c))
