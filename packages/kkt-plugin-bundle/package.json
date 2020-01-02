@@ -1,0 +1,38 @@
+{
+  "name": "@kkt/plugin-bundle",
+  "version": "5.2.2",
+  "description": "A Less loader for KKT. Compiles Less to CSS.",
+  "main": "lib/index.js",
+  "keywords": [
+    "less",
+    "react",
+    "kkt",
+    "ssr"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kktjs/kkt-next/tree/master/packages/kkt-plugin-bundle"
+  },
+  "files": [
+    "lib",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "watch": "npm run watch:ts & npm run watch:types",
+    "watch:ts": "tsbb watch",
+    "watch:types": "npm run build:types -- --watch",
+    "build": "npm run build:ts && npm run build:types",
+    "build:ts": "tsbb build",
+    "build:types": "tsbb types"
+  },
+  "peerDependencies": {
+    "kkt": "^5.0.0",
+    "mini-css-extract-plugin": ">=0.8.0"
+  },
+  "devDependencies": {
+    "@types/mini-css-extract-plugin": "^0.9.0",
+    "kkt": "^5.2.2",
+    "mini-css-extract-plugin": "^0.9.0"
+  }
+}
