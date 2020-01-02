@@ -9,15 +9,17 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "lib",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "*": [
-        "node_modules/*",
-        "src/type/*"
+        "node_modules/*"
       ]
     }
   },
   "include": [
     "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

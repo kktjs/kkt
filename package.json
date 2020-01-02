@@ -5,16 +5,17 @@
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "scripts": {
     "prepack": "npm run bootstrap",
+    "build": "lerna exec npm run build",
     "tsbb": "tsbb",
     "bootstrap": "lerna bootstrap",
     "version": "lerna version",
     "publish": "lerna publish from-package",
     "updated": "lerna updated",
     "clean": "lerna clean",
+    "watch:lib": "lerna run --scope @kkt/* watch --stream",
     "watch:kkt": "lerna run --scope kkt watch --stream"
   },
   "devDependencies": {
-    "kkt": "^5.0.0",
     "lerna": "^3.19.0",
     "tsbb": "^1.3.9",
     "webpack": "^4.41.2"

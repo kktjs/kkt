@@ -4,9 +4,12 @@
   "description": "A SCSS loader for KKT. Compiles Less to CSS.",
   "main": "lib/index.js",
   "scripts": {
-    "prepare": "npm run build",
-    "build": "tsbb build",
-    "watch": "tsbb watch"
+    "watch": "npm run watch:ts & npm run watch:types",
+    "watch:ts": "tsbb watch",
+    "watch:types": "npm run build:types -- --watch",
+    "build": "npm run build:ts && npm run build:types",
+    "build:ts": "tsbb build",
+    "build:types": "tsbb types"
   },
   "keywords": [
     "scss",
@@ -26,10 +29,13 @@
     "README.md"
   ],
   "peerDependencies": {
-    "kkt": "^5.0.0"
+    "kkt": ">=5.0.0"
   },
   "dependencies": {
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2"
+  },
+  "devDependencies": {
+    "kkt": "^5.2.2"
   }
 }

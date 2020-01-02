@@ -4,7 +4,6 @@
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "scripts": {
-    "prepare": "npm run build",
     "watch": "npm run watch:ts & npm run watch:types",
     "watch:ts": "tsbb watch",
     "watch:types": "npm run build:types -- --watch",
@@ -52,6 +51,7 @@
     "@types/react-dev-utils": "^9.0.1",
     "@types/resolve": "0.0.8",
     "@types/terser-webpack-plugin": "^2.2.0",
+    "@types/webpack-dev-server": "^3.9.0",
     "@types/webpack-manifest-plugin": "^2.1.0",
     "@types/workbox-webpack-plugin": "^4.1.0",
     "@types/yargs": "^13.0.3",
