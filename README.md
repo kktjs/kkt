@@ -143,9 +143,9 @@ export const loaderOneOf = [
 
 ### Development
 
-
-```
-
+```bash
+npm run watch:lib
+npm run watch:kkt
 ```
 
 ## License
