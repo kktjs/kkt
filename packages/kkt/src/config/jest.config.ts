@@ -38,7 +38,7 @@ export default (options: JestConfOptions) => {
      * override this default) [number]
      */
     maxWorkers: 1,
-    "roots": [
+    roots: [
       "<rootDir>/src"
     ],
     rootDir: options.rootDir,
@@ -46,17 +46,31 @@ export default (options: JestConfOptions) => {
       'src/**/*.{js,jsx,ts,tsx}',
       '!src/**/*.d.ts',
     ],
+    // setupFiles: [
+    //   "react-app-polyfill/jsdom"
+    // ],
+    // setupFilesAfterEnv: [
+    //   "<rootDir>/src/setupTests.js"
+    // ],
     setupTestFrameworkScriptFile: fs.existsSync(paths.testsSetup)
       ? '<rootDir>/src/setupTests.js'
       : undefined,
     testMatch: [
+      // "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      // "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
       '<rootDir>/**/__tests__/**/*.{ts,tsx,js,jsx}',
       '<rootDir>/**/?(*.)(spec|test).{ts,tsx,js,jsx}',
     ],
-    testEnvironment: options.env || 'jsdom',
+    /**
+     * The test environment that will be used for testing.
+     * The default environment in Jest is a browser-like environment through jsdom.
+     * If you are building a node service, you can use the node option to use a node-like environment instead.
+     */
+    testEnvironment: "jest-environment-jsdom-fourteen",
     testURL: 'http://localhost',
     transform: {
       // '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+      // "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
       '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/kkt/lib/config/jest/babelTransform.js',
       '^.+\\.css$': '<rootDir>/node_modules/kkt/lib/config/jest/cssTransform.js',
       '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '<rootDir>/node_modules/kkt/lib/config/jest/fileTransform.js',
@@ -69,6 +83,7 @@ export default (options: JestConfOptions) => {
       '^react-native$': 'react-native-web',
       '^.+\\.module\\.(css|less|sass|scss)$': 'identity-obj-proxy',
     },
+    modulePaths: [],
     moduleFileExtensions: [
       "web.js",
       "js",
