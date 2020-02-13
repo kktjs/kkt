@@ -1,4 +1,5 @@
-import webpack, { Configuration } from 'webpack';
+import { Configuration } from 'webpack';
+import { MockerOption } from 'mocker-api';
 import fs from 'fs-extra';
 import path from 'path';
 import * as babel from "@babel/core";
@@ -14,16 +15,16 @@ export interface LoaderDefaultResult {
 
 export interface KKTRC {
   /**
-   * 修改 webpack 配置
+   * Modify webpack configuration
    */
   default?: (conf: Configuration, optionConf: OptionConf, webpack: any) => Configuration;
   /**
-   * 默认 loader 修改替换
+   * Modify the default loader
    */
   loaderDefault: (opts: LoaderDefaultResult, conf: Configuration, optionConf: OptionConf) => LoaderDefaultResult;
   /**
-   * 默认的 LoaderDefaultResult 之前添加 loader。
-   * 参考 [@kkt/loader-less](https://www.npmjs.com/package/@kkt/loader-less)
+   * Loader is added before the default LoaderDefaultResult.
+   * Reference: [@kkt/loader-less](https://www.npmjs.com/package/@kkt/loader-less)
    */
   loaderOneOf?: string[] | [string, object?][];
   /**
@@ -35,6 +36,18 @@ export interface KKTRC {
    * Make sure your source files are compiled, as they will not be processed in any way.
    */
   moduleScopePluginOpts?: string[];
+  /**
+   * mocker-api that creates mocks for REST APIs.
+   * It will be helpful when you try to test your application without the actual REST API server.
+   * https://github.com/jaywcjlove/mocker-api
+   */
+  mocker?: {
+    path: string | string[];
+    /**
+     * https://github.com/jaywcjlove/mocker-api/tree/96c2eb94694571e0e3003e6ad9ce1c809499f577#options
+     */
+    option: MockerOption;
+  },
 }
 
 export default async function(rcPath: string): Promise<KKTRC> {

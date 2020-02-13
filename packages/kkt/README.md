@@ -132,6 +132,19 @@ export const loaderOneOf = [
   require.resolve('@kkt/loader-scss'), // Support for scss.
   require.resolve('@kkt/loader-stylus'), // Support for stylus.
 ];
+
+/**
+ * mocker-api that creates mocks for REST APIs.
+ * It will be helpful when you try to test your application without the actual REST API server.
+ * https://github.com/jaywcjlove/mocker-api
+ */
+export const mocker = {
+  path: string | string[];
+  /**
+   * https://github.com/jaywcjlove/mocker-api/tree/96c2eb94694571e0e3003e6ad9ce1c809499f577#options
+   */
+  option: MockerOption;
+}
 ```
 
 ## License
