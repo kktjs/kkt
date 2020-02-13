@@ -1,6 +1,6 @@
 {
   "name": "@kkt/loader-scss",
-  "version": "5.4.0",
+  "version": "5.4.1",
   "description": "A SCSS loader for KKT. Compiles Less to CSS.",
   "main": "lib/index.js",
   "engines": {
@@ -40,6 +40,6 @@
     "sass-loader": "^8.0.0"
   },
   "devDependencies": {
-    "kkt": "5.4.0"
+    "kkt": "5.4.1"
   }
 }
