@@ -13,10 +13,7 @@
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kktjs/kkt-next.git"
-  },
+  "repository": "https://github.com/kktjs/kkt-next/tree/master/packages/kkt-core",
   "bin": {
     "kkt": "./lib/command/kkt.js"
   },

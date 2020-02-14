@@ -15,10 +15,7 @@
   "files": [
     "lib"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kktjs/kkt-next.git"
-  },
+  "repository": "https://github.com/kktjs/kkt-next/tree/master/packages/config-loader",
   "scripts": {
     "watch": "npm run watch:ts & npm run watch:types",
     "watch:ts": "tsbb watch",
