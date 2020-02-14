@@ -1,6 +1,6 @@
 {
   "name": "@kkt/config-loader",
-  "version": "5.4.2",
+  "version": "5.4.3",
   "description": "A simple config loader, that loads JS files and returns an object of the loaded files and their contents.",
   "keywords": [
     "config",
