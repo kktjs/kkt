@@ -12,6 +12,7 @@
   "homepage": "https://github.com/kktjs/kkt-next/tree/master/packages/config-loader#readme",
   "license": "MIT",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
@@ -31,7 +32,6 @@
     "@tsbb/babel-preset-tsbb": "^1.9.1",
     "@types/fs-extra": "8.0.1",
     "colors-cli": "1.0.26",
-    "kkt": "^5.4.2",
     "mocker-api": "^1.12.2"
   }
 }

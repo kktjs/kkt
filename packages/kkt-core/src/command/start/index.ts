@@ -1,11 +1,11 @@
 import color from 'colors-cli';
-import { IMyYargsArgs } from '../../type/type';
+import { Argv } from 'yargs';
 import start from './start';
 
 export const command = 'start [options]';
 export const describe = 'Will create a web server, Runs the app in development mode.';
 
-export function builder(yarg: IMyYargsArgs) {
+export function builder(yarg: Argv) {
   return yarg.option({
     emptyDir: {
       alias: 'e',
@@ -18,7 +18,7 @@ export function builder(yarg: IMyYargsArgs) {
     // },
     port: {
       describe: 'port.',
-      type: Number,
+      type: 'number',
       default: 19870
     }
   })

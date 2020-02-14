@@ -3,7 +3,6 @@ import path from 'path';
 import color from 'colors-cli';
 import fs from 'fs';
 import * as jest from 'jest';
-import { IMyYargsArgs } from '../../type/type';
 import createJestConfig from '../../config/jest.config';
 import * as paths from '../../config/paths';
 
@@ -31,16 +30,17 @@ export function builder(yarg: Argv) {
     .example('$ kkt test --coverage', 'Test coverage information should be collected');
 }
 
-export interface ITestArgs extends IMyYargsArgs {
+export interface ITestArgs {
   env?: string;
   config?: string;
+  sourceRoot?: string;
   coverage?: boolean;
 }
 
-export async function handler(args: ITestArgs) {
+export async function handler(args: ITestArgs & Argv) {
   const jestArgs: string[] = [];
   if (args.config) {
-    const jestConfPath: string = path.join(args.sourceRoot as string, args.config);
+    const jestConfPath: string = path.join(args.sourceRoot, args.config);
     if (!fs.existsSync(jestConfPath)) {
       console.log(
         `\n Uh oh! Looks like there's your configuration does not exist.\n`,

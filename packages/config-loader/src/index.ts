@@ -4,24 +4,23 @@ import fs from 'fs-extra';
 import path from 'path';
 import * as babel from "@babel/core";
 import color from 'colors-cli/safe';
-import { OptionConf } from 'kkt/lib/config/webpack.config';
 
-export interface LoaderDefaultResult {
-  url: (conf: Configuration, optionConf: OptionConf) => void;
-  babel: (conf: Configuration, optionConf: OptionConf) => void;
-  css: (conf: Configuration, optionConf: OptionConf) => void;
-  file: (conf: Configuration, optionConf: OptionConf) => void;
+export interface LoaderDefaultResult<T> {
+  url: (conf: Configuration, optionConf: T) => void;
+  babel: (conf: Configuration, optionConf: T) => void;
+  css: (conf: Configuration, optionConf: T) => void;
+  file: (conf: Configuration, optionConf: T) => void;
 }
 
-export interface KKTRC {
+export interface KKTRC<T> {
   /**
    * Modify webpack configuration
    */
-  default?: (conf: Configuration, optionConf: OptionConf, webpack: any) => Configuration;
+  default?: (conf: Configuration, optionConf: T, webpack: any) => Configuration;
   /**
    * Modify the default loader
    */
-  loaderDefault: (opts: LoaderDefaultResult, conf: Configuration, optionConf: OptionConf) => LoaderDefaultResult;
+  loaderDefault: (opts: LoaderDefaultResult<T>, conf: Configuration, optionConf: T) => LoaderDefaultResult<T>;
   /**
    * Loader is added before the default LoaderDefaultResult.
    * Reference: [@kkt/loader-less](https://www.npmjs.com/package/@kkt/loader-less)
@@ -50,7 +49,7 @@ export interface KKTRC {
   },
 }
 
-export default async function(rcPath: string): Promise<KKTRC> {
+export default async function<T>(rcPath: string): Promise<KKTRC<T>> {
   let kktrc: any = () => {};
   try {
     let exists = fs.existsSync(rcPath);
@@ -72,7 +71,7 @@ export default async function(rcPath: string): Promise<KKTRC> {
       await fs.ensureDir(path.dirname(kktrcPath));
       await fs.outputFile(kktrcPath, code);
       const confFun = require(kktrcPath);
-      kktrc = confFun as KKTRC;
+      kktrc = confFun as KKTRC<T>;
     }
   } catch (error) {
     console.log(color.red('Invalid .kktrc.js file.'), error);

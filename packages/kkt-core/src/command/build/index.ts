@@ -1,10 +1,10 @@
-import { IMyYargsArgs } from '../../type/type';
+import { Argv } from 'yargs';
 import handlerBuild from './handlerBuild';
 
 export const command = 'build [options]';
 export const describe = 'Builds the app for production to the dist folder.';
 
-export function builder(yarg: IMyYargsArgs) {
+export function builder(yarg: Argv) {
   return yarg.option({
     emptyDir: {
       alias: 'e',

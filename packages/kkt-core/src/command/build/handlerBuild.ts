@@ -14,7 +14,7 @@ import { checkBrowsers } from 'react-dev-utils/browsersHelper';
 import build from './build';
 import configFactory from '../../config/webpack.config';
 import * as paths from '../../config/paths';
-import { IMyYargsArgs } from '../../type/type';
+import { Argv } from 'yargs';
 
 const useYarn = fs.existsSync(paths.yarnLockFile);
 
@@ -31,7 +31,10 @@ function copyPublicFolder() {
 }
 
 const isInteractive = process.stdout.isTTY;
-export default async (args: IMyYargsArgs) => {
+export default async (args: Argv & {
+  checkRequiredFiles: boolean;
+  emptyDir: boolean;
+}) => {
   try {
     // Generate configuration
     const config = await configFactory('production', args);

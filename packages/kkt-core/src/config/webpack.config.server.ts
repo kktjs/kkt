@@ -1,12 +1,12 @@
 import fs from 'fs';
 import express from 'express';
 import apiMocker from 'mocker-api';
-import loadConfHandle from '../utils/loadConf';
+import loadConf from '@kkt/config-loader';
 import WebpackDevServer from 'webpack-dev-server';
 import ignoredFiles from 'react-dev-utils/ignoredFiles';
 import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware';
 import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
-import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
+// import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
 import * as paths from '../config/paths';
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
@@ -15,7 +15,7 @@ const host = process.env.HOST || '0.0.0.0';
 export interface WebpackDevServerConfiguration extends WebpackDevServer.Configuration  {}
 
 export default async (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string): Promise<WebpackDevServerConfiguration> => {
-  const kktConf = await loadConfHandle(paths.appKKTRC);
+  const kktConf = await loadConf(paths.appKKTRC);
   return {
     // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
     // websites from potentially accessing local content through DNS rebinding:
@@ -108,7 +108,7 @@ export default async (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHos
       // We do this in development to avoid hitting the production cache if
       // it used the same host and port.
       // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
-      app.use(noopServiceWorkerMiddleware());
+      // app.use(noopServiceWorkerMiddleware());
       if (kktConf && kktConf.mocker && kktConf.mocker.path) {
         apiMocker(app, kktConf.mocker.path, kktConf.mocker.option);
       }

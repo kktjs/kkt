@@ -1,9 +1,9 @@
 import webpack, { Configuration, RuleSetRule } from 'webpack';
 import fs from 'fs';
+import loadConf, { KKTRC, LoaderDefaultResult }  from '@kkt/config-loader';
 import * as paths from './paths';
 import { ClientEnvironment } from '../type/type';
-import loadConfHandle, { LoaderDefaultResult, KKTRC } from '../utils/loadConf';
-import { IMyYargsArgs } from '../type/type';
+import { Argv } from 'yargs';
 
 export interface OptionConf {
   /**
@@ -18,11 +18,11 @@ export interface OptionConf {
   publicPath: string;
   publicUrl: string;
   useTypeScript: boolean;
-  yargsArgs: IMyYargsArgs;
+  yargsArgs: Argv;
   paths: {
     moduleFileExtensions: string[];
   };
-  moduleScopePluginOpts?: KKTRC['moduleScopePluginOpts'];
+  moduleScopePluginOpts?: KKTRC<OptionConf>['moduleScopePluginOpts'];
 }
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -31,8 +31,8 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
-export default async (env: string = 'development', args?: IMyYargsArgs) => {
-  const kktConf = await loadConfHandle(paths.appKKTRC);
+export default async (env: string = 'development', args?: Argv) => {
+  const kktConf = await loadConf(paths.appKKTRC);
   let conf: Configuration = {};
   const isEnvDevelopment = env === 'development';
   const isEnvProduction = env === 'production';
@@ -124,7 +124,7 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
    * ============================
    */
   conf.module.rules = [...(require('../plugs/eslint-loader')(conf, optionConf))];
-  let loaderDefault: LoaderDefaultResult = {
+  let loaderDefault: LoaderDefaultResult<OptionConf> = {
     url: require('../plugs/url-loader'),
     babel: require('../plugs/babel-loader'),
     css: require('../plugs/css-loader'),
@@ -142,7 +142,7 @@ export default async (env: string = 'development', args?: IMyYargsArgs) => {
         : (await require(item)(conf, optionConf, {}));
     }));
   }
-  const defaultLoader = await Promise.all(Object.keys(loaderDefault).map(async (keyName: keyof LoaderDefaultResult) => {
+  const defaultLoader = await Promise.all(Object.keys(loaderDefault).map(async (keyName: keyof LoaderDefaultResult<OptionConf>) => {
     if (loaderDefault[keyName] && typeof loaderDefault[keyName] == 'function') {
       return await loaderDefault[keyName](conf, optionConf);
     }

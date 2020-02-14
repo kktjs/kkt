@@ -74,6 +74,8 @@ $ yarn create kkt my-app -e `<Example Name>`
 Supports `kktrc.js` and `kktrc.ts`.
 
 ```ts
+import { Argv } from 'yargs';
+
 export interface ClientEnvironment {
   raw: {
     NODE_ENV?: 'development' | 'production' | string;
@@ -93,7 +95,7 @@ export interface OptionConf {
   publicPath: string;
   publicUrl: string;
   useTypeScript: boolean;
-  yargsArgs: IMyYargsArgs; // Command Parameter
+  yargsArgs: Argv; // Command Parameter
   paths: {
     moduleFileExtensions: string[];
   };
