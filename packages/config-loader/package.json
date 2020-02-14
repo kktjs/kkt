@@ -1,0 +1,40 @@
+{
+  "name": "@kkt/config-loader",
+  "version": "5.4.2",
+  "description": "A simple config loader, that loads JS files and returns an object of the loaded files and their contents.",
+  "keywords": [
+    "config",
+    "config-loader",
+    "loader",
+    "kkt"
+  ],
+  "author": "jaywcjlove <398188662@qq.com>",
+  "homepage": "https://github.com/kktjs/kkt-next/tree/master/packages/config-loader#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kktjs/kkt-next.git"
+  },
+  "scripts": {
+    "watch": "npm run watch:ts & npm run watch:types",
+    "watch:ts": "tsbb watch",
+    "watch:types": "npm run build:types -- --watch",
+    "build": "npm run build:ts && npm run build:types",
+    "build:ts": "tsbb build",
+    "build:types": "tsbb types"
+  },
+  "bugs": {
+    "url": "https://github.com/kktjs/kkt-next/issues"
+  },
+  "dependencies": {
+    "@tsbb/babel-preset-tsbb": "^1.9.1",
+    "@types/fs-extra": "8.0.1",
+    "colors-cli": "1.0.26",
+    "kkt": "^5.4.2",
+    "mocker-api": "^1.12.2"
+  }
+}
