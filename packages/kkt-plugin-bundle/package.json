@@ -9,10 +9,7 @@
     "kkt",
     "ssr"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kktjs/kkt-next/tree/master/packages/kkt-plugin-bundle"
-  },
+  "repository": "https://github.com/kktjs/kkt-next/tree/master/packages/kkt-loader-bundle",
   "files": [
     "lib",
     "src",
