@@ -22,7 +22,7 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "kkt": "file:../../packages/kkt"
+    "kkt": "file:../../packages/kkt-core"
   },
   "eslintConfig": {
     "extends": "react-app"

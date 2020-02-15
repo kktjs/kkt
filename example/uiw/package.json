@@ -22,7 +22,7 @@
     "uiw": "^3.10.4"
   },
   "devDependencies": {
-    "kkt": "file:../../packages/kkt"
+    "kkt": "file:../../packages/kkt-core"
   },
   "eslintConfig": {
     "extends": "react-app"

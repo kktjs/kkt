@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@kkt/loader-less": "^5.3.0",
-    "kkt": "file:../../packages/kkt",
+    "kkt": "file:../../packages/kkt-core",
     "mocker-api": "^1.9.0"
   },
   "eslintConfig": {
