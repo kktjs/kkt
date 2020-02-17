@@ -32,9 +32,9 @@
     "kkt": ">=5.0.0"
   },
   "dependencies": {
-    "node-sass": "^4.13.0",
-    "sass": "^1.23.7",
-    "sass-loader": "^8.0.0"
+    "node-sass": "^4.13.1",
+    "sass": "^1.25.0",
+    "sass-loader": "^8.0.2"
   },
   "devDependencies": {
     "kkt": "5.4.3"
