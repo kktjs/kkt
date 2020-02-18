@@ -11,15 +11,22 @@
   },
   "scripts": {
     "prepack": "npm run bootstrap",
-    "build": "lerna exec npm run build",
-    "tsbb": "tsbb",
-    "bootstrap": "lerna bootstrap",
+    "build": "npm run build:kkt:conf && npm run build:kkt && npm run build:plugin",
+    "build:kkt": "lerna exec npm run build --scope kkt",
+    "build:kkt:conf": "lerna exec npm run build --scope @kkt/config-loader",
+    "build:plugin": "lerna exec npm run build --scope @kkt/loader-*  --scope @kkt/plugin-*",
+    "watch": "lerna run watch --stream",
+    "watch:lib": "lerna run --scope @kkt/* watch --stream",
+    "watch:kkt": "lerna run --scope kkt watch --stream",
+    "bootstrap": "npm run bootstrap:kkt && npm run bootstrap:example",
+    "bootstrap:kkt": "lerna bootstrap --scope kkt --scope @kkt/loader-* --scope @kkt/plugin-*  --scope @kkt/config-*",
+    "bootstrap:example": "lerna bootstrap --scope @kkt/template-*",
     "version": "lerna version",
     "publish": "lerna publish from-package",
     "updated": "lerna updated",
+    "start": "lerna exec npm run start",
     "clean": "lerna clean",
-    "watch:lib": "lerna run --scope @kkt/* watch --stream",
-    "watch:kkt": "lerna run --scope kkt watch --stream"
+    "tsbb": "tsbb"
   },
   "devDependencies": {
     "lerna": "^3.20.2",

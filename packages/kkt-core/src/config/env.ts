@@ -1,7 +1,18 @@
 import fs from 'fs';
 import path from 'path';
 import * as paths from './paths';
-import { ClientEnvironment } from '../type/type';
+
+export interface ClientEnvironment {
+  raw: {
+    NODE_ENV?: 'development' | 'production' | string;
+    PUBLIC_URL?: string;
+    IMAGE_INLINE_SIZE_LIMIT?: string;
+  },
+  stringified: {
+    'process.env': ClientEnvironment['raw'],
+  },
+}
+
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
@@ -46,7 +57,7 @@ dotenvFiles.forEach(dotenvFile => {
 // It works similar to `NODE_PATH` in Node itself:
 // https://nodejs.org/api/modules.html#modules_loading_from_the_global_folders
 // Note that unlike in Node, only *relative* paths from `NODE_PATH` are honored.
-// Otherwise, we risk importing Node.js core modules into an app instead of Webpack shims.
+// Otherwise, we risk importing Node.js core modules into an app instead of webpack shims.
 // https://github.com/facebook/create-react-app/issues/1023#issuecomment-265344421
 // We also resolve them to make sure all tools using them work consistently.
 const appDirectory = fs.realpathSync(process.cwd());
@@ -57,7 +68,7 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
   .join(path.delimiter);
 
 // Grab NODE_ENV and REACT_APP_* environment variables and prepare them to be
-// injected into the application via DefinePlugin in Webpack configuration.
+// injected into the application via DefinePlugin in webpack configuration.
 const REACT_APP = /^REACT_APP_/i;
 
 function getClientEnvironment(publicUrl: string): ClientEnvironment {
@@ -77,8 +88,15 @@ function getClientEnvironment(publicUrl: string): ClientEnvironment {
         // For example, <img src={process.env.PUBLIC_URL + '/img/logo.png'} />.
         // This should only be used as an escape hatch. Normally you would put
         // images into the `src` and `import` them in code to get their paths.
-        PUBLIC_URL: publicUrl || '/',
-        IMAGE_INLINE_SIZE_LIMIT: process.env.IMAGE_INLINE_SIZE_LIMIT || '10000',
+        PUBLIC_URL: publicUrl,
+        // We support configuring the sockjs pathname during development.
+        // These settings let a developer run multiple simultaneous projects.
+        // They are used as the connection `hostname`, `pathname` and `port`
+        // in webpackHotDevClient. They are used as the `sockHost`, `sockPath`
+        // and `sockPort` options in webpack-dev-server.
+        WDS_SOCKET_HOST: process.env.WDS_SOCKET_HOST,
+        WDS_SOCKET_PATH: process.env.WDS_SOCKET_PATH,
+        WDS_SOCKET_PORT: process.env.WDS_SOCKET_PORT,
       }
     );
   // Stringify all values so we can feed into Webpack DefinePlugin

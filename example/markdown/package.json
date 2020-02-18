@@ -1,8 +1,7 @@
 {
-  "name": "markdown",
+  "name": "@kkt/template-markdown",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/markdown",
   "private": true,
   "scripts": {
     "start": "kkt start",
@@ -19,7 +18,7 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "kkt": "file:../../packages/kkt-core",
+    "kkt": "5.4.3",
     "raw-loader": "^1.0.0"
   },
   "eslintConfig": {

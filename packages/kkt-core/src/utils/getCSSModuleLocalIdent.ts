@@ -12,7 +12,7 @@ import webpack from 'webpack';
 
 export default (context: webpack.loader.LoaderContext, localIdentName: string, localName: string, options: object) => {
   // Use the filename or folder name, based on some uses the index.js / index.module.(css|scss|sass) project style
-  const fileNameOrFolder = context.resourcePath.match(/index\.module\.(css|scss|sass|less)$/)
+  const fileNameOrFolder = context.resourcePath.match(/index\.module\.(css|scss|sass|less|styl)$/)
     ? '[folder]'
     : '[name]';
 

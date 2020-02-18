@@ -1,21 +1,11 @@
 import webpack, { Configuration } from 'webpack';
 import getCSSModuleLocalIdent from '../utils/getCSSModuleLocalIdent';
 import { OptionConf } from '../config/webpack.config';
-import getStyleLoaders from '../utils/getStyleLoaders';
+import getStyleLoaders, { CssOptions } from '../utils/getStyleLoaders';
 
 // style files regexes
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
-
-export interface CssOptions {
-  importLoaders?: number;
-  sourceMap?: boolean;
-  modules?: boolean | string | {
-    localIdentName?: string;
-    getLocalIdent?: CssOptions['getLocalIdent'];
-  };
-  getLocalIdent?: (context: webpack.loader.LoaderContext, localIdentName: string, localName: string, options: object) => string;
-}
 
 export type Loaders = {
   loader?: string;
@@ -57,8 +47,9 @@ module.exports = (conf: Configuration, options: OptionConf) => {
       use: getStyleLoaders({
         importLoaders: 1,
         sourceMap: options.isEnvProduction && options.shouldUseSourceMap,
-        modules: true,
-        getLocalIdent: getCSSModuleLocalIdent,
+        modules: {
+          getLocalIdent: getCSSModuleLocalIdent,
+        }
       }, options),
     }
   ];

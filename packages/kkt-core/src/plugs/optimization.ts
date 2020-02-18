@@ -67,6 +67,9 @@ module.exports = (conf: Configuration, options: OptionConf) => {
             }
             : false,
         },
+        cssProcessorPluginOptions: {
+          preset: ['default', { minifyFontValues: { removeQuotes: false } }],
+        },
       }),
     ],
     // Automatically split vendor and commons

@@ -1,8 +1,7 @@
 {
-  "name": "typescript-example",
+  "name": "@kkt/template-typescript",
   "version": "1.0.0",
   "description": "Use an example of TypeScript.",
-  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/typescript",
   "private": true,
   "scripts": {
     "start": "kkt start",
@@ -22,12 +21,12 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "@kkt/loader-less": "^5.3.0",
+    "@kkt/loader-less": "5.4.3",
     "@types/classnames": "^2.2.8",
     "@types/jest": "^24.0.23",
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
-    "kkt": "file:../../packages/kkt-core"
+    "kkt": "5.4.3"
   },
   "eslintConfig": {
     "extends": "react-app"

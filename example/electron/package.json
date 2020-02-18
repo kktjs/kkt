@@ -1,9 +1,9 @@
 {
-  "name": "electron-example",
+  "name": "@kkt/template-electron",
   "version": "1.0.0",
   "description": "Electron example.",
   "main": "app/main.js",
-  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/electron",
+  "private": true,
   "scripts": {
     "start": "kkt start --port 1909",
     "build": "kkt build",
@@ -24,7 +24,7 @@
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
     "electron": "^6.1.5",
-    "kkt": "file:../../packages/kkt-core"
+    "kkt": "5.4.3"
   },
   "dependencies": {
     "react": "^16.12.0",

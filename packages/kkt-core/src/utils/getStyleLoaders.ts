@@ -9,9 +9,8 @@ export interface CssOptions {
   sourceMap?: boolean;
   modules?: boolean | string | {
     localIdentName?: string;
-    getLocalIdent?: CssOptions['getLocalIdent'];
+    getLocalIdent?: (context: webpack.loader.LoaderContext, localIdentName: string, localName: string, options: object) => string;
   };
-  getLocalIdent?: (context: webpack.loader.LoaderContext, localIdentName: string, localName: string, options: object) => string;
 }
 
 
@@ -24,21 +23,15 @@ export type Loaders = {
 } | string;
 
 export default (cssOptions: CssOptions, options: OptionConf, preProcessor?: string) => {
-  // Some apps do not use client-side routing with pushState.
-  // For these, "homepage" can be set to "." to enable relative asset paths.
-  const shouldUseRelativeAssetPaths = options.publicPath === './';
-  // common function to get style loaders
-  if (cssOptions.modules || cssOptions.getLocalIdent) {
-    cssOptions.modules = {};
-    // cssOptions.modules.localIdentName = options.isEnvDevelopment ? '[path]__[name]___[local]' : '[hash:8]';
-    cssOptions.modules.getLocalIdent = cssOptions.getLocalIdent;
-  }
-  delete cssOptions.getLocalIdent;
   const loaders: Loaders[] = [
     options.isEnvDevelopment && require.resolve('style-loader'),
     options.isEnvProduction && {
       loader: MiniCssExtractPlugin.loader,
-      options: shouldUseRelativeAssetPaths ? { publicPath: '../../' } : {},
+      // css is located in `static/css`, use '../../' to locate index.html folder
+      // in production `paths.publicUrlOrPath` can be a relative path
+      options: options.publicUrlOrPath.startsWith('.')
+        ? { publicPath: '../../' }
+        : {},
     },
     {
       loader: require.resolve('css-loader'),
@@ -78,7 +71,7 @@ export default (cssOptions: CssOptions, options: OptionConf, preProcessor?: stri
       },
     });
     loaders.push({
-      loader: preProcessor,
+      loader: require.resolve(preProcessor),
       options: {
         sourceMap: true,
       },

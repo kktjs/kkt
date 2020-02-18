@@ -3,7 +3,7 @@ import path from 'path';
 import * as paths from '../config/paths';
 import { OptionConf } from '../config/webpack.config';
 
-module.exports = (conf: Configuration, { isEnvProduction, isEnvDevelopment, publicPath }: OptionConf) => {
+module.exports = (conf: Configuration, { isEnvProduction, isEnvDevelopment, publicUrlOrPath }: OptionConf) => {
   const appPackageJson = require(paths.appPackageJson as string);
   conf.output = {
     // The build folder.
@@ -21,9 +21,10 @@ module.exports = (conf: Configuration, { isEnvProduction, isEnvDevelopment, publ
     chunkFilename: isEnvProduction
       ? 'static/js/[name].[contenthash:8].chunk.js'
       : isEnvDevelopment && 'static/js/[name].chunk.js',
-    // We inferred the "public path" (such as / or /my-project) from homepage.
-    // We use "/" in development.
-    publicPath: publicPath,
+      // webpack uses `publicPath` to determine where the app is being served from.
+      // It requires a trailing slash, or the file assets will get an incorrect path.
+      // We inferred the "public path" (such as / or /my-project) from homepage.
+      publicPath: publicUrlOrPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: isEnvProduction
       ? info => path

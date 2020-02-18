@@ -1,9 +1,9 @@
 {
   "lerna": "3.19.0",
   "version": "5.4.3",
-  "npmClient": "yarn",
   "packages": [
-    "packages/*"
+    "packages/*",
+    "example/*"
   ],
   "command": {
     "create": {
@@ -17,9 +17,11 @@
       "exact": true,
       "forcePublish": true,
       "message": "chore(release): %s"
+    },
+    "bootstrap": {
+      "npmClientArgs": ["--no-package-lock", "--no-ci"],
+      "yarnClientArgs": ["--no-package-lock", "--no-ci"],
+      "forceLocal": true
     }
-  },
-  "npmClientArgs": [
-    "--no-lockfile"
-  ]
+  }
 }

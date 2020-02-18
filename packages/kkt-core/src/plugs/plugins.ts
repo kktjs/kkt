@@ -55,10 +55,9 @@ module.exports = (conf: Configuration, options: OptionConf) => {
   }
   // Makes some environment variables available in index.html.
   // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
-  // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-  // In production, it will be an empty string unless you specify "homepage"
+  // <link rel="icon" href="%PUBLIC_URL%/favicon.ico">
+  // It will be an empty string unless you specify "homepage"
   // in `package.json`, in which case it will be the pathname of that URL.
-  // In development, this will be an empty string.
   conf.plugins.push(new InterpolateHtmlPlugin(HtmlWebpackPlugin, options.dotenv.raw));
   // This gives some necessary context to module not found errors, such as
   // the requesting resource.
@@ -98,7 +97,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
   //   can be used to reconstruct the HTML if necessary
   conf.plugins.push(new ManifestPlugin({
     fileName: 'asset-manifest.json',
-    publicPath: options.publicPath,
+    publicPath: options.publicUrlOrPath,
     generate: (seed: object, files: FileDescriptor[], entrypoints: any) => {
       const manifestFiles = files.reduce((manifest: any, file: any) => {
         manifest[file.name] = file.path;
@@ -129,7 +128,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
       clientsClaim: true,
       exclude: [/\.map$/, /asset-manifest\.json$/],
       importWorkboxFrom: 'cdn',
-      navigateFallback: options.publicUrl + '/index.html',
+      navigateFallback: options.publicUrlOrPath + '/index.html',
       navigateFallbackBlacklist: [
         // Exclude URLs starting with /_, as they're likely an API call
         new RegExp('^/_'),

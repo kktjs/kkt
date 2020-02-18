@@ -1,8 +1,7 @@
 {
-  "name": "bundle-example",
+  "name": "@kkt/template-bundle",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/kktjs/kkt-next/tree/master/example/bundle",
   "private": true,
   "scripts": {
     "start": "kkt start",
@@ -25,8 +24,8 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "@kkt/loader-less": "^5.3.0",
-    "kkt": "file:../../packages/kkt-core"
+    "@kkt/loader-less": "5.4.3",
+    "kkt": "5.4.3"
   },
   "eslintConfig": {
     "extends": "react-app"

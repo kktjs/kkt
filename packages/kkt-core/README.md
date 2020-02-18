@@ -149,6 +149,38 @@ export const mocker = {
 }
 ```
 
+### Home Page
+
+Add `homepage` to `package.json`
+
+> The step below is important!
+
+Open your package.json and add a homepage field for your project:
+
+```json
+"homepage": "https://myusername.github.io/my-app",
+```
+
+or for a GitHub user page:
+
+```json
+"homepage": "https://myusername.github.io",
+```
+
+or for a custom domain page:
+
+```json
+"homepage": "https://mywebsite.com",
+```
+
+KKT uses the `homepage` field to determine the root URL in the built HTML file.
+
+### Loaders
+
+- [@kkt/loader-less](https://github.com/kktjs/kkt-next/tree/master/packages/kkt-loader-less)
+- [@kkt/loader-scss](https://github.com/kktjs/kkt-next/tree/master/packages/kkt-loader-scss)
+- [@kkt/loader-stylus](https://github.com/kktjs/kkt-next/tree/master/packages/kkt-loader-stylus)
+
 ## License
 
 [MIT © Kenny Wong](./LICENSE)

@@ -1,3 +1,5 @@
+// PUBLIC_URL
+
 import path from 'path';
 
 /**

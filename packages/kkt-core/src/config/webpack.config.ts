@@ -2,7 +2,7 @@ import webpack, { Configuration, RuleSetRule } from 'webpack';
 import fs from 'fs';
 import loadConf, { KKTRC, LoaderDefaultResult }  from '@kkt/config-loader';
 import * as paths from './paths';
-import { ClientEnvironment } from '../type/type';
+import { ClientEnvironment } from './env';
 import { Argv } from 'yargs';
 
 export interface OptionConf {
@@ -15,9 +15,8 @@ export interface OptionConf {
   isEnvProduction: boolean;
   isEnvProductionProfile: boolean;
   shouldUseSourceMap: boolean;
-  publicPath: string;
-  publicUrl: string;
   useTypeScript: boolean;
+  publicUrlOrPath: string;
   yargsArgs: Argv;
   paths: {
     moduleFileExtensions: string[];
@@ -39,16 +38,8 @@ export default async (env: string = 'development', args?: Argv) => {
   // Variable used for enabling profiling in Production
   // passed into alias object. Uses a flag if passed into the build command
   const isEnvProductionProfile = isEnvProduction && process.argv.includes('--profile');
+  const dotenv = require('./env').getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
 
-  // Webpack uses `publicPath` to determine where the app is being served from.
-  // It requires a trailing slash, or the file assets will get an incorrect path.
-  // In development, we always serve from the root. This makes config easier.
-  const publicPath = isEnvProduction ? paths.servedPath : isEnvDevelopment && '/';
-  // `publicUrl` is just like `publicPath`, but we will provide it to our app
-  // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
-  // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
-  const publicUrl = isEnvProduction ? publicPath.slice(0, -1) : isEnvDevelopment && '';
-  const dotenv = require('./env').getClientEnvironment(publicUrl);
   conf.mode = isEnvProduction ? 'production' : (isEnvDevelopment ? 'development' : 'none');
   conf.plugins = [];
   conf.resolve = {};
@@ -105,7 +96,8 @@ export default async (env: string = 'development', args?: Argv) => {
   // Disable require.ensure as it's not a standard language feature.
   const optionConf: OptionConf = {
     env, dotenv, paths, isEnvDevelopment, isEnvProduction, isEnvProductionProfile,
-    shouldUseSourceMap, publicPath, publicUrl, useTypeScript,
+    shouldUseSourceMap, useTypeScript,
+    publicUrlOrPath: paths.publicUrlOrPath,
     yargsArgs: args,
   };
 

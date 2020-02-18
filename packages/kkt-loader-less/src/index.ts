@@ -38,8 +38,9 @@ module.exports = (conf: Configuration, options: OptionConf) => {
         {
           importLoaders: 1,
           sourceMap: options.isEnvProduction && options.shouldUseSourceMap,
-          modules: true,
-          getLocalIdent: getCSSModuleLocalIdent,
+          modules: {
+            getLocalIdent: getCSSModuleLocalIdent,
+          }
         }, options,
         require.resolve('less-loader')
       ),
