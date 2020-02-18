@@ -28,6 +28,9 @@
         "--no-ci"
       ],
       "forceLocal": true
+    },
+    "publish": {
+      "ignorePrepublish": true
     }
   }
 }
