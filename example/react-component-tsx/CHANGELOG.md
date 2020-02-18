@@ -7,14 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## 5.4.3 (2020-02-14)
+# 5.0.0-alpha.10 (2019-11-13)
 
-**Note:** Version bump only for package kkt
-
-
-
-
-
-## 5.4.3 (2020-02-14)
-
-**Note:** Version bump only for package kkt
+**Note:** Version bump only for package @kkt/template-react-component-tsx

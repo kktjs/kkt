@@ -5,16 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # 5.5.0 (2020-02-18)
 
-
-
-## 5.4.3 (2020-02-14)
-
-**Note:** Version bump only for package kkt
-
-
-
-
-
-## 5.4.3 (2020-02-14)
-
-**Note:** Version bump only for package kkt
+**Note:** Version bump only for package @kkt/template-basic

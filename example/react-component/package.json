@@ -1,12 +1,12 @@
 {
 	"name": "@kkt/template-react-component",
-	"version": "1.0.0",
+	"version": "5.5.0",
 	"description": "React Component Example.",
 	"private": true,
-  "scripts": {
-    "start": "kkt start",
-    "build": "kkt build"
-  },
+	"scripts": {
+		"start": "kkt start",
+		"build": "kkt build"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/kktjs/kkt-next.git"
@@ -18,10 +18,10 @@
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0"
 	},
-  "devDependencies": {
-    "@kkt/loader-less": "5.4.3",
-    "kkt": "5.4.3"
-  },
+	"devDependencies": {
+		"@kkt/loader-less": "5.5.0",
+		"kkt": "5.5.0"
+	},
 	"eslintConfig": {
 		"extends": "react-app"
 	},

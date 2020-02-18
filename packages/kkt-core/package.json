@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "5.4.3",
+  "version": "5.5.0",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "scripts": {
@@ -35,10 +35,10 @@
     "src"
   ],
   "dependencies": {
-    "@babel/runtime": "7.8.4",
     "@babel/core": "7.8.4",
+    "@babel/runtime": "7.8.4",
     "@jest/fake-timers": "25.1.0",
-    "@kkt/config-loader": "5.4.3",
+    "@kkt/config-loader": "5.5.0",
     "@svgr/webpack": "4.3.3",
     "@tsbb/babel-preset-tsbb": "1.9.1",
     "@types/case-sensitive-paths-webpack-plugin": "2.1.4",
@@ -48,13 +48,13 @@
     "@types/mini-css-extract-plugin": "0.9.0",
     "@types/node": "13.7.0",
     "@types/optimize-css-assets-webpack-plugin": "5.0.1",
+    "@types/react-dev-utils": "9.0.4",
     "@types/resolve": "1.14.0",
     "@types/terser-webpack-plugin": "2.2.0",
     "@types/webpack-dev-server": "3.10.0",
     "@types/webpack-manifest-plugin": "2.1.0",
     "@types/workbox-webpack-plugin": "4.1.0",
     "@types/yargs": "15.0.3",
-    "@types/react-dev-utils": "9.0.4",
     "@typescript-eslint/eslint-plugin": "2.19.0",
     "@typescript-eslint/parser": "2.19.0",
     "babel-eslint": "10.0.3",
