@@ -11,7 +11,14 @@ export interface BundlePluginOptions {
   createCss?: boolean;
 }
 
-export default (conf: Configuration, kktOpts: OptionConf, { name, output, externals, createCss = true, entry = 'src/components/index.js' }: BundlePluginOptions) => {
+export interface KKTOpts extends OptionConf {
+  yargsArgs: OptionConf['yargsArgs'] & {
+    bundle: boolean;
+    mini: boolean;
+  }
+}
+
+export default (conf: Configuration, kktOpts: KKTOpts, { name, output, externals, createCss = true, entry = 'src/components/index.js' }: BundlePluginOptions) => {
   if (kktOpts.yargsArgs && kktOpts.yargsArgs.bundle) {
     const isMini = kktOpts.yargsArgs && kktOpts.yargsArgs.mini;
 
