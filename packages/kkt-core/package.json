@@ -64,6 +64,7 @@
     "babel-preset-react-app": "9.1.1",
     "camelcase": "5.3.1",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
+    "chalk": "3.0.0",
     "colors-cli": "1.0.26",
     "css-loader": "3.4.2",
     "dotenv": "8.2.0",
@@ -106,7 +107,7 @@
     "webpack": "4.41.5",
     "webpack-dev-server": "3.10.2",
     "webpack-manifest-plugin": "2.2.0",
-    "workbox-webpack-plugin": "5.0.0",
+    "workbox-webpack-plugin": "4.3.1",
     "yargs": "15.1.0"
   }
 }
