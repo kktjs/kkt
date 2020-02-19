@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "5.5.0",
+  "version": "5.5.1",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "scripts": {
@@ -38,7 +38,7 @@
     "@babel/core": "7.8.4",
     "@babel/runtime": "7.8.4",
     "@jest/fake-timers": "25.1.0",
-    "@kkt/config-loader": "5.5.0",
+    "@kkt/config-loader": "5.5.1",
     "@svgr/webpack": "4.3.3",
     "@tsbb/babel-preset-tsbb": "1.9.1",
     "@types/case-sensitive-paths-webpack-plugin": "2.1.4",
