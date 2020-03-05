@@ -12,7 +12,7 @@
     "build-cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore 'test' --source-maps true --copy-files --verbose",
     "build-esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore 'test' --source-maps true --copy-files --verbose",
     "build": "npm run build-cjs && npm run build-esm",
-    "watch": "npm run build:watch:esm && npm run build:watch:cjs"
+    "watch": "npm run build:watch:esm & npm run build:watch:cjs"
   },
   "peerDependencies": {
     "react": ">=16.0.0",
@@ -29,6 +29,7 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "babel-plugin-transform-remove-imports": "^1.2.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },

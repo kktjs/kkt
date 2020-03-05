@@ -1,0 +1,36 @@
+{
+  "lerna": "3.19.0",
+  "version": "5.5.1",
+  "packages": [
+    "example/*",
+    "packages/*"
+  ],
+  "command": {
+    "create": {
+      "homepage": "https://github.com/kktjs/kkt",
+      "license": "MIT"
+    },
+    "version": {
+      "allowBranch": "master",
+      "conventionalCommits": true,
+      "noChangelog": true,
+      "exact": true,
+      "forcePublish": true,
+      "message": "chore(release): %s"
+    },
+    "bootstrap": {
+      "npmClientArgs": [
+        "--no-package-lock",
+        "--no-ci"
+      ],
+      "yarnClientArgs": [
+        "--no-package-lock",
+        "--no-ci"
+      ],
+      "forceLocal": true
+    },
+    "publish": {
+      "ignorePrepublish": true
+    }
+  }
+}

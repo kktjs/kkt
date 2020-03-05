@@ -1,51 +1,31 @@
-const path = require('path');
-const apiMocker = require('mocker-api');
+import path from 'path';
 
-module.exports = {
-  plugins: [
-    require.resolve('@kkt/plugin-less'),
-  ],
-  // Modify the webpack config
-  config: (conf, { dev, env }, webpack) => {
-    if (env === 'prod') {
-      // conf = {
-      //   ...conf,
-      //   optimization: {
-      //     ...conf.optimization,
-      //     // https://webpack.js.org/plugins/split-chunks-plugin/
-      //     splitChunks: {
-      //       chunks: 'async',
-      //       minSize: 30000,
-      //       minChunks: 2,
-      //       maxAsyncRequests: 5,
-      //       maxInitialRequests: 3,
-      //       automaticNameDelimiter: '~',
-      //       name: true,
-      //       cacheGroups: {
-      //         vendors: {
-      //           test: /[\\/]node_modules[\\/]/,
-      //           priority: -10
-      //         },
-      //         default: {
-      //           minChunks: 2,
-      //           priority: -20,
-      //           reuseExistingChunk: true
-      //         }
-      //       }
-      //     }
-      //   }
-      // };
-    }
-    if (dev) {
-      conf.devServer.before = (app) => {
-        apiMocker(app, path.resolve('./mocker/index.js'), {
-          proxy: {
-            '/repos/*': 'https://api.github.com/',
-          },
-          changeHost: true,
-        });
-      };
-    }
-    return conf;
+export const loaderOneOf = [
+  [require.resolve('@kkt/loader-less'), {} ],
+]
+
+/**
+ * webpack config
+ */
+export default (conf) => {
+  // console.log('~~:', conf.module.rules[1]);
+  return conf;
+}
+
+/**
+ * mocker-api that creates mocks for REST APIs.
+ * It will be helpful when you try to test your application without the actual REST API server.
+ * https://github.com/jaywcjlove/mocker-api
+ */
+export const mocker = {
+  path: path.resolve('./mocker/index.js'),
+  /**
+   * https://github.com/jaywcjlove/mocker-api/tree/96c2eb94694571e0e3003e6ad9ce1c809499f577#options
+   */
+  option: {
+    proxy: {
+      '/repos/*': 'https://api.github.com/',
+    },
+    changeHost: true,
   },
-};
+}

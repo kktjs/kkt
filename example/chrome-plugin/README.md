@@ -8,9 +8,9 @@ chrome-plugin
 Create project, Using the template method
 
 ```bash
-kkt my-app -e chrome-plugin
+$ npx create-kkt my-app -e chrome-plugin
 cd my-app
-npm start
+npm install
 ```
 
 **development**

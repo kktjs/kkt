@@ -1,5 +1,5 @@
 {
-  "name": "default",
+  "name": "@kkt/template-chrome-plugin",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -22,6 +22,18 @@
   "devDependencies": {
     "clean-webpack-plugin": "^1.0.1",
     "filemanager-webpack-plugin": "^2.0.5",
-    "kkt": "file:../../"
+    "kkt": "5.5.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

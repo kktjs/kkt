@@ -1,0 +1,48 @@
+{
+  "name": "@kkt/template-electron",
+  "version": "5.5.1",
+  "description": "Electron example.",
+  "main": "app/main.js",
+  "private": true,
+  "scripts": {
+    "start": "kkt start --port 1909",
+    "build": "kkt build",
+    "app": "NODE_ENV=dev electron .",
+    "app:build": "electron ."
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
+    "electron": "^8.0.3",
+    "kkt": "5.5.1"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

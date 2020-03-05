@@ -2,6 +2,10 @@
 # Edit at https://www.gitignore.io/?templates=node
 
 lib
+package-lock.json
+yarn.lock
+__snapshots__
+*.lerna_backup
 
 ### Node ###
 # Logs
@@ -101,6 +105,7 @@ typings/
 *.tem
 *.temp
 #.swp
+*.swp
 *.*~
 ~*.*
 

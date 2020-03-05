@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/kktjs/kkt">
-    <img src="./website/kkt.svg?sanitize=true">
+    <img src="https://raw.githubusercontent.com/kktjs/kkt/d2bb00dc2d0bd9bb133f3a369d0ad2f5330ed4af/website/kkt.svg?sanitize=true">
   </a>
 </p>
 
@@ -22,318 +22,171 @@
   </a>
 </p>
 
-
 Create React apps with no build configuration, Cli tool for creating react apps. Another tool, [`kkt-ssr`](https://github.com/kktjs/kkt-ssr), Is a lightweight framework for static and server-rendered applications.
 
 > [Migrate from kkt 4.x to 5.x](https://github.com/kktjs/kkt-next/issues/1).
 
-> **New version here [kkt-next@v5+](https://github.com/kktjs/kkt-next).**
+### Features:
+
+- ⏱ The code was rewritten using TypeScript.
+- ♻️ Recompile the code when project files get added, removed or modified.
+- 📚 Readable source code that encourages learning and contribution
+- ⚛️ Refactor code based on [**create-react-app**](https://github.com/facebook/create-react-app).
+- 💝 Expose the configuration file entry and support webpack configuration.
+- 🚀 Supports [**creat-kkt**](https://github.com/kktjs/create-kkt) to create different instances.
+- ⛑ Jest test runner setup with defaults `kkt test`
 
 ## Usage
 
-You will need [`Node.js`](https://nodejs.org) installed on your system.
+You will need [`Node.js`](https://nodejs.org) installed on your system. 
 
 ```bash
-npm install -g kkt
-kkt create my-app # create project
-```
-
-## Quick Start
-
-```bash
-npx kkt create my-app
-cd my-app
-npm start
-```
-
-You can also initialize a project from one of the examples. Example from [kktjs/kkt](./example) example-path. 
-
-```bash
-# Using the template method
-npx kkt create my-app -e rematch
-```
-
-or
-
-```bash
-npm install -g kkt
-# Create project, Using the template method
-kkt create my-app -e rematch
-cd my-app # Enter the directory
-npm start # Start service
-```
-
-
-## KKT Help
-
-```bash
-Usage: kkt <command> [options]
-
-Rapid React development, Cli tool for creating react apps.
-
-Options:
-  -v, --version                output the version number
-  -h, --help                   output usage information
-
-Commands:
-  create [options] <app-name>  create a new project powered by kkt
-  build [options]              Builds the app for production to the dist folder.
-  start                        Will create a web server, Runs the app in development mode.
-  watch                        Does not provide web server, Listen only for file change generation files
-  test [options]               Runs the app in development mode.
-  deploy [options]             Push the specified directory to the gh-pages branch.
-
-  Examples:
-
-    $ kkt start
-    $ kkt build
-    $ kkt watch
-    $ kkt test --env=jsdom
-    $ kkt test --env=jsdom --coverage
-```
-
-create options
-
-```
-Usage: create [options] <app-name>
-
-create a new project powered by kkt
-
-Options:
-  -e, --example <example-path>  Example from https://github.com/kktjs/kkt/tree/master/example example-path (default: "default")
-  -r, --registry <url>          Use specified npm registry when installing dependencies (only for npm)
-  -f, --force                   Overwrite target directory if it exists
-  -h, --help                    output usage information
-
-  Examples:
-
-    # create a new project with an official template
-    $ kkt create my-project
-    $ kkt create my-project --example rematch
-    $ kkt create my-project -e rematch
-```
-
-build options
-
-```
-Usage: build [options]
-
-Builds the app for production to the dist folder.
-
-Options:
-  -b, --bundle [value]    Bundles a minified and unminified version.
-  -e, --emptyDir [value]  Empty the DIST directory before compiling. (default: true)
-  --no-emptyDir           Empty the DIST directory before compiling.
-  -h, --help              output usage information
-```
-
-## Config
-
-```js
-module.exports = {
-  babel: Function,
-  babelInclude: Array,
-  config: Function,
-  plugins: Array,
-}
-```
-
-## Webpack Config
-
-<details>
-<summary>Modify the Webpack configuration</summary>
-
-```js
-module.exports = {
-  config: (conf, { dev, env }, webpack) => {
-    if (dev) {
-      conf.devServer.before = (app) => {
-        apiMocker(app, path.resolve('./mocker/index.js'), {
-          proxy: {
-            '/repos/*': 'https://api.github.com/',
-          },
-          changeHost: true,
-        });
-      };
-    }
-    // or
-    if (conf.mode === 'development') {
-      // Webpack configuration changed in `development` mode
-    }
-    if (conf.mode === 'production') {
-      // Webpack configuration changed in `production` mode
-    }
-    return conf;
-  },
-};
-```
-
-</details>
-
-<details>
-<summary>Add a Rules configuration</summary>
-
-```js
-module.exports = {
-  config: (conf, { dev, env }, webpack) => {
-    conf.module.rules = [
-      ...conf.module.rules,
-      {
-        test: /\.md$/,
-        loader: 'raw-loader',
-      },
-    ]
-    return conf;
-  },
-};
-```
-
-</details>
-
-<details>
-<summary>Add a plugins configuration</summary>
-
-```js
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-
-module.exports = {
-  config: (conf, { dev, env }, webpack) => {
-    conf.plugins = [
-      ...conf.plugins,
-      new CleanWebpackPlugin(paths.appBuildDist, {
-        root: process.cwd(),
-      }),
-    ]
-    return conf;
-  },
-};
-```
-
-</details>
-
-<details>
-<summary>devServer.https - Enable HTTPS</summary>
-
-```js
-module.exports = {
-  config: (conf, { dev, env }, webpack) => {
-    if (dev) {
-      conf.devServer.https = true;
-    }
-    return conf;
-  },
-};
-```
-
-</details>
-
-<details>
-<summary>devServer.proxy - Use the Webpack proxy</summary>
-
-```js
-const path = require('path');
-const apiMocker = require('mocker-api');
-
-module.exports = {
-  // Modify the webpack config
-  config: (conf, { dev, env }, webpack) => {
-    if (env === 'prod') {
-    }
-    if (dev) {
-      conf.devServer.proxy = {
-        '/api': {
-          target: 'http://127.0.0.1:1130',
-          changeOrigin: true,
-        },
-        // websokect proxy
-        '/api/ws': {
-          target: 'ws://localhost:9981',
-          ws: true
-        },
-      }
-    }
-    return conf;
-  },
-};
-```
-
-</details>
-
-## Mock API
-
-Use the [`mocker-api`](https://github.com/kktjs/mocker-api) simulation API. Add the `mocker/index.js` file to the project root directory
-
-```js
-const proxy = {
-  'GET /api/user': { id: 1, username: 'kenny', sex: 6 },
-  'GET /api/user/list': [
-    { id: 1, username: 'kenny', sex: 6 }, 
-    { id: 2, username: 'kkt', sex: 6 }
-  ],
-  'POST /api/login/account': (req, res) => {
-    const { password, username } = req.body;
-    if (password === '888888' && username === 'admin') {
-      return res.json({
-        status: 'ok',
-        code: 0,
-        token: "kkt",
-        data: { id: 1, username: 'kktname', sex: 6 }
-      });
-    } else {
-      return res.json({
-        status: 'error',
-        code: 403
-      });
-    }
-  }
-}
-module.exports = proxy;
-```
-
-Load the `mocker` configuration.
-
-```js
-const path = require('path');
-const apiMocker = require('mocker-api');
-
-module.exports = {
-  // Modify the webpack config
-  config: (conf, { dev, env }, webpack) => {
-    if (env === 'prod') {
-    }
-    if (dev) {
-      conf.devServer.before = (app) => {
-        apiMocker(app, path.resolve('./mocker/index.js'), {
-          proxy: {
-            '/repos/*': 'https://api.github.com/',
-          },
-          changeHost: true,
-        });
-      };
-    }
-    return conf;
-  },
-};
+npm install kkt
 ```
 
 ## Example
 
-Initialize the project from one of the examples:
+Initialize the project from one of the examples, Let's quickly create a react application:
 
 ```bash
-$ npx kkt create my-app -e `<Example Name>`
+$ npx create-kkt my-app -e uiw
+# or npm
+$ npm create kkt my-app -e `<Example Name>`
+# or yarn 
+$ yarn create kkt my-app -e `<Example Name>`
 ```
 
-- [**`default`**](example/default) - The [react](https://github.com/facebook/react) base application.
-- [**`chrome-plugin`**](example/chrome-plugin) - For chrome browser plugin development example.
-- [**`bundle`**](example/bundle) - For chrome browser plugin development.
-- [**`typescript`**](example/typescript) - Use an example of `typescript`.
-- [**`less`**](example/less) - Use an example of `less`.
-- [**`scss`**](example/scss) - Use an example of `scss`.
-- [**`markdown`**](example/markdown) - Use an example of `markdown`.
+- [**`basic`**](example/basic) - The [react](https://github.com/facebook/react) base application.
+- [**`bundle`**](example/bundle) - Package the UMD package for developing the React component library.
+- [**`electron`**](example/electron) - Use an example of [`Electronjs`](https://github.com/electron).
+- [**`less`**](example/less) - Use an example of `Less`.
+- [**`markdown`**](example/markdown) - Use an example of `Markdown`.
 - [**`react-component`**](example/react-component) - Create a project for the react component library.
-- [**`rematch`**](example/rematch) - Use `rematch` for the project.
-- [**`uiw`**](example/uiw) - Use `uiw` for the project.
+- [**`react-component-tsx`**](example/react-component-tsx) - Create a project containing the website for the react component library.
+- [**`rematch`**](example/rematch) - Use [`Rematch`](https://github.com/rematch/rematch) for the project.
+- [**`scss`**](example/scss) - Use an example of `Scss`.
+- [**`stylus`**](example/stylus) - Use an example of `Stylus`.
+- [**`typescript`**](example/typescript) - Use an example of `TypeScript`.
+- [**`uiw`**](example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project.
+
+## Configuration
+
+Supports `kktrc.js` and `kktrc.ts`.
+
+```ts
+import { Argv } from 'yargs';
+
+export interface ClientEnvironment {
+  raw: {
+    NODE_ENV?: 'development' | 'production' | string;
+    PUBLIC_URL?: string;
+    IMAGE_INLINE_SIZE_LIMIT?: string;
+  },
+  stringified: {
+    'process.env': ClientEnvironment['raw'],
+  },
+}
+export interface OptionConf {
+  env: string; // Environment variable
+  dotenv: ClientEnvironment;
+  isEnvDevelopment: boolean;
+  isEnvProduction: boolean;
+  shouldUseSourceMap: boolean;
+  publicPath: string;
+  publicUrl: string;
+  useTypeScript: boolean;
+  yargsArgs: Argv; // Command Parameter
+  paths: {
+    moduleFileExtensions: string[];
+  };
+  // conf.resolve.plugins `ModuleScopePlugin` options.
+  moduleScopePluginOpts?: KKTRC['moduleScopePluginOpts'];
+}
+
+/**
+ * Modify webpack config.
+ * */
+export default (conf: webpack.Configuration, options: OptionConf, webpack: typeof webpack) => {
+  return conf;
+}
+
+/**
+ * This is the setting for the Plug-in `new ModuleScopePlugin`.
+ * 
+ * Prevents users from importing files from outside of src/ (or node_modules/).
+ * This often causes confusion because we only process files within src/ with babel.
+ * To fix this, we prevent you from importing files out of src/ -- if you'd like to,
+ * please link the files into your node_modules/ and let module-resolution kick in.
+ * Make sure your source files are compiled, as they will not be processed in any way.
+ * */
+export const moduleScopePluginOpts = [
+  path.resolve(process.cwd(), 'README.md'),
+];
+
+/**
+ * Support for Less.
+ * Opt-in support for Less (using `.scss` or `.less` extensions).
+ * By default we support Less Modules with the
+ * extensions `.module.less` or `.module.less`
+ **/
+export const loaderOneOf = [
+  require.resolve('@kkt/loader-less'), // Support for less.
+  require.resolve('@kkt/loader-scss'), // Support for scss.
+  require.resolve('@kkt/loader-stylus'), // Support for stylus.
+];
+
+/**
+ * mocker-api that creates mocks for REST APIs.
+ * It will be helpful when you try to test your application without the actual REST API server.
+ * https://github.com/jaywcjlove/mocker-api
+ */
+export const mocker = {
+  path: string | string[];
+  /**
+   * https://github.com/jaywcjlove/mocker-api/tree/96c2eb94694571e0e3003e6ad9ce1c809499f577#options
+   */
+  option: MockerOption;
+}
+```
+
+### Home Page
+
+Add `homepage` to `package.json`
+
+> The step below is important!
+
+Open your package.json and add a homepage field for your project:
+
+```json
+"homepage": "https://myusername.github.io/my-app",
+```
+
+or for a GitHub user page:
+
+```json
+"homepage": "https://myusername.github.io",
+```
+
+or for a custom domain page:
+
+```json
+"homepage": "https://mywebsite.com",
+```
+
+KKT uses the `homepage` field to determine the root URL in the built HTML file.
+
+### Loaders
+
+- [@kkt/loader-less](packages/kkt-loader-less)
+- [@kkt/loader-scss](packages/kkt-loader-scss)
+- [@kkt/loader-stylus](packages/kkt-loader-stylus)
+
+### Development
+
+```bash
+npm run watch:lib
+npm run watch:kkt
+```
 
 ## License
 

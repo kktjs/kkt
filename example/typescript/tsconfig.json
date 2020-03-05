@@ -1,4 +1,3 @@
-
 {
   "compilerOptions": {
     "target": "esnext",
@@ -28,5 +27,5 @@
   ],
   "typeRoots": [
     "./node_modules/@types"
-  ],
+  ]
 }

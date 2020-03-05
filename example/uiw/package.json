@@ -1,7 +1,7 @@
 {
-  "name": "default",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@kkt/template-uiw",
+  "version": "5.5.1",
+  "description": "Use uiw for the project.",
   "private": true,
   "scripts": {
     "start": "kkt start",
@@ -16,12 +16,26 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@kkt/plugin-less": "^1.0.4",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "uiw": "^2.0.0-beta.26"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "uiw": "^3.10.4"
   },
   "devDependencies": {
-    "kkt": "file:../../"
+    "kkt": "5.5.1"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

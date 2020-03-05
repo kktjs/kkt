@@ -1,14 +1,14 @@
 {
-  "name": "default",
-  "version": "1.0.0",
+  "name": "@kkt/template-bundle",
+  "version": "5.5.1",
   "description": "",
   "private": true,
   "scripts": {
     "start": "kkt start",
     "build": "kkt build",
-    "bundle": "kkt build --bundle --no-emptyDir",
-    "bundle:watch": "kkt build --bundle --no-emptyDir -w",
-    "bundle:min": "kkt build --bundle=min --no-emptyDir",
+    "released": "npm run bundle && npm run bundle:min",
+    "bundle": "kkt build --bundle",
+    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini --no-emptyDir",
     "test": "kkt test --env=jsdom",
     "test:coverage": "kkt test --env=jsdom --coverage"
   },
@@ -20,11 +20,27 @@
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.6",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "@kkt/plugin-less": "^1.2.0",
-    "kkt": "file:../../"
+    "mini-css-extract-plugin": "0.9.0",
+    "@kkt/loader-less": "5.5.1",
+    "kkt": "5.5.1"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

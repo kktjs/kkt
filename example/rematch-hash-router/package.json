@@ -1,5 +1,5 @@
 {
-  "name": "default",
+  "name": "@kkt/template-rematch-hash-router",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -24,8 +24,19 @@
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
-    "@kkt/plugin-less": "^1.0.2",
-    "kkt": "file:../../",
-    "mocker-api": "^1.6.6"
+    "@kkt/loader-less": "5.5.1",
+    "kkt": "5.5.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

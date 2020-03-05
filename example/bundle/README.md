@@ -1,15 +1,38 @@
-Bundle
+Basic Example for Bundle
 ===
 
-```json
-...
-"scripts": {
-  "start": "kkt start",
-  "build": "kkt build",
-  "bundle": "kkt build --bundle --no-emptyDir",
-  "bundle:min": "kkt build --bundle=min --no-emptyDir",
-  "test": "kkt test --env=jsdom",
-  "test:coverage": "kkt test --env=jsdom --coverage"
-},
-...
+Package the UMD package for developing the React component library.
+
+## Quick Start
+
+```bash
+$ npx create-kkt my-app -e bundle
+cd my-app
+npm install
 ```
+
+**development**
+
+Runs the project in development mode.  
+
+```bash
+npm run start
+```
+
+**production**
+
+Builds the app for production to the build folder.
+
+```bash
+npm run build
+```
+
+**Build bundle file**
+
+
+```bash
+npm run released
+```
+
+The build is minified and the filenames include the hashes.
+Your app is ready to be deployed!
