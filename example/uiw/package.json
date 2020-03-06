@@ -1,6 +1,6 @@
 {
   "name": "@kkt/template-uiw",
-  "version": "5.5.2",
+  "version": "5.5.3",
   "description": "Use uiw for the project.",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
     "uiw": "^3.10.4"
   },
   "devDependencies": {
-    "kkt": "5.5.2"
+    "kkt": "5.5.3"
   },
   "eslintConfig": {
     "extends": "react-app"
