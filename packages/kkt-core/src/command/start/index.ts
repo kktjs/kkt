@@ -20,7 +20,12 @@ export function builder(yarg: Argv) {
       describe: 'port.',
       type: 'number',
       default: 19870
-    }
+    },
+    openBrowser: {
+      describe: 'Open Browser.',
+      type: 'boolean',
+      default: true
+    },
   })
     .example(`$ ${color.green('kkt')} start `, 'Runs the app in development mode.')
     .example(`$ ${color.green('kkt')} start --emptyDir`, 'Build your project.');

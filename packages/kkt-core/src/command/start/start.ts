@@ -36,6 +36,7 @@ const isInteractive = process.stdout.isTTY;
 export default async function (args: Argv & {
   port: number;
   host: string;
+  openBrowser: boolean;
 }) {
   // Tools like Cloud9 rely on this.
   const DEFAULT_PORT = parseInt(process.env.PORT, 10) || args.port || 19870;
@@ -109,7 +110,9 @@ export default async function (args: Argv & {
       }
 
       console.log(color.cyan('Starting the development server...\n'));
-      openBrowser(urls.localUrlForBrowser);
+      if(args.openBrowser) {
+        openBrowser(urls.localUrlForBrowser);
+      }
     });
 
     ['SIGINT', 'SIGTERM'].forEach((sig) => {
