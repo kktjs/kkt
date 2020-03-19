@@ -101,6 +101,7 @@ export interface OptionConf {
   };
   // conf.resolve.plugins `ModuleScopePlugin` options.
   moduleScopePluginOpts?: KKTRC['moduleScopePluginOpts'];
+  MiniCssExtractPlugin: MiniCssExtractPlugin;
 }
 
 /**
