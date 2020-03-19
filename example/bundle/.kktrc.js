@@ -1,4 +1,3 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 
 
@@ -8,8 +7,9 @@ export const loaderOneOf = [
 
 export default (conf, options) => {
   if (options.yargsArgs && options.yargsArgs.bundle) {
+    const { MiniCssExtractPlugin } = options;
     conf.devtool = false;
-    const regexp = /(HtmlWebpackPlugin|InlineChunkHtmlPlugin|InterpolateHtmlPlugin|MiniCssExtractPlugin|ManifestPlugin|IgnorePlugin|GenerateSW)/;
+    const regexp = /(HtmlWebpackPlugin|InlineChunkHtmlPlugin|InterpolateHtmlPlugin|ModuleNotFoundPlugin|DefinePlugin|ManifestPlugin|IgnorePlugin|GenerateSW|MiniCssExtractPlugin)/;
     conf.plugins = conf.plugins.map((item) => {
       if (item.constructor && item.constructor.name && regexp.test(item.constructor.name)) {
         return null;
