@@ -1,6 +1,6 @@
 {
   "name": "@kkt/template-typescript",
-  "version": "5.5.4",
+  "version": "5.5.5",
   "description": "Use an example of TypeScript.",
   "private": true,
   "scripts": {
@@ -21,12 +21,12 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.5.4",
+    "@kkt/loader-less": "5.5.5",
     "@types/classnames": "^2.2.8",
     "@types/jest": "^24.0.23",
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
-    "kkt": "5.5.4"
+    "kkt": "5.5.5"
   },
   "eslintConfig": {
     "extends": "react-app"
