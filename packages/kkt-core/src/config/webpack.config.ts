@@ -1,6 +1,7 @@
 import fs from 'fs';
 import webpack, { Configuration, RuleSetRule } from 'webpack';
 import loadConf, { KKTRC, LoaderDefaultResult } from '../utils/confLoader';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as paths from './paths';
 import { ClientEnvironment } from './env';
 import { Argv } from 'yargs';
@@ -22,6 +23,7 @@ export interface OptionConf {
     moduleFileExtensions: string[];
   };
   moduleScopePluginOpts?: KKTRC<OptionConf>['moduleScopePluginOpts'];
+  MiniCssExtractPlugin: MiniCssExtractPlugin;
 }
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -99,6 +101,7 @@ export default async (env: string = 'development', args?: Argv) => {
     shouldUseSourceMap, useTypeScript,
     publicUrlOrPath: paths.publicUrlOrPath,
     yargsArgs: args,
+    MiniCssExtractPlugin,
   };
 
   /**
