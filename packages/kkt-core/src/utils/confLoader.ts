@@ -1,4 +1,4 @@
-import { Configuration } from 'webpack';
+import * as webpack from 'webpack';
 import { MockerOption } from 'mocker-api';
 import fs from 'fs-extra';
 import path from 'path';
@@ -6,21 +6,23 @@ import * as babel from "@babel/core";
 import color from 'colors-cli/safe';
 
 export interface LoaderDefaultResult<T> {
-  url: (conf: Configuration, optionConf: T) => void;
-  babel: (conf: Configuration, optionConf: T) => void;
-  css: (conf: Configuration, optionConf: T) => void;
-  file: (conf: Configuration, optionConf: T) => void;
+  url: (conf: webpack.Configuration, optionConf: T) => void;
+  babel: (conf: webpack.Configuration, optionConf: T) => void;
+  css: (conf: webpack.Configuration, optionConf: T) => void;
+  file: (conf: webpack.Configuration, optionConf: T) => void;
 }
+
+type Webpack = typeof webpack
 
 export interface KKTRC<T> {
   /**
    * Modify webpack configuration
    */
-  default?: (conf: Configuration, optionConf: T, webpack: any) => Configuration;
+  default?: (conf: webpack.Configuration, optionConf: T, webpack: Webpack) => webpack.Configuration;
   /**
    * Modify the default loader
    */
-  loaderDefault: (opts: LoaderDefaultResult<T>, conf: Configuration, optionConf: T) => LoaderDefaultResult<T>;
+  loaderDefault?: (opts: LoaderDefaultResult<T>, conf: webpack.Configuration, optionConf: T) => LoaderDefaultResult<T>;
   /**
    * Loader is added before the default LoaderDefaultResult.
    * Reference: [@kkt/loader-less](https://www.npmjs.com/package/@kkt/loader-less)
@@ -49,6 +51,21 @@ export interface KKTRC<T> {
   },
 }
 
+const tsOptions = {
+  compilerOptions: {
+    target: 'es6',
+    module: 'commonjs',
+    lib: ['dom', 'es2016', 'es2017'],
+    strictPropertyInitialization: false,
+    noUnusedLocals: false,
+    moduleResolution: 'node',
+    allowSyntheticDefaultImports: true,
+    esModuleInterop: true,
+    experimentalDecorators: true,
+    emitDecoratorMetadata: true
+  }
+}
+
 export default async function<T>(rcPath: string): Promise<KKTRC<T>> {
   let kktrc: any = () => {};
   try {
@@ -59,6 +76,11 @@ export default async function<T>(rcPath: string): Promise<KKTRC<T>> {
       exists = fs.existsSync(rcPath);
     }
     if (exists) {
+      if (/\.ts$/.test(rcPath)) {
+        require('ts-node').register(tsOptions);
+        kktrc = await import(rcPath);
+        return kktrc;
+      }
       const { code } = babel.transformFileSync(rcPath, {
         presets: [
           [require.resolve('@tsbb/babel-preset-tsbb'), {
@@ -70,11 +92,14 @@ export default async function<T>(rcPath: string): Promise<KKTRC<T>> {
       const kktrcPath = path.resolve(process.cwd(), 'node_modules/.cache/kkt/.kktrc.js');
       await fs.ensureDir(path.dirname(kktrcPath));
       await fs.outputFile(kktrcPath, code);
-      const confFun = require(kktrcPath);
-      kktrc = confFun as KKTRC<T>;
+      await import(kktrcPath);
+      const confFun: KKTRC<T> = await import(kktrcPath);
+      kktrc = confFun;
     }
   } catch (error) {
-    console.log(color.red('Invalid .kktrc.js file.'), error);
+    console.log(color.red('Invalid .kktrc.js file.\n'), error);
+    new Error('Invalid .kktrc.js file.');
+    process.exit(1);
   }
   return kktrc;
 }
