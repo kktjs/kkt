@@ -13,16 +13,13 @@
     "noImplicitAny": true,
     "resolveJsonModule": true,
     "sourceMap": true,
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "preserveSymlinks":true
   },
   "include": [
     "src/**/*"
   ],
   "exclude": [
-    "node_modules",
     "dist"
-  ],
-  "typeRoots": [
-    "./node_modules/@types"
   ]
 }

@@ -5,7 +5,7 @@
   "main": "app/main.js",
   "private": true,
   "scripts": {
-    "start": "kkt start --port 1909",
+    "start": "kkt start --port 1909 --no-openBrowser",
     "build": "kkt build",
     "app": "NODE_ENV=dev electron .",
     "app:build": "electron ."

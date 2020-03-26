@@ -1,4 +1,8 @@
 import path from 'path';
+import { OptionConf } from 'kkt/lib/config/webpack.config';
+import webpack from 'webpack';
+
+type Webpack = typeof webpack;
 
 export const loaderOneOf = [
   require.resolve('@kkt/loader-less')
@@ -8,7 +12,7 @@ export const moduleScopePluginOpts = [
   path.resolve(process.cwd(), 'README.md')
 ];
 
-export default (conf, opts, webpack) => {
+export default (conf: webpack.Configuration, opts: OptionConf, webpack: Webpack) => {
   const pkg = require(path.resolve(process.cwd(), 'package.json'));
   // Webpack parses md file text
   conf.module.rules.map((item) => {
