@@ -1,5 +1,5 @@
 import { Configuration } from 'webpack';
-import { OptionConf } from 'kkt/lib/config/webpack.config';
+import { OptionConf } from 'kkt';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 

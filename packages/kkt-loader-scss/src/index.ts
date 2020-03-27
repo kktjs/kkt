@@ -1,7 +1,7 @@
 import { Configuration } from 'webpack';
 import getStyleLoaders from 'kkt/lib/utils/getStyleLoaders';
 import getCSSModuleLocalIdent from 'kkt/lib/utils/getCSSModuleLocalIdent';
-import { OptionConf } from 'kkt/lib/config/webpack.config';
+import { OptionConf } from 'kkt';
 
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
