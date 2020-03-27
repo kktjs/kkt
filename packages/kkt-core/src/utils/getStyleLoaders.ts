@@ -2,7 +2,7 @@
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import postcssNormalize from 'postcss-normalize';
-import { OptionConf } from '../config/webpack.config';
+import { OptionConf } from '../type/kktrc';
 
 export interface CssOptions {
   importLoaders?: number;

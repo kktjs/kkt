@@ -1,5 +1,5 @@
 import { Configuration } from 'webpack';
-import { OptionConf } from '../config/webpack.config';
+import { OptionConf } from '../type/kktrc';
 import * as paths from '../config/paths';
 
 module.exports = (conf: Configuration, options: OptionConf) => {

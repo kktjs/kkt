@@ -13,11 +13,12 @@
     "paths": {
       "*": [
         "node_modules/*",
-        "src/type/*"
+        "src/type/*",
       ]
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "src/type/global.d.ts"
   ]
 }

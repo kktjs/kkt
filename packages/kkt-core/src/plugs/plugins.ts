@@ -11,7 +11,7 @@ import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
 import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'react-dev-utils/ForkTsCheckerWebpackPlugin';
 import typescriptFormatter from 'react-dev-utils/typescriptFormatter';
-import { OptionConf } from '../config/webpack.config';
+import { OptionConf } from '../type/kktrc';
 import * as paths from '../config/paths';
 
 interface ProcessEx extends NodeJS.ProcessVersions {

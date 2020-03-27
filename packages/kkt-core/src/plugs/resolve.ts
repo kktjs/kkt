@@ -4,7 +4,7 @@ import { Configuration } from 'webpack';
 import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
 import * as paths from '../config/paths';
 import modules from '../config/modules';
-import { OptionConf } from '../config/webpack.config';
+import { OptionConf } from '../type/kktrc';
 
 module.exports = (conf: Configuration, opts: OptionConf) => {
   // Check if TypeScript is setup

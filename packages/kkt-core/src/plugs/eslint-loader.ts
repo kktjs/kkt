@@ -1,6 +1,6 @@
 import { Configuration } from 'webpack';
 import * as paths from '../config/paths';
-import { OptionConf } from '../config/webpack.config';
+import { OptionConf } from '../type/kktrc';
 
 // First, run the linter.
 // It's important to do this before Babel processes the JS.

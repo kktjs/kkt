@@ -2,7 +2,7 @@ import { Configuration } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import safePostCssParser from 'postcss-safe-parser';
-import { OptionConf } from '../config/webpack.config';
+import { OptionConf } from '../type/kktrc';
 
 // "url" loader works just like "file" loader but it also embeds
 // assets smaller than specified size as data URLs to avoid requests.

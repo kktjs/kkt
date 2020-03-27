@@ -1,6 +1,6 @@
 import webpack, { Configuration } from 'webpack';
 import getCSSModuleLocalIdent from '../utils/getCSSModuleLocalIdent';
-import { OptionConf } from '../config/webpack.config';
+import { OptionConf } from '../type/kktrc';
 import getStyleLoaders, { CssOptions } from '../utils/getStyleLoaders';
 
 // style files regexes

@@ -1,7 +1,7 @@
 import { Configuration } from 'webpack';
 import path from 'path';
 import * as paths from '../config/paths';
-import { OptionConf } from '../config/webpack.config';
+import { OptionConf } from '../type/kktrc';
 
 module.exports = (conf: Configuration, { isEnvProduction, isEnvDevelopment, publicUrlOrPath }: OptionConf) => {
   const appPackageJson = require(paths.appPackageJson as string);

@@ -1,31 +1,12 @@
 import fs from 'fs';
 import * as webpack from 'webpack';
-import loadConf, { KKTRC, LoaderDefaultResult } from '../utils/confLoader';
+import loadConf from '../utils/confLoader';
+import { LoaderDefaultResult } from '../type/kktrc';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as paths from './paths';
-import { ClientEnvironment } from './env';
 import color from 'colors-cli/safe';
 import { Argv } from 'yargs';
-
-export interface OptionConf {
-  /**
-   * 环境变量
-   */
-  env: string;
-  dotenv: ClientEnvironment;
-  isEnvDevelopment: boolean;
-  isEnvProduction: boolean;
-  isEnvProductionProfile: boolean;
-  shouldUseSourceMap: boolean;
-  useTypeScript: boolean;
-  publicUrlOrPath: string;
-  yargsArgs: Argv;
-  paths: {
-    moduleFileExtensions: string[];
-  };
-  moduleScopePluginOpts?: KKTRC<OptionConf>['moduleScopePluginOpts'];
-  MiniCssExtractPlugin: MiniCssExtractPlugin;
-}
+import { OptionConf } from '../type/kktrc';
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';

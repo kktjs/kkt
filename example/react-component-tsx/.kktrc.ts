@@ -1,5 +1,5 @@
 import path from 'path';
-import { OptionConf } from 'kkt/lib/config/webpack.config';
+import { OptionConf } from 'kkt';
 import webpack from 'webpack';
 
 type Webpack = typeof webpack;
