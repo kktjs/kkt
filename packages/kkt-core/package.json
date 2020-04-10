@@ -87,7 +87,7 @@
     "jest-watch-typeahead": "0.4.2",
     "loading-cli": "1.1.0",
     "mini-css-extract-plugin": "0.9.0",
-    "mocker-api": "1.12.1",
+    "mocker-api": "1.13.1",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "pnp-webpack-plugin": "1.6.0",
     "postcss-flexbugs-fixes": "4.1.0",
