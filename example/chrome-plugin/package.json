@@ -16,12 +16,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "clean-webpack-plugin": "^1.0.1",
-    "filemanager-webpack-plugin": "^2.0.5",
+    "clean-webpack-plugin": "1.0.1",
+    "filemanager-webpack-plugin": "2.0.5",
     "kkt": "5.6.1"
   },
   "browserslist": {
