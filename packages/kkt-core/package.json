@@ -51,7 +51,7 @@
     "@types/react-dev-utils": "9.0.4",
     "@types/resolve": "1.14.0",
     "@types/terser-webpack-plugin": "2.2.0",
-    "@types/webpack-dev-server": "3.10.0",
+    "@types/webpack-dev-server": "3.10.1",
     "@types/webpack-manifest-plugin": "2.1.0",
     "@types/workbox-webpack-plugin": "4.1.0",
     "@types/yargs": "15.0.3",
@@ -106,7 +106,7 @@
     "typescript": "3.8.3",
     "url-loader": "2.3.0",
     "webpack": "4.42.1",
-    "webpack-dev-server": "3.10.2",
+    "webpack-dev-server": "3.10.3",
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "4.3.1",
     "yargs": "15.1.0"
