@@ -1,6 +1,6 @@
 {
   "name": "@kkt/plugin-bundle",
-  "version": "5.6.2",
+  "version": "5.6.3",
   "description": "A Less loader for KKT. Compiles Less to CSS.",
   "main": "lib/index.js",
   "keywords": [
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/mini-css-extract-plugin": "0.9.1",
-    "kkt": "5.6.2",
+    "kkt": "5.6.3",
     "mini-css-extract-plugin": "0.9.0"
   }
 }
