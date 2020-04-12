@@ -43,7 +43,7 @@
     "compile-less-cli": "1.4.0",
     "kkt": "5.6.1",
     "raw-loader": "3.1.0",
-    "tsbb": "1.6.2"
+    "tsbb": "1.7.0"
   },
   "eslintConfig": {
     "extends": "react-app"
