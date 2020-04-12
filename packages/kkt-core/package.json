@@ -65,7 +65,7 @@
     "babel-preset-react-app": "9.1.2",
     "camelcase": "5.3.1",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
-    "chalk": "3.0.0",
+    "chalk": "4.0.0",
     "colors-cli": "1.0.27",
     "css-loader": "3.4.2",
     "dotenv": "8.2.0",
