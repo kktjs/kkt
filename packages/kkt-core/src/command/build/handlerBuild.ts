@@ -39,6 +39,8 @@ export default async (args: Argv & {
   checkRequiredFiles: boolean;
   emptyDir: boolean;
 }) => {
+  process.env.BABEL_ENV = 'production';
+  process.env.NODE_ENV = 'production';
   try {
     // Generate configuration
     const config = await configFactory('production', args);

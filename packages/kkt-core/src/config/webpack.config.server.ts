@@ -101,7 +101,7 @@ export default async (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHos
       // This lets us fetch source contents from webpack for the error overlay
       app.use(evalSourceMapMiddleware(server));
       // This lets us open files from the runtime error overlay.
-      app.use(errorOverlayMiddleware());
+      app.use(errorOverlayMiddleware() as any);
 
       // This service worker file is effectively a 'no-op' that will reset any
       // previous service worker registered for the same host:port combination.
