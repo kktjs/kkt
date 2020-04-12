@@ -28,11 +28,11 @@
     "tsbb": "tsbb"
   },
   "devDependencies": {
-    "lerna": "^3.20.2",
-    "tsbb": "^1.6.2",
-    "webpack": "^4.41.5"
+    "lerna": "3.20.2",
+    "tsbb": "1.6.2",
+    "webpack": "4.42.1"
   },
   "dependencies": {
-    "@types/webpack": "^4.41.6"
+    "@types/webpack": "4.41.10"
   }
 }
