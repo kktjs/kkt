@@ -20,7 +20,7 @@
     "bootstrap": "npm run bootstrap:kkt && npm run bootstrap:example",
     "bootstrap:kkt": "lerna bootstrap --scope kkt --scope @kkt/loader-* --scope @kkt/plugin-*",
     "bootstrap:example": "lerna bootstrap --scope @kkt/template-*",
-    "version": "lerna version",
+    "version": "lerna version --no-changelog",
     "publish": "lerna publish from-package",
     "updated": "lerna updated",
     "start": "lerna exec npm run start",

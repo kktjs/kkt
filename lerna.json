@@ -13,7 +13,6 @@
     "version": {
       "allowBranch": "master",
       "conventionalCommits": true,
-      "noChangelog": true,
       "exact": true,
       "forcePublish": true,
       "message": "chore(release): %s"
