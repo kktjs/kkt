@@ -1,6 +1,6 @@
 {
 	"name": "@kkt/template-react-component",
-	"version": "5.6.3",
+	"version": "5.6.4",
 	"description": "React Component Example.",
 	"private": true,
 	"scripts": {
@@ -19,8 +19,8 @@
 		"react-dom": "16.13.1"
 	},
 	"devDependencies": {
-		"@kkt/loader-less": "5.6.3",
-		"kkt": "5.6.3"
+		"@kkt/loader-less": "5.6.4",
+		"kkt": "5.6.4"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
