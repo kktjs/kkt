@@ -27,7 +27,7 @@
   "devDependencies": {
     "@kkt/loader-less": "5.6.2",
     "kkt": "5.6.2",
-    "mocker-api": "1.13.1"
+    "mocker-api": "1.14.0"
   },
   "browserslist": {
     "production": [
