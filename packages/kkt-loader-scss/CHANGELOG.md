@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 5.6.2 (2020-04-12)
+
+
+### Bug Fixes
+
+* **pkg:** Fix type errors. ([8ad93d0](https://github.com/kktjs/kkt/tree/master/packages/kkt-loader-scss/commit/8ad93d0026af578f57df63cc6c71a29e533db333))
+
+
+
+## 5.6.1 (2020-03-27)
+
+
+
+# 5.6.0 (2020-03-26)
+
+
+
+## 5.5.5 (2020-03-19)
+
+
+
+## 5.5.4 (2020-03-06)
+
+
+
+## 5.5.3 (2020-03-06)
+
+
+
+## 5.5.2 (2020-03-05)
+
+
+
+## 5.5.1 (2020-02-19)
+
+
+
+# 5.5.0 (2020-02-18)
+
+
+
+## 5.4.3 (2020-02-14)
+
+
+
+## 5.4.2 (2020-02-14)
+
+
+
+## 5.4.1 (2020-02-13)
+
+
+
+# 5.4.0 (2020-02-12)
+
+
+
+# 5.3.0 (2020-01-02)
+
+
+
+## 5.2.2 (2019-12-10)
+
+
+
+## 5.2.1 (2019-12-10)
+
+
+
+# 5.2.0 (2019-12-10)
+
+
+
+
+
 ## 5.6.1 (2020-03-27)
 
 
