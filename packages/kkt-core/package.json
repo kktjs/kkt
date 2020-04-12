@@ -55,7 +55,7 @@
     "@types/webpack-dev-server": "3.10.0",
     "@types/webpack-manifest-plugin": "2.1.0",
     "@types/workbox-webpack-plugin": "4.1.0",
-    "@types/yargs": "15.0.3",
+    "@types/yargs": "15.0.4",
     "@typescript-eslint/eslint-plugin": "2.19.0",
     "@typescript-eslint/parser": "2.19.0",
     "babel-eslint": "10.1.0",
@@ -110,6 +110,6 @@
     "webpack-dev-server": "3.10.2",
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "4.3.1",
-    "yargs": "15.1.0"
+    "yargs": "15.3.1"
   }
 }
