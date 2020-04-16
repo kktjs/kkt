@@ -1,6 +1,6 @@
 {
   "name": "@kkt/template-rematch-hash-router",
-  "version": "5.7.0",
+  "version": "5.7.1",
   "description": "",
   "private": true,
   "scripts": {
@@ -24,8 +24,8 @@
     "react-router-dom": "5.1.2"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.7.0",
-    "kkt": "5.7.0"
+    "@kkt/loader-less": "5.7.1",
+    "kkt": "5.7.1"
   },
   "browserslist": {
     "production": [
