@@ -63,6 +63,7 @@ $ yarn create kkt my-app -e `<Example Name>`
 - [**`markdown`**](example/markdown) - Use an example of `Markdown`.
 - [**`react-component`**](example/react-component) - Create a project for the react component library.
 - [**`react-component-tsx`**](example/react-component-tsx) - Create a project containing the website for the react component library.
+- [**`rematch-tsx`**](example/rematch-tsx) - Use [`Rematch`](https://github.com/rematch/rematch) example for TypeScript.
 - [**`rematch`**](example/rematch) - Use [`Rematch`](https://github.com/rematch/rematch) for the project.
 - [**`scss`**](example/scss) - Use an example of `Scss`.
 - [**`stylus`**](example/stylus) - Use an example of `Stylus`.
