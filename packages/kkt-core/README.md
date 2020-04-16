@@ -56,19 +56,19 @@ $ npm create kkt my-app -e `<Example Name>`
 $ yarn create kkt my-app -e `<Example Name>`
 ```
 
-- [**`basic`**](../../example/basic) - The [react](https://github.com/facebook/react) base application.
-- [**`bundle`**](../../example/bundle) - Package the UMD package for developing the React component library.
-- [**`electron`**](../../example/electron) - Use an example of [`Electronjs`](https://github.com/electron).
-- [**`less`**](../../example/less) - Use an example of `Less`.
-- [**`markdown`**](../../example/markdown) - Use an example of `Markdown`.
-- [**`react-component`**](../../example/react-component) - Create a project for the react component library.
-- [**`react-component-tsx`**](../../example/react-component-tsx) - Create a project containing the website for the react component library.
-- [**`rematch-tsx`**](../../example/rematch-tsx) - Use [`Rematch`](https://github.com/rematch/rematch) example for TypeScript.
-- [**`rematch`**](../../example/rematch) - Use [`Rematch`](https://github.com/rematch/rematch) for the project.
-- [**`scss`**](../../example/scss) - Use an example of `Scss`.
-- [**`stylus`**](../../example/stylus) - Use an example of `Stylus`.
-- [**`typescript`**](../../example/typescript) - Use an example of `TypeScript`.
-- [**`uiw`**](../../example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project.
+- [**`basic`**](https://github.com/kktjs/kkt/example/basic) - The [react](https://github.com/facebook/react) base application.
+- [**`bundle`**](https://github.com/kktjs/kkt/example/bundle) - Package the UMD package for developing the React component library.
+- [**`electron`**](https://github.com/kktjs/kkt/example/electron) - Use an example of [`Electronjs`](https://github.com/electron).
+- [**`less`**](https://github.com/kktjs/kkt/example/less) - Use an example of `Less`.
+- [**`markdown`**](https://github.com/kktjs/kkt/example/markdown) - Use an example of `Markdown`.
+- [**`react-component`**](https://github.com/kktjs/kkt/example/react-component) - Create a project for the react component library.
+- [**`react-component-tsx`**](https://github.com/kktjs/kkt/example/react-component-tsx) - Create a project containing the website for the react component library.
+- [**`rematch-tsx`**](https://github.com/kktjs/kkt/example/rematch-tsx) - Use [`Rematch`](https://github.com/rematch/rematch) example for TypeScript.
+- [**`rematch`**](https://github.com/kktjs/kkt/example/rematch) - Use [`Rematch`](https://github.com/rematch/rematch) for the project.
+- [**`scss`**](https://github.com/kktjs/kkt/example/scss) - Use an example of `Scss`.
+- [**`stylus`**](https://github.com/kktjs/kkt/example/stylus) - Use an example of `Stylus`.
+- [**`typescript`**](https://github.com/kktjs/kkt/example/typescript) - Use an example of `TypeScript`.
+- [**`uiw`**](https://github.com/kktjs/kkt/example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project.
 
 ## Configuration
 
@@ -179,9 +179,9 @@ KKT uses the `homepage` field to determine the root URL in the built HTML file.
 
 ### Loaders
 
-- [@kkt/loader-less](packages/kkt-loader-less)
-- [@kkt/loader-scss](packages/kkt-loader-scss)
-- [@kkt/loader-stylus](packages/kkt-loader-stylus)
+- [@kkt/loader-less](https://github.com/kktjs/kkt/packages/kkt-loader-less)
+- [@kkt/loader-scss](https://github.com/kktjs/kkt/packages/kkt-loader-scss)
+- [@kkt/loader-stylus](https://github.com/kktjs/kkt/packages/kkt-loader-stylus)
 
 ## License
 
