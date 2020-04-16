@@ -23,7 +23,7 @@ export interface OptionConf {
     moduleFileExtensions: string[];
   };
   moduleScopePluginOpts?: ModuleScopePluginOpts;
-  MiniCssExtractPlugin: MiniCssExtractPlugin;
+  MiniCssExtractPlugin: typeof MiniCssExtractPlugin;
 }
 
 
