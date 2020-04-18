@@ -182,6 +182,7 @@ KKT uses the `homepage` field to determine the root URL in the built HTML file.
 - [@kkt/loader-less](https://github.com/kktjs/kkt/packages/kkt-loader-less)
 - [@kkt/loader-scss](https://github.com/kktjs/kkt/packages/kkt-loader-scss)
 - [@kkt/loader-stylus](https://github.com/kktjs/kkt/packages/kkt-loader-stylus)
+- [@kkt/loader-raw](https://github.com/kktjs/kkt/packages/loader-raw)
 
 ### Development
 
