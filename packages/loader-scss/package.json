@@ -20,7 +20,7 @@
     "kkt",
     "ssr"
   ],
-  "repository": "https://github.com/kktjs/kkt/tree/master/packages/kkt-loader-scss",
+  "repository": "https://github.com/kktjs/kkt/tree/master/packages/loader-scss",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "license": "MIT",
   "files": [

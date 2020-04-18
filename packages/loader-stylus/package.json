@@ -17,7 +17,7 @@
     "kkt",
     "ssr"
   ],
-  "repository": "https://github.com/kktjs/kkt/tree/master/packages/kkt-loader-stylus",
+  "repository": "https://github.com/kktjs/kkt/tree/master/packages/loader-stylus",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "license": "MIT",
   "files": [
