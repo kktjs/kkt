@@ -44,7 +44,7 @@ export type ModuleScopePluginOpts = string[];
  * By default we support Less Modules with the
  * extensions `.module.less` or `.module.less`
  **/
-export type LoaderOneOf = string[] | [string, object?][];
+export type LoaderOneOf = string[] | [string, any?][];
 
 /**
  * Modify the default loader
