@@ -121,6 +121,15 @@ export default async function (args: Argv & {
         process.exit();
       });
     });
+
+    if (isInteractive || process.env.CI !== 'true') {
+      // Gracefully exit when stdin ends
+      process.stdin.on('end', () => {
+        devServer.close();
+        process.exit();
+      });
+      process.stdin.resume();
+    }
   } catch (err) {
     if (err && err.message) {
       console.log(err.message);
