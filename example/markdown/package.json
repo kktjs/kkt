@@ -1,6 +1,6 @@
 {
   "name": "@kkt/template-markdown",
-  "version": "5.7.1",
+  "version": "5.8.0",
   "description": "",
   "private": true,
   "scripts": {
@@ -18,7 +18,7 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "kkt": "5.7.1",
+    "kkt": "5.8.0",
     "raw-loader": "4.0.1"
   },
   "eslintConfig": {
