@@ -17,7 +17,7 @@
     "watch": "lerna run watch --stream",
     "watch:lib": "lerna run --scope @kkt/* watch --stream",
     "watch:kkt": "lerna run --scope kkt watch --stream",
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --no-ci",
     "bootstrap:kkt": "lerna bootstrap --scope kkt --scope @kkt/loader-* --scope @kkt/plugin-*",
     "bootstrap:example": "lerna bootstrap --scope @kkt/template-*",
     "version": "lerna version --no-changelog",
