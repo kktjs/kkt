@@ -61,7 +61,6 @@ $ yarn create kkt my-app -e `<Example Name>`
 - [**`electron`**](https://github.com/kktjs/kkt/example/electron) - Use an example of [`Electronjs`](https://github.com/electron).
 - [**`less`**](https://github.com/kktjs/kkt/example/less) - Use an example of `Less`.
 - [**`markdown`**](https://github.com/kktjs/kkt/example/markdown) - Use an example of `Markdown`.
-- [**`react-component`**](https://github.com/kktjs/kkt/example/react-component) - Create a project for the react component library.
 - [**`react-component-tsx`**](https://github.com/kktjs/kkt/example/react-component-tsx) - Create a project containing the website for the react component library.
 - [**`rematch-tsx`**](https://github.com/kktjs/kkt/example/rematch-tsx) - Use [`Rematch`](https://github.com/rematch/rematch) example for TypeScript.
 - [**`rematch`**](https://github.com/kktjs/kkt/example/rematch) - Use [`Rematch`](https://github.com/rematch/rematch) for the project.
