@@ -14,6 +14,6 @@ jobs:
         with:
           node-version: '12.x'
 
-      - run: npm install
+      - run: npm install --unsafe-perm
       - run: npm run bootstrap
       - run: npm run build
