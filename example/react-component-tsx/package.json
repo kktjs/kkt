@@ -6,7 +6,6 @@
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "scripts": {
-    "prepare": "npm run build",
     "released": "npm run build && npm run doc",
     "doc": "ENTRYDIR=website kkt build",
     "doc:dev": "ENTRYDIR=website kkt start",
@@ -43,7 +42,7 @@
     "@types/react-dom": "16.9.6",
     "compile-less-cli": "1.4.0",
     "kkt": "5.8.0",
-    "tsbb": "1.7.1"
+    "tsbb": "1.7.2"
   },
   "eslintConfig": {
     "extends": "react-app"
