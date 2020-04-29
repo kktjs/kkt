@@ -22,10 +22,6 @@
         "--no-package-lock",
         "--no-ci"
       ],
-      "yarnClientArgs": [
-        "--no-package-lock",
-        "--no-ci"
-      ],
       "forceLocal": true
     },
     "publish": {
