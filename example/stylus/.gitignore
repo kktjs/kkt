@@ -2,7 +2,7 @@ node_modules
 npm-debug.log*
 package-lock.json
 coverage
-dist
+build
 .DS_Store
 .cache
 .vscode
