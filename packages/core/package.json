@@ -67,7 +67,7 @@
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "chalk": "4.0.0",
     "colors-cli": "1.0.27",
-    "css-loader": "3.4.2",
+    "css-loader": "3.6.0",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "6.7.1",
