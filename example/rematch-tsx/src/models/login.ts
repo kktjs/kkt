@@ -1,5 +1,5 @@
 import { createModel } from '@rematch/core';
-import { Dispatch } from './';
+// import { Dispatch } from './';
 import { login } from '../servers/login';
 
 export interface LoginState {
