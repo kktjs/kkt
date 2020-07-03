@@ -10,7 +10,7 @@
     "url": "https://github.com/kktjs/kkt.git"
   },
   "scripts": {
-    "prepack": "npm run bootstrap && npm run build",
+    "hoist": "lerna bootstrap --hoist",
     "build": "lerna exec npm run build",
     "build:kkt": "lerna exec npm run build --scope kkt",
     "build:plugin": "lerna exec npm run build --scope @kkt/loader-*  --scope @kkt/plugin-*",
@@ -20,7 +20,7 @@
     "bootstrap": "lerna bootstrap --no-ci",
     "bootstrap:kkt": "lerna bootstrap --scope kkt --scope @kkt/loader-* --scope @kkt/plugin-*",
     "bootstrap:example": "lerna bootstrap --scope @kkt/template-*",
-    "version": "lerna version --no-changelog",
+    "version": "lerna version --no-changelog --no-git-tag-version",
     "publish": "lerna publish from-package",
     "updated": "lerna updated",
     "start": "lerna exec npm run start",
