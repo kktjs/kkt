@@ -12,8 +12,11 @@
   "scripts": {
     "hoist": "lerna bootstrap --hoist",
     "build": "lerna exec npm run build",
-    "build:kkt": "lerna exec npm run build --scope kkt",
-    "build:plugin": "lerna exec npm run build --scope @kkt/loader-*  --scope @kkt/plugin-*",
+    "b:kkt": "lerna exec npm run build --scope kkt",
+    "b:plugin": "lerna exec npm run build --scope @kkt/loader-*  --scope @kkt/plugin-*",
+    "b:example:basic": "lerna exec npm run build --scope @kkt/template-basic",
+    "b:example:less": "lerna exec npm run build --scope @kkt/template-less",
+    "b:example:markdown": "lerna exec npm run build --scope @kkt/template-markdown",
     "watch": "lerna run watch --stream",
     "watch:lib": "lerna run --scope @kkt/* watch --stream",
     "watch:kkt": "lerna run --scope kkt watch --stream",
