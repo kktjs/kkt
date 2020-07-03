@@ -27,6 +27,9 @@
     "@kkt/loader-less": "5.8.0",
     "kkt": "5.8.0"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
