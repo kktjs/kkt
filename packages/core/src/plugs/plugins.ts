@@ -87,6 +87,8 @@ module.exports = (conf: Configuration, options: OptionConf) => {
       // both options are optional
       filename: 'static/css/[name].[contenthash:8].css',
       chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+      // https://github.com/webpack-contrib/mini-css-extract-plugin/issues/250#issuecomment-532483344
+      ignoreOrder: false,
     }));
   }
   // Generate an asset manifest file with the following content:
@@ -112,7 +114,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
         entrypoints: entrypointFiles,
       };
     },
-  } as ManifestPlugin.Options));
+  }));
 
   // Moment.js is an extremely popular library that bundles large locale files
   // by default due to how Webpack interprets its code. This is a practical
@@ -143,7 +145,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
   if(options.useTypeScript) {
     conf.plugins.push(new ForkTsCheckerWebpackPlugin({
       typescript: resolve.sync('typescript', {
-        basedir: paths.appNodeModules as string,
+        basedir: paths.appNodeModules,
       }),
       async: options.isEnvDevelopment,
       useTypescriptIncrementalApi: true,
@@ -162,7 +164,8 @@ module.exports = (conf: Configuration, options: OptionConf) => {
         '!**/src/setupProxy.*',
         '!**/src/setupTests.*',
       ],
-      watch: paths.appSrc,
+      // watch: paths.appSrc,
+      silent: true,
       // The formatter is invoked directly in WebpackDevServerUtils during development
       formatter: options.isEnvProduction ? typescriptFormatter : undefined,
     }))
