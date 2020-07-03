@@ -17,11 +17,8 @@
       "message": "chore(release): %s"
     },
     "bootstrap": {
-      "npmClient": "yarn",
-      "yarnClientArgs": [
-        "--no-yarn-lock",
-        "--no-package-lock"
-      ],
+      "npmClientArgs": ["--no-package-lock"],
+      "yarnClientArgs": ["--no-yarn-lock"],
       "forceLocal": true
     },
     "publish": {
