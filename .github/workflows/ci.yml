@@ -4,7 +4,7 @@ on:
     branches:
       - master
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@master
@@ -21,3 +21,12 @@ jobs:
       - run: npm run b:example:basic
       - run: npm run b:example:less
       - run: npm run b:example:markdown
+      - run: npm run b:example:react-component-tsx
+      - run: npm run b:example:rematch
+      - run: npm run b:example:rematch-hash-router
+      - run: npm run b:example:rematch-tsx
+      - run: npm run b:example:rematch-uiw
+      - run: npm run b:example:scss
+      - run: npm run b:example:stylus
+      - run: npm run b:example:typescript
+      - run: npm run b:example:uiw
