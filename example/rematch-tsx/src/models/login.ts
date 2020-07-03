@@ -1,3 +1,4 @@
+import { createModel } from '@rematch/core';
 import { Dispatch } from './';
 import { login } from '../servers/login';
 
@@ -8,7 +9,7 @@ export interface LoginState {
   };
 }
 
-export default {
+export default createModel({
   state: {
     userData: null,
     token: null,
@@ -16,11 +17,9 @@ export default {
   reducers: {
     updateState: (state: LoginState, payload: LoginState): LoginState => ({ ...state, ...payload }),
   },
-  effects: (dispatch: Dispatch) => ({
+  effects: () => ({
     async submit(payload: LoginState['userData']) {
       await login({ username: 'test', password: 'www' });
-      // dispatch.sharks.increment(payload)
-      // `dispatch.s` will suggest `sharks`
     },
   }),
-};
+});
