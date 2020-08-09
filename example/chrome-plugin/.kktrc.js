@@ -1,4 +1,4 @@
-import CleanWebpackPlugin from 'clean-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import FileManagerPlugin from 'filemanager-webpack-plugin';
 
 export default (conf) => {
@@ -11,9 +11,7 @@ export default (conf) => {
     return item;
   }).filter(Boolean);
 
-  conf.plugins.push(new CleanWebpackPlugin(['build'], {
-    root: process.cwd(),
-  }));
+  conf.plugins.push(new CleanWebpackPlugin());
   conf.plugins.push(new FileManagerPlugin({
     onEnd: [{
       copy: [
