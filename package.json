@@ -40,7 +40,7 @@
     "tsbb": "tsbb"
   },
   "devDependencies": {
-    "lerna": "3.20.2",
+    "lerna": "3.22.1",
     "tsbb": "1.7.6",
     "webpack": "4.42.1"
   },
