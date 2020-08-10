@@ -23,7 +23,7 @@
     "@types/classnames": "2.2.10",
     "@types/react": "16.9.34",
     "@types/react-dom": "16.9.6",
-    "electron": "9.1.0",
+    "electron": "9.2.0",
     "kkt": "5.9.0"
   },
   "dependencies": {
