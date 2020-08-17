@@ -40,7 +40,7 @@
     "@babel/runtime": "7.9.2",
     "@jest/fake-timers": "25.1.0",
     "@svgr/webpack": "4.3.3",
-    "@tsbb/babel-preset-tsbb": "1.11.0",
+    "@tsbb/babel-preset-tsbb": "1.12.1",
     "@types/case-sensitive-paths-webpack-plugin": "2.1.4",
     "@types/detect-port": "1.1.0",
     "@types/express": "4.17.6",
