@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "less": "^3.11.1",
-    "less-loader": "^5.0.0"
+    "less-loader": "^6.0.0"
   },
   "devDependencies": {
     "kkt": "5.9.0"

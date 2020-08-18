@@ -22,7 +22,7 @@ export type Loaders = {
   } | CssOptions;
 } | string;
 
-export default (cssOptions: CssOptions, options: OptionConf, preProcessor?: string) => {
+export default function getStyleLoaders<T>(cssOptions: CssOptions, options: OptionConf, preProcessor?: string, preProcessorOptions?: T) {
   const loaders: Loaders[] = [
     options.isEnvDevelopment && require.resolve('style-loader'),
     options.isEnvProduction && {
@@ -74,6 +74,7 @@ export default (cssOptions: CssOptions, options: OptionConf, preProcessor?: stri
       loader: require.resolve(preProcessor),
       options: {
         sourceMap: true,
+        ...preProcessorOptions
       },
     });
   }

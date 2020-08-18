@@ -42,7 +42,9 @@ module.exports = (conf: Configuration, options: OptionConf) => {
             getLocalIdent: getCSSModuleLocalIdent,
           }
         }, options,
-        require.resolve('less-loader')
+        require.resolve('less-loader'), {
+          javascriptEnabled: true,
+        }
       ),
     }
   ];
