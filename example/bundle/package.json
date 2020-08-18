@@ -1,6 +1,6 @@
 {
   "name": "@kkt/template-bundle",
-  "version": "5.9.0",
+  "version": "5.10.0",
   "description": "",
   "private": true,
   "scripts": {
@@ -24,8 +24,8 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.9.0",
-    "kkt": "5.9.0"
+    "@kkt/loader-less": "5.10.0",
+    "kkt": "5.10.0"
   },
   "eslintConfig": {
     "extends": "react-app"

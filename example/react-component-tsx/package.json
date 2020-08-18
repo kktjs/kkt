@@ -1,6 +1,6 @@
 {
   "name": "@kkt/template-react-component-tsx",
-  "version": "5.9.0",
+  "version": "5.10.0",
   "description": "React Component Example for TypeScript.",
   "private": true,
   "main": "lib/cjs/index.js",
@@ -36,13 +36,13 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.9.0",
-    "@kkt/loader-raw": "5.9.0",
+    "@kkt/loader-less": "5.10.0",
+    "@kkt/loader-raw": "5.10.0",
     "@types/classnames": "2.2.10",
     "@types/react": "16.9.34",
     "@types/react-dom": "16.9.6",
     "compile-less-cli": "1.4.0",
-    "kkt": "5.9.0",
+    "kkt": "5.10.0",
     "tsbb": "1.7.6"
   },
   "eslintConfig": {
