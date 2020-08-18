@@ -1,6 +1,6 @@
 {
   "name": "@kkt/template-rematch",
-  "version": "5.10.0",
+  "version": "5.10.1",
   "description": "Use Rematch for the project.",
   "private": true,
   "scripts": {
@@ -26,8 +26,8 @@
     "redux": "4.0.4"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.10.0",
-    "kkt": "5.10.0"
+    "@kkt/loader-less": "5.10.1",
+    "kkt": "5.10.1"
   },
   "eslintConfig": {
     "extends": "react-app"

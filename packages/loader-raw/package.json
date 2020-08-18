@@ -1,6 +1,6 @@
 {
   "name": "@kkt/loader-raw",
-  "version": "5.10.0",
+  "version": "5.10.1",
   "description": "A loader for webpack that allows importing files as a String.",
   "author": "jaywcjlove <398188662@qq.com>",
   "homepage": "https://github.com/kktjs/kkt/tree/master/packages/loader-raw#readme",
@@ -36,6 +36,6 @@
     "raw-loader": "4.0.1"
   },
   "devDependencies": {
-    "kkt": "5.10.0"
+    "kkt": "5.10.1"
   }
 }
