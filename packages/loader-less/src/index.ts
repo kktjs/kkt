@@ -21,8 +21,14 @@ module.exports = (conf: Configuration, options: OptionConf) => {
         {
           importLoaders: 1,
           sourceMap: options.isEnvProduction && options.shouldUseSourceMap,
-        }, options,
-        require.resolve('less-loader')
+        },
+        options,
+        require.resolve('less-loader'),
+        {
+          lessOptions: {
+              javascriptEnabled: true
+          }
+        }
       ),
       // Don't consider CSS imports dead code even if the
       // containing package claims to have no side effects.
@@ -41,9 +47,13 @@ module.exports = (conf: Configuration, options: OptionConf) => {
           modules: {
             getLocalIdent: getCSSModuleLocalIdent,
           }
-        }, options,
-        require.resolve('less-loader'), {
-          javascriptEnabled: true,
+        },
+        options,
+        require.resolve('less-loader'),
+        {
+          lessOptions: {
+              javascriptEnabled: true
+          }
         }
       ),
     }
