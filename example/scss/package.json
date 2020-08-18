@@ -1,6 +1,6 @@
 {
   "name": "@kkt/template-scss",
-  "version": "5.10.2",
+  "version": "5.10.3",
   "description": "Use an example of SCSS.",
   "private": true,
   "scripts": {
@@ -18,8 +18,8 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@kkt/loader-scss": "5.10.2",
-    "kkt": "5.10.2"
+    "@kkt/loader-scss": "5.10.3",
+    "kkt": "5.10.3"
   },
   "eslintConfig": {
     "extends": "react-app"

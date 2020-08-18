@@ -1,6 +1,6 @@
 {
   "name": "@kkt/template-stylus",
-  "version": "5.10.2",
+  "version": "5.10.3",
   "description": "React uses the server side rendering of the Stylus based application.",
   "private": true,
   "scripts": {
@@ -18,8 +18,8 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@kkt/loader-stylus": "5.10.2",
-    "kkt": "5.10.2"
+    "@kkt/loader-stylus": "5.10.3",
+    "kkt": "5.10.3"
   },
   "eslintConfig": {
     "extends": "react-app"
