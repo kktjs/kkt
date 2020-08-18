@@ -1,4 +1,4 @@
-import { Configuration } from 'webpack';
+import { Configuration, Plugin } from 'webpack';
 import { OptionConf } from 'kkt';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
@@ -78,7 +78,7 @@ export default (conf: Configuration, kktOpts: KKTOpts, { name, output, externals
           // https://github.com/facebook/create-react-app/issues/2415
           // allChunks: true,
         })
-      ];
+      ] as Plugin[];
     }
   }
   return conf
