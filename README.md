@@ -56,18 +56,18 @@ $ npm create kkt my-app -e `<Example Name>`
 $ yarn create kkt my-app -e `<Example Name>`
 ```
 
-- [**`basic`**](https://github.com/kktjs/kkt/example/basic) - The [react](https://github.com/facebook/react) base application.
-- [**`bundle`**](https://github.com/kktjs/kkt/example/bundle) - Package the UMD package for developing the React component library.
-- [**`electron`**](https://github.com/kktjs/kkt/example/electron) - Use an example of [`Electronjs`](https://github.com/electron).
-- [**`less`**](https://github.com/kktjs/kkt/example/less) - Use an example of `Less`.
-- [**`markdown`**](https://github.com/kktjs/kkt/example/markdown) - Use an example of `Markdown`.
-- [**`react-component-tsx`**](https://github.com/kktjs/kkt/example/react-component-tsx) - Create a project containing the website for the react component library.
-- [**`rematch-tsx`**](https://github.com/kktjs/kkt/example/rematch-tsx) - Use [`Rematch`](https://github.com/rematch/rematch) example for TypeScript.
-- [**`rematch`**](https://github.com/kktjs/kkt/example/rematch) - Use [`Rematch`](https://github.com/rematch/rematch) for the project.
-- [**`scss`**](https://github.com/kktjs/kkt/example/scss) - Use an example of `Scss`.
-- [**`stylus`**](https://github.com/kktjs/kkt/example/stylus) - Use an example of `Stylus`.
-- [**`typescript`**](https://github.com/kktjs/kkt/example/typescript) - Use an example of `TypeScript`.
-- [**`uiw`**](https://github.com/kktjs/kkt/example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project.
+- [**`basic`**](https://github.com/kktjs/kkt/tree/master/example/basic) - The [react](https://github.com/facebook/react) base application.
+- [**`bundle`**](https://github.com/kktjs/kkt/tree/master/example/bundle) - Package the UMD package for developing the React component library.
+- [**`electron`**](https://github.com/kktjs/kkt/tree/master/example/electron) - Use an example of [`Electronjs`](https://github.com/electron).
+- [**`less`**](https://github.com/kktjs/kkt/tree/master/example/less) - Use an example of `Less`.
+- [**`markdown`**](https://github.com/kktjs/kkt/tree/master/example/markdown) - Use an example of `Markdown`.
+- [**`react-component-tsx`**](https://github.com/kktjs/kkt/tree/master/example/react-component-tsx) - Create a project containing the website for the react component library.
+- [**`rematch-tsx`**](https://github.com/kktjs/kkt/tree/master/example/rematch-tsx) - Use [`Rematch`](https://github.com/rematch/rematch) example for TypeScript.
+- [**`rematch`**](https://github.com/kktjs/kkt/tree/master/example/rematch) - Use [`Rematch`](https://github.com/rematch/rematch) for the project.
+- [**`scss`**](https://github.com/kktjs/kkt/tree/master/example/scss) - Use an example of `Scss`.
+- [**`stylus`**](https://github.com/kktjs/kkt/tree/master/example/stylus) - Use an example of `Stylus`.
+- [**`typescript`**](https://github.com/kktjs/kkt/tree/master/example/typescript) - Use an example of `TypeScript`.
+- [**`uiw`**](https://github.com/kktjs/kkt/tree/master/example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project.
 
 ## Configuration
 
