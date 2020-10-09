@@ -105,7 +105,7 @@
     "ts-node": "8.10.2",
     "ts-pnp": "1.2.0",
     "typescript": "3.8.3",
-    "url-loader": "2.3.0",
+    "url-loader": "4.1.1",
     "webpack": "4.44.1",
     "webpack-dev-server": "3.11.0",
     "webpack-manifest-plugin": "2.2.0",
