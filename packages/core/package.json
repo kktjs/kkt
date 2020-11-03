@@ -36,8 +36,8 @@
     "src"
   ],
   "dependencies": {
-    "@babel/core": "7.9.0",
-    "@babel/runtime": "7.9.2",
+    "@babel/core": "7.12.3",
+    "@babel/runtime": "7.12.5",
     "@jest/fake-timers": "25.1.0",
     "@svgr/webpack": "4.3.3",
     "@tsbb/babel-preset-tsbb": "1.12.1",
