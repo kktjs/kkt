@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, withRouter, RouteComponentProps,  } from 'react-router-dom';
-import { History } from 'history';
+import * as H from 'history';
 import { StaticContext } from 'react-router';
 import { Provider } from 'react-redux';
 import history from './routes/history';
@@ -9,7 +9,7 @@ import { store } from './models';
 import Controller from './routes/Controller';
 import { getRouterData } from './routes/router';
 
-export type DefaultProps = React.PropsWithChildren<RouteComponentProps<any, StaticContext, History.PoorMansUnknown>> & {
+export type DefaultProps = React.PropsWithChildren<RouteComponentProps<any, StaticContext, H.LocationState>> & {
   routerData: typeof getRouterData;
 }
 
