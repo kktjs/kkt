@@ -44,7 +44,7 @@
     "@types/react-dom": "16.9.6",
     "compile-less-cli": "1.5.1",
     "kkt": "5.10.3",
-    "tsbb": "1.7.6"
+    "tsbb": "1.7.7"
   },
   "eslintConfig": {
     "extends": "react-app"
