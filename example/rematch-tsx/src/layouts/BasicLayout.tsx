@@ -13,7 +13,7 @@ class BasicLayout extends PureComponent<DefaultProps> {
       if (path === '/') {
         RouteComponents.push(<Route exact key={idx + 1} path="/" render={() => <Redirect to="/home" />} />);
       } else {
-        const ChildComponent = (props: RouteComponentProps<any, StaticContext, React.ReactNode>) => {
+        const ChildComponent = (props: RouteComponentProps<any, StaticContext, unknown>) => {
           const ChildComp = routerData[path as keyof RouterData].component as any;
           // 可以给子组件传一些参数如： isNavShow=true
           return (

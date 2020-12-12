@@ -88,7 +88,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
       filename: 'static/css/[name].[contenthash:8].css',
       chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
       // https://github.com/webpack-contrib/mini-css-extract-plugin/issues/250#issuecomment-532483344
-      ignoreOrder: false,
+      ignoreOrder: true,
     }));
   }
   // Generate an asset manifest file with the following content:
