@@ -1,6 +1,6 @@
 {
   "name": "@kkt/template-electron",
-  "version": "5.10.3",
+  "version": "5.11.0",
   "description": "Electron example.",
   "main": "lib/main.js",
   "private": true,
@@ -24,8 +24,8 @@
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "electron": "11.1.0",
-    "tsbb": "1.7.8",
-    "kkt": "5.10.3"
+    "kkt": "5.11.0",
+    "tsbb": "1.7.8"
   },
   "dependencies": {
     "react": "17.0.1",

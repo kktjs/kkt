@@ -1,6 +1,6 @@
 {
   "name": "@kkt/template-basic",
-  "version": "5.10.3",
+  "version": "5.11.0",
   "description": "The react base application.",
   "private": true,
   "scripts": {
@@ -36,6 +36,6 @@
     ]
   },
   "devDependencies": {
-    "kkt": "5.10.3"
+    "kkt": "5.11.0"
   }
 }
