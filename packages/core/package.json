@@ -52,7 +52,7 @@
     "@types/react-dev-utils": "9.0.4",
     "@types/resolve": "1.17.1",
     "@types/terser-webpack-plugin": "4.1.0",
-    "@types/webpack-dev-server": "3.11.0",
+    "@types/webpack-dev-server": "3.11.1",
     "@types/webpack-manifest-plugin": "2.1.0",
     "@types/workbox-webpack-plugin": "5.1.4",
     "@types/yargs": "15.0.5",
