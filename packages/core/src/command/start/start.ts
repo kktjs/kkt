@@ -13,6 +13,7 @@ require('../../config/env');
 import fs from 'fs';
 import color from 'colors-cli/safe';
 import webpack from 'webpack';
+import semver from 'semver';
 import WebpackDevServer from 'webpack-dev-server';
 import clearConsole from 'react-dev-utils/clearConsole';
 import openBrowser from 'react-dev-utils/openBrowser';
@@ -38,6 +39,8 @@ export default async function (args: Argv & {
   host: string;
   openBrowser: boolean;
 }) {
+  const dotenv = require('./env').getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
+  const react = require(require.resolve('react', { paths: [paths.appPath] }));
   // Tools like Cloud9 rely on this.
   const DEFAULT_PORT = parseInt(process.env.PORT, 10) || args.port || 19870;
   const HOST = process.env.HOST || '0.0.0.0';
@@ -97,16 +100,12 @@ export default async function (args: Argv & {
         clearConsole();
       }
 
-      // We used to support resolving modules according to `NODE_PATH`.
-      // This now has been deprecated in favor of jsconfig/tsconfig.json
-      // This lets you use absolute paths in imports inside large monorepos:
-      if (process.env.NODE_PATH) {
+      if (dotenv.raw.FAST_REFRESH && semver.lt(react.version, '16.10.0')) {
         console.log(
           color.yellow(
-            'Setting NODE_PATH to resolve modules absolutely has been deprecated in favor of setting baseUrl in jsconfig.json (or tsconfig.json if you are using TypeScript) and will be removed in a future major release of create-react-app.'
+            `Fast Refresh requires React 16.10 or higher. You are using React ${react.version}.`
           )
         );
-        console.log();
       }
 
       console.log(color.cyan('Starting the development server...\n'));
@@ -122,13 +121,12 @@ export default async function (args: Argv & {
       });
     });
 
-    if (isInteractive || process.env.CI !== 'true') {
+    if (process.env.CI !== 'true') {
       // Gracefully exit when stdin ends
-      process.stdin.on('end', () => {
+      process.stdin.on('end', function () {
         devServer.close();
         process.exit();
       });
-      process.stdin.resume();
     }
   } catch (err) {
     if (err && err.message) {

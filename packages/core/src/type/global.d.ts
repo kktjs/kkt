@@ -49,6 +49,18 @@ declare module 'pnp-webpack-plugin' {
 declare module 'postcss-normalize' {
   export default function _default(): any;
 }
+declare module 'eslint-webpack-plugin' {
+  import webpack = require('webpack');
+  export default class _default extends webpack.Plugin {
+    constructor(options: any);
+  }
+}
+declare module '@pmmmwh/react-refresh-webpack-plugin' {
+  import webpack = require('webpack');
+  export default class _default extends webpack.Plugin {
+    constructor(options: any);
+  }
+}
 declare module 'postcss-safe-parser' {
   export default function _default(css: any, opts: any): any;
 }

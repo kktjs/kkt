@@ -3,6 +3,7 @@ import { Argv } from 'yargs';
 import { MockerOption } from 'mocker-api';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { ClientEnvironment } from '../config/env';
+import * as paths from '../config/paths';
 
 export type Webpack = typeof webpack;
 
@@ -16,11 +17,16 @@ export interface OptionConf {
   isEnvProduction: boolean;
   isEnvProductionProfile: boolean;
   shouldUseSourceMap: boolean;
+  shouldUseReactRefresh: boolean;
   useTypeScript: boolean;
   publicUrlOrPath: string;
+  webpackDevClientEntry: string;
+  reactRefreshOverlayEntry: string;
   yargsArgs: Argv;
   paths: {
     moduleFileExtensions: string[];
+    appSrc: string;
+    swSrc: string;
   };
   moduleScopePluginOpts?: ModuleScopePluginOpts;
   MiniCssExtractPlugin: typeof MiniCssExtractPlugin;

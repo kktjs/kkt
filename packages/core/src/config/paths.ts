@@ -66,6 +66,7 @@ const yarnLockFile = resolveApp('yarn.lock');
 const testsSetup = resolveModule(resolveApp, `${ENTRYDIR}/setupTests`);
 const proxySetup = resolveApp(`${ENTRYDIR}/setupProxy.js`);
 const appNodeModules = resolveApp('node_modules');
+const swSrc = resolveModule(resolveApp, 'src/service-worker');
 
 export {
   dotenv,
@@ -86,6 +87,7 @@ export {
   // publicUrl,
   // servedPath,
   publicUrlOrPath,
+  swSrc,
   // --->
   moduleFileExtensions,
 };

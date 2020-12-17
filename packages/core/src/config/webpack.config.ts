@@ -25,8 +25,16 @@ export default async (env: string = 'development', args?: Argv) => {
     const isEnvProductionProfile = isEnvProduction && process.argv.includes('--profile');
     const dotenv = require('./env').getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
   
+    const webpackDevClientEntry = require.resolve(
+      'react-dev-utils/webpackHotDevClient'
+    );
+    const reactRefreshOverlayEntry = require.resolve(
+      'react-dev-utils/refreshOverlayInterop'
+    );
+    const shouldUseReactRefresh = dotenv.raw.FAST_REFRESH;
     conf.mode = isEnvProduction ? 'production' : (isEnvDevelopment ? 'development' : 'none');
     conf.plugins = [];
+    conf.entry = [];
     conf.resolve = {};
     // Stop compilation early in production
     conf.bail = isEnvProduction;
@@ -58,7 +66,8 @@ export default async (env: string = 'development', args?: Argv) => {
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
     conf.performance = false;
-    conf.entry = [
+
+    if (isEnvDevelopment && !shouldUseReactRefresh) {
       // Include an alternative client for WebpackDevServer. A client's job is to
       // connect to WebpackDevServer by a socket and get notified about changes.
       // When you save a file, the client will either apply hot updates (in case
@@ -69,14 +78,10 @@ export default async (env: string = 'development', args?: Argv) => {
       // the line below with these two lines if you prefer the stock client:
       // require.resolve('webpack-dev-server/client') + '?/',
       // require.resolve('webpack/hot/dev-server'),
-      isEnvDevelopment && require.resolve('react-dev-utils/webpackHotDevClient'),
-      // Finally, this is your app's code:
-      paths.appIndexJs,
-      // We include the app code last so that if there is a runtime error during
-      // initialization, it doesn't blow up the WebpackDevServer client, and
-      // changing JS code would still trigger a refresh.
-    ].filter(Boolean);
-  
+      conf.entry.push(require.resolve('react-dev-utils/webpackHotDevClient'));
+    }
+    // Finally, this is your app's code:
+    conf.entry.push(paths.appIndexJs)
     // =============================================
     // Disable require.ensure as it's not a standard language feature.
     const optionConf: OptionConf = {
@@ -84,6 +89,9 @@ export default async (env: string = 'development', args?: Argv) => {
       shouldUseSourceMap, useTypeScript,
       publicUrlOrPath: paths.publicUrlOrPath,
       yargsArgs: args,
+      shouldUseReactRefresh,
+      webpackDevClientEntry,
+      reactRefreshOverlayEntry,
       MiniCssExtractPlugin,
     };
   
@@ -101,7 +109,7 @@ export default async (env: string = 'development', args?: Argv) => {
      * Add loader
      * ============================
      */
-    conf.module.rules = [...(require('../plugs/eslint-loader')(conf, optionConf))];
+    conf.module.rules = [];
     let loaderDefault: LoaderDefaultResult<OptionConf> = {
       url: require('../plugs/url-loader'),
       babel: require('../plugs/babel-loader'),

@@ -186,6 +186,9 @@ KKT uses the `homepage` field to determine the root URL in the built HTML file.
 ### Development
 
 ```bash
+npm run bootstrap:kkt
+npm run bootstrap:example
+
 npm run watch:lib
 npm run watch:kkt
 ```

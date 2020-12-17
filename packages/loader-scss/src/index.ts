@@ -37,7 +37,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
       use: getStyleLoaders(
         {
           importLoaders: 1,
-          sourceMap: options.isEnvProduction && options.shouldUseSourceMap,
+          sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
           modules: {
             getLocalIdent: getCSSModuleLocalIdent,
           }

@@ -1,6 +1,7 @@
 import { Configuration } from 'webpack';
 import { OptionConf } from '../type/kktrc';
 import * as paths from '../config/paths';
+import hasJsxRuntime from '../utils/hasJsxRuntime';
 
 module.exports = (conf: Configuration, options: OptionConf) => {
   return [
@@ -12,12 +13,12 @@ module.exports = (conf: Configuration, options: OptionConf) => {
       loader: require.resolve('babel-loader'),
       options: {
         presets: [
-          [require.resolve('@tsbb/babel-preset-tsbb'), {
-            targets: {
-              browsers: ['last 2 versions', 'ie >= 10'],
+          [
+            require.resolve('babel-preset-react-app'),
+            {
+              runtime: hasJsxRuntime ? 'automatic' : 'classic',
             },
-            presetReact: true,
-          }]
+          ],
         ],
         customize: require.resolve(
           'babel-preset-react-app/webpack-overrides'
@@ -28,11 +29,15 @@ module.exports = (conf: Configuration, options: OptionConf) => {
             {
               loaderMap: {
                 svg: {
-                  ReactComponent: '@svgr/webpack?-svgo,+titleProp,+ref![path]',
+                  ReactComponent:
+                    '@svgr/webpack?-svgo,+titleProp,+ref![path]',
                 },
               },
             },
           ],
+          options.isEnvDevelopment &&
+          options.shouldUseReactRefresh &&
+            require.resolve('react-refresh/babel'),
         ],
         // This is a feature of `babel-loader` for webpack (not Babel itself).
         // It enables caching results in ./node_modules/.cache/babel-loader/

@@ -18,7 +18,8 @@
   "dependencies": {
     "classnames": "2.2.6",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "web-vitals": "1.0.1"
   },
   "devDependencies": {
     "@kkt/loader-less": "5.11.1",

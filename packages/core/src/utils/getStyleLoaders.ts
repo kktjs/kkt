@@ -18,6 +18,7 @@ export type Loaders = {
   loader?: string;
   options?: {
     publicPath?: string;
+    root?: string;
     sourceMap?: boolean;
   } | CssOptions;
 } | string;
@@ -59,7 +60,7 @@ export default function getStyleLoaders<T>(cssOptions: CssOptions, options: Opti
           // which in turn let's users customize the target behavior as per their needs.
           postcssNormalize(),
         ],
-        sourceMap: options.isEnvProduction && options.shouldUseSourceMap,
+        sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
       },
     },
   ].filter(Boolean);
@@ -67,7 +68,8 @@ export default function getStyleLoaders<T>(cssOptions: CssOptions, options: Opti
     loaders.push({
       loader: require.resolve('resolve-url-loader'),
       options: {
-        sourceMap: options.isEnvProduction && options.shouldUseSourceMap,
+        sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
+        root: options.paths.appSrc,
       },
     });
     loaders.push({

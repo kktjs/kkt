@@ -1,4 +1,5 @@
 import webpack, { Configuration } from 'webpack';
+import fs from 'fs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import InlineChunkHtmlPlugin from 'react-dev-utils/InlineChunkHtmlPlugin';
 import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin';
@@ -6,13 +7,17 @@ import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModul
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import resolve from 'resolve';
-import ManifestPlugin, { FileDescriptor } from 'webpack-manifest-plugin';
+import { FileDescriptor } from 'webpack-manifest-plugin';
+import ManifestPlugin from 'webpack-manifest-plugin';
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
 import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
+import ESLintPlugin from 'eslint-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'react-dev-utils/ForkTsCheckerWebpackPlugin';
 import typescriptFormatter from 'react-dev-utils/typescriptFormatter';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { OptionConf } from '../type/kktrc';
 import * as paths from '../config/paths';
+import hasJsxRuntime from '../utils/hasJsxRuntime';
 
 interface ProcessEx extends NodeJS.ProcessVersions {
   pnp?: string;
@@ -80,6 +85,19 @@ module.exports = (conf: Configuration, options: OptionConf) => {
     // makes the discovery automatic so you don't have to restart.
     // See https://github.com/facebook/create-react-app/issues/186
     conf.plugins.push(new WatchMissingNodeModulesPlugin(paths.appNodeModules as string));
+    if (options.shouldUseReactRefresh) {
+      conf.plugins.push(new ReactRefreshWebpackPlugin({
+        overlay: {
+          entry: options.webpackDevClientEntry,
+          // The expected exports are slightly different from what the overlay exports,
+          // so an interop is included here to enable feedback on module-level errors.
+          module: options.reactRefreshOverlayEntry,
+          // Since we ship a custom dev client and overlay integration,
+          // the bundled socket handling logic can be eliminated.
+          sockIntegration: false,
+        },
+      }))
+    }
   }
   if (options.isEnvProduction) {
     conf.plugins.push(new MiniCssExtractPlugin({
@@ -97,7 +115,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
   //   `index.html`
   // - "entrypoints" key: Array of files which are included in `index.html`,
   //   can be used to reconstruct the HTML if necessary
-  conf.plugins.push(new ManifestPlugin({
+  conf.plugins.push(new (ManifestPlugin as any)({
     fileName: 'asset-manifest.json',
     publicPath: options.publicUrlOrPath,
     generate: (seed: object, files: FileDescriptor[], entrypoints: any) => {
@@ -125,20 +143,15 @@ module.exports = (conf: Configuration, options: OptionConf) => {
 
   // Generate a service worker script that will precache, and keep up to date,
   // the HTML & assets that are part of the Webpack build.
-  if (options.isEnvProduction) {
-    conf.plugins.push(new WorkboxWebpackPlugin.GenerateSW({
-      clientsClaim: true,
-      exclude: [/\.map$/, /asset-manifest\.json$/],
-      navigateFallback: options.publicUrlOrPath + '/index.html',
-      navigateFallbackDenylist: [
-        // Exclude URLs starting with /_, as they're likely an API call
-        new RegExp('^/_'),
-        // Exclude any URLs whose last part seems to be a file extension
-        // as they're likely a resource and not a SPA route.
-        // URLs containing a "?" character won't be blacklisted as they're likely
-        // a route with query params (e.g. auth callbacks).
-        new RegExp('/[^/?]+\\.[^/]+$'),
-      ],
+  if (options.isEnvProduction && fs.existsSync(options.paths.swSrc)) {
+    conf.plugins.push(new WorkboxWebpackPlugin.InjectManifest({
+      swSrc: options.paths.swSrc,
+      dontCacheBustURLsMatching: /\.[0-9a-f]{8}\./,
+      exclude: [/\.map$/, /asset-manifest\.json$/, /LICENSE/],
+      // Bump up the default maximum size (2mb) that's precached,
+      // to make lazy-loading failure scenarios less likely.
+      // See https://github.com/cra-template/pwa/issues/13#issuecomment-722667270
+      maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
     }))
   }
   if(options.useTypeScript) {
@@ -157,9 +170,14 @@ module.exports = (conf: Configuration, options: OptionConf) => {
         : undefined,
       tsconfig: paths.appTsConfig,
       reportFiles: [
-        '**',
-        '!**/__tests__/**',
-        '!**/?(*.)(spec|test).*',
+        // This one is specifically to match during CI tests,
+        // as micromatch doesn't match
+        // '../cra-template-typescript/template/src/App.tsx'
+        // otherwise.
+        '../**/src/**/*.{ts,tsx}',
+        '**/src/**/*.{ts,tsx}',
+        '!**/src/**/__tests__/**',
+        '!**/src/**/?(*.)(spec|test).*',
         '!**/src/setupProxy.*',
         '!**/src/setupTests.*',
       ],
@@ -167,7 +185,29 @@ module.exports = (conf: Configuration, options: OptionConf) => {
       silent: true,
       // The formatter is invoked directly in WebpackDevServerUtils during development
       formatter: options.isEnvProduction ? typescriptFormatter : undefined,
-    }))
+    }));
+
+    conf.plugins.push(
+      new ESLintPlugin({
+        // Plugin options
+        extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
+        formatter: require.resolve('react-dev-utils/eslintFormatter'),
+        eslintPath: require.resolve('eslint'),
+        context: paths.appSrc,
+        cache: true,
+        // ESLint class options
+        cwd: paths.appPath,
+        resolvePluginsRelativeTo: __dirname,
+        baseConfig: {
+          extends: [require.resolve('eslint-config-react-app/base')],
+          rules: {
+            ...(!hasJsxRuntime && {
+              'react/react-in-jsx-scope': 'error',
+            }),
+          },
+        },
+      })
+    )
   }
   return conf;
 };
