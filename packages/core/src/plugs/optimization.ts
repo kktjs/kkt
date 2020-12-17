@@ -51,7 +51,7 @@ module.exports = (conf: Configuration, options: OptionConf) => {
           },
         },
         sourceMap: options.shouldUseSourceMap,
-      }),
+      } as any),
       // This is only used in production mode
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {

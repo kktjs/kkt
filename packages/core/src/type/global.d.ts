@@ -50,14 +50,32 @@ declare module 'postcss-normalize' {
   export default function _default(): any;
 }
 declare module 'eslint-webpack-plugin' {
-  import webpack = require('webpack');
-  export default class _default extends webpack.Plugin {
+  import {Plugin } from 'webpack';
+  export default class _default extends Plugin {
     constructor(options: any);
   }
 }
 declare module '@pmmmwh/react-refresh-webpack-plugin' {
-  import webpack = require('webpack');
-  export default class _default extends webpack.Plugin {
+  import {Plugin } from 'webpack';
+  export default class _default extends Plugin {
+    constructor(options: any);
+  }
+}
+declare module 'webpack-manifest-plugin' {
+  import { compilation, Plugin } from 'webpack';
+  export interface FileDescriptor {
+      /** Only available if isChunk is true. */
+      chunk?: compilation.Chunk;
+      isAsset: boolean;
+      isChunk: boolean;
+      /** Is required to run you app. Cannot be true if isChunk is false. */
+      isInitial: boolean;
+      /** Is required by a module. Cannot be true if isAsset is false. */
+      isModuleAsset: boolean;
+      name: string | null;
+      path: string;
+  }
+  export default class _default extends Plugin {
     constructor(options: any);
   }
 }
