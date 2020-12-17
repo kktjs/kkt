@@ -33,7 +33,7 @@
     "kkt": ">=5.0.0"
   },
   "dependencies": {
-    "raw-loader": "4.0.1"
+    "raw-loader": "4.0.2"
   },
   "devDependencies": {
     "kkt": "5.11.1"
