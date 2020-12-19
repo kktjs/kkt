@@ -22,7 +22,7 @@ export interface IButtonProps {
 }
 
 export default class Button extends React.Component<IButtonProps & HTMLButtonProps> {
-  public static defaultProps: IButtonProps = {
+  static defaultProps: IButtonProps = {
     prefixCls: 'w-btn',
     disabled: false,
     active: false,
