@@ -24,6 +24,7 @@
 
 Create React apps with no build configuration, Cli tool for creating react apps. Another tool, [`kkt-ssr`](https://github.com/kktjs/kkt-ssr), Is a lightweight framework for static and server-rendered applications.
 
+> [Migrate from kkt 5.x to 6.x](https://github.com/kktjs/kkt-next/issues/133).
 > [Migrate from kkt 4.x to 5.x](https://github.com/kktjs/kkt-next/issues/1).
 
 As of `KKT 6.x` this repo is "lightly" maintained mostly by the community at this point.
@@ -76,79 +77,50 @@ $ yarn create kkt my-app -e `<Example Name>`
 Supports `kktrc.js` and `kktrc.ts`.
 
 ```ts
-import { Argv } from 'yargs';
+import { ParsedArgs } from 'minimist';
 
-export interface ClientEnvironment {
-  raw: {
-    NODE_ENV?: 'development' | 'production' | string;
-    PUBLIC_URL?: string;
-    IMAGE_INLINE_SIZE_LIMIT?: string;
-  },
-  stringified: {
-    'process.env': ClientEnvironment['raw'],
-  },
-}
-export interface OptionConf {
-  env: string; // Environment variable
-  dotenv: ClientEnvironment;
-  isEnvDevelopment: boolean;
-  isEnvProduction: boolean;
+type LoaderConfOptions = ParsedArgs & {
   shouldUseSourceMap: boolean;
-  publicPath: string;
-  publicUrl: string;
-  useTypeScript: boolean;
-  yargsArgs: Argv; // Command Parameter
-  paths: {
-    moduleFileExtensions: string[];
-  };
-  // conf.resolve.plugins `ModuleScopePlugin` options.
-  moduleScopePluginOpts?: KKTRC['moduleScopePluginOpts'];
-  MiniCssExtractPlugin: MiniCssExtractPlugin;
 }
+type KKTRC = {
+  devServer?: (configFunction: DevServerConfigFunction, evn: string,) => DevServerConfigFunction;
+  default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration;
+}
+type DevServerConfigFunction = (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string) => WebpackDevServer.Configuration;
+```
 
-/**
- * Modify webpack config.
- * */
-export default (conf: webpack.Configuration, options: OptionConf, webpack: typeof webpack) => {
+Example
+
+```ts
+import webpack, { Configuration } from 'webpack';
+import lessModules from '@kkt/less-modules';
+import { ParsedArgs } from 'minimist';
+
+export default (conf: Configuration, env: string, options: ParsedArgs) => {
+  // The Webpack config to use when compiling your react app for development or production.
+  // ...add your webpack config
+  conf = lessModules(conf, env, options);
   return conf;
 }
 
-/**
- * This is the setting for the Plug-in `new ModuleScopePlugin`.
- * 
- * Prevents users from importing files from outside of src/ (or node_modules/).
- * This often causes confusion because we only process files within src/ with babel.
- * To fix this, we prevent you from importing files out of src/ -- if you'd like to,
- * please link the files into your node_modules/ and let module-resolution kick in.
- * Make sure your source files are compiled, as they will not be processed in any way.
- * */
-export const moduleScopePluginOpts = [
-  path.resolve(process.cwd(), 'README.md'),
-];
+export const devServer = (configFunction) => {
+  return (proxy, allowedHost) => {
+    // Create the default config by calling configFunction with the proxy/allowedHost parameters
+    const config = configFunction(proxy, allowedHost);
 
-/**
- * Support for Less.
- * Opt-in support for Less (using `.scss` or `.less` extensions).
- * By default we support Less Modules with the
- * extensions `.module.less` or `.module.less`
- **/
-export const loaderOneOf = [
-  require.resolve('@kkt/loader-less'), // Support for less.
-  require.resolve('@kkt/loader-scss'), // Support for scss.
-  require.resolve('@kkt/loader-stylus'), // Support for stylus.
-];
+    // Change the https certificate options to match your certificate, using the .env file to
+    // set the file paths & passphrase.
+    const fs = require('fs');
+    config.https = {
+      key: fs.readFileSync(process.env.REACT_HTTPS_KEY, 'utf8'),
+      cert: fs.readFileSync(process.env.REACT_HTTPS_CERT, 'utf8'),
+      ca: fs.readFileSync(process.env.REACT_HTTPS_CA, 'utf8'),
+      passphrase: process.env.REACT_HTTPS_PASS
+    };
 
-/**
- * mocker-api that creates mocks for REST APIs.
- * It will be helpful when you try to test your application without the actual REST API server.
- * https://github.com/jaywcjlove/mocker-api
- */
-export const mocker = {
-  path: string | string[];
-  /**
-   * https://github.com/jaywcjlove/mocker-api/tree/96c2eb94694571e0e3003e6ad9ce1c809499f577#options
-   */
-  option: MockerOption;
+    // Return your customised Webpack Development Server config.
+    return config;
+  }
 }
 ```
 
@@ -178,12 +150,14 @@ or for a custom domain page:
 
 KKT uses the `homepage` field to determine the root URL in the built HTML file.
 
-### Loaders
+### Plugins & Loader
 
-- [@kkt/loader-less](https://github.com/kktjs/kkt/packages/loader-less)
-- [@kkt/loader-scss](https://github.com/kktjs/kkt/packages/loader-scss)
-- [@kkt/loader-stylus](https://github.com/kktjs/kkt/packages/loader-stylus)
-- [@kkt/loader-raw](https://github.com/kktjs/kkt/packages/loader-raw)
+- [@kkt/less-modules](packages/less-modules)
+- [@kkt/mocker-api](packages/mocker-api)
+- [@kkt/raw-modules](packages/raw-modules)
+- [@kkt/react-library](packages/react-library)
+- [@kkt/scope-plugin-options](packages/scope-plugin-options)
+- [@kkt/stylus-modules](packages/stylus-modules)
 
 ### Development
 
