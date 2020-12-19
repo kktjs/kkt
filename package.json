@@ -57,8 +57,7 @@
   },
   "devDependencies": {
     "lerna": "3.22.1",
-    "tsbb": "1.7.9",
-    "webpack": "4.44.1"
+    "tsbb": "1.7.9"
   },
   "dependencies": {
     "@types/webpack": "4.41.21"
