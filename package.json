@@ -60,6 +60,6 @@
     "tsbb": "1.7.9"
   },
   "dependencies": {
-    "@types/webpack": "4.41.21"
+    "@types/webpack": "4.41.25"
   }
 }
