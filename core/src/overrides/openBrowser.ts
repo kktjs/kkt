@@ -1,8 +1,11 @@
 import { ParsedArgs } from 'minimist';
 import { reactDevUtils } from '../utils/path';
 
+/**
+ * Disable openBrowser
+ */
 export default async (argvs: ParsedArgs): Promise<any> => {
-  if (argvs['no-open-browser']) {
+  if (argvs && argvs['no-open-browser']) {
     const openBrowserPath = `${reactDevUtils}/openBrowser`;
     require(openBrowserPath);
     // override config in memory

@@ -43,6 +43,7 @@
     "kkt:test": "lerna exec tsbb test --scope kkt --stream",
     "kkt:coverage": "lerna exec 'tsbb test --coverage' --scope kkt --stream",
     "kkt:<<<-----": "<<<<<<<<<<<<<<<<<<<<<<<<<<<",
+    "build": "npm run kkt:build && npm run lib:build",
     "hoist": "lerna bootstrap --hoist",
     "bootstrap": "lerna bootstrap --no-ci",
     "bootstrap:kkt": "lerna bootstrap --scope kkt",

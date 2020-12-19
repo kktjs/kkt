@@ -3,12 +3,11 @@ process.env.NODE_ENV = "production";
 import { ParsedArgs } from 'minimist';
 import { KKTRC } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory } from '../utils/path';
-
-import overridesPaths from '../overrides/paths';
+import { overridePaths } from '../overrides/paths';
 
 export default async function build(argvs: ParsedArgs) {
   try {
-    await overridesPaths(argvs);
+    await overridePaths(argvs);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.prod' : ''}`;
     const webpackConfig = require(webpackConfigPath);
     const overrides = require('../overrides/config');

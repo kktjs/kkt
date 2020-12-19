@@ -3,13 +3,13 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 import { ParsedArgs } from 'minimist';
 import { KKTRC } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory } from '../utils/path';
-import overridesPaths from '../overrides/paths';
+import { overridePaths } from '../overrides/paths';
 import openBrowser from '../overrides/openBrowser';
 
 export default async function build(argvs: ParsedArgs) {
   try {
     await openBrowser(argvs);
-    await overridesPaths(argvs);
+    await overridePaths(argvs);
 
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.dev' : ''}`;
     const devServerConfigPath = `${reactScripts}/config/webpackDevServer.config.js`;
