@@ -39,9 +39,7 @@ class Login extends React.Component<Props> {
                 err.filed = errorObj;
                 throw err;
               }
-              this.props.submit({
-                username: current.username,
-              });
+              this.props.submit({ ...current });
             }}
             onSubmitError={(error: any) => {
               if (error.filed) {

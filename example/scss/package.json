@@ -1,5 +1,5 @@
 {
-  "name": "@kkt/template-scss",
+  "name": "@template/scss",
   "version": "5.11.1",
   "description": "Use an example of SCSS.",
   "private": true,
@@ -18,11 +18,7 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@kkt/loader-scss": "5.11.1",
     "kkt": "5.11.1"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [

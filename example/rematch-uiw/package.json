@@ -1,5 +1,5 @@
 {
-  "name": "@kkt/template-rematch-uiw",
+  "name": "@template/rematch-uiw",
   "version": "5.11.1",
   "description": "",
   "private": true,
@@ -16,7 +16,7 @@
   "dependencies": {
     "@rematch/core": "1.4.0",
     "axios": "0.19.2",
-    "history": "4.10.1",
+    "history": "5.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-dynamic-loadable": "2.0.1",
@@ -25,7 +25,8 @@
     "uiw": "4.6.19"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.11.1",
+    "@kkt/less-modules": "5.11.1",
+    "@kkt/mocker-api": "5.11.1",
     "kkt": "5.11.1"
   },
   "eslintConfig": {

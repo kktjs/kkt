@@ -1,5 +1,5 @@
 {
-  "name": "@kkt/template-rematch",
+  "name": "@template/rematch",
   "version": "5.11.1",
   "description": "Use Rematch for the project.",
   "private": true,
@@ -26,7 +26,8 @@
     "redux": "4.0.4"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.11.1",
+    "@kkt/less-modules": "5.11.1",
+    "@kkt/mocker-api": "5.11.1",
     "kkt": "5.11.1"
   },
   "eslintConfig": {

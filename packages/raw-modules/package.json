@@ -1,0 +1,25 @@
+{
+  "name": "@kkt/raw-modules",
+  "version": "5.11.1",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "description": "Makes it easy to use the webpack raw-loader.",
+  "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
+  "repository": "https://github.com/kktjs/kkt.git",
+  "keywords": [
+    "kkt",
+    "react",
+    "framework"
+  ],
+  "license": "MIT",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "raw-loader": "^4.0.2"
+  },
+  "devDependencies": {
+    "kkt": "5.11.1"
+  }
+}

@@ -16,7 +16,6 @@ export default class Button extends React.Component {
       active, // 激活状态
       block, // 块级元素Block level
     });
-    /* eslint-disable */
     return (
       <button
         {...others}
@@ -30,7 +29,6 @@ export default class Button extends React.Component {
         })}
       </button>
     );
-    /* eslint-enable */
   }
 }
 

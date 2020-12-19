@@ -1,5 +1,5 @@
 {
-  "name": "@kkt/template-typescript",
+  "name": "@template/typescript",
   "version": "5.11.1",
   "description": "Use an example of TypeScript.",
   "private": true,
@@ -22,15 +22,12 @@
     "web-vitals": "1.0.1"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.11.1",
+    "@kkt/less-modules": "5.11.1",
     "@types/classnames": "2.2.10",
     "@types/jest": "24.9.1",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "kkt": "5.11.1"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [

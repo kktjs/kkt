@@ -1,6 +1,8 @@
 {
-  "name": "@kkt/template-bundle",
+  "name": "@template/bundle",
   "version": "5.11.1",
+  "main": "dist/bundle.js",
+  "module": "src/components/index.js",
   "description": "",
   "private": true,
   "scripts": {
@@ -8,7 +10,7 @@
     "build": "kkt build",
     "released": "npm run bundle && npm run bundle:min",
     "bundle": "kkt build --bundle",
-    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini --no-emptyDir",
+    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini",
     "test": "kkt test --env=jsdom",
     "test:coverage": "kkt test --env=jsdom --coverage"
   },
@@ -24,11 +26,9 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.11.1",
+    "@kkt/less-modules": "5.11.1",
+    "@kkt/react-library": "5.11.1",
     "kkt": "5.11.1"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [

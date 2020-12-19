@@ -1,7 +1,7 @@
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import FileManagerPlugin from 'filemanager-webpack-plugin';
 
-export default (conf) => {
+export default (conf, env, options) => {
   conf.output.publicPath = './';
   const regexp = /(HotModuleReplacementPlugin)/;
   conf.plugins = conf.plugins.map((item) => {
@@ -21,9 +21,6 @@ export default (conf) => {
       ],
     }],
   }));
-  /**
-   * Do somthing
-   */
+
   return conf;
 }
-

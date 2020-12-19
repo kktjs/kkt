@@ -14,19 +14,18 @@ jobs:
         with:
           node-version: '12.x'
 
-      - run: npm install --unsafe-perm
-      - run: npm run hoist
-      - run: npm run b:kkt
-      - run: npm run b:plugin
-      - run: npm run b:example:basic
-      - run: npm run b:example:less
-      - run: npm run b:example:markdown
-      - run: npm run b:example:react-component-tsx
-      - run: npm run b:example:rematch
-      - run: npm run b:example:rematch-hash-router
-      - run: npm run b:example:rematch-tsx
-      - run: npm run b:example:rematch-uiw
-      - run: npm run b:example:scss
-      - run: npm run b:example:stylus
-      - run: npm run b:example:typescript
-      - run: npm run b:example:uiw
+      - run: npm b:example:basic
+      - run: npm b:example:bundle
+      - run: npm b:example:bundle.pro
+      - run: npm b:example:bundle.min
+      - run: npm b:example:less
+      - run: npm b:example:markdown
+      - run: npm b:example:react-component-tsx
+      - run: npm b:example:rematch
+      - run: npm b:example:rematch-hash-router
+      - run: npm b:example:rematch-tsx
+      - run: npm b:example:rematch-uiw
+      - run: npm b:example:scss
+      - run: npm b:example:stylus
+      - run: npm b:example:typescript
+      - run: npm b:example:uiw

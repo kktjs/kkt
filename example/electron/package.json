@@ -1,12 +1,12 @@
 {
-  "name": "@kkt/template-electron",
+  "name": "@template/electron",
   "version": "5.11.1",
   "description": "Electron example.",
   "main": "lib/main.js",
   "private": true,
   "scripts": {
     "watch": "tsbb watch -s app --source-maps=none",
-    "start": "kkt start --port 1909 --no-openBrowser",
+    "start": "kkt start --no-open-browser",
     "build": "GENERATE_SOURCEMAP=false kkt build",
     "app": "NODE_ENV=dev ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",
     "app:build": "electron ."
@@ -21,6 +21,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@kkt/less-modules": "5.11.1",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "electron": "11.1.0",

@@ -1,9 +1,9 @@
-import { OptionConf } from 'kkt';
-import webpack from 'webpack';
+import webpack, {Configuration} from 'webpack';
+import lessModules from '@kkt/less-modules';
+import { ParsedArgs } from 'minimist';
 
-type Webpack = typeof webpack;
-
-export default (conf: webpack.Configuration = {}, opts: OptionConf, webpack: Webpack) => {
+export default (conf: Configuration, env: string, options: ParsedArgs) => {
+  conf = lessModules(conf, env, options);
   conf.output!.publicPath = './';
   const regexp = /(GenerateSW)/;
   if (conf.plugins) {
@@ -14,8 +14,5 @@ export default (conf: webpack.Configuration = {}, opts: OptionConf, webpack: Web
       return item;
     }).filter(Boolean) as webpack.Plugin[];
   }
-  /**
-   * Do somthing
-   */
   return conf;
 }

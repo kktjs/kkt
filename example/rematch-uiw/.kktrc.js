@@ -1,31 +1,22 @@
 import path from 'path';
+import lessModules from '@kkt/less-modules';
+import apiMocker from '@kkt/mocker-api';
 
-export const loaderOneOf = [
-  [require.resolve('@kkt/loader-less'), {} ],
-]
-
-/**
- * webpack config
- */
-export default (conf) => {
-  // console.log('~~:', conf.module.rules[1]);
+export default (conf, env, options) => {
+  conf = lessModules(conf, env, options);
   return conf;
 }
 
-/**
- * mocker-api that creates mocks for REST APIs.
- * It will be helpful when you try to test your application without the actual REST API server.
- * https://github.com/jaywcjlove/mocker-api
- */
-export const mocker = {
-  path: path.resolve('./mocker/index.js'),
-  /**
-   * https://github.com/jaywcjlove/mocker-api/tree/96c2eb94694571e0e3003e6ad9ce1c809499f577#options
-   */
-  option: {
+export const devServer = (configFunction) => (proxy, allowedHost) => {
+  // Create the default config by calling configFunction with the proxy/allowedHost parameters
+  let config = configFunction(proxy, allowedHost);
+
+  config = apiMocker(config, path.resolve('./mocker/index.js'), {
     proxy: {
-      '/repos/*': 'https://api.github.com/',
+      '/repos/(.*)': 'https://api.github.com/',
     },
     changeHost: true,
-  },
+  });
+  // Return your customised Webpack Development Server config.
+  return config;
 }

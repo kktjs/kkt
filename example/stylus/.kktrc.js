@@ -1,4 +1,6 @@
+import stylusModules from '@kkt/stylus-modules';
 
-export const loaderOneOf = [
-  require.resolve('@kkt/loader-stylus')
-];
+export default (conf, env, options) => {
+  conf = stylusModules(conf, env, options);
+  return conf;
+}

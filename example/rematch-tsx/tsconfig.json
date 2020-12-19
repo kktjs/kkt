@@ -20,8 +20,12 @@
     "baseUrl": "src",
     "jsx": "react",
     "typeRoots": [
-      "node_modules/@types",
-    ]
+      "node_modules/@types"
+    ],
+    "noFallthroughCasesInSwitch": true,
+    "noEmit": true
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

@@ -1,0 +1,27 @@
+{
+  "name": "@kkt/less-modules",
+  "version": "5.11.1",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "description": "Support for regular less files and *.module.less files.",
+  "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
+  "repository": "https://github.com/kktjs/kkt.git",
+  "keywords": [
+    "kkt",
+    "less",
+    "react",
+    "framework"
+  ],
+  "license": "MIT",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "less": "^3.13.1",
+    "less-loader": "^7.1.0"
+  },
+  "devDependencies": {
+    "kkt": "5.11.1"
+  }
+}

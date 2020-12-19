@@ -1,6 +1,7 @@
 {
   "version": "5.11.1",
   "packages": [
+    "core",
     "example/*",
     "packages/*"
   ],

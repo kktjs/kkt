@@ -1,0 +1,22 @@
+{
+  "name": "@kkt/react-library",
+  "version": "5.11.1",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "description": "Use create-react-app to build react libraries.",
+  "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
+  "repository": "https://github.com/kktjs/kkt.git",
+  "keywords": [
+    "kkt",
+    "react",
+    "framework"
+  ],
+  "license": "MIT",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "devDependencies": {
+    "kkt": "5.11.1"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "name": "@kkt/template-less",
+  "name": "@template/less",
   "version": "5.11.1",
   "description": "",
   "private": true,
@@ -18,11 +18,8 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.11.1",
+    "@kkt/less-modules": "5.11.1",
     "kkt": "5.11.1"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [

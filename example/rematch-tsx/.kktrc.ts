@@ -1,39 +1,36 @@
+import webpack, {Configuration} from 'webpack';
 import path from 'path';
-import { OptionConf } from 'kkt';
-import webpack from 'webpack';
+import { DevServerConfigFunction } from 'kkt';
+import WebpackDevServer from 'webpack-dev-server';
+import lessModules from '@kkt/less-modules';
+import apiMocker from '@kkt/mocker-api';
+import rawModules from '@kkt/raw-modules';
+import scopePluginOptions from '@kkt/scope-plugin-options';
+import { ParsedArgs } from 'minimist';
+import pkg from './package.json';
 
-type Webpack = typeof webpack;
-
-export const loaderOneOf = [
-  require.resolve('@kkt/loader-less')
-];
-
-export const moduleScopePluginOpts = [
-  path.resolve(process.cwd(), 'README.md')
-];
-
-export default (conf: webpack.Configuration, opts: OptionConf, webpack: Webpack) => {
-  const pkg = require(path.resolve(process.cwd(), 'package.json'));
+export default (conf: Configuration, env: string, options: ParsedArgs) => {
+  conf = lessModules(conf, env, options);
+  conf = rawModules(conf, env, { ...options });
+  conf = scopePluginOptions(conf, env, {
+    ...options,
+    allowedFiles: [
+      path.resolve(process.cwd(), 'README.md')
+    ]
+  });
 
   // Get the project version.
-  conf.plugins!.push(
-    new webpack.DefinePlugin({
-      VERSION: JSON.stringify(pkg.version),
-    })
-  );
-
+  conf.plugins!.push(new webpack.DefinePlugin({
+    VERSION: JSON.stringify(pkg.version),
+  }));
   return conf;
 }
 
-/**
- * mocker-api that creates mocks for REST APIs.
- * It will be helpful when you try to test your application without the actual REST API server.
- * https://github.com/jaywcjlove/mocker-api
- */
-export const mocker = {
-  path: path.resolve('./mocker/index.js'),
-  /**
-   * https://github.com/jaywcjlove/mocker-api/tree/96c2eb94694571e0e3003e6ad9ce1c809499f577#options
-   */
-  option: {},
+export const devServer = (configFunction: DevServerConfigFunction) => (proxy:WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string) => {
+  // Create the default config by calling configFunction with the proxy/allowedHost parameters
+  let config = configFunction(proxy, allowedHost);
+
+  config = apiMocker(config, path.resolve('./mocker/index.js'));
+  // Return your customised Webpack Development Server config.
+  return config;
 }

@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
+    "module": "esnext",
     "jsx": "react",
     "declaration": true,
     "outDir": "lib",
     "rootDir": ".",
-    "strict": true, /* Enable all strict type-checking options. */
+    "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "importHelpers": true,
@@ -16,7 +16,19 @@
     "baseUrl": "./src",
     "typeRoots": [
       "./node_modules/@types"
-    ]
+    ],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "noEmit": true
   },
   "include": [
     "src/**/*"

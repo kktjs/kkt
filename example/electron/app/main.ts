@@ -9,8 +9,8 @@ function createWindow() {
       nodeIntegration: true
     }
   });
-  if (process.env.NODE_ENV === 'dev') {
-    win.loadURL('http://localhost:1909/');
+  if (process.env.NODE_ENV === 'development') {
+    win.loadURL('http://localhost:3000/');
   } else {
     win.loadFile('./build/index.html')
   }

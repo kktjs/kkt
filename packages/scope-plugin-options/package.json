@@ -1,0 +1,22 @@
+{
+  "name": "@kkt/scope-plugin-options",
+  "version": "5.11.1",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "description": "This will modify the CRA ModuleScopePlugin plugin that prevents to import modules from outside the `src` directory.",
+  "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
+  "repository": "https://github.com/kktjs/kkt.git",
+  "keywords": [
+    "kkt",
+    "react",
+    "framework"
+  ],
+  "license": "MIT",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "devDependencies": {
+    "kkt": "5.11.1"
+  }
+}

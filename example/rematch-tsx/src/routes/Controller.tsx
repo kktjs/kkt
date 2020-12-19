@@ -25,7 +25,7 @@ class Controller extends React.PureComponent<Props> {
   }
   render() {
     const { routerData } = this.props;
-    console.log('this.props:', this.props)
+    // console.log('this.props:', this.props)
     const BasicLayout = routerData['/'].component;
     const UserLayout = routerData['/login'].component;
     // isAuthenticated = true 表示身份经过验证

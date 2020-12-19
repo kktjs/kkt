@@ -1,1 +1,1 @@
-# Load markdown example.
+Use an example of `Markdown`.

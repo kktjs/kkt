@@ -1,13 +1,13 @@
 {
-  "name": "@kkt/template-react-component-tsx",
+  "name": "@template/react-component-tsx",
   "version": "5.11.1",
   "description": "React Component Example for TypeScript.",
   "private": true,
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "scripts": {
-    "doc": "ENTRYDIR=website kkt build",
-    "start": "ENTRYDIR=website kkt start",
+    "doc": "kkt build --app-src ./website",
+    "start": "kkt start --app-src ./website",
     "build": "npm run build:lib && npm run doc",
     "build:lib": "npm run ts:build && npm run types:esm && npm run types:cjs && npm run css:build",
     "watch": "npm run ts:watch & npm run types:watch & npm run css:watch",
@@ -37,12 +37,13 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.11.1",
-    "@kkt/loader-raw": "5.11.1",
+    "@kkt/less-modules": "5.11.1",
+    "@kkt/raw-modules": "5.11.1",
+    "@kkt/scope-plugin-options": "5.11.1",
     "@types/classnames": "2.2.10",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
-    "compile-less-cli": "1.5.1",
+    "compile-less-cli": "1.6.0",
     "kkt": "5.11.1",
     "tsbb": "1.7.8"
   },

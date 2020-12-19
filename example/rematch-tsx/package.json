@@ -1,5 +1,5 @@
 {
-  "name": "@kkt/template-rematch-tsx",
+  "name": "@template/rematch-tsx",
   "version": "5.11.1",
   "description": "Use Rematch & TypeScript for the project.",
   "private": true,
@@ -25,7 +25,10 @@
     "uiw": "4.6.19"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.11.1",
+    "@kkt/less-modules": "5.11.1",
+    "@kkt/mocker-api": "5.11.1",
+    "@kkt/raw-modules": "5.11.1",
+    "@kkt/scope-plugin-options": "5.11.1",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "@types/react-redux": "7.1.7",
