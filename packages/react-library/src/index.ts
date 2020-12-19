@@ -33,6 +33,9 @@ process.on('beforeExit',  () => {
 });
 
 export default (conf: Configuration, env: string, options = {} as ReactLibraryOptions): Configuration => {
+  if (!conf) {
+    throw Error('KKT:ConfigPaths: there is no config file found');
+  }
   if (options.bundle) {
     outputDir = options.outputDir || outputDir;
     buildCacheDir = path.join(process.cwd(), 'node_modules', '.cache', 'kkt', options.mini ? '.~lib.min' : '.~lib');

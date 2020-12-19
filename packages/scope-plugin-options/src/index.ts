@@ -8,6 +8,9 @@ export type ReactLibraryOptions = {
 const regexp = /(ModuleScopePlugin)/;
 
 export default (conf: Configuration, env: string, options = {} as ReactLibraryOptions): Configuration => {
+  if (!conf) {
+    throw Error('KKT:ConfigPaths: there is no config file found');
+  }
   const { allowedFiles } = options;
   const moduleScopePlugin = conf.resolve.plugins.find(
     (plugin) => plugin.constructor && plugin.constructor.name && regexp.test(plugin.constructor.name)

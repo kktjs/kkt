@@ -10,6 +10,9 @@ export type ReactLibraryOptions = ParsedArgs & {
  * Makes it easy to use the webpack raw-loader
  */
 const rawModules = (conf: Configuration, env: string, options = {} as ReactLibraryOptions): Configuration => {
+  if (!conf) {
+    throw Error('KKT:ConfigPaths: there is no config file found');
+  }
   const { test = /\.md$/i, esModule = true } = options;
   const loaders: RuleSetRule[] = [{
     test,
