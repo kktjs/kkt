@@ -22,9 +22,6 @@ jobs:
       - run: npm run kkt:build
       - run: npm run lib:build
       - run: npm run b:example:basic
-      - run: npm run b:example:bundle
-      - run: npm run b:example:bundle.pro
-      - run: npm run b:example:bundle.min
       - run: npm run b:example:less
       - run: npm run b:example:markdown
       - run: npm run b:example:react-component-tsx
@@ -36,3 +33,7 @@ jobs:
       - run: npm run b:example:stylus
       - run: npm run b:example:typescript
       - run: npm run b:example:uiw
+
+      - run: npm run b:example:bundle
+      - run: npm run b:example:bundle.pro
+      - run: npm run b:example:bundle.min
