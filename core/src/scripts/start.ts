@@ -5,6 +5,7 @@ import { KKTRC } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
 import openBrowser from '../overrides/openBrowser';
+import { miniCssExtractPlugin } from '../utils/miniCssExtractPlugin';
 
 export default async function build(argvs: ParsedArgs) {
   try {
@@ -29,9 +30,12 @@ export default async function build(argvs: ParsedArgs) {
     const overridesHandle = kktrc.default || kktrc;
     if (overridesHandle && typeof overridesHandle === 'function') {
       // override config in memory
-      require.cache[require.resolve(webpackConfigPath)].exports = isWebpackFactory
-        ? (env: string) => overridesHandle(webpackConfig(env), env, { ...argvs, shouldUseSourceMap })
-        : overridesHandle(webpackConfig, process.env.NODE_ENV, { ...argvs, shouldUseSourceMap });
+      require.cache[require.resolve(webpackConfigPath)].exports = (env: string) =>
+        overridesHandle(
+          miniCssExtractPlugin(webpackConfig(env)),
+          env,
+          { ...argvs, shouldUseSourceMap }
+        );
     }
 
     // run original script

@@ -1,6 +1,4 @@
-
 import webpack, { RuleSetUseItem } from 'webpack';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import postcssNormalize from 'postcss-normalize';
 import { ParsedArgs } from 'minimist';
 import { paths } from './path';
