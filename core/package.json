@@ -46,6 +46,7 @@
     "@tsbb/babel-preset-tsbb": "1.12.1",
     "fs-extra": "9.0.1",
     "ts-node": "9.1.1",
+    "node-sass": "5.0.0",
     "minimist": "1.2.5",
     "semver": "7.3.4"
   }
