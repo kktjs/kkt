@@ -1,6 +1,6 @@
 {
   "name": "@kkt/react-library",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "description": "Use create-react-app to build react libraries.",
@@ -17,6 +17,6 @@
     "src"
   ],
   "devDependencies": {
-    "kkt": "6.0.0"
+    "kkt": "6.0.1"
   }
 }
