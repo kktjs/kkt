@@ -1,6 +1,6 @@
 {
   "name": "@template/less",
-  "version": "6.0.4",
+  "version": "6.0.5",
   "description": "",
   "private": true,
   "scripts": {
@@ -18,8 +18,8 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.0.4",
-    "kkt": "6.0.4"
+    "@kkt/less-modules": "6.0.5",
+    "kkt": "6.0.5"
   },
   "browserslist": {
     "production": [

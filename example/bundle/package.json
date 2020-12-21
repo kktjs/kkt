@@ -1,6 +1,6 @@
 {
   "name": "@template/bundle",
-  "version": "6.0.4",
+  "version": "6.0.5",
   "main": "dist/bundle.js",
   "module": "src/components/index.js",
   "description": "",
@@ -26,9 +26,9 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.0.4",
-    "@kkt/react-library": "6.0.4",
-    "kkt": "6.0.4"
+    "@kkt/less-modules": "6.0.5",
+    "@kkt/react-library": "6.0.5",
+    "kkt": "6.0.5"
   },
   "browserslist": {
     "production": [
