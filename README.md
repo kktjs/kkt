@@ -78,33 +78,33 @@ Supports `kktrc.js` and `kktrc.ts`.
 
 ```ts
 import { ParsedArgs } from 'minimist';
+import { LoaderConfOptions, DevServerConfigFunction } from 'kkt';
 
-type LoaderConfOptions = ParsedArgs & {
-  shouldUseSourceMap: boolean;
-}
 type KKTRC = {
   devServer?: (configFunction: DevServerConfigFunction, evn: string,) => DevServerConfigFunction;
   default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration;
 }
-type DevServerConfigFunction = (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string) => WebpackDevServer.Configuration;
+type DevServerConfigFunction = (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string)
+    => WebpackDevServer.Configuration;
 ```
 
 Example
 
 ```ts
 import webpack, { Configuration } from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
 import lessModules from '@kkt/less-modules';
-import { ParsedArgs } from 'minimist';
+import { LoaderConfOptions } from 'kkt';
 
-export default (conf: Configuration, env: string, options: ParsedArgs) => {
+export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
   // The Webpack config to use when compiling your react app for development or production.
   // ...add your webpack config
   conf = lessModules(conf, env, options);
   return conf;
 }
 
-export const devServer = (configFunction) => {
-  return (proxy, allowedHost) => {
+export const devServer = (configFunction: DevServerConfigFunction) => {
+  return (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string) => {
     // Create the default config by calling configFunction with the proxy/allowedHost parameters
     const config = configFunction(proxy, allowedHost);
 

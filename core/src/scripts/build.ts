@@ -8,7 +8,7 @@ import { miniCssExtractPlugin } from '../utils/miniCssExtractPlugin';
 
 export default async function build(argvs: ParsedArgs) {
   try {
-    await overridePaths(argvs);
+    const paths = await overridePaths(argvs);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.prod' : ''}`;
     const webpackConfig = require(webpackConfigPath);
     const overrides = require('../overrides/config');
@@ -24,7 +24,7 @@ export default async function build(argvs: ParsedArgs) {
         overridesHandle(
           miniCssExtractPlugin(webpackConfig(env)),
           env,
-          { ...argvs, shouldUseSourceMap }
+          { ...argvs, shouldUseSourceMap, paths }
         );
     }
   
