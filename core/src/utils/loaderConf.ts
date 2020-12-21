@@ -4,6 +4,7 @@ import * as babel from "@babel/core";
 import fs from 'fs-extra';
 import path from 'path';
 import { ParsedArgs } from 'minimist';
+import { OverridePaths } from '../overrides/paths';
 
 const tsOptions = {
   compilerOptions: {
@@ -21,6 +22,7 @@ const tsOptions = {
 }
 
 export type LoaderConfOptions = ParsedArgs & {
+  paths: OverridePaths;
   shouldUseSourceMap: boolean;
 }
 export type DevServerConfigFunction = (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string) => WebpackDevServer.Configuration;
