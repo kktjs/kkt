@@ -4,7 +4,7 @@ import { Configuration, ExternalsObjectElement } from 'webpack';
 import { ParsedArgs } from 'minimist';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { overridePaths } from 'kkt';
-import './checkRequiredFiles';
+import './overridesCheckRequiredFiles';
 import { checkRequiredFiles } from './checkRequiredFiles';
 
 export type ReactLibraryOptions = ParsedArgs & {
@@ -54,8 +54,12 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
 
   if (options.bundle) {
     if (options.paths.appPath) {
-      publicPath = path.join(options.paths.appPath, 'public')
-      fs.ensureDirSync(publicPath);
+      publicPath = path.join(options.paths.appPath, 'public');
+      if (fs.existsSync(publicPath)) {
+        publicPath = '';
+      } else {
+        fs.ensureDirSync(publicPath);
+      }
     }
     outputDir = options.outputDir || outputDir;
     buildCacheDir = path.join(process.cwd(), 'node_modules', '.cache', 'kkt', options.mini ? '.~lib.min' : '.~lib');
