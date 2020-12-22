@@ -25,6 +25,7 @@ jobs:
       - run: npm run b:example:bundle
       - run: npm run b:example:bundle.pro
       - run: npm run b:example:bundle.min
+      - run: npm run b:example:bundle-react-component-tsx
       - run: npm run b:example:less
       - run: npm run b:example:markdown
       - run: npm run b:example:react-component-tsx
