@@ -4,6 +4,7 @@ import { Configuration, ExternalsObjectElement } from 'webpack';
 import { ParsedArgs } from 'minimist';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { overridePaths } from 'kkt';
+import { overrideCheckRequiredFiles } from './overrideCheckRequiredFiles';
 
 export type ReactLibraryOptions = ParsedArgs & {
   bundle?: boolean;
@@ -12,13 +13,14 @@ export type ReactLibraryOptions = ParsedArgs & {
   module?: string;
   main?: string;
   outputDir?: string;
-  dependencies?: Record<string, string>;
+  dependencies?: ExternalsObjectElement;
 }
 
 /** Output Dir */
 let outputDir = path.join(process.cwd(), 'dist');
 let buildCacheDir = '';
 let fileName = '';
+let publicPath = '';
 process.on('beforeExit',  () => {
   fs.ensureDirSync(outputDir);
   if (buildCacheDir) {
@@ -30,12 +32,21 @@ process.on('beforeExit',  () => {
       fs.copyFileSync(path.join(buildCacheDir, name), path.join(outputDir, name));
     });
   }
+  if (publicPath) {
+    fs.removeSync(publicPath);
+  }
 });
 
 export default (conf: Configuration, env: string, options = {} as ReactLibraryOptions): Configuration => {
   if (!conf) {
     throw Error('KKT:ConfigPaths: there is no config file found');
   }
+  if (options.paths.appPath) {
+    publicPath = path.join(options.paths.appPath, 'public')
+    fs.ensureDirSync(publicPath);
+  }
+  overrideCheckRequiredFiles();
+
   if (options.bundle) {
     outputDir = options.outputDir || outputDir;
     buildCacheDir = path.join(process.cwd(), 'node_modules', '.cache', 'kkt', options.mini ? '.~lib.min' : '.~lib');
@@ -60,10 +71,14 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
       filename: outFile,
       path: buildCacheDir,
     }
-
+    // string | RegExp | ExternalsObjectElement | ExternalsFunctionElement | ExternalsElement[]
     let externals = {} as ExternalsObjectElement;
     Object.keys(options.dependencies || {}).forEach(key => {
-      externals[key] = `commonjs ${key}`;
+      if (typeof options.dependencies[key] === 'string') {
+        externals[key] = `commonjs ${key}`;
+      } else {
+        externals[key] = options.dependencies[key];
+      }
     });
     conf.externals = externals;
     /**

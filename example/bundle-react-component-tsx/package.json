@@ -1,0 +1,42 @@
+{
+  "name": "@template/bundle-react-component-tsx",
+  "version": "6.0.5",
+  "main": "dist/bundle.js",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "bundle": "kkt build --bundle",
+    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kktjs/kkt.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "classnames": "2.2.6",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@kkt/less-modules": "6.0.5",
+    "@kkt/react-library": "6.0.5",
+    "@types/classnames": "2.2.11",
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "kkt": "6.0.5"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
