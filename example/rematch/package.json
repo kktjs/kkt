@@ -1,6 +1,6 @@
 {
   "name": "@template/rematch",
-  "version": "6.0.6",
+  "version": "6.0.7",
   "description": "Use Rematch for the project.",
   "private": true,
   "scripts": {
@@ -26,9 +26,9 @@
     "redux": "4.0.4"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.0.6",
-    "@kkt/mocker-api": "6.0.6",
-    "kkt": "6.0.6"
+    "@kkt/less-modules": "6.0.7",
+    "@kkt/mocker-api": "6.0.7",
+    "kkt": "6.0.7"
   },
   "eslintConfig": {
     "extends": "react-app"

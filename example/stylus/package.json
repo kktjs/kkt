@@ -1,6 +1,6 @@
 {
   "name": "@template/stylus",
-  "version": "6.0.6",
+  "version": "6.0.7",
   "description": "React uses the server side rendering of the Stylus based application.",
   "private": true,
   "scripts": {
@@ -18,8 +18,8 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@kkt/stylus-modules": "6.0.6",
-    "kkt": "6.0.6"
+    "@kkt/stylus-modules": "6.0.7",
+    "kkt": "6.0.7"
   },
   "browserslist": {
     "production": [
