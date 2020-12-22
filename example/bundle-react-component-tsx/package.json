@@ -5,6 +5,7 @@
   "description": "",
   "private": true,
   "scripts": {
+    "build": "npm run bundle && npm run bundle:min",
     "bundle": "kkt build --bundle",
     "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini"
   },

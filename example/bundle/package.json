@@ -10,9 +10,7 @@
     "build": "kkt build",
     "released": "npm run bundle && npm run bundle:min",
     "bundle": "kkt build --bundle",
-    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini",
-    "test": "kkt test --env=jsdom",
-    "test:coverage": "kkt test --env=jsdom --coverage"
+    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini"
   },
   "repository": {
     "type": "git",

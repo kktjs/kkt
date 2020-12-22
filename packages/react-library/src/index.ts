@@ -4,7 +4,8 @@ import { Configuration, ExternalsObjectElement } from 'webpack';
 import { ParsedArgs } from 'minimist';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { overridePaths } from 'kkt';
-import { overrideCheckRequiredFiles } from './overrideCheckRequiredFiles';
+import './checkRequiredFiles';
+import { checkRequiredFiles } from './checkRequiredFiles';
 
 export type ReactLibraryOptions = ParsedArgs & {
   bundle?: boolean;
@@ -41,13 +42,21 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
   if (!conf) {
     throw Error('KKT:ConfigPaths: there is no config file found');
   }
-  if (options.paths.appPath) {
-    publicPath = path.join(options.paths.appPath, 'public')
-    fs.ensureDirSync(publicPath);
+  if (!options.bundle && options.paths) {
+    /**
+     * Remove validation first, then add validation  
+     * Warn and crash if required files are missing
+     */
+    if (!checkRequiredFiles([options.paths.appHtml, options.paths.appIndexJs], false)) {
+      process.exit(1);
+    }
   }
-  overrideCheckRequiredFiles();
 
   if (options.bundle) {
+    if (options.paths.appPath) {
+      publicPath = path.join(options.paths.appPath, 'public')
+      fs.ensureDirSync(publicPath);
+    }
     outputDir = options.outputDir || outputDir;
     buildCacheDir = path.join(process.cwd(), 'node_modules', '.cache', 'kkt', options.mini ? '.~lib.min' : '.~lib');
 
