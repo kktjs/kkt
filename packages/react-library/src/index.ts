@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import { Configuration, ExternalsObjectElement } from 'webpack';
 import { ParsedArgs } from 'minimist';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-// import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import { overridePaths } from 'kkt';
 import './overridesCheckRequiredFiles';
 import { checkRequiredFiles } from './checkRequiredFiles';
@@ -17,7 +17,7 @@ export type ReactLibraryOptions = ParsedArgs & {
   main?: string;
   outputDir?: string;
   dependencies?: ExternalsObjectElement;
-  // cssMinimizerPluginOptions?: CssMinimizerPlugin.Options;
+  cssMinimizerPluginOptions?: CssMinimizerPlugin.Options;
   miniCssExtractPluginOptions?: MiniCssExtractPlugin.PluginOptions;
 }
 
@@ -122,7 +122,7 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
         minimizer: [],
       };
     } else {
-      // conf.plugins.push(new CssMinimizerPlugin({ ...options.cssMinimizerPluginOptions}));
+      conf.plugins.push(new CssMinimizerPlugin({ ...options.cssMinimizerPluginOptions}));
       conf.optimization!.minimizer!.push(
         new TerserPlugin({
           // cache: true,
