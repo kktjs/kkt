@@ -17,6 +17,8 @@ export type ReactLibraryOptions = ParsedArgs & {
   main?: string;
   outputDir?: string;
   dependencies?: ExternalsObjectElement;
+  cssMinimizerPluginOptions?: CssMinimizerPlugin.Options;
+  miniCssExtractPluginOptions?: MiniCssExtractPlugin.PluginOptions;
 }
 
 /** Output Dir */
@@ -108,6 +110,7 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
           // Options similar to the same options in webpackOptions.output
           // both options are optional
           filename: `${options.mini ? `${fileName}.min` : fileName}.css`,
+          ...options.miniCssExtractPluginOptions,
         });
       }
       return item;
@@ -119,7 +122,7 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
         minimizer: [],
       };
     } else {
-      conf.plugins.push(new CssMinimizerPlugin());
+      conf.plugins.push(new CssMinimizerPlugin({ ...options.cssMinimizerPluginOptions}));
       conf.optimization!.minimizer!.push(
         new TerserPlugin({
           // cache: true,
