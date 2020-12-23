@@ -16,6 +16,10 @@
     "lib",
     "src"
   ],
+  "dependencies": {
+    "@types/css-minimizer-webpack-plugin": "1.1.1",
+    "@types/terser-webpack-plugin": "5.0.2"
+  },
   "devDependencies": {
     "kkt": "6.0.7"
   }
