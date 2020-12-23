@@ -17,6 +17,7 @@
     "src"
   ],
   "dependencies": {
+    "@types/cssnano": "4.0.0",
     "@types/terser-webpack-plugin": "5.0.2"
   },
   "devDependencies": {

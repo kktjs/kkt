@@ -58,10 +58,8 @@
     "tsbb": "tsbb"
   },
   "devDependencies": {
+    "react-scripts": "4.0.1",
     "lerna": "3.22.1",
     "tsbb": "1.7.9"
-  },
-  "dependencies": {
-    "@types/webpack": "4.41.21"
   }
 }
