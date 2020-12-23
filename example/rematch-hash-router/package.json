@@ -1,6 +1,6 @@
 {
   "name": "@template/rematch-hash-router",
-  "version": "6.0.8",
+  "version": "6.0.9",
   "description": "",
   "private": true,
   "scripts": {
@@ -24,9 +24,9 @@
     "react-router-dom": "5.1.2"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.0.8",
-    "@kkt/mocker-api": "6.0.8",
-    "kkt": "6.0.8"
+    "@kkt/less-modules": "6.0.9",
+    "@kkt/mocker-api": "6.0.9",
+    "kkt": "6.0.9"
   },
   "eslintConfig": {
     "extends": "react-app"
