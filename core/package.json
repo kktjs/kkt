@@ -9,7 +9,7 @@
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
   },
-  "repository": "https://github.com/kktjs/kkt/tree/master/packages/core",
+  "repository": "https://github.com/kktjs/kkt",
   "bin": {
     "kkt": "./lib/bin/kkt.js"
   },
