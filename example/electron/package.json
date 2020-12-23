@@ -24,7 +24,7 @@
     "@kkt/less-modules": "6.0.10",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
-    "electron": "11.1.0",
+    "electron": "11.1.1",
     "kkt": "6.0.10",
     "tsbb": "1.7.9"
   },
