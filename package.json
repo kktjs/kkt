@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "6.0.7",
+  "version": "6.0.8",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "private": true,

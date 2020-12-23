@@ -1,6 +1,6 @@
 {
   "name": "@template/rematch-uiw",
-  "version": "6.0.7",
+  "version": "6.0.8",
   "description": "",
   "private": true,
   "scripts": {
@@ -25,9 +25,9 @@
     "uiw": "4.6.19"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.0.7",
-    "@kkt/mocker-api": "6.0.7",
-    "kkt": "6.0.7"
+    "@kkt/less-modules": "6.0.8",
+    "@kkt/mocker-api": "6.0.8",
+    "kkt": "6.0.8"
   },
   "eslintConfig": {
     "extends": "react-app"
