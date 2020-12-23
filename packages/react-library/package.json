@@ -17,6 +17,7 @@
     "src"
   ],
   "dependencies": {
+    "@types/terser-webpack-plugin": "5.0.2"
   },
   "devDependencies": {
     "kkt": "6.0.8"
