@@ -150,6 +150,33 @@ or for a custom domain page:
 
 KKT uses the `homepage` field to determine the root URL in the built HTML file.
 
+### How to kkt your create-react-app project
+
+> Create your app using [create-react-app](https://github.com/facebook/create-react-app) and then rewire it.
+
+```shell
+npm install kkt --save-dev
+```
+
+```diff
+"scripts": {
+-   "start": "react-scripts start",
++   "start": "kkt start",
+-   "build": "react-scripts build",
++   "build": "kkt build",
+-   "test": "react-scripts test",
++   "test": "kkt test",
+    "eject": "react-scripts eject"
+}
+```
+
+```shell
+# Start the Dev Server
+$ npm start
+# Build your app
+$ npm run build
+```
+
 ### Plugins & Loader
 
 - [@kkt/less-modules](https://github.com/kktjs/kkt/tree/master/packages/less-modules)

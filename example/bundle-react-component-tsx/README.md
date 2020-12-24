@@ -6,7 +6,7 @@ Package the UMD package for developing the React component library.
 ## Quick Start
 
 ```bash
-$ npx create-kkt my-app -e bundle
+$ npx create-kkt my-app -e bundle-react-component-tsx
 cd my-app
 npm install
 ```

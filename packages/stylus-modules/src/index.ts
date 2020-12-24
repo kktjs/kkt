@@ -18,10 +18,6 @@ type StylusLoaderOptionsBase = {
    * @default true
    */
   webpackImporter?: boolean;
-  /**
-   * Prepends/Appends Stylus code to the actual entry file.
-   */
-  // additionalData?: string & (content: string, loaderContext: string) => string;
 }
 
 export type StylusLoaderOptions = StylusLoaderOptionsBase & {
@@ -86,6 +82,9 @@ export type StylusLoaderOptions = StylusLoaderOptionsBase & {
      */
     resolveURL?: boolean | Record<string, string | boolean | number>;
   };
+  /**
+   * Prepends/Appends Stylus code to the actual entry file.
+   */
   additionalData?: (content: string, loaderContext: {
     resourcePath: string;
     rootContext: string;

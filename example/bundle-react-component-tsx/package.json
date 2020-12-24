@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run bundle && npm run bundle:min",
     "bundle": "kkt build --bundle",
-    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini"
+    "bundle:min": "kkt build --bundle --mini"
   },
   "repository": {
     "type": "git",

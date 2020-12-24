@@ -60,48 +60,46 @@ And you can now use CRA to build your library
 import path from 'path';
 import apiMocker from '@kkt/mocker-api';
 
-export const devServer = (configFunction) => {
-  return (proxy, allowedHost) => {
-    // Create the default config by calling configFunction with the proxy/allowedHost parameters
-    let config = configFunction(proxy, allowedHost);
-    config = apiMocker(
-      config,
-      path.resolve('./mocker/index.js'),
-      /**
-       * mocker-api Options
-       * https://github.com/jaywcjlove/mocker-api/tree/6503e44d0c8fe1d833d6f367ccbb7630415f555c#options
-       */
-      {
-        proxy: {
-          // Turn a path string such as `/user/:name` into a regular expression.
-          // https://www.npmjs.com/package/path-to-regexp
-          '/repos/(.*)': 'https://api.github.com/',
-          '/:owner/:repo/raw/:ref/(.*)': 'http://127.0.0.1:2018',
-          '/api/repos/(.*)': 'http://127.0.0.1:3721/'
+export const devServer = (configFunction) => (proxy, allowedHost) => {
+  // Create the default config by calling configFunction with the proxy/allowedHost parameters
+  let config = configFunction(proxy, allowedHost);
+  config = apiMocker(
+    config,
+    path.resolve('./mocker/index.js'),
+    /**
+     * mocker-api Options
+     * https://github.com/jaywcjlove/mocker-api/tree/6503e44d0c8fe1d833d6f367ccbb7630415f555c#options
+     */
+    {
+      proxy: {
+        // Turn a path string such as `/user/:name` into a regular expression.
+        // https://www.npmjs.com/package/path-to-regexp
+        '/repos/(.*)': 'https://api.github.com/',
+        '/:owner/:repo/raw/:ref/(.*)': 'http://127.0.0.1:2018',
+        '/api/repos/(.*)': 'http://127.0.0.1:3721/'
+      },
+      // rewrite target's url path. Object-keys will be used as RegExp to match paths.
+      // https://github.com/jaywcjlove/mocker-api/issues/62
+      pathRewrite: {
+        '^/api/repos/': '/repos/',
+      },
+      changeHost: true,
+      // modify the http-proxy options
+      httpProxy: {
+        options: {
+          ignorePath: true,
         },
-        // rewrite target's url path. Object-keys will be used as RegExp to match paths.
-        // https://github.com/jaywcjlove/mocker-api/issues/62
-        pathRewrite: {
-          '^/api/repos/': '/repos/',
-        },
-        changeHost: true,
-        // modify the http-proxy options
-        httpProxy: {
-          options: {
-            ignorePath: true,
-          },
-          listeners: {
-            proxyReq: function (proxyReq, req, res, options) {
-              console.log('proxyReq');
-            },
+        listeners: {
+          proxyReq: function (proxyReq, req, res, options) {
+            console.log('proxyReq');
           },
         },
-      }
-    );
+      },
+    }
+  );
 
-    // Return your customised Webpack Development Server config.
-    return config;
-  }
+  // Return your customised Webpack Development Server config.
+  return config;
 }
 ```
 

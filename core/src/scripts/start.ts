@@ -28,13 +28,10 @@ export default async function build(argvs: ParsedArgs) {
 
     const overridesHandle = kktrc.default || kktrc;
     if (overridesHandle && typeof overridesHandle === 'function') {
+      const webpackConf = miniCssExtractPlugin(webpackConfig('development'));
       // override config in memory
       require.cache[require.resolve(webpackConfigPath)].exports = (env: string) =>
-        overridesHandle(
-          miniCssExtractPlugin(webpackConfig(env)),
-          env,
-          { ...argvs, shouldUseSourceMap, paths }
-        );
+        overridesHandle(webpackConf, env, { ...argvs, shouldUseSourceMap, paths });
     }
 
     // run original script

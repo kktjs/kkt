@@ -4,8 +4,10 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 /**
  * Fix Conflicting order
  * https://github.com/webpack-contrib/mini-css-extract-plugin/issues/250#issuecomment-532483344
+ * https://github.com/webpack-contrib/mini-css-extract-plugin/issues/493
  * 
  * ```
+ * No module factory available for dependency type: CssDependency
  * chunk 0 [mini-css-extract-plugin]
  * Conflicting order. Following module has been added:
  * ```
