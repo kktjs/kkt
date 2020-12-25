@@ -27,7 +27,6 @@ export default (conf: Configuration, env: string, options: LoaderConfOptions) =>
 export const devServer = (configFunction: DevServerConfigFunction) => (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string) => {
   // Create the default config by calling configFunction with the proxy/allowedHost parameters
   const config = configFunction(proxy, allowedHost);
-  console.log('config:', config)
   // Return your customised Webpack Development Server config.
   return config;
 }

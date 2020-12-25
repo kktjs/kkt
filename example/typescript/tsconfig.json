@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "declaration": true,
     "outDir": "lib",
     "rootDir": ".",
