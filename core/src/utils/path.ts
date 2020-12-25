@@ -24,23 +24,27 @@ if (argvs['config-overrides']) {
   configOverrides = path.resolve(argvs['config-overrides']);
 }
 
-// 包 react-scripts 目录位置
+/** Package [`react-scripts`](http://npmjs.com/react-scripts) directory location */
 const reactScripts = path.join(require.resolve('react-scripts/package.json'), '..');
-// 包 react-dev-utils 目录位置
+/** Package [`react-dev-utils`](http://npmjs.com/react-dev-utils) directory location */
 const reactDevUtils = path.join(require.resolve('react-dev-utils/package.json'), '..');
 const paths = require(`${reactScripts}/config/paths`);
 // 缓存当前配置
 const configOverridesCache = path.resolve(projectDir, 'node_modules/.cache/kkt/.kktrc.js');
-
+/** overrides proxySetup path */
+const proxySetup = path.resolve(__dirname, './proxySetup.js');
 const scriptPkg = require(`${reactScripts}/package.json`);
 
-// 判断是否大于 2.1.2
-// CRA 2.1.2 switched to using a webpack config factory
-// https://github.com/facebook/create-react-app/pull/5722
-// https://github.com/facebook/create-react-app/releases/tag/v2.1.2
+/**
+ * 判断是否大于 2.1.2
+ * CRA 2.1.2 switched to using a webpack config factory
+ * https://github.com/facebook/create-react-app/pull/5722
+ * https://github.com/facebook/create-react-app/releases/tag/v2.1.2
+ */
 const isWebpackFactory = semver.gte(scriptPkg && scriptPkg.version, '2.1.2');
 
 export {
+  proxySetup,
   projectDir,
   reactScripts,
   reactDevUtils,

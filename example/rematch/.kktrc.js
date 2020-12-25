@@ -1,7 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
 import lessModules from '@kkt/less-modules';
-import apiMocker from '@kkt/mocker-api';
 import pkg from './package.json';
 
 export default (conf, env, options) => {
@@ -13,15 +12,14 @@ export default (conf, env, options) => {
   return conf;
 }
 
-export const devServer = (configFunction) => (proxy, allowedHost) => {
-  // Create the default config by calling configFunction with the proxy/allowedHost parameters
-  let config = configFunction(proxy, allowedHost);
-
-  config = apiMocker(config, path.resolve('./mocker/index.js'), {
-    proxy: {
-      '/repos/(.*)': 'https://api.github.com/',
-    },
-    changeHost: true,
-  });
-  return config;
+export const proxySetup = () => {
+  return {
+    path: path.resolve('./mocker/index.js'),
+    option: {
+      proxy: {
+        '/repos/(.*)': 'https://api.github.com/',
+      },
+      changeHost: true,
+    }
+  }
 }

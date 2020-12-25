@@ -1,24 +1,24 @@
 <p align="center">
   <a href="https://github.com/kktjs/kkt">
-    <img src="https://raw.githubusercontent.com/kktjs/kkt/d2bb00dc2d0bd9bb133f3a369d0ad2f5330ed4af/website/kkt.svg?sanitize=true">
+    <img src="https://raw.githubusercontent.com/kktjs/kkt/d2bb00dc2d0bd9bb133f3a369d0ad2f5330ed4af/website/kkt.svg?sanitize=true" alt="KKT LOGO">
   </a>
 </p>
 
 <p align="center">
   <a href="https://github.com/kktjs/kkt/issues">
-    <img src="https://img.shields.io/github/issues/kktjs/kkt.svg">
+    <img src="https://img.shields.io/github/issues/kktjs/kkt.svg" alt="Github issues">
   </a>
   <a href="https://github.com/kktjs/kkt/network">
-    <img src="https://img.shields.io/github/forks/kktjs/kkt.svg">
+    <img src="https://img.shields.io/github/forks/kktjs/kkt.svg" alt="Github Forks">
   </a>
   <a href="https://github.com/kktjs/kkt/stargazers">
-    <img src="https://img.shields.io/github/stars/kktjs/kkt.svg">
+    <img src="https://img.shields.io/github/stars/kktjs/kkt.svg" alt="Github Stars">
   </a>
   <a href="https://github.com/kktjs/kkt/releases">
-    <img src="https://img.shields.io/github/release/kktjs/kkt.svg">
+    <img src="https://img.shields.io/github/release/kktjs/kkt.svg" alt="Github Releases">
   </a>
   <a href="https://www.npmjs.com/package/kkt">
-    <img src="https://img.shields.io/npm/v/kkt.svg">
+    <img src="https://img.shields.io/npm/v/kkt.svg" alt="npm version">
   </a>
 </p>
 
@@ -77,10 +77,13 @@ $ yarn create kkt my-app -e `<Example Name>`
 Supports `kktrc.js` and `kktrc.ts`.
 
 ```ts
+import express from 'express';
 import { ParsedArgs } from 'minimist';
-import { LoaderConfOptions, DevServerConfigFunction } from 'kkt';
+import WebpackDevServer, { Configuration } from 'webpack-dev-server';
+import { LoaderConfOptions, DevServerConfigFunction, MockerAPIOptions } from 'kkt';
 
 type KKTRC = {
+  proxySetup?: (app: express.Application) => MockerAPIOptions;
   devServer?: (configFunction: DevServerConfigFunction, evn: string,) => DevServerConfigFunction;
   default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration;
 }
@@ -94,7 +97,7 @@ Example
 import webpack, { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import lessModules from '@kkt/less-modules';
-import { LoaderConfOptions } from 'kkt';
+import { LoaderConfOptions, MockerAPIOptions } from 'kkt';
 
 export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
   // The Webpack config to use when compiling your react app for development or production.
@@ -120,6 +123,26 @@ export const devServer = (configFunction: DevServerConfigFunction) => {
 
     // Return your customised Webpack Development Server config.
     return config;
+  }
+}
+
+// Configuring the Proxy Manually
+import express from 'express';
+import { createProxyMiddleware } from 'http-proxy-middleware';
+
+export const proxySetup = (app: express.Application) => {
+  app.use('/api', createProxyMiddleware({
+    target: 'http://localhost:5000',
+    changeOrigin: true,
+  }));
+  return {
+    path: path.resolve('./mocker/index.js'),
+    option: {
+      proxy: {
+        '/repos/(.*)': 'https://api.github.com/',
+      },
+      changeHost: true,
+    }
   }
 }
 ```
@@ -149,6 +172,33 @@ or for a custom domain page:
 ```
 
 KKT uses the `homepage` field to determine the root URL in the built HTML file.
+
+### How to kkt your create-react-app project
+
+> Create your app using [create-react-app](https://github.com/facebook/create-react-app) and then rewire it.
+
+```shell
+npm install kkt --save-dev
+```
+
+```diff
+"scripts": {
+-   "start": "react-scripts start",
++   "start": "kkt start",
+-   "build": "react-scripts build",
++   "build": "kkt build",
+-   "test": "react-scripts test",
++   "test": "kkt test",
+    "eject": "react-scripts eject"
+}
+```
+
+```shell
+# Start the Dev Server
+$ npm start
+# Build your app
+$ npm run build
+```
 
 ### Plugins & Loader
 

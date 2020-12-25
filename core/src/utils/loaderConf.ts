@@ -1,5 +1,7 @@
 import { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
+import { MockerOption, MockerProxyRoute } from 'mocker-api';
+import express from 'express';
 import * as babel from "@babel/core";
 import fs from 'fs-extra';
 import path from 'path';
@@ -21,12 +23,19 @@ const tsOptions = {
   }
 }
 
+export type MockerAPIOptions = {
+  path: string | string[] | MockerProxyRoute;
+  option?: MockerOption;
+};
+
 export type LoaderConfOptions = ParsedArgs & {
   paths: OverridePaths;
   shouldUseSourceMap: boolean;
 }
+
 export type DevServerConfigFunction = (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string) => WebpackDevServer.Configuration;
 export type KKTRC = {
+  proxySetup?: (app: express.Application) => MockerAPIOptions;
   devServer?: (configFunction: DevServerConfigFunction, evn: string) => DevServerConfigFunction;
   default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration;
 }

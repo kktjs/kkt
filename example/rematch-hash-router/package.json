@@ -25,7 +25,6 @@
   },
   "devDependencies": {
     "@kkt/less-modules": "6.0.10",
-    "@kkt/mocker-api": "6.0.10",
     "kkt": "6.0.10"
   },
   "eslintConfig": {

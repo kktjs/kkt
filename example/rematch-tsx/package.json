@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "@kkt/less-modules": "6.0.10",
-    "@kkt/mocker-api": "6.0.10",
     "@kkt/raw-modules": "6.0.10",
     "@kkt/scope-plugin-options": "6.0.10",
     "@types/react": "17.0.0",
