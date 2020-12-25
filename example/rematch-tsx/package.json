@@ -1,6 +1,6 @@
 {
   "name": "@template/rematch-tsx",
-  "version": "6.0.10",
+  "version": "6.0.11",
   "description": "Use Rematch & TypeScript for the project.",
   "private": true,
   "scripts": {
@@ -25,14 +25,14 @@
     "uiw": "4.6.19"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.0.10",
-    "@kkt/raw-modules": "6.0.10",
-    "@kkt/scope-plugin-options": "6.0.10",
+    "@kkt/less-modules": "6.0.11",
+    "@kkt/raw-modules": "6.0.11",
+    "@kkt/scope-plugin-options": "6.0.11",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "@types/react-redux": "7.1.7",
     "@types/react-router-dom": "5.1.6",
-    "kkt": "6.0.10"
+    "kkt": "6.0.11"
   },
   "eslintConfig": {
     "extends": "react-app"

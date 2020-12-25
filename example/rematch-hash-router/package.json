@@ -1,6 +1,6 @@
 {
   "name": "@template/rematch-hash-router",
-  "version": "6.0.10",
+  "version": "6.0.11",
   "description": "",
   "private": true,
   "scripts": {
@@ -24,8 +24,8 @@
     "react-router-dom": "5.1.2"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.0.10",
-    "kkt": "6.0.10"
+    "@kkt/less-modules": "6.0.11",
+    "kkt": "6.0.11"
   },
   "eslintConfig": {
     "extends": "react-app"
