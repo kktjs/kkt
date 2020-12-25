@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import './style/index.less';
 import './style/btn.less';
 
@@ -20,15 +19,16 @@ export type ButtonProps = {
 export default class Button extends React.Component<ButtonProps, {}> {
   render() {
     const { prefixCls, type, size, active, disabled, block, basic, intent, className, loading, children, htmlType, ...others } = this.props;
-    const cls = classnames(className, prefixCls, {
-      [`${prefixCls}-${size}`]: size,
-      [`${prefixCls}-${type}`]: type,
-      [`${prefixCls}-basic`]: basic,
-      [`${prefixCls}-loading`]: loading, // 加载
-      disabled: disabled || loading, // 禁用状态
-      active, // 激活状态
-      block, // 块级元素Block level
-    });
+
+    const cls = [ className, prefixCls,
+      size ? `${prefixCls}-${size}` : false,
+      type ? `${prefixCls}-${type}` : false,
+      basic ? `${prefixCls}-basic` : false,
+      loading ? `${prefixCls}-loading` : false,
+      (disabled || loading) ? 'disabled' : false,
+      active ? 'active' : false,
+      block ? 'block' : false,
+    ].filter(Boolean).join(' ');
     return (
       <button
         {...others}
