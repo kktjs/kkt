@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@kkt/react-library">
-    <img src="https://img.shields.io/npm/v/@kkt/react-library.svg">
+    <img src="https://img.shields.io/npm/v/@kkt/react-library.svg" alt="npm version">
   </a>
 </p>
 

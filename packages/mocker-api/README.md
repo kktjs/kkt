@@ -4,11 +4,34 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@kkt/mocker-api">
-    <img src="https://img.shields.io/npm/v/@kkt/mocker-api.svg">
+    <img src="https://img.shields.io/npm/v/@kkt/mocker-api.svg" alt="npm version">
   </a>
 </p>
 
 [`mocker-api`](https://github.com/jaywcjlove/mocker-api) that creates mocks for REST APIs.
+
+> ⚠️ This package has been deprecated.
+
+The `proxySetup` configuration can be completed.
+
+```diff
+- import path from 'path';
+- import apiMocker from '@kkt/mocker-api';
+- 
+- export const devServer = (configFunction) => {
+-   return (proxy, allowedHost) => {
+-     let config = configFunction(proxy, allowedHost);
+-     config = apiMocker(config, path.resolve('./mocker/index.js'));
+-     return config;
+-   }
+- }
+
++ export const proxySetup = () => {
++   return {
++     path: path.resolve('./mocker/index.js'),
++   }
++ }
+```
 
 ### Installation
 

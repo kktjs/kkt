@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@kkt/less-modules">
-    <img src="https://img.shields.io/npm/v/@kkt/less-modules.svg">
+    <img src="https://img.shields.io/npm/v/@kkt/less-modules.svg" alt="npm version">
   </a>
 </p>
 

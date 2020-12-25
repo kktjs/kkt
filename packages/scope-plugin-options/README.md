@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@kkt/scope-plugin-options">
-    <img src="https://img.shields.io/npm/v/@kkt/scope-plugin-options.svg">
+    <img src="https://img.shields.io/npm/v/@kkt/scope-plugin-options.svg" alt="npm version">
   </a>
 </p>
 
