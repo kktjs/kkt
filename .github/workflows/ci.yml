@@ -1,4 +1,4 @@
-name: GitHub Actions Build KKT
+name: Build KKT & Example
 on:
   push:
     branches:
