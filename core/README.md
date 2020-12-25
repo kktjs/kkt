@@ -5,6 +5,9 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/kktjs/kkt/actions">
+    <img src="https://github.com/kktjs/kkt/workflows/Build%20KKT%20&%20Example/badge.svg" alt="Build KKT & Example">
+  </a>
   <a href="https://github.com/kktjs/kkt/issues">
     <img src="https://img.shields.io/github/issues/kktjs/kkt.svg" alt="Github issues">
   </a>
