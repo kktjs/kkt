@@ -1,6 +1,6 @@
-import webpack, {Configuration} from 'webpack';
 import path from 'path';
-import { LoaderConfOptions } from 'kkt';
+import webpack, {Configuration} from 'webpack';
+import { LoaderConfOptions, MockerAPIOptions } from 'kkt';
 import lessModules from '@kkt/less-modules';
 import rawModules from '@kkt/raw-modules';
 import scopePluginOptions from '@kkt/scope-plugin-options';
@@ -23,7 +23,7 @@ export default (conf: Configuration, env: string, options: LoaderConfOptions) =>
   return conf;
 }
 
-export const proxySetup = () => {
+export const proxySetup = (): MockerAPIOptions => {
   return {
     path: path.resolve('./mocker/index.js'),
   }

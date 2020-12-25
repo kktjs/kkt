@@ -34,7 +34,7 @@ As of `KKT 6.x` this repo is "lightly" maintained mostly by the community at thi
 - ⏱ The code was rewritten using TypeScript.
 - ♻️ Recompile the code when project files get added, removed or modified.
 - 📚 Readable source code that encourages learning and contribution
-- ⚛️ Refactor code based on [**create-react-app**](https://github.com/facebook/create-react-app).
+- ⚛️ Override [**create-react-app**](https://github.com/facebook/create-react-app) webpack configs without ejecting
 - 💝 Expose the configuration file entry and support webpack configuration.
 - 🚀 Supports [**creat-kkt**](https://github.com/kktjs/create-kkt) to create different instances.
 - ⛑ Jest test runner setup with defaults `kkt test`
@@ -72,6 +72,39 @@ $ yarn create kkt my-app -e `<Example Name>`
 - [**`typescript`**](https://github.com/kktjs/kkt/tree/master/example/typescript) - Use an example of `TypeScript`.
 - [**`uiw`**](https://github.com/kktjs/kkt/tree/master/example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project.
 
+
+## How to rewire your create-react-app project
+
+```shell
+$ npm install kkt --save-dev
+```
+
+```diff
+"dependencies": {
+  ...
+-  "react-scripts": "4.0.1",
+  ....
+},
+"scripts": {
+-  "start": "react-scripts start",
++  "start": "kkt start",
+-  "build": "react-scripts build",
++  "build": "kkt build",
+-  "test": "react-scripts test",
++  "test": "kkt test",
+-  "eject": "react-scripts eject"
+},
+```
+
+⚠️ Note: Do NOT flip the call for the eject script. That gets run only once for a project, after which you are given full control over the webpack configuration making `kkt` no longer required. There are no configuration options to rewire for the eject script.
+
+```shell
+# Start the Dev Server
+$ npm start
+# Build your app
+$ npm run build
+```
+
 ## Configuration
 
 Supports `kktrc.js` and `kktrc.ts`.
@@ -97,7 +130,7 @@ Example
 import webpack, { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import lessModules from '@kkt/less-modules';
-import { LoaderConfOptions, MockerAPIOptions } from 'kkt';
+import { LoaderConfOptions } from 'kkt';
 
 export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
   // The Webpack config to use when compiling your react app for development or production.
@@ -129,12 +162,17 @@ export const devServer = (configFunction: DevServerConfigFunction) => {
 // Configuring the Proxy Manually
 import express from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
+import { MockerAPIOptions } from 'kkt';
 
-export const proxySetup = (app: express.Application) => {
+export const proxySetup = (app: express.Application): MockerAPIOptions => {
   app.use('/api', createProxyMiddleware({
     target: 'http://localhost:5000',
     changeOrigin: true,
   }));
+  /**
+   * Mocker API Options
+   * https://www.npmjs.com/package/mocker-api
+   */
   return {
     path: path.resolve('./mocker/index.js'),
     option: {
