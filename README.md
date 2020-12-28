@@ -254,6 +254,7 @@ $ npm run build
 
 ```bash
 npm run hoist
+npm run build
 
 npm run lib:watch
 npm run kkt:watch
