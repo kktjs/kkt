@@ -28,12 +28,11 @@
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react-dom": ">=16.8.0",
+    "@babel/runtime": ">=7.0.0"
   },
   "dependencies": {
-    "prop-types": "15.7.2",
-    "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "prop-types": "15.7.2"
   },
   "devDependencies": {
     "@kkt/less-modules": "6.0.11",
@@ -42,11 +41,16 @@
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "compile-less-cli": "1.6.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "kkt": "6.0.11",
     "tsbb": "1.7.9"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [

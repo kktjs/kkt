@@ -20,6 +20,7 @@ export default (conf: Configuration, env: string, options: LoaderConfOptions) =>
   conf.plugins!.push(new webpack.DefinePlugin({
     VERSION: JSON.stringify(pkg.version),
   }));
+  conf.output = { ...conf.output, publicPath: './' }
   return conf;
 }
 
