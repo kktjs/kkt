@@ -12,7 +12,7 @@
 
 > ⚠️ This package has been deprecated.
 
-The `proxySetup` configuration can be completed.
+It can be configured using `proxySetup`.
 
 ```diff
 - import path from 'path';

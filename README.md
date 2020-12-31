@@ -50,6 +50,10 @@ You will need [`Node.js`](https://nodejs.org) installed on your system.
 npm install kkt
 ```
 
+## Open in CodeSandbox
+
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/s/github/kktjs/kkt-codesandbox-tamplate)
+
 ## Example
 
 Initialize the project from one of the examples, Let's quickly create a react application:
