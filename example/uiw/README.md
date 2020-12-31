@@ -6,10 +6,16 @@ Use [`uiw`](https://uiwjs.github.io/) for the project.
 ## Quick Start
 
 ```bash
-$ npx create-kkt my-app -e stylus
+$ npx create-kkt my-app -e uiw
 cd my-app
 npm install
 ```
+
+## Open in CodeSandbox
+
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/uiw)
+
+## Development
 
 **development**
 
