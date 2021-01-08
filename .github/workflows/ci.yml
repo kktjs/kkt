@@ -46,9 +46,9 @@ jobs:
       - run: npm run b:example:scss
       - run: npm run b:example:basic
 
-      - name: Create Tag
+      - name: Is a label created auto?
         id: create_tag
-        uses: jaywcjlove/create-tag-action@v1.1.1
+        uses: jaywcjlove/create-tag-action@v1.1.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           package-path: ./core/package.json
