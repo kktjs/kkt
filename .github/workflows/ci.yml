@@ -46,7 +46,7 @@ jobs:
       - run: npm run b:example:scss
       - run: npm run b:example:basic
 
-      - name: Is a label created auto?
+      - name: Is a tag created auto?
         id: create_tag
         uses: jaywcjlove/create-tag-action@v1.1.2
         with:
