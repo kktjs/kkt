@@ -46,40 +46,40 @@ jobs:
       - run: npm run b:example:scss
       - run: npm run b:example:basic
 
-    - name: Create Tag
-      id: create_tag
-      uses: jaywcjlove/create-tag-action@v1.1.1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        package-path: ./core/package.json
+      - name: Create Tag
+        id: create_tag
+        uses: jaywcjlove/create-tag-action@v1.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          package-path: ./core/package.json
 
-    - name: Generate Changelog
-      id: changelog
-      uses: jaywcjlove/changelog-generator@v1.3.3
-      if: steps.create_tag.outputs.successful
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        head-ref: ${{steps.create_tag.outputs.version}}
-        filter-author: (jaywcjlove|小弟调调™|dependabot\[bot\]|Renovate Bot)
-        filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+      - name: Generate Changelog
+        id: changelog
+        uses: jaywcjlove/changelog-generator@v1.3.3
+        if: steps.create_tag.outputs.successful
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          head-ref: ${{steps.create_tag.outputs.version}}
+          filter-author: (jaywcjlove|小弟调调™|dependabot\[bot\]|Renovate Bot)
+          filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@latest
-      if: steps.create_tag.outputs.successful
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.create_tag.outputs.version }}
-        release_name: ${{ steps.create_tag.outputs.version }}
-        body: |
-          ${{ steps.changelog.outputs.compareurl }}
-          ${{ steps.changelog.outputs.changelog }}
-        draft: false
-        prerelease: false
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        if: steps.create_tag.outputs.successful
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.create_tag.outputs.version }}
+          release_name: ${{ steps.create_tag.outputs.version }}
+          body: |
+            ${{ steps.changelog.outputs.compareurl }}
+            ${{ steps.changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
 
-    - name: npm publish
-      if: steps.create_tag.outputs.successful
-      run: node ./node_modules/.bin/lerna publish from-package --yes --no-verify-access
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: npm publish
+        if: steps.create_tag.outputs.successful
+        run: node ./node_modules/.bin/lerna publish from-package --yes --no-verify-access
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
