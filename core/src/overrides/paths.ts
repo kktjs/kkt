@@ -42,8 +42,8 @@ export const overridePaths = (argvs = undefined as ParsedArgs | undefined, opts:
     const oldAppSrc = pathsConf.appSrc;
     pathsConf.appSrc = path.resolve(pathsConf.appPath, argvs['app-src']);
     Object.keys(pathsConf).forEach((keyname) => {
-      if ((new RegExp(`^${oldAppSrc}`)).test(pathsConf[keyname])) {
-        pathsConf[keyname] = pathsConf[keyname].replace(new RegExp(`^${oldAppSrc}`), pathsConf.appSrc);
+      if (typeof pathsConf[keyname] === 'string' && pathsConf[keyname].startsWith(oldAppSrc)) {
+        pathsConf[keyname] = pathsConf[keyname].replace(oldAppSrc, pathsConf.appSrc)
       }
     });
   }
