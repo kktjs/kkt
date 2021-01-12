@@ -26,23 +26,6 @@ jobs:
       - run: npm run hoist
       - run: npm run kkt:build
       - run: npm run lib:build
-      - run: npm run b:example:bundle
-      - run: npm run b:example:bundle.pro
-      - run: npm run b:example:bundle.min
-      - run: npm run b:example:bundle-react-component-tsx
-      - run: npm run b:example:less
-      - run: npm run b:example:markdown
-      - run: npm run b:example:react-component-tsx
-      - run: npm run b:example:rematch
-      - run: npm run b:example:rematch-hash-router
-      - run: npm run b:example:rematch-tsx
-      - run: npm run b:example:rematch-uiw
-      - run: npm run b:example:stylus
-      - run: npm run b:example:typescript
-      - run: npm run b:example:uiw
-
-      - run: npm run b:example:scss
-      - run: npm run b:example:basic
 
   build:
     runs-on: ubuntu-18.04
@@ -125,16 +108,89 @@ jobs:
       - name: Compress basic Example.
         run: zip -r -y basic.zip . -x "node_modules/*" -x "build/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
         working-directory: example/basic
-
       - run: cp -rp example/basic/basic.zip ./zip
 
       - name: Compress bundle Example.
         run: zip -r -y bundle.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
         working-directory: example/bundle
-
       - run: cp -rp example/bundle/bundle.zip ./zip
 
-      - name: Deploy
+      - name: Compress bundle-react-component-tsx Example.
+        run: zip -r -y bundle-react-component-tsx.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/bundle-react-component-tsx
+      - run: cp -rp example/bundle-react-component-tsx/bundle-react-component-tsx.zip ./zip
+
+      - name: Compress chrome-plugin Example.
+        run: zip -r -y chrome-plugin.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/chrome-plugin
+      - run: cp -rp example/chrome-plugin/chrome-plugin.zip ./zip
+
+      - name: Compress electron Example.
+        run: zip -r -y electron.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/electron
+      - run: cp -rp example/electron/electron.zip ./zip
+
+      - name: Compress less Example.
+        run: zip -r -y less.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/less
+      - run: cp -rp example/less/less.zip ./zip
+
+      - name: Compress less Example.
+        run: zip -r -y less.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/less
+      - run: cp -rp example/less/less.zip ./zip
+
+      - name: Compress markdown Example.
+        run: zip -r -y markdown.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/markdown
+      - run: cp -rp example/markdown/markdown.zip ./zip
+
+      - name: Compress react-component-tsx Example.
+        run: zip -r -y react-component-tsx.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/react-component-tsx
+      - run: cp -rp example/react-component-tsx/react-component-tsx.zip ./zip
+
+      - name: Compress rematch Example.
+        run: zip -r -y rematch.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/rematch
+      - run: cp -rp example/rematch/rematch.zip ./zip
+
+      - name: Compress rematch-hash-router Example.
+        run: zip -r -y rematch-hash-router.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/rematch-hash-router
+      - run: cp -rp example/rematch-hash-router/rematch-hash-router.zip ./zip
+
+      - name: Compress rematch-tsx Example.
+        run: zip -r -y rematch-tsx.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/rematch-tsx
+      - run: cp -rp example/rematch-tsx/rematch-tsx.zip ./zip
+
+      - name: Compress rematch-uiw Example.
+        run: zip -r -y rematch-uiw.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/rematch-uiw
+      - run: cp -rp example/rematch-uiw/rematch-uiw.zip ./zip
+
+      - name: Compress scss Example.
+        run: zip -r -y scss.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/scss
+      - run: cp -rp example/scss/scss.zip ./zip
+
+      - name: Compress stylus Example.
+        run: zip -r -y stylus.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/stylus
+      - run: cp -rp example/stylus/stylus.zip ./zip
+
+      - name: Compress typescript Example.
+        run: zip -r -y typescript.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/typescript
+      - run: cp -rp example/typescript/typescript.zip ./zip
+
+      - name: Compress uiw Example.
+        run: zip -r -y uiw.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/uiw
+      - run: cp -rp example/uiw/uiw.zip ./zip
+
+      - name: Upload *.zip Files
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN_KKT }}
