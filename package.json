@@ -39,7 +39,7 @@
     "kkt:watch:types": "lerna exec 'tsbb types --watch' --scope kkt --stream",
     "kkt:watch:ts": "lerna exec tsbb watch --scope kkt --stream",
     "kkt:build:types": "lerna exec tsbb types --scope kkt --stream",
-    "kkt:build:ts": "lerna exec 'tsbb build --source-maps none' --scope kkt --stream",
+    "kkt:build:ts": "lerna exec \"tsbb build --source-maps none\" --scope kkt --stream",
     "kkt:build": "npm run kkt:build:ts && npm run kkt:build:types",
     "kkt:test": "lerna exec tsbb test --scope kkt --stream",
     "kkt:coverage": "lerna exec 'tsbb test --coverage' --scope kkt --stream",
