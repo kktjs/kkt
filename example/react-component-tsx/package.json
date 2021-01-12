@@ -1,6 +1,6 @@
 {
   "name": "@template/react-component-tsx",
-  "version": "6.0.11",
+  "version": "6.0.12",
   "description": "React Component Example for TypeScript.",
   "private": true,
   "main": "lib/cjs/index.js",
@@ -27,23 +27,23 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
+    "@babel/runtime": ">=7.10.0",
     "react": ">=16.9.0",
-    "react-dom": ">=16.9.0",
-    "@babel/runtime": ">=7.10.0"
+    "react-dom": ">=16.9.0"
   },
   "dependencies": {
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.0.11",
-    "@kkt/raw-modules": "6.0.11",
-    "@kkt/scope-plugin-options": "6.0.11",
+    "@kkt/less-modules": "6.0.12",
+    "@kkt/raw-modules": "6.0.12",
+    "@kkt/scope-plugin-options": "6.0.12",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "compile-less-cli": "1.6.0",
+    "kkt": "6.0.12",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "kkt": "6.0.11",
     "tsbb": "1.7.9"
   },
   "eslintConfig": {
