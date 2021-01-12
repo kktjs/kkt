@@ -7,6 +7,43 @@ on:
 env:
   SKIP_PREFLIGHT_CHECK: true
 jobs:
+  windows:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Look Changelog
+        uses: jaywcjlove/changelog-generator@v1.3.9
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filter-author: (jaywcjlove|小弟调调™|dependabot\[bot\]|Renovate Bot)
+          filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+      - run: npm install --unsafe-perm
+      - run: npm run hoist
+      - run: npm run kkt:build
+      - run: npm run lib:build
+      - run: npm run b:example:bundle
+      - run: npm run b:example:bundle.pro
+      - run: npm run b:example:bundle.min
+      - run: npm run b:example:bundle-react-component-tsx
+      - run: npm run b:example:less
+      - run: npm run b:example:markdown
+      - run: npm run b:example:react-component-tsx
+      - run: npm run b:example:rematch
+      - run: npm run b:example:rematch-hash-router
+      - run: npm run b:example:rematch-tsx
+      - run: npm run b:example:rematch-uiw
+      - run: npm run b:example:stylus
+      - run: npm run b:example:typescript
+      - run: npm run b:example:uiw
+
+      - run: npm run b:example:scss
+      - run: npm run b:example:basic
+
   build:
     runs-on: ubuntu-18.04
     steps:
