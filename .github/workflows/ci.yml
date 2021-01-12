@@ -78,8 +78,7 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: npm publish
+      - run: npm run ci:publish
         if: steps.create_tag.outputs.successful
-        run: node ./node_modules/.bin/lerna publish from-package --yes --no-verify-access
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

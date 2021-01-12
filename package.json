@@ -53,6 +53,7 @@
     "bootstrap:example": "lerna bootstrap --scope @template/*",
     "version": "lerna version --no-changelog --no-git-tag-version --no-push --yes",
     "publish": "npm run build && lerna publish from-package",
+    "ci:publish": "lerna publish from-package --yes --no-verify-access",
     "updated": "lerna updated",
     "clean": "lerna clean",
     "tsbb": "tsbb"
