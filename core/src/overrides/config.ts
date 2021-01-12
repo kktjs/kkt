@@ -7,4 +7,4 @@ require(`${reactScripts}/config/env`);
 
 export default async (): Promise<KKTRC> => {
   return loaderConf(configOverrides);
-}
+};

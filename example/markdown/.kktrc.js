@@ -7,5 +7,4 @@ export default (conf, env, options) => {
   conf = rawModules(conf, env, options);
   conf = lessModules(conf, env, options);
   return conf;
-}
-
+};

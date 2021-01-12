@@ -10,7 +10,11 @@ import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
 /**
  * `mocker-api` that creates mocks for REST APIs. It will be helpful when you try to test your application without the actual REST API server.
  */
-const mockerApiModules = (conf: WebpackDevServer.Configuration = {}, path: string | string[], option: MockerOption = {}) => {
+const mockerApiModules = (
+  conf: WebpackDevServer.Configuration = {},
+  path: string | string[],
+  option: MockerOption = {},
+) => {
   if (!conf) {
     throw Error('KKT:ConfigPaths: there is no config file found');
   }
@@ -33,8 +37,8 @@ const mockerApiModules = (conf: WebpackDevServer.Configuration = {}, path: strin
     if (path) {
       apiMocker(app, path, { ...option });
     }
-  }
+  };
   return conf;
-}
+};
 
 export default mockerApiModules;

@@ -12,20 +12,10 @@ class App extends Component {
             Edit <code>src/app/App.js</code> and save to reload.
           </p>
           <div>
-            <a
-              className={styles.AppLink}
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a className={styles.AppLink} href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
               Learn React
             </a>
-            <a
-              className={styles.AppLink}
-              href="https://github.com/kktjs/kkt"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a className={styles.AppLink} href="https://github.com/kktjs/kkt" target="_blank" rel="noopener noreferrer">
               Learn KKT
             </a>
           </div>

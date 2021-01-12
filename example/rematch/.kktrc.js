@@ -6,11 +6,13 @@ import pkg from './package.json';
 export default (conf, env, options) => {
   conf = lessModules(conf, env, options);
   // Get the project version.
-  conf.plugins.push(new webpack.DefinePlugin({
-    VERSION: JSON.stringify(pkg.version),
-  }));
+  conf.plugins.push(
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(pkg.version),
+    }),
+  );
   return conf;
-}
+};
 
 export const proxySetup = () => {
   return {
@@ -20,6 +22,6 @@ export const proxySetup = () => {
         '/repos/(.*)': 'https://api.github.com/',
       },
       changeHost: true,
-    }
-  }
-}
+    },
+  };
+};

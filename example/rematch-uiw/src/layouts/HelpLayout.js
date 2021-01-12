@@ -14,9 +14,7 @@ export default class HelpLayout extends PureComponent {
     return (
       <div className={styles.container}>
         Help Layout
-        <Switch>
-          {RouteComponents}
-        </Switch>
+        <Switch>{RouteComponents}</Switch>
       </div>
     );
   }

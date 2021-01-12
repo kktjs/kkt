@@ -9,13 +9,13 @@ export type LoginState = {
     password: string;
     terms: boolean;
   };
-}
+};
 
 export default createModel({
-  state: {
+  state: ({
     userData: null,
     token: null,
-  } as unknown as LoginState,
+  } as unknown) as LoginState,
   reducers: {
     updateState: (state: LoginState, payload: LoginState): LoginState => ({ ...state, ...payload }),
   },

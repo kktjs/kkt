@@ -18,13 +18,13 @@ export default (conf: Configuration, env: string, options: LoaderConfOptions) =>
         commonjs: 'react',
         amd: 'react',
       },
-      "react-dom": {
+      'react-dom': {
         root: 'ReactDOM',
         commonjs2: 'react-dom',
         commonjs: 'react-dom',
         amd: 'react-dom',
       },
-    }
+    },
   });
-  return conf
-}
+  return conf;
+};

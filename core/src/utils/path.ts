@@ -11,7 +11,7 @@ const customOpts = require(path.resolve(projectDir, 'package.json'))['kkt'] || {
 
 /**
  *  默认从 package.json 指定配置文件目录和当前目录根目录 `.kktrc` 配置文件
- * 
+ *
  * {
  *   "kkt": {
  *     "path": "./config/kktrc"
@@ -51,5 +51,5 @@ export {
   configOverrides,
   configOverridesCache,
   isWebpackFactory,
-  paths
-}
+  paths,
+};

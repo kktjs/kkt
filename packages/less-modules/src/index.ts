@@ -16,16 +16,16 @@ type LessLoaderOptionsBase = {
    * @default true
    */
   webpackImporter?: boolean;
-}
+};
 
 export type LessLoaderOptions = LessLoaderOptionsBase & {
   lessOptions?: (loaderContext: any) => void;
 } & {
   lessOptions?: Record<string, any>;
-}
+};
 
 const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
-  return function(conf: Configuration, evn: string, options = {} as ParsedArgs) {
+  return function (conf: Configuration, evn: string, options = {} as ParsedArgs) {
     if (!conf) {
       throw Error('KKT:ConfigPaths: there is no config file found');
     }
@@ -49,12 +49,12 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
           miniCssExtractPluginLoader: MiniCssExtractPlugin.loader,
           preProcessorOptions: {
             lessOptions: {
-              javascriptEnabled: true
+              javascriptEnabled: true,
             },
             ...lessLoaderOptions,
-          }
+          },
         },
-        require.resolve('less-loader')
+        require.resolve('less-loader'),
       ),
       // Don't consider CSS imports dead code even if the
       // containing package claims to have no side effects.
@@ -71,7 +71,7 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
           sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
           modules: {
             getLocalIdent: getCSSModuleLocalIdent,
-          }
+          },
         },
         {
           ...options,
@@ -81,10 +81,10 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
           miniCssExtractPluginLoader: MiniCssExtractPlugin.loader,
           preProcessorOptions: {
             lessOptions: {
-              javascriptEnabled: true
+              javascriptEnabled: true,
             },
             ...lessLoaderOptions,
-          }
+          },
         },
         require.resolve('less-loader'),
       ),
@@ -106,8 +106,8 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
       return rule;
     });
     return conf;
-  }
-}
+  };
+};
 
 /**
  * Use create-react-app to build react libraries. Support for regular less files and *.module.less files.
@@ -116,4 +116,3 @@ const module = createLessModule();
 (module as any).withLoaderOptions = createLessModule;
 
 export default module;
-

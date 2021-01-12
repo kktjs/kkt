@@ -7,10 +7,6 @@ export default class Home extends PureComponent {
     this.state = {};
   }
   render() {
-    return (
-      <div className={styles.warpper}>
-        这里是首页
-      </div>
-    );
+    return <div className={styles.warpper}>这里是首页</div>;
   }
 }

@@ -10,8 +10,8 @@ export default (conf, env, options) => {
     // webpack externals options
     dependencies: {
       ...pkg.dependencies,
-      "react-refresh": "0"
-    }
+      'react-refresh': '0',
+    },
   });
-  return conf
-}
+  return conf;
+};

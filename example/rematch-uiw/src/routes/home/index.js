@@ -11,9 +11,7 @@ export default class Home extends PureComponent {
     return (
       <div className={styles.warpper}>
         <Button>按钮</Button>
-        <div>
-          这里是首页
-        </div>
+        <div>这里是首页</div>
       </div>
     );
   }

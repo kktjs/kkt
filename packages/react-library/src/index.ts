@@ -19,21 +19,23 @@ export type ReactLibraryOptions = ParsedArgs & {
   dependencies?: ExternalsObjectElement;
   cssMinimizerPluginOptions?: CssMinimizerPlugin.Options;
   miniCssExtractPluginOptions?: MiniCssExtractPlugin.PluginOptions;
-}
+};
 
 /** Output Dir */
 let outputDir = path.join(process.cwd(), 'dist');
 let buildCacheDir = '';
 let fileName = '';
 let publicPath = '';
-process.on('beforeExit',  () => {
+process.on('beforeExit', () => {
   fs.ensureDirSync(outputDir);
   if (buildCacheDir) {
-    console.log(`Output Dir: \x1b[32m${outputDir}\x1b[0m.`)
+    console.log(`Output Dir: \x1b[32m${outputDir}\x1b[0m.`);
     console.log(` ╰┬┈┈┈┈▷ The \x1b[32m${outputDir.replace(process.cwd(), '')}\x1b[0m folder is ready.`);
-    const dirs = (fs.readdirSync(buildCacheDir, {}) as string[]).filter((name: any) => ((new RegExp(`^${fileName}\.`)).test(name)));
+    const dirs = (fs.readdirSync(buildCacheDir, {}) as string[]).filter((name: any) =>
+      new RegExp(`^${fileName}\.`).test(name),
+    );
     dirs.forEach((name, idx) => {
-      console.log(`  ${dirs.length === idx + 1 ? '╰' : '├'}┈ File: \x1b[32m${name}\x1b[0m.`)
+      console.log(`  ${dirs.length === idx + 1 ? '╰' : '├'}┈ File: \x1b[32m${name}\x1b[0m.`);
       fs.copyFileSync(path.join(buildCacheDir, name), path.join(outputDir, name));
     });
   }
@@ -48,7 +50,7 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
   }
   if (!options.bundle && options.paths) {
     /**
-     * Remove validation first, then add validation  
+     * Remove validation first, then add validation
      * Warn and crash if required files are missing
      */
     if (!checkRequiredFiles([options.paths.appHtml, options.paths.appIndexJs], false)) {
@@ -87,10 +89,10 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
       libraryTarget: 'umd',
       filename: outFile,
       path: buildCacheDir,
-    }
+    };
     // string | RegExp | ExternalsObjectElement | ExternalsFunctionElement | ExternalsElement[]
     let externals = {} as ExternalsObjectElement;
-    Object.keys(options.dependencies || {}).forEach(key => {
+    Object.keys(options.dependencies || {}).forEach((key) => {
       if (typeof options.dependencies[key] === 'string') {
         externals[key] = `commonjs ${key}`;
       } else {
@@ -99,22 +101,24 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
     });
     conf.externals = externals;
     /**
-    * Clear all plugins from CRA webpack conf
-    */
+     * Clear all plugins from CRA webpack conf
+     */
     const regexp = /(MiniCssExtractPlugin)/;
-    conf.plugins = conf.plugins.map((item) => {
-      if (item.constructor && item.constructor.name && !regexp.test(item.constructor.name)) {
-        return null;
-      } else if (regexp.test(item.constructor.name)) {
-        return new MiniCssExtractPlugin({
-          // Options similar to the same options in webpackOptions.output
-          // both options are optional
-          filename: `${options.mini ? `${fileName}.min` : fileName}.css`,
-          ...options.miniCssExtractPluginOptions,
-        });
-      }
-      return item;
-    }).filter(Boolean);
+    conf.plugins = conf.plugins
+      .map((item) => {
+        if (item.constructor && item.constructor.name && !regexp.test(item.constructor.name)) {
+          return null;
+        } else if (regexp.test(item.constructor.name)) {
+          return new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: `${options.mini ? `${fileName}.min` : fileName}.css`,
+            ...options.miniCssExtractPluginOptions,
+          });
+        }
+        return item;
+      })
+      .filter(Boolean);
 
     if (!options.mini) {
       conf.optimization = {
@@ -122,7 +126,7 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
         minimizer: [],
       };
     } else {
-      conf.plugins.push(new CssMinimizerPlugin({ ...options.cssMinimizerPluginOptions}));
+      conf.plugins.push(new CssMinimizerPlugin({ ...options.cssMinimizerPluginOptions }));
       conf.optimization!.minimizer!.push(
         new TerserPlugin({
           // cache: true,
@@ -138,5 +142,5 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
       delete conf.optimization.splitChunks;
     }
   }
-  return conf
-}
+  return conf;
+};

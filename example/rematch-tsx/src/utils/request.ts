@@ -22,7 +22,6 @@ const codeMessage = {
   504: '网关超时。',
 };
 
-
 export interface Options extends AxiosRequestConfig {
   body?: any;
 }
@@ -51,7 +50,8 @@ export default function request(url: string, options: Options = {}) {
     delete newOptions.body;
   }
 
-  return axios.request(newOptions)
+  return axios
+    .request(newOptions)
     .then((response) => {
       return response.data;
     })
@@ -75,4 +75,3 @@ export default function request(url: string, options: Options = {}) {
       throw error;
     });
 }
-

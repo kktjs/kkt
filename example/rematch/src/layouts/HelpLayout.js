@@ -19,17 +19,13 @@ export default class HelpLayout extends PureComponent {
             </div>
           );
         };
-        RouteComponents.push(
-          <Route exact key={idx + 1} path={path} render={ChildComponent} />
-        );
+        RouteComponents.push(<Route exact key={idx + 1} path={path} render={ChildComponent} />);
       }
     });
     return (
       <div className={styles.container}>
         Help Layout
-        <Switch>
-          {RouteComponents}
-        </Switch>
+        <Switch>{RouteComponents}</Switch>
       </div>
     );
   }

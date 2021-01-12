@@ -5,28 +5,42 @@ import './style/btn.less';
 
 export default class Button extends React.Component {
   render() {
-    const { prefixCls, type, size, active, disabled, block, basic, intent, className, loading, children, htmlType, ...others } = this.props;
+    const {
+      prefixCls,
+      type,
+      size,
+      active,
+      disabled,
+      block,
+      basic,
+      intent,
+      className,
+      loading,
+      children,
+      htmlType,
+      ...others
+    } = this.props;
 
-    const cls = [ className, prefixCls,
+    const cls = [
+      className,
+      prefixCls,
       size ? `${prefixCls}-${size}` : false,
       type ? `${prefixCls}-${type}` : false,
       basic ? `${prefixCls}-basic` : false,
       loading ? `${prefixCls}-loading` : false,
-      (disabled || loading) ? 'disabled' : false,
+      disabled || loading ? 'disabled' : false,
       active ? 'active' : false,
       block ? 'block' : false,
-    ].filter(Boolean).join(' ');
+    ]
+      .filter(Boolean)
+      .join(' ');
     return (
-      <button
-        {...others}
-        disabled={disabled || loading}
-        type={htmlType}
-        className={cls}
-      >
-        {children && React.Children.map(children, (child) => {
-          if (React.isValidElement(child)) return child;
-          return <span> {child} </span>;
-        })}
+      <button {...others} disabled={disabled || loading} type={htmlType} className={cls}>
+        {children &&
+          React.Children.map(children, (child) => {
+            if (React.isValidElement(child)) return child;
+            return <span> {child} </span>;
+          })}
       </button>
     );
   }
@@ -54,4 +68,3 @@ Button.propTypes = {
   type: PropTypes.oneOf(['primary', 'success', 'warning', 'danger', 'light', 'dark', 'link']),
   size: PropTypes.oneOf(['large', 'default', 'small']),
 };
-

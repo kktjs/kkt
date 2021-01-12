@@ -1,12 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Dispatch, RootState } from '../models'
+import { Dispatch, RootState } from '../models';
 
 type connectedProps = ReturnType<typeof mapState> & ReturnType<typeof mapDispatch>;
-type Props = connectedProps & typeof Controller.defaultProps & {
-  routerData: any;
-};
+type Props = connectedProps &
+  typeof Controller.defaultProps & {
+    routerData: any;
+  };
 
 const mapState = ({ global }: RootState) => ({
   // token: global.token,
@@ -19,7 +20,7 @@ const mapDispatch = (dispatch: Dispatch) => ({
 });
 
 class Controller extends React.PureComponent<Props> {
-  static defaultProps = {}
+  static defaultProps = {};
   componentDidMount() {
     // this.props.verify();
   }
@@ -39,8 +40,8 @@ class Controller extends React.PureComponent<Props> {
     // resetProps.userData = userData;
     return (
       <Switch>
-        <Route path="/login" render={props => <UserLayout {...props} routerData={routerData} />} />
-        <Route path="/" render={props => <BasicLayout {...props} routerData={routerData} />} />
+        <Route path="/login" render={(props) => <UserLayout {...props} routerData={routerData} />} />
+        <Route path="/" render={(props) => <BasicLayout {...props} routerData={routerData} />} />
       </Switch>
     );
   }

@@ -1,7 +1,7 @@
 import webpack, { Configuration } from 'webpack';
 import lessModules from '@kkt/less-modules';
 import { LoaderConfOptions } from 'kkt';
-import pkg from "./package.json";
+import pkg from './package.json';
 
 export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
   conf = lessModules(conf, env, options);
@@ -9,7 +9,7 @@ export default (conf: Configuration, env: string, options: LoaderConfOptions) =>
   conf.plugins!.push(
     new webpack.DefinePlugin({
       VERSION: JSON.stringify(pkg.version),
-    })
+    }),
   );
   return conf;
-}
+};

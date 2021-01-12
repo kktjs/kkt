@@ -1,8 +1,6 @@
-
-
 let token = '';
 
-module.exports.login = function(req, res) {
+module.exports.login = function (req, res) {
   const { password, username } = req.body;
   if (password === 'admin' && username === 'admin') {
     token = '5c2d6d45-ec94-319c-a9c8-cae43e192b65';
@@ -31,7 +29,7 @@ module.exports.login = function(req, res) {
     code: 401,
     error: '用户名或密码错误！',
   });
-}
+};
 
 module.exports.verify = function (req, res) {
   if (!token) {
@@ -60,11 +58,11 @@ module.exports.verify = function (req, res) {
     state: 'active',
     token: token,
   });
-}
+};
 
 module.exports.logout = function (req, res) {
   token = '';
   return res.status(200).json({
     message: '退出登录！',
   });
-}
+};

@@ -3,18 +3,20 @@ import dynamic from 'react-dynamic-loadable';
 import { store } from '../models';
 
 // wrapper of dynamic
-const dynamicWrapper = (models: string[], component: () => Promise<any>) => dynamic({
-  models: () => models.map((m: string) => {
-    return import(`../models/${m}.ts`).then((md) => {
-      const modelData = md.default || md;
-      store.model({ name: m, ...modelData });
-    });
-  }),
-  component,
-  LoadingComponent: () => <span>loading....</span>,
-});
+const dynamicWrapper = (models: string[], component: () => Promise<any>) =>
+  dynamic({
+    models: () =>
+      models.map((m: string) => {
+        return import(`../models/${m}.ts`).then((md) => {
+          const modelData = md.default || md;
+          store.model({ name: m, ...modelData });
+        });
+      }),
+    component,
+    LoadingComponent: () => <span>loading....</span>,
+  });
 
-export type RouterData = typeof getRouterData
+export type RouterData = typeof getRouterData;
 
 export const getRouterData = {
   '/login': {

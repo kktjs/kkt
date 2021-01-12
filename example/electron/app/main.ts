@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron');
 
 function createWindow() {
   // 创建浏览器窗口
@@ -6,14 +6,14 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
-    }
+      nodeIntegration: true,
+    },
   });
   if (process.env.NODE_ENV === 'development') {
     win.loadURL('http://localhost:3000/');
   } else {
-    win.loadFile('./build/index.html')
+    win.loadFile('./build/index.html');
   }
 }
 
-app.on('ready', createWindow)
+app.on('ready', createWindow);

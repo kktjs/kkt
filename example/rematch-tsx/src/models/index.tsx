@@ -1,11 +1,4 @@
-import {
-  init,
-  RematchRootState,
-  RematchDispatch,
-  Models,
-  ModelEffects,
-  ModelConfig,
-} from '@rematch/core';
+import { init, RematchRootState, RematchDispatch, Models, ModelEffects, ModelConfig } from '@rematch/core';
 import createLoadingPlugin from '@rematch/loading';
 import global from './global';
 import login from './login';
@@ -16,13 +9,13 @@ export interface RootModel extends Models {
   login: typeof login;
 }
 
-export type ExtractRematchLoadingFromEffectsObject<
-  effects extends ModelEffects<any>
-> = { [effectKey in keyof effects]: boolean };
+export type ExtractRematchLoadingFromEffectsObject<effects extends ModelEffects<any>> = {
+  [effectKey in keyof effects]: boolean;
+};
 
-export type ExtractRematchLoadingFromEffects<
-  effects extends ModelConfig['effects']
-> = effects extends (...args: any[]) => infer R
+export type ExtractRematchLoadingFromEffects<effects extends ModelConfig['effects']> = effects extends (
+  ...args: any[]
+) => infer R
   ? R extends ModelEffects<any>
     ? ExtractRematchLoadingFromEffectsObject<R>
     : {}

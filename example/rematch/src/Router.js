@@ -14,17 +14,15 @@ class RoutersController extends React.PureComponent {
     // isAuthenticated = true 表示身份经过验证
     // 请求是否登录验证
     if (!this.props.isAuthenticated) {
-      return (
-        <span>是否登录的验证</span>
-      );
+      return <span>是否登录的验证</span>;
     }
     resetProps.token = token;
     resetProps.userData = userData;
     return (
       <Switch>
-        <Route path="/login" render={props => <UserLayout {...props} {...resetProps} />} />
-        <Route path="/help" render={props => <HelpLayout {...props} {...resetProps} />} />
-        <Route path="/" render={props => <BasicLayout {...props} {...resetProps} />} />
+        <Route path="/login" render={(props) => <UserLayout {...props} {...resetProps} />} />
+        <Route path="/help" render={(props) => <HelpLayout {...props} {...resetProps} />} />
+        <Route path="/" render={(props) => <BasicLayout {...props} {...resetProps} />} />
       </Switch>
     );
   }

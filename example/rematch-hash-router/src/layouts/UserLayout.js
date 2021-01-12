@@ -10,10 +10,6 @@ export default class UserLayout extends PureComponent {
         RouteComponents.push(<Route exact key={idx + 1} path={path} component={routerData[path].component} />);
       }
     });
-    return (
-      <Switch>
-        {RouteComponents}
-      </Switch>
-    );
+    return <Switch>{RouteComponents}</Switch>;
   }
 }

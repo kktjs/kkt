@@ -4,7 +4,7 @@ import lessModules from '@kkt/less-modules';
 export default (conf, env, options) => {
   conf = lessModules(conf, env, options);
   return conf;
-}
+};
 
 export const proxySetup = () => {
   return {
@@ -14,6 +14,6 @@ export const proxySetup = () => {
         '/repos/(.*)': 'https://api.github.com/',
       },
       changeHost: true,
-    }
-  }
-}
+    },
+  };
+};

@@ -3,7 +3,7 @@ function splitUrl(url, options) {
   let urlNew = url;
   const paramsArray = [];
   // Object.keys(options).forEach(key => paramsArray.push(key + '=' + options[key]));
-  Object.keys(options).forEach(key => paramsArray.push(`${key}=${options[key]}`));
+  Object.keys(options).forEach((key) => paramsArray.push(`${key}=${options[key]}`));
   if (Object.keys(options).length === 0) {
     return url;
   }
@@ -15,7 +15,4 @@ function splitUrl(url, options) {
   return urlNew;
 }
 
-
-export {
-  splitUrl,
-};
+export { splitUrl };

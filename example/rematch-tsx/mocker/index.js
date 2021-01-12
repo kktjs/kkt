@@ -1,4 +1,3 @@
-
 const { login, verify, logout } = require('./login');
 
 const proxy = {

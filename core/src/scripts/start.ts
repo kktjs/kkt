@@ -20,8 +20,10 @@ export default async function build(argvs: ParsedArgs) {
     const kktrc: KKTRC = await overrides();
 
     if (kktrc && kktrc.devServer) {
-      require.cache[require.resolve(devServerConfigPath)].exports =
-        kktrc.devServer(devServerConfig, process.env.NODE_ENV);
+      require.cache[require.resolve(devServerConfigPath)].exports = kktrc.devServer(
+        devServerConfig,
+        process.env.NODE_ENV,
+      );
     }
     // Source maps are resource heavy and can cause out of memory issue for large source files.
     const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -35,7 +37,7 @@ export default async function build(argvs: ParsedArgs) {
           cacheData({ proxySetup: kktrc.proxySetup });
         }
         return overridesHandle(webpackConf, env, { ...argvs, shouldUseSourceMap, paths });
-      }
+      };
     }
 
     // run original script

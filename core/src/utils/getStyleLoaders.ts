@@ -6,10 +6,18 @@ import { paths } from './path';
 export interface CssOptions {
   importLoaders?: number;
   sourceMap?: boolean;
-  modules?: boolean | string | {
-    localIdentName?: string;
-    getLocalIdent?: (context: webpack.loader.LoaderContext, localIdentName: string, localName: string, options: object) => string;
-  };
+  modules?:
+    | boolean
+    | string
+    | {
+        localIdentName?: string;
+        getLocalIdent?: (
+          context: webpack.loader.LoaderContext,
+          localIdentName: string,
+          localName: string,
+          options: object,
+        ) => string;
+      };
 }
 
 export type StyleLoadersOptions<T> = ParsedArgs & {
@@ -17,20 +25,23 @@ export type StyleLoadersOptions<T> = ParsedArgs & {
   isEnvProduction: boolean;
   shouldUseSourceMap: boolean;
   preProcessorOptions: T | {};
-}
-
+};
 
 /**
  * 方法来源
  * https://github.com/facebook/create-react-app/blob/39689239c18a1d77fb303e285b26beb1a4b650c0/packages/react-scripts/config/webpack.config.js#L107-L166
- * @param cssOptions 
- * @param options 
- * @param preProcessor 
+ * @param cssOptions
+ * @param options
+ * @param preProcessor
  */
-export const getStyleLoaders = <T>(cssOptions: CssOptions, options = {} as StyleLoadersOptions<T>, preProcessor: string) => {
+export const getStyleLoaders = <T>(
+  cssOptions: CssOptions,
+  options = {} as StyleLoadersOptions<T>,
+  preProcessor: string,
+) => {
   const loaders: RuleSetUseItem[] = [];
   if (options.isEnvDevelopment) {
-    loaders.push(require.resolve('style-loader'))
+    loaders.push(require.resolve('style-loader'));
   }
 
   if (options.isEnvProduction) {
@@ -39,9 +50,7 @@ export const getStyleLoaders = <T>(cssOptions: CssOptions, options = {} as Style
       loader: options.miniCssExtractPluginLoader,
       // css is located in `static/css`, use '../../' to locate index.html folder
       // in production `paths.publicUrlOrPath` can be a relative path
-      options: paths.publicUrlOrPath.startsWith('.')
-        ? { publicPath: '../../' }
-        : {},
+      options: paths.publicUrlOrPath.startsWith('.') ? { publicPath: '../../' } : {},
     });
   }
   loaders.push({

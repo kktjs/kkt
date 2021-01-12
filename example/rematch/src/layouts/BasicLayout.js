@@ -17,7 +17,9 @@ const getRedirect = (item) => {
         from: `${item.path}`,
         to: `${item.children[0].path}`,
       });
-      item.children.forEach((children) => { getRedirect(children); });
+      item.children.forEach((children) => {
+        getRedirect(children);
+      });
     }
   }
 };
@@ -37,13 +39,9 @@ class BasicLayout extends PureComponent {
         const ChildComponent = (props) => {
           const ChildComp = routerData[path].component;
           // 可以给子组件传一些参数如： isNavShow=true
-          return (
-            <ChildComp {...props} isNavShow />
-          );
+          return <ChildComp {...props} isNavShow />;
         };
-        RouteComponents.push(
-          <Route exact key={idx + 1} path={path} render={ChildComponent} />
-        );
+        RouteComponents.push(<Route exact key={idx + 1} path={path} render={ChildComponent} />);
       }
     });
     return (

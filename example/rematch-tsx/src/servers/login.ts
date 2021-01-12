@@ -1,7 +1,5 @@
 import request from '../utils/request';
 
-
-
 export interface Login {
   username: string;
   password: string;

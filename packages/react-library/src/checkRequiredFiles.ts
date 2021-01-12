@@ -9,7 +9,7 @@ import chalk from 'chalk';
 export const checkRequiredFiles = (files: string[], isNotCheckHTML = true) => {
   let currentFilePath;
   try {
-    files.forEach(filePath => {
+    files.forEach((filePath) => {
       if (/(\.html)$/.test(filePath) && isNotCheckHTML) {
         return;
       }
@@ -25,4 +25,4 @@ export const checkRequiredFiles = (files: string[], isNotCheckHTML = true) => {
     console.log(chalk.red('  Searched in: ') + chalk.cyan(dirName));
     return false;
   }
-}
+};

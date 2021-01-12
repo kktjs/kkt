@@ -1,4 +1,4 @@
-process.env.NODE_ENV = "production";
+process.env.NODE_ENV = 'production';
 
 import { ParsedArgs } from 'minimist';
 import { KKTRC } from '../utils/loaderConf';
@@ -23,7 +23,7 @@ export default async function build(argvs: ParsedArgs) {
       require.cache[require.resolve(webpackConfigPath)].exports = (env: string) =>
         overridesHandle(webpackConf, env, { ...argvs, shouldUseSourceMap, paths });
     }
-  
+
     // run original script
     require(`${reactScripts}/scripts/build`);
   } catch (error) {

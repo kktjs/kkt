@@ -14,14 +14,8 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "baseUrl": "./src",
-    "typeRoots": [
-      "./node_modules/@types"
-    ],
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "typeRoots": ["./node_modules/@types"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -30,13 +24,6 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "build",
-    "dist",
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["build", "dist", "**/*.spec.ts", "**/*.test.ts"]
 }

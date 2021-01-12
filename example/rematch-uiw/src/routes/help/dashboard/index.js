@@ -7,10 +7,6 @@ export default class Dashboard extends PureComponent {
     this.state = {};
   }
   render() {
-    return (
-      <div className={styles.warpper}>
-        帮助页面首页
-      </div>
-    );
+    return <div className={styles.warpper}>帮助页面首页</div>;
   }
 }

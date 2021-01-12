@@ -11,4 +11,4 @@ export default async (argvs: ParsedArgs): Promise<any> => {
     // override config in memory
     require.cache[require.resolve(openBrowserPath)].exports = () => {};
   }
-}
+};

@@ -15,11 +15,8 @@ const RoutersContainer = withRouter(({ history: historyData, location }) => {
     history: historyData,
     routerData,
   };
-  return (
-    <RoutersController resetProps={resetProps} />
-  );
+  return <RoutersController resetProps={resetProps} />;
 });
-
 
 // ReactDOM.render(
 //   <Provider store={store}>
@@ -29,7 +26,6 @@ const RoutersContainer = withRouter(({ history: historyData, location }) => {
 //   </Provider>,
 //   document.getElementById('root'),
 // );
-
 
 ReactDOM.render(
   <Provider store={store}>

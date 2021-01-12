@@ -25,9 +25,12 @@ export type OverridePaths = {
   appTypeDeclarations: string;
   ownTypeDeclarations: string;
   _oldPaths: OverridePaths;
-}
+};
 
-export const overridePaths = (argvs = undefined as ParsedArgs | undefined, opts: Record<string, string> = {}): OverridePaths => {
+export const overridePaths = (
+  argvs = undefined as ParsedArgs | undefined,
+  opts: Record<string, string> = {},
+): OverridePaths => {
   const pathsConfPath = `${reactScripts}/config/paths`;
   const pathsConf = require(pathsConfPath);
   const _oldPaths = { ...pathsConf };
@@ -43,11 +46,11 @@ export const overridePaths = (argvs = undefined as ParsedArgs | undefined, opts:
     pathsConf.appSrc = path.resolve(pathsConf.appPath, argvs['app-src']);
     Object.keys(pathsConf).forEach((keyname) => {
       if (typeof pathsConf[keyname] === 'string' && pathsConf[keyname].startsWith(oldAppSrc)) {
-        pathsConf[keyname] = pathsConf[keyname].replace(oldAppSrc, pathsConf.appSrc)
+        pathsConf[keyname] = pathsConf[keyname].replace(oldAppSrc, pathsConf.appSrc);
       }
     });
   }
   // override config in memory
   require.cache[require.resolve(pathsConfPath)].exports = pathsConf;
   return { ...pathsConf, _oldPaths };
-}
+};

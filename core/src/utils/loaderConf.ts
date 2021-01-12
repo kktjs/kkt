@@ -2,7 +2,7 @@ import { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import { MockerOption, MockerProxyRoute } from 'mocker-api';
 import express from 'express';
-import * as babel from "@babel/core";
+import * as babel from '@babel/core';
 import fs from 'fs-extra';
 import path from 'path';
 import { ParsedArgs } from 'minimist';
@@ -19,9 +19,9 @@ const tsOptions = {
     allowSyntheticDefaultImports: true,
     esModuleInterop: true,
     experimentalDecorators: true,
-    emitDecoratorMetadata: true
-  }
-}
+    emitDecoratorMetadata: true,
+  },
+};
 
 export type MockerAPIOptions = {
   path: string | string[] | MockerProxyRoute;
@@ -31,14 +31,17 @@ export type MockerAPIOptions = {
 export type LoaderConfOptions = ParsedArgs & {
   paths: OverridePaths;
   shouldUseSourceMap: boolean;
-}
+};
 
-export type DevServerConfigFunction = (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string) => WebpackDevServer.Configuration;
+export type DevServerConfigFunction = (
+  proxy: WebpackDevServer.ProxyConfigArrayItem[],
+  allowedHost: string,
+) => WebpackDevServer.Configuration;
 export type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
   devServer?: (configFunction: DevServerConfigFunction, evn: string) => DevServerConfigFunction;
   default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration;
-}
+};
 
 export async function loaderConf(rcPath: string): Promise<KKTRC> {
   let kktrc: KKTRC = {};
@@ -54,9 +57,12 @@ export async function loaderConf(rcPath: string): Promise<KKTRC> {
     if (fs.existsSync(confJsPath)) {
       const { code } = babel.transformFileSync(confJsPath, {
         presets: [
-          [require.resolve('@tsbb/babel-preset-tsbb'), {
-            targets: false,
-          }],
+          [
+            require.resolve('@tsbb/babel-preset-tsbb'),
+            {
+              targets: false,
+            },
+          ],
         ],
       });
 

@@ -9,14 +9,12 @@ class UserLayout extends PureComponent<DefaultProps> {
     const RouteComponents: JSX.Element[] = [];
     Object.keys(routerData).forEach((path, idx) => {
       if (/^(\/login)/.test(path) && !/^(\/login)$/.test(path)) {
-        RouteComponents.push(<Route exact key={idx + 1} path={path} component={routerData[path as  keyof RouterData].component as any} />);
+        RouteComponents.push(
+          <Route exact key={idx + 1} path={path} component={routerData[path as keyof RouterData].component as any} />,
+        );
       }
     });
-    return (
-      <Switch>
-        {RouteComponents}
-      </Switch>
-    );
+    return <Switch>{RouteComponents}</Switch>;
   }
 }
 

@@ -7,10 +7,6 @@ export default class SiderMenu extends Component {
     this.state = {};
   }
   render() {
-    return (
-      <div className={styles.wapper}>
-        菜单
-      </div>
-    );
+    return <div className={styles.wapper}>菜单</div>;
   }
 }

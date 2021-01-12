@@ -21,7 +21,6 @@ const codeMessage = {
   504: '网关超时。',
 };
 
-
 /**
  * Requests a URL, returning a promise.
  *
@@ -46,7 +45,8 @@ export default function request(url, options = {}) {
     delete newOptions.body;
   }
 
-  return axios.request(newOptions)
+  return axios
+    .request(newOptions)
     .then((response) => {
       return response.data;
     })
@@ -69,7 +69,6 @@ export default function request(url, options = {}) {
       throw error;
     });
 }
-
 
 // /**
 //  * Requests a URL, returning a promise.

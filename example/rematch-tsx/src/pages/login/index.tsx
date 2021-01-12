@@ -3,8 +3,8 @@ import { Form, Row, Col, Button, Input, Checkbox } from 'uiw';
 import { connect } from 'react-redux';
 import logo from '../../assets/logo-dark.svg';
 import styles from './index.module.less';
-import { RootState, Dispatch } from '../../models'
-import { DefaultProps } from '../../'
+import { RootState, Dispatch } from '../../models';
+import { DefaultProps } from '../../';
 
 const mapState = ({ login, loading }: RootState) => ({
   loading: loading.effects.login.submit,
@@ -15,11 +15,11 @@ const mapDispatch = (dispatch: any) => ({
   submit: (dispatch as Dispatch).login.submit,
 });
 
-type connectedProps = ReturnType<typeof mapState> & ReturnType<typeof mapDispatch>
+type connectedProps = ReturnType<typeof mapState> & ReturnType<typeof mapDispatch>;
 type Props = connectedProps & DefaultProps;
 
 class Login extends React.Component<Props> {
-  static defaultProps = {}
+  static defaultProps = {};
   render() {
     const { loading } = this.props;
     return (
@@ -58,12 +58,18 @@ class Login extends React.Component<Props> {
                 labelClassName: 'fieldLabel',
                 labelStyle: { width: 60 },
                 labelFor: 'password',
-                children: <Input disabled={!!loading} preIcon="lock" id="password" type="password" placeholder="密码: admin" />,
+                children: (
+                  <Input disabled={!!loading} preIcon="lock" id="password" type="password" placeholder="密码: admin" />
+                ),
               },
               terms: {
                 style: { margin: 0 },
-                validator: currentValue => !currentValue && '必须统一服务条款',
-                children: <Checkbox disabled={!!loading} value="1">已阅读并同意</Checkbox>,
+                validator: (currentValue) => !currentValue && '必须统一服务条款',
+                children: (
+                  <Checkbox disabled={!!loading} value="1">
+                    已阅读并同意
+                  </Checkbox>
+                ),
               },
             }}
           >
@@ -78,23 +84,28 @@ class Login extends React.Component<Props> {
                   </Row>
                   <Row style={{ marginBottom: 10 }}>
                     <Col align="middle">{fields.terms}</Col>
-                    <Col><a href="https://uiwjs.github.io">服务条款</a></Col>
+                    <Col>
+                      <a href="https://uiwjs.github.io">服务条款</a>
+                    </Col>
                   </Row>
                   <Row>
                     <Col>
-                      <Button loading={!!loading} disabled={!canSubmit()} block type="dark" htmlType="submit">登录</Button>
+                      <Button loading={!!loading} disabled={!canSubmit()} block type="dark" htmlType="submit">
+                        登录
+                      </Button>
                     </Col>
                   </Row>
                 </>
               );
             }}
           </Form>
-          <div className={styles.footer}>Copyright © 2018 <a href="https://github.com/uiwjs/uiw">@uiw</a> 团队出品</div>
+          <div className={styles.footer}>
+            Copyright © 2018 <a href="https://github.com/uiwjs/uiw">@uiw</a> 团队出品
+          </div>
         </Col>
       </Row>
     );
   }
 }
-
 
 export default connect(mapState, mapDispatch)(Login);

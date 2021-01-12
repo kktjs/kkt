@@ -20,23 +20,19 @@ class BasicLayout extends PureComponent<DefaultProps> {
             render={(props: RouteComponentProps<any>) => {
               const ChildComp = routerData[path as keyof RouterData].component as any;
               // 可以给子组件传一些参数如： isNavShow=true
-              return (
-                <ChildComp {...props} isNavShow />
-              );
+              return <ChildComp {...props} isNavShow />;
             }}
-          />
+          />,
         );
       }
     });
     return (
       <div className={styles.container}>
         Basic Layout
-        <Switch>
-          {RouteComponents}
-        </Switch>
+        <Switch>{RouteComponents}</Switch>
       </div>
     );
   }
 }
 
-export default BasicLayout
+export default BasicLayout;

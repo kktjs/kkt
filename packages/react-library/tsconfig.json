@@ -11,8 +11,5 @@
     "outDir": "lib",
     "baseUrl": "./"
   },
-  "include": [
-    "src/**/*",
-    "src/type/global.d.ts"
-  ]
+  "include": ["src/**/*", "src/type/global.d.ts"]
 }

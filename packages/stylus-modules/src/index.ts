@@ -18,14 +18,11 @@ type StylusLoaderOptionsBase = {
    * @default true
    */
   webpackImporter?: boolean;
-}
+};
 
 export type StylusLoaderOptions = StylusLoaderOptionsBase & {
   additionalData?: string;
-  stylusOptions?: (loaderContext: {
-    resourcePath: string;
-    rootContext: string;
-  }) => void;
+  stylusOptions?: (loaderContext: { resourcePath: string; rootContext: string }) => void;
 } & {
   stylusOptions?: {
     /**
@@ -35,7 +32,7 @@ export type StylusLoaderOptions = StylusLoaderOptionsBase & {
      * @type {(string|Function)[]}
      * @default []
      */
-    use?: (string| (() => void))[];
+    use?: (string | (() => void))[];
     /** Add path(s) to the import lookup paths. */
     include?: string[];
     /** Import the specified Stylus files/paths. */
@@ -85,14 +82,17 @@ export type StylusLoaderOptions = StylusLoaderOptionsBase & {
   /**
    * Prepends/Appends Stylus code to the actual entry file.
    */
-  additionalData?: (content: string, loaderContext: {
-    resourcePath: string;
-    rootContext: string;
-  }) => string;
-}
+  additionalData?: (
+    content: string,
+    loaderContext: {
+      resourcePath: string;
+      rootContext: string;
+    },
+  ) => string;
+};
 
 const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
-  return function(conf: Configuration, evn: string, options = {} as ParsedArgs) {
+  return function (conf: Configuration, evn: string, options = {} as ParsedArgs) {
     if (!conf) {
       throw Error('KKT:ConfigPaths: there is no config file found');
     }
@@ -116,9 +116,9 @@ const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
           miniCssExtractPluginLoader: MiniCssExtractPlugin.loader,
           preProcessorOptions: {
             ...stylusLoaderOptions,
-          }
+          },
         },
-        require.resolve('stylus-loader')
+        require.resolve('stylus-loader'),
       ),
       // Don't consider CSS imports dead code even if the
       // containing package claims to have no side effects.
@@ -135,7 +135,7 @@ const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
           sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
           modules: {
             getLocalIdent: getCSSModuleLocalIdent,
-          }
+          },
         },
         {
           ...options,
@@ -145,7 +145,7 @@ const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
           miniCssExtractPluginLoader: MiniCssExtractPlugin.loader,
           preProcessorOptions: {
             ...stylusLoaderOptions,
-          }
+          },
         },
         require.resolve('stylus-loader'),
       ),
@@ -167,8 +167,8 @@ const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
       return rule;
     });
     return conf;
-  }
-}
+  };
+};
 
 /**
  * Use create-react-app to build react libraries. Support for regular less files and *.module.less files.
@@ -177,4 +177,3 @@ const module = createLessModule();
 (module as any).withLoaderOptions = createLessModule;
 
 export default module;
-

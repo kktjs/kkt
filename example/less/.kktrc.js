@@ -13,4 +13,4 @@ export default (conf, env, options) => {
   // })(conf, env, options);
 
   return conf;
-}
+};

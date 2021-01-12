@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import styles from './index.module.less';
 
-
-const FormItem = ({ label, onChange = () => { }, type = 'text', value }) => (
+const FormItem = ({ label, onChange = () => {}, type = 'text', value }) => (
   <div className={styles.formItem}>
     <label>{label}:</label>
     <input type={type} onChange={onChange} value={value} />
@@ -42,8 +41,19 @@ class Login extends PureComponent {
     const { form } = this.state;
     return (
       <div className={styles.login}>
-        <FormItem label="Username" value={form.username} onChange={this.onChange.bind(this, 'username')} placeholder="Username" />
-        <FormItem label="Password" type="password" value={form.password} onChange={this.onChange.bind(this, 'password')} placeholder="Type your password" />
+        <FormItem
+          label="Username"
+          value={form.username}
+          onChange={this.onChange.bind(this, 'username')}
+          placeholder="Username"
+        />
+        <FormItem
+          label="Password"
+          type="password"
+          value={form.password}
+          onChange={this.onChange.bind(this, 'password')}
+          placeholder="Type your password"
+        />
         <button type="button" className={styles.btn} onClick={this.login.bind(this)}>
           Login
         </button>

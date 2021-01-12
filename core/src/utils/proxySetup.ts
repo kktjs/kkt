@@ -14,4 +14,4 @@ export default (app: express.Application) => {
       apiMocker(app, opts.path, { ...opts.option });
     }
   }
-}
+};
