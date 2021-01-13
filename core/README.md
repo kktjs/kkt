@@ -66,6 +66,8 @@ $ npm create kkt my-app -e `<Example Name>`
 $ yarn create kkt my-app -e `<Example Name>`
 ```
 
+You can download the following examples directly. [Download page](https://kktjs.github.io/zip/).
+
 - [**`basic`**](https://github.com/kktjs/kkt/tree/master/example/basic) - The [react](https://github.com/facebook/react) base application. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/basic)
 - [**`bundle`**](https://github.com/kktjs/kkt/tree/master/example/bundle) - Package the UMD package for developing the React component library.
 - [**`electron`**](https://github.com/kktjs/kkt/tree/master/example/electron) - Use an example of [`Electronjs`](https://github.com/electron).
@@ -81,8 +83,10 @@ $ yarn create kkt my-app -e `<Example Name>`
 
 ## How to rewire your create-react-app project
 
+> Create your app using [create-react-app](https://github.com/facebook/create-react-app) and then rewire it.
+
 ```shell
-$ npm install kkt --save-dev
+npm install kkt --save-dev
 ```
 
 ```diff
@@ -216,33 +220,6 @@ or for a custom domain page:
 ```
 
 KKT uses the `homepage` field to determine the root URL in the built HTML file.
-
-### How to kkt your create-react-app project
-
-> Create your app using [create-react-app](https://github.com/facebook/create-react-app) and then rewire it.
-
-```shell
-npm install kkt --save-dev
-```
-
-```diff
-"scripts": {
--   "start": "react-scripts start",
-+   "start": "kkt start",
--   "build": "react-scripts build",
-+   "build": "kkt build",
--   "test": "react-scripts test",
-+   "test": "kkt test",
-    "eject": "react-scripts eject"
-}
-```
-
-```shell
-# Start the Dev Server
-$ npm start
-# Build your app
-$ npm run build
-```
 
 ### Plugins & Loader
 
