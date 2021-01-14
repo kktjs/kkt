@@ -2,7 +2,7 @@ import { Configuration, RuleSetRule } from 'webpack';
 import { ParsedArgs } from 'minimist';
 import getCSSModuleLocalIdent from 'react-dev-utils/getCSSModuleLocalIdent';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { getStyleLoaders } from 'kkt';
+import { getStyleLoaders, LoaderConfOptions } from 'kkt';
 
 const sassRegex = /\.(styl)$/;
 const sassModuleRegex = /\.module\.(styl)$/;
@@ -20,76 +20,77 @@ type StylusLoaderOptionsBase = {
   webpackImporter?: boolean;
 };
 
-export type StylusLoaderOptions = StylusLoaderOptionsBase & {
-  additionalData?: string;
-  stylusOptions?: (loaderContext: { resourcePath: string; rootContext: string }) => void;
-} & {
-  stylusOptions?: {
+export type StylusLoaderOptions = LoaderConfOptions &
+  StylusLoaderOptionsBase & {
+    additionalData?: string;
+    stylusOptions?: (loaderContext: { resourcePath: string; rootContext: string }) => void;
+  } & {
+    stylusOptions?: {
+      /**
+       * Specify Stylus plugins to use. Plugins may be passed as
+       * strings instead of importing them in your Webpack config.
+       *
+       * @type {(string|Function)[]}
+       * @default []
+       */
+      use?: (string | (() => void))[];
+      /** Add path(s) to the import lookup paths. */
+      include?: string[];
+      /** Import the specified Stylus files/paths. */
+      import?: string[];
+      /** Array is the recommended syntax: [key, value, raw] */
+      define?: Array<(string | boolean | number)[]> | Record<string, string | boolean | number>;
+      /** Include regular CSS on @import. */
+      includeCSS?: boolean;
+      /**
+       * Emits comments in the generated CSS indicating the corresponding Stylus line.
+       *
+       * @see https://stylus-lang.com/docs/executable.html
+       *
+       * @type {boolean}
+       * @default false
+       */
+      lineNumbers?: boolean;
+      /**
+       * Move @import and @charset to the top.
+       *
+       * @see https://stylus-lang.com/docs/executable.html
+       *
+       * @type {boolean}
+       * @default false
+       */
+      hoistAtrules?: boolean;
+      /**
+       * Compress CSS output.
+       * In the "production" mode is `true` by default
+       *
+       * @see https://stylus-lang.com/docs/executable.html
+       *
+       * @type {boolean}
+       * @default false
+       */
+      compress?: boolean;
+      /**
+       * Resolve relative url()'s inside imported files.
+       *
+       * @see https://stylus-lang.com/docs/js.html#stylusresolveroptions
+       *
+       * @type {boolean|Object}
+       * @default { nocheck: true }
+       */
+      resolveURL?: boolean | Record<string, string | boolean | number>;
+    };
     /**
-     * Specify Stylus plugins to use. Plugins may be passed as
-     * strings instead of importing them in your Webpack config.
-     *
-     * @type {(string|Function)[]}
-     * @default []
+     * Prepends/Appends Stylus code to the actual entry file.
      */
-    use?: (string | (() => void))[];
-    /** Add path(s) to the import lookup paths. */
-    include?: string[];
-    /** Import the specified Stylus files/paths. */
-    import?: string[];
-    /** Array is the recommended syntax: [key, value, raw] */
-    define?: Array<(string | boolean | number)[]> | Record<string, string | boolean | number>;
-    /** Include regular CSS on @import. */
-    includeCSS?: boolean;
-    /**
-     * Emits comments in the generated CSS indicating the corresponding Stylus line.
-     *
-     * @see https://stylus-lang.com/docs/executable.html
-     *
-     * @type {boolean}
-     * @default false
-     */
-    lineNumbers?: boolean;
-    /**
-     * Move @import and @charset to the top.
-     *
-     * @see https://stylus-lang.com/docs/executable.html
-     *
-     * @type {boolean}
-     * @default false
-     */
-    hoistAtrules?: boolean;
-    /**
-     * Compress CSS output.
-     * In the "production" mode is `true` by default
-     *
-     * @see https://stylus-lang.com/docs/executable.html
-     *
-     * @type {boolean}
-     * @default false
-     */
-    compress?: boolean;
-    /**
-     * Resolve relative url()'s inside imported files.
-     *
-     * @see https://stylus-lang.com/docs/js.html#stylusresolveroptions
-     *
-     * @type {boolean|Object}
-     * @default { nocheck: true }
-     */
-    resolveURL?: boolean | Record<string, string | boolean | number>;
+    additionalData?: (
+      content: string,
+      loaderContext: {
+        resourcePath: string;
+        rootContext: string;
+      },
+    ) => string;
   };
-  /**
-   * Prepends/Appends Stylus code to the actual entry file.
-   */
-  additionalData?: (
-    content: string,
-    loaderContext: {
-      resourcePath: string;
-      rootContext: string;
-    },
-  ) => string;
-};
 
 const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
   return function (conf: Configuration, evn: string, options = {} as ParsedArgs) {

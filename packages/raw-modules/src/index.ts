@@ -1,7 +1,7 @@
 import { Configuration, RuleSetRule, RuleSetCondition } from 'webpack';
-import { ParsedArgs } from 'minimist';
+import { LoaderConfOptions } from 'kkt';
 
-export type ReactLibraryOptions = ParsedArgs & {
+export type ReactLibraryOptions = LoaderConfOptions & {
   test?: RuleSetCondition;
   esModule?: boolean;
 };

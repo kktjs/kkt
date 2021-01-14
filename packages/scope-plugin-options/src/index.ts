@@ -1,6 +1,7 @@
 import { Configuration } from 'webpack';
+import { LoaderConfOptions } from 'kkt';
 
-export type ReactLibraryOptions = {
+export type ReactLibraryOptions = LoaderConfOptions & {
   allowedFiles?: ReadonlyArray<string>;
 };
 

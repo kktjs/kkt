@@ -1,15 +1,14 @@
 import path from 'path';
 import fs from 'fs-extra';
 import { Configuration, ExternalsObjectElement } from 'webpack';
-import { ParsedArgs } from 'minimist';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import { overridePaths } from 'kkt';
+import { overridePaths, LoaderConfOptions } from 'kkt';
 import './overridesCheckRequiredFiles';
 import { checkRequiredFiles } from './checkRequiredFiles';
 import TerserPlugin from 'terser-webpack-plugin';
 
-export type ReactLibraryOptions = ParsedArgs & {
+export type ReactLibraryOptions = LoaderConfOptions & {
   bundle?: boolean;
   mini?: boolean;
   name?: string;

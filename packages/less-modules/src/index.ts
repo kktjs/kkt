@@ -1,8 +1,7 @@
 import { Configuration, RuleSetRule } from 'webpack';
-import { ParsedArgs } from 'minimist';
 import getCSSModuleLocalIdent from 'react-dev-utils/getCSSModuleLocalIdent';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { getStyleLoaders } from 'kkt';
+import { getStyleLoaders, LoaderConfOptions } from 'kkt';
 
 const lessRegex = /\.(less)$/;
 const lessModuleRegex = /\.module\.(less)$/;
@@ -25,7 +24,7 @@ export type LessLoaderOptions = LessLoaderOptionsBase & {
 };
 
 const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
-  return function (conf: Configuration, evn: string, options = {} as ParsedArgs) {
+  return function (conf: Configuration, evn: string, options = {} as LoaderConfOptions) {
     if (!conf) {
       throw Error('KKT:ConfigPaths: there is no config file found');
     }
