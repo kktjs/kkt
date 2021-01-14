@@ -1,6 +1,6 @@
 {
   "name": "@kkt/mocker-api",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "description": "Creates mocks for REST APIs.",
@@ -20,6 +20,6 @@
     "mocker-api": "2.7.5"
   },
   "devDependencies": {
-    "kkt": "6.1.0"
+    "kkt": "6.1.1"
   }
 }
