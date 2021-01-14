@@ -16,6 +16,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+          registry-url: https://registry.npmjs.org/
+
       - name: Look Changelog
         uses: jaywcjlove/changelog-generator@v1.3.9
         with:
@@ -201,10 +203,11 @@ jobs:
           <!DOCTYPE html><html lang="en">
           <head>
           <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicon.ico">
           <title>KKT Example Zip Files</title>
           <style type="text/css">
           body, html { height: 100%; font-size: 12px; font-family: Avenir Next,PingFang SC,Hiragino Sans GB,Droid Sans Fallback,Microsoft YaHei,sans-serif; }
-          h1 { font-size: 2.6rem; font-weight: 900; }
+          h1 { font-size: 2.6rem; font-weight: 300; }
           h1 sup { color: #7b7b7b; font-size: 14px; position: absolute; font-weight: normal;}
           a:hover { color: #0949d1; }
           .header { position: relative; width: 100%; height: 60%; text-align: center; }
