@@ -5,15 +5,17 @@ import minimist from 'minimist';
 function help() {
   console.log('\n  Usage: kkt [start|build|test] [--help|h]');
   console.log('\n  Displays help information.');
-  console.log('\n  Options:');
+  console.log('\n  Options:\n');
+  console.log('    --version, -v', 'Show version number');
+  console.log('    --help, -h', 'Displays help information.');
   console.log('\n  Example:');
   console.log('\n');
-  console.log('\n  $ kkt build');
-  console.log('\n  $ kkt build --app-src ./website');
-  console.log('\n  $ kkt start');
-  console.log('\n  $ kkt start --no-open-browser');
-  console.log('\n  $ kkt start --app-src ./website');
-  console.log('\n  $ kkt test');
+  console.log('  $ \x1b[35mkkt\x1b[0m build');
+  console.log('  $ \x1b[35mkkt\x1b[0m build --app-src ./website');
+  console.log('  $ \x1b[35mkkt\x1b[0m start');
+  console.log('  $ \x1b[35mkkt\x1b[0m start --no-open-browser');
+  console.log('  $ \x1b[35mkkt\x1b[0m start --app-src ./website');
+  console.log('  $ \x1b[35mkkt\x1b[0m test');
 }
 
 (async () => {
@@ -21,6 +23,11 @@ function help() {
   const argvs = minimist(args);
   if (argvs.h || argvs.help) {
     return help();
+  }
+  const { version } = require('../../package.json');
+  if (argvs.v || argvs.version) {
+    console.log(`\n create-kkt v${version}\n`);
+    return;
   }
   const scriptName = argvs._[0];
   if (scriptName && /(^build|start|test)$/.test(scriptName)) {
