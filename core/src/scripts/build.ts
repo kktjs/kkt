@@ -21,7 +21,7 @@ export default async function build(argvs: ParsedArgs) {
       const webpackConf = miniCssExtractPlugin(webpackConfig('production'));
       // override config in memory
       require.cache[require.resolve(webpackConfigPath)].exports = (env: string) =>
-        overridesHandle(webpackConf, env, { ...argvs, shouldUseSourceMap, paths });
+        overridesHandle(webpackConf, env, { ...argvs, shouldUseSourceMap, paths, kktrc });
     }
 
     // run original script

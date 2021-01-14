@@ -36,7 +36,7 @@ export default async function build(argvs: ParsedArgs) {
         if (kktrc && kktrc.proxySetup && typeof kktrc.proxySetup === 'function') {
           cacheData({ proxySetup: kktrc.proxySetup });
         }
-        return overridesHandle(webpackConf, env, { ...argvs, shouldUseSourceMap, paths });
+        return overridesHandle(webpackConf, env, { ...argvs, shouldUseSourceMap, paths, devServerConfig, kktrc });
       };
     }
 

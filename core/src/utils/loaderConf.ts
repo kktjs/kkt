@@ -31,6 +31,8 @@ export type MockerAPIOptions = {
 export type LoaderConfOptions = ParsedArgs & {
   paths: OverridePaths;
   shouldUseSourceMap: boolean;
+  devServerConfig?: DevServerConfigFunction;
+  kktrc: KKTRC;
 };
 
 export type DevServerConfigFunction = (
