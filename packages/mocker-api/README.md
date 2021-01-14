@@ -10,7 +10,7 @@
 
 [`mocker-api`](https://github.com/jaywcjlove/mocker-api) that creates mocks for REST APIs.
 
-> ⚠️ This package has been deprecated.
+> ⚠️ This package has been deprecated. Built-in and configurable
 
 It can be configured using `proxySetup`.
 
