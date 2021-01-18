@@ -1,6 +1,6 @@
 {
   "name": "@kkt/mocker-api",
-  "version": "6.1.2",
+  "version": "6.2.0",
   "private": true,
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -21,6 +21,6 @@
     "mocker-api": "2.7.5"
   },
   "devDependencies": {
-    "kkt": "6.1.2"
+    "kkt": "6.2.0"
   }
 }

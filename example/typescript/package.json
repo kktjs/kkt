@@ -1,6 +1,6 @@
 {
   "name": "@template/typescript",
-  "version": "6.1.2",
+  "version": "6.2.0",
   "description": "Use an example of TypeScript.",
   "private": true,
   "scripts": {
@@ -21,11 +21,11 @@
     "web-vitals": "1.0.1"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.1.2",
+    "@kkt/less-modules": "6.2.0",
     "@types/jest": "24.9.1",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
-    "kkt": "6.1.2"
+    "kkt": "6.2.0"
   },
   "browserslist": {
     "production": [
