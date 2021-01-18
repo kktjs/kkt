@@ -19,6 +19,13 @@ export default async function build(argvs: ParsedArgs) {
     const overrides = require('../overrides/config');
     const kktrc: KKTRC = await overrides();
 
+    if (devServerConfig) {
+      devServerConfig.headers = {
+        ...devServerConfig.headers,
+        'Access-Control-Allow-Origin': '*',
+      };
+    }
+
     if (kktrc && kktrc.devServer) {
       require.cache[require.resolve(devServerConfigPath)].exports = kktrc.devServer(
         devServerConfig,
