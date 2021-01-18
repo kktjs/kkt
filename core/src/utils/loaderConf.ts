@@ -43,11 +43,7 @@ export type DevServerConfigFunction = (
 export type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
   devServer?: (configFunction: DevServerConfigFunction, evn: string) => DevServerConfigFunction;
-  default?: (
-    conf: Configuration,
-    evn: string,
-    options: LoaderConfOptions,
-  ) => Configuration & { config: Configuration; after: () => void };
+  default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration;
 };
 
 export async function loaderConf(rcPath: string): Promise<KKTRC> {
