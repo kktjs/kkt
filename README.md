@@ -128,9 +128,11 @@ import { LoaderConfOptions, DevServerConfigFunction, MockerAPIOptions } from 'kk
 
 type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
-  devServer?: (configFunction: DevServerConfigFunction, evn: string,) => DevServerConfigFunction;
-  default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration;
-}
+  devServer?: (configFunction: DevServerConfigFunction, evn: string) => DevServerConfigFunction;
+  default?: (conf: Configuration, evn: string, options: LoaderConfOptions)
+    => Configuration & { config: Configuration, after: () => void };
+};
+
 type DevServerConfigFunction = (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string)
     => WebpackDevServer.Configuration;
 ```

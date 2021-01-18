@@ -35,6 +35,7 @@ export default async function build(argvs: ParsedArgs) {
     // Source maps are resource heavy and can cause out of memory issue for large source files.
     const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
     const overridesHandle = kktrc.default || kktrc;
+    let afterHandle: () => void = undefined;
     if (overridesHandle && typeof overridesHandle === 'function') {
       const webpackConf = miniCssExtractPlugin(webpackConfig('development'));
       // override config in memory
@@ -43,12 +44,21 @@ export default async function build(argvs: ParsedArgs) {
         if (kktrc && kktrc.proxySetup && typeof kktrc.proxySetup === 'function') {
           cacheData({ proxySetup: kktrc.proxySetup });
         }
-        return overridesHandle(webpackConf, env, { ...argvs, shouldUseSourceMap, paths, devServerConfig, kktrc });
+        const conf = overridesHandle(webpackConf, env, { ...argvs, shouldUseSourceMap, paths, devServerConfig, kktrc });
+        if (conf && conf.config) {
+          afterHandle = conf.after;
+          return conf.config;
+        }
+        return conf;
       };
     }
 
     // run original script
-    require(`${reactScripts}/scripts/start`);
+    await require(`${reactScripts}/scripts/start`);
+    // Can be used for server-side rendering development
+    if (afterHandle && typeof afterHandle === 'function') {
+      await afterHandle();
+    }
   } catch (error) {
     console.log('KKT:START:ERROR:', error);
   }

@@ -81,6 +81,7 @@ You can download the following examples directly. [Download page](https://kktjs.
 - [**`typescript`**](https://github.com/kktjs/kkt/tree/master/example/typescript) - Use an example of `TypeScript`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/typescript)
 - [**`uiw`**](https://github.com/kktjs/kkt/tree/master/example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/uiw)
 
+
 ## How to rewire your create-react-app project
 
 > Create your app using [create-react-app](https://github.com/facebook/create-react-app) and then rewire it.
@@ -127,9 +128,11 @@ import { LoaderConfOptions, DevServerConfigFunction, MockerAPIOptions } from 'kk
 
 type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
-  devServer?: (configFunction: DevServerConfigFunction, evn: string,) => DevServerConfigFunction;
-  default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration;
-}
+  devServer?: (configFunction: DevServerConfigFunction, evn: string) => DevServerConfigFunction;
+  default?: (conf: Configuration, evn: string, options: LoaderConfOptions)
+    => Configuration & { config: Configuration, after: () => void };
+};
+
 type DevServerConfigFunction = (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string)
     => WebpackDevServer.Configuration;
 ```
