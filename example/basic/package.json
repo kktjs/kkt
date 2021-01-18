@@ -1,6 +1,6 @@
 {
   "name": "@template/basic",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "description": "The react base application.",
   "private": true,
   "scripts": {
@@ -22,7 +22,7 @@
     "web-vitals": "1.0.1"
   },
   "devDependencies": {
-    "kkt": "6.1.1"
+    "kkt": "6.1.2"
   },
   "eslintConfig": {
     "extends": [
