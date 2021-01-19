@@ -42,7 +42,7 @@
     "@types/minimist": "1.2.1",
     "@types/semver": "7.3.4",
     "@types/webpack-dev-server": "3.11.1",
-    "fs-extra": "9.0.1",
+    "fs-extra": "9.1.0",
     "minimist": "1.2.5",
     "mocker-api": "2.7.5",
     "node-sass": "4.14.1",
