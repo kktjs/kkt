@@ -44,7 +44,7 @@
     "@types/webpack-dev-server": "3.11.1",
     "fs-extra": "9.1.0",
     "minimist": "1.2.5",
-    "mocker-api": "2.7.5",
+    "mocker-api": "2.8.0",
     "node-sass": "4.14.1",
     "react-scripts": "4.0.1",
     "semver": "7.3.4",
