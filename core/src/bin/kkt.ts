@@ -8,6 +8,7 @@ function help() {
   console.log('\n  Options:\n');
   console.log('    --version, -v', 'Show version number');
   console.log('    --help, -h', 'Displays help information.');
+  console.log('    --app-src', 'Specify the entry directory.');
   console.log('    --no-open-browser', 'Do not open in browser.');
   console.log('    --no-clear-console', 'Do not clear the command line information.');
   console.log('\n  Example:');
