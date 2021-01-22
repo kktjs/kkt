@@ -120,25 +120,23 @@ $ npm run build
 
 Supports `kktrc.js` and `kktrc.ts`.
 
-```ts
+```typescript
 import express from 'express';
 import { ParsedArgs } from 'minimist';
-import WebpackDevServer, { Configuration } from 'webpack-dev-server';
-import { LoaderConfOptions, DevServerConfigFunction, MockerAPIOptions } from 'kkt';
+import { Configuration } from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
+import { LoaderConfOptions, MockerAPIOptions } from 'kkt';
 
 type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
-  devServer?: (configFunction: DevServerConfigFunction, evn: string) => DevServerConfigFunction;
+  devServer?: (config: WebpackDevServer.Configuration) => WebpackDevServer.Configuration;
   default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration;
 };
-
-type DevServerConfigFunction = (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string)
-    => WebpackDevServer.Configuration;
 ```
 
 Example
 
-```ts
+```typescript
 import webpack, { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import lessModules from '@kkt/less-modules';
@@ -151,25 +149,22 @@ export default (conf: Configuration, env: string, options: LoaderConfOptions) =>
   return conf;
 }
 
-export const devServer = (configFunction: DevServerConfigFunction) => {
-  return (proxy: WebpackDevServer.ProxyConfigArrayItem[], allowedHost: string) => {
-    // Create the default config by calling configFunction with the proxy/allowedHost parameters
-    const config = configFunction(proxy, allowedHost);
-
-    // Change the https certificate options to match your certificate, using the .env file to
-    // set the file paths & passphrase.
-    const fs = require('fs');
-    config.https = {
-      key: fs.readFileSync(process.env.REACT_HTTPS_KEY, 'utf8'),
-      cert: fs.readFileSync(process.env.REACT_HTTPS_CERT, 'utf8'),
-      ca: fs.readFileSync(process.env.REACT_HTTPS_CA, 'utf8'),
-      passphrase: process.env.REACT_HTTPS_PASS
-    };
-
-    // Return your customised Webpack Development Server config.
-    return config;
-  }
-}
+/**
+ * Modify WebpackDevServer Configuration Example
+ */
+export const devServer = (config: WebpackDevServer.Configuration) => {
+  // Change the https certificate options to match your certificate, using the .env file to
+  // set the file paths & passphrase.
+  const fs = require('fs');
+  config.https = {
+    key: fs.readFileSync(process.env.REACT_HTTPS_KEY, 'utf8'),
+    cert: fs.readFileSync(process.env.REACT_HTTPS_CERT, 'utf8'),
+    ca: fs.readFileSync(process.env.REACT_HTTPS_CA, 'utf8'),
+    passphrase: process.env.REACT_HTTPS_PASS
+  };
+  // Return your customised Webpack Development Server config.
+  return config;
+};
 
 // Configuring the Proxy Manually
 import express from 'express';
