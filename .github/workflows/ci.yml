@@ -38,6 +38,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+          registry-url: https://registry.npmjs.org/
 
       - name: Look Changelog
         uses: jaywcjlove/changelog-generator@v1.3.9
@@ -100,7 +101,10 @@ jobs:
           draft: false
           prerelease: false
 
-      - run: npm run ci:publish
+      - name: Publish NPM Package
+        run: |
+          npm whoami
+          npm run ci:publish
         if: steps.create_tag.outputs.successful
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
