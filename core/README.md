@@ -125,7 +125,7 @@ import express from 'express';
 import { ParsedArgs } from 'minimist';
 import { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import { LoaderConfOptions, MockerAPIOptions } from 'kkt';
+import { LoaderConfOptions, MockerAPIOptions, DevServerOptions } from 'kkt';
 
 type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
