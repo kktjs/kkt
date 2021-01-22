@@ -192,6 +192,32 @@ export const proxySetup = (app: express.Application): MockerAPIOptions => {
 }
 ```
 
+## Command Help
+
+```bash
+Usage: kkt [start|build|test] [--help|h]
+
+Displays help information.
+
+Options:
+
+  --version, -v Show version number
+  --help, -h Displays help information.
+  --app-src, Specify the entry directory.
+  --no-open-browser, Do not open in browser.
+  --no-clear-console, Do not clear the command line information.
+
+Example:
+
+$ kkt build
+$ kkt build --app-src ./website
+$ kkt start
+$ kkt start --no-open-browser
+$ kkt start --no-clear-console
+$ kkt start --app-src ./website
+$ kkt test
+```
+
 ### Home Page
 
 Add `homepage` to `package.json`
