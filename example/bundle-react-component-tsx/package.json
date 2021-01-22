@@ -1,6 +1,6 @@
 {
   "name": "@template/bundle-react-component-tsx",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "main": "dist/bundle.js",
   "description": "",
   "private": true,
@@ -20,11 +20,11 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.3.0",
-    "@kkt/react-library": "6.3.0",
+    "@kkt/less-modules": "6.4.0",
+    "@kkt/react-library": "6.4.0",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
-    "kkt": "6.3.0"
+    "kkt": "6.4.0"
   },
   "eslintConfig": {
     "extends": [
