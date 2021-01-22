@@ -1,6 +1,6 @@
 import path from 'path';
 import webpack, { Configuration } from 'webpack';
-import { DevServerConfigFunction, LoaderConfOptions } from 'kkt';
+import { LoaderConfOptions } from 'kkt';
 import WebpackDevServer from 'webpack-dev-server';
 import lessModules from '@kkt/less-modules';
 import rawModules from '@kkt/raw-modules';
@@ -24,12 +24,10 @@ export default (conf: Configuration, env: string, options: LoaderConfOptions) =>
   return conf;
 };
 
-export const devServer = (configFunction: DevServerConfigFunction) => (
-  proxy: WebpackDevServer.ProxyConfigArrayItem[],
-  allowedHost: string,
-) => {
-  // Create the default config by calling configFunction with the proxy/allowedHost parameters
-  const config = configFunction(proxy, allowedHost);
+/**
+ * Modify WebpackDevServer Configuration Example
+ */
+export const devServer = (config: WebpackDevServer.Configuration) => {
   // Return your customised Webpack Development Server config.
   return config;
 };
