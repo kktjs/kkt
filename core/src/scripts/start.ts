@@ -29,7 +29,7 @@ export default async function build(argvs: ParsedArgs) {
       const serverConf = createDevServerConfig(proxy, allowedHost);
       serverConf.headers = { ...serverConf.headers, 'Access-Control-Allow-Origin': '*' };
       if (kktrc && kktrc.devServer && typeof kktrc.devServer === 'function') {
-        return kktrc.devServer(serverConf);
+        return kktrc.devServer(serverConf, { ...argvs, paths });
       }
       return serverConf;
     };

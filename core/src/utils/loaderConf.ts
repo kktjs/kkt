@@ -40,9 +40,11 @@ export type DevServerConfigFunction = (
   allowedHost: string,
 ) => WebpackDevServer.Configuration;
 
+export type DevServerOptions = ParsedArgs & Pick<LoaderConfOptions, 'paths' | 'paths'>;
+
 export type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
-  devServer?: (config: WebpackDevServer.Configuration) => WebpackDevServer.Configuration;
+  devServer?: (config: WebpackDevServer.Configuration, options: DevServerOptions) => WebpackDevServer.Configuration;
   default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration | Promise<Configuration>;
 };
 
