@@ -31,7 +31,7 @@ export type MockerAPIOptions = {
 export type LoaderConfOptions = ParsedArgs & {
   paths: OverridePaths;
   shouldUseSourceMap: boolean;
-  devServerConfig?: DevServerConfigFunction;
+  devServerConfigHandle?: DevServerConfigFunction;
   kktrc: KKTRC;
 };
 
@@ -42,7 +42,7 @@ export type DevServerConfigFunction = (
 
 export type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
-  devServer?: (configFunction: DevServerConfigFunction, evn: string) => DevServerConfigFunction;
+  devServer?: (config: WebpackDevServer.Configuration) => WebpackDevServer.Configuration;
   default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration;
 };
 

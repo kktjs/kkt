@@ -8,12 +8,15 @@ function help() {
   console.log('\n  Options:\n');
   console.log('    --version, -v', 'Show version number');
   console.log('    --help, -h', 'Displays help information.');
+  console.log('    --no-open-browser', 'Do not open in browser.');
+  console.log('    --no-clear-console', 'Do not clear the command line information.');
   console.log('\n  Example:');
   console.log('\n');
   console.log('  $ \x1b[35mkkt\x1b[0m build');
   console.log('  $ \x1b[35mkkt\x1b[0m build --app-src ./website');
   console.log('  $ \x1b[35mkkt\x1b[0m start');
   console.log('  $ \x1b[35mkkt\x1b[0m start --no-open-browser');
+  console.log('  $ \x1b[35mkkt\x1b[0m start --no-clear-console');
   console.log('  $ \x1b[35mkkt\x1b[0m start --app-src ./website');
   console.log('  $ \x1b[35mkkt\x1b[0m test');
 }
