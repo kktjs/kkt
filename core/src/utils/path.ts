@@ -66,7 +66,7 @@ const reactDevUtils = path.join(require.resolve('react-dev-utils/package.json'),
 const paths: Paths = require(`${reactScripts}/config/paths`);
 
 /**
- * overrides proxySetup path
+ * Overrides proxySetup path
  * `<root path>/node_modules/kkt/lib/utils/proxySetup.js`
  */
 const proxySetup = path.resolve(__dirname, './proxySetup.js');

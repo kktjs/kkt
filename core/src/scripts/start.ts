@@ -38,14 +38,19 @@ export default async function build(argvs: ParsedArgs) {
     const overridesHandle = (kktrc.default || kktrc) as KKTRC['default'];
     if (overridesHandle && typeof overridesHandle === 'function') {
       const webpackConf = miniCssExtractPlugin(webpackConfig('development'));
+      await overridePaths(undefined, { proxySetup });
+      if (kktrc && kktrc.proxySetup && typeof kktrc.proxySetup === 'function') {
+        cacheData({ proxySetup: kktrc.proxySetup });
+      }
+      const overrideWebpackConf = await overridesHandle(webpackConf, 'development', {
+        ...argvs,
+        shouldUseSourceMap,
+        paths,
+        devServerConfigHandle,
+        kktrc,
+      });
       // override config in memory
-      require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => {
-        overridePaths(undefined, { proxySetup });
-        if (kktrc && kktrc.proxySetup && typeof kktrc.proxySetup === 'function') {
-          cacheData({ proxySetup: kktrc.proxySetup });
-        }
-        return overridesHandle(webpackConf, env, { ...argvs, shouldUseSourceMap, paths, devServerConfigHandle, kktrc });
-      };
+      require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => overrideWebpackConf;
     }
 
     // run original script

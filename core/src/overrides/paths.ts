@@ -6,6 +6,11 @@ export type OverridePaths = Paths & {
   _oldPaths: OverridePaths;
 };
 
+/**
+ * Override Paths
+ * @param {ParsedArgs | undefined} argvs
+ * @param {Record<string, string>} opts
+ */
 export const overridePaths = (
   argvs = undefined as ParsedArgs | undefined,
   opts: Record<string, string> = {},
