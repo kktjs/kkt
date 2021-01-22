@@ -5,7 +5,6 @@ declare module '*.module.less' {
   export default classes;
 }
 
-
 declare module '*.md' {
   const src: string;
   export default src;
