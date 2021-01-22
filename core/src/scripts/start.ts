@@ -1,5 +1,5 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
+import { Configuration } from 'webpack';
 import { ParsedArgs } from 'minimist';
 import { ProxyConfigArrayItem } from 'webpack-dev-server';
 import { KKTRC, DevServerConfigFunction } from '../utils/loaderConf';
@@ -15,8 +15,8 @@ export default async function build(argvs: ParsedArgs) {
     const paths = await overridePaths(argvs);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.dev' : ''}`;
     const devServerConfigPath = `${reactScripts}/config/webpackDevServer.config.js`;
-    const webpackConfig = require(webpackConfigPath);
-    const devServerConfigHandle: DevServerConfigFunction = require(devServerConfigPath);
+    const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);
+    const createDevServerConfig: DevServerConfigFunction = require(devServerConfigPath);
     const overrides = require('../overrides/config');
     const kktrc: KKTRC = await overrides();
     await overridesOpenBrowser(argvs);
@@ -26,7 +26,7 @@ export default async function build(argvs: ParsedArgs) {
       proxy: ProxyConfigArrayItem[],
       allowedHost: string,
     ) => {
-      const serverConf = devServerConfigHandle(proxy, allowedHost);
+      const serverConf = createDevServerConfig(proxy, allowedHost);
       serverConf.headers = { ...serverConf.headers, 'Access-Control-Allow-Origin': '*' };
       if (kktrc && kktrc.devServer && typeof kktrc.devServer === 'function') {
         return kktrc.devServer(serverConf);
@@ -37,7 +37,7 @@ export default async function build(argvs: ParsedArgs) {
     const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
     const overridesHandle = (kktrc.default || kktrc) as KKTRC['default'];
     if (overridesHandle && typeof overridesHandle === 'function') {
-      const webpackConf = miniCssExtractPlugin(webpackConfig('development'));
+      const webpackConf = miniCssExtractPlugin(createWebpackConfig('development'));
       await overridePaths(undefined, { proxySetup });
       if (kktrc && kktrc.proxySetup && typeof kktrc.proxySetup === 'function') {
         cacheData({ proxySetup: kktrc.proxySetup });
@@ -46,7 +46,7 @@ export default async function build(argvs: ParsedArgs) {
         ...argvs,
         shouldUseSourceMap,
         paths,
-        devServerConfigHandle,
+        devServerConfigHandle: createDevServerConfig,
         kktrc,
       });
       // override config in memory

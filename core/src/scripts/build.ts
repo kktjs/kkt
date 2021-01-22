@@ -1,5 +1,5 @@
 process.env.NODE_ENV = 'production';
-
+import { Configuration } from 'webpack';
 import { ParsedArgs } from 'minimist';
 import { KKTRC } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory } from '../utils/path';
@@ -10,7 +10,7 @@ export default async function build(argvs: ParsedArgs) {
   try {
     const paths = await overridePaths(argvs);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.prod' : ''}`;
-    const webpackConfig = require(webpackConfigPath);
+    const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);
     const overrides = require('../overrides/config');
     const kktrc: KKTRC = await overrides();
     const overridesHandle = kktrc.default || kktrc;
@@ -18,7 +18,7 @@ export default async function build(argvs: ParsedArgs) {
     if (overridesHandle && typeof overridesHandle === 'function') {
       // Source maps are resource heavy and can cause out of memory issue for large source files.
       const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
-      const webpackConf = miniCssExtractPlugin(webpackConfig('production'));
+      const webpackConf = miniCssExtractPlugin(createWebpackConfig('production'));
       const overrideWebpackConf = await overridesHandle(webpackConf, 'production', {
         ...argvs,
         shouldUseSourceMap,
