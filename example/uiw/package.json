@@ -18,7 +18,7 @@
   "dependencies": {
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "uiw": "4.7.5"
+    "uiw": "4.7.7"
   },
   "devDependencies": {
     "kkt": "6.5.0"
