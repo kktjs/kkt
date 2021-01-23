@@ -9,7 +9,7 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "lib",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "*": ["node_modules/*", "src/type/*"]
     }
