@@ -1,20 +1,3 @@
-declare module 'react-dev-utils/crossSpawn' {
-  type Options = {
-    stdio: 'inherit';
-  };
-  class crossSpawn {
-    sync(
-      command: string,
-      args: string[],
-      options: Options,
-    ): {
-      signal: 'SIGKILL' | 'SIGTERM';
-    };
-  }
-
-  let c: crossSpawn;
-  export default c;
-}
 
 declare module 'mini-css-extract-plugin' {
   import { Configuration, Compiler } from 'webpack';
