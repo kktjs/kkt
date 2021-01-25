@@ -101,6 +101,7 @@ jobs:
           draft: false
           prerelease: false
 
+      - run: git status
       - name: Publish NPM Package
         run: npm run ci:publish
         if: steps.create_tag.outputs.successful
