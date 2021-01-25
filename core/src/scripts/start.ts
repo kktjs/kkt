@@ -65,9 +65,11 @@ export default async function build(argvs: ParsedArgs) {
       proxy: ProxyConfigArrayItem[],
       allowedHost: string,
     ) => {
-      const serverConf = createDevServerConfig(proxy, allowedHost);
+      let serverConf = createDevServerConfig(proxy, allowedHost);
       if (kktrc && kktrc.devServer && typeof kktrc.devServer === 'function') {
         return kktrc.devServer({ ...overrideDevServerConfig, ...serverConf }, { ...argvs, paths });
+      } else {
+        serverConf = { ...overrideDevServerConfig, ...serverConf };
       }
       return serverConf;
     };
