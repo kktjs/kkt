@@ -122,8 +122,6 @@ Supports `kktrc.js` and `kktrc.ts`.
 
 ```typescript
 import express from 'express';
-import { ParsedArgs } from 'minimist';
-import { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import { LoaderConfOptions, MockerAPIOptions, DevServerOptions, WebpackConfiguration } from 'kkt';
 

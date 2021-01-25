@@ -1,9 +1,10 @@
 import { KKTRC } from './loaderConf';
 
-let data: CacheData = {};
 type CacheData = {
   proxySetup?: KKTRC['proxySetup'];
-};
+} & Record<string, any>;
+
+let data: CacheData = {};
 
 /**
  * Cache data
@@ -17,6 +18,9 @@ export const cacheData = (ops: CacheData) => {
 /**
  * Get cache data
  */
-export const getCacheData = () => {
+export const getCacheData = (keyName?: keyof CacheData) => {
+  if (keyName) {
+    return data[keyName]
+  }
   return data;
 };

@@ -7,12 +7,14 @@ import { reactScripts, isWebpackFactory, proxySetup } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
 import { overridesOpenBrowser } from '../overrides/openBrowser';
 import { overridesClearConsole } from '../overrides/clearConsole';
+import { overridesChoosePort } from '../overrides/choosePort';
 import { miniCssExtractPlugin } from '../utils/miniCssExtractPlugin';
 import { cacheData } from '../utils/cacheData';
 
 export default async function build(argvs: ParsedArgs) {
   try {
     const paths = await overridePaths(argvs);
+    await overridesClearConsole(argvs);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.dev' : ''}`;
     const devServerConfigPath = `${reactScripts}/config/webpackDevServer.config.js`;
     const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);
@@ -20,7 +22,6 @@ export default async function build(argvs: ParsedArgs) {
     const overrides = require('../overrides/config');
     const kktrc: KKTRC = await overrides();
     await overridesOpenBrowser(argvs);
-    await overridesClearConsole(argvs);
 
     /**
      * Override DevServerConfig
@@ -38,19 +39,25 @@ export default async function build(argvs: ParsedArgs) {
       }
       const overrideWebpackConf = await overridesHandle(webpackConf, 'development', {
         ...argvs,
+        devServerConfigHandle: createDevServerConfig,
         shouldUseSourceMap,
         paths,
-        devServerConfigHandle: createDevServerConfig,
         kktrc,
       });
       if (overrideWebpackConf.devServer) {
+        /**
+         * Modify Client Server Port
+         */
+        await overridesChoosePort(overrideWebpackConf.devServer.port);
         (Object.keys(overrideWebpackConf.devServer) as Array<keyof typeof overrideWebpackConf.devServer>).forEach((keyName) => {
           (overrideDevServerConfig as any)[keyName] = overrideWebpackConf.devServer[keyName];
         });
         delete overrideWebpackConf.devServer;
       }
       // override config in memory
-      require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => overrideWebpackConf;
+      require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => {
+        return overrideWebpackConf;
+      };
     }
 
     // override config in memory
@@ -60,7 +67,7 @@ export default async function build(argvs: ParsedArgs) {
     ) => {
       const serverConf = createDevServerConfig(proxy, allowedHost);
       if (kktrc && kktrc.devServer && typeof kktrc.devServer === 'function') {
-        return kktrc.devServer({ ...serverConf, ...overrideDevServerConfig }, { ...argvs, paths });
+        return kktrc.devServer({ ...overrideDevServerConfig, ...serverConf }, { ...argvs, paths });
       }
       return serverConf;
     };
