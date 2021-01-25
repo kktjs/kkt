@@ -125,24 +125,24 @@ import express from 'express';
 import { ParsedArgs } from 'minimist';
 import { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import { LoaderConfOptions, MockerAPIOptions, DevServerOptions } from 'kkt';
+import { LoaderConfOptions, MockerAPIOptions, DevServerOptions, WebpackConfiguration } from 'kkt';
 
 type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
   devServer?: (config: WebpackDevServer.Configuration, options: DevServerOptions) => WebpackDevServer.Configuration;
-  default?: (conf: Configuration, evn: string, options: LoaderConfOptions) => Configuration | Promise<Configuration>;
+  default?: (conf: WebpackConfiguration, evn: string, options: LoaderConfOptions) => WebpackConfiguration | Promise<WebpackConfiguration>;
 };
 ```
 
 Example
 
 ```typescript
-import webpack, { Configuration } from 'webpack';
+import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import lessModules from '@kkt/less-modules';
-import { LoaderConfOptions } from 'kkt';
+import { LoaderConfOptions, WebpackConfiguration } from 'kkt';
 
-export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
+export default (conf: WebpackConfiguration, env: string, options: LoaderConfOptions) => {
   // The Webpack config to use when compiling your react app for development or production.
   // ...add your webpack config
   conf = lessModules(conf, env, options);

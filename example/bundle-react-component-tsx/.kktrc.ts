@@ -1,10 +1,9 @@
-import { Configuration } from 'webpack';
-import { LoaderConfOptions } from 'kkt';
+import { LoaderConfOptions, WebpackConfiguration } from 'kkt';
 import reactLibrary from '@kkt/react-library';
 import lessModules from '@kkt/less-modules';
 import pkg from './package.json';
 
-export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
+export default (conf: WebpackConfiguration, env: string, options: LoaderConfOptions) => {
   conf = lessModules(conf, env, options);
   conf = reactLibrary(conf, env, {
     ...options,
