@@ -14,13 +14,13 @@ import { cacheData } from '../utils/cacheData';
 export default async function build(argvs: ParsedArgs) {
   try {
     const paths = await overridePaths(argvs);
-    await overridesClearConsole(argvs);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.dev' : ''}`;
     const devServerConfigPath = `${reactScripts}/config/webpackDevServer.config.js`;
     const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);
     const createDevServerConfig: DevServerConfigFunction = require(devServerConfigPath);
     const overrides = require('../overrides/config');
     const kktrc: KKTRC = await overrides();
+    await overridesClearConsole(argvs);
     await overridesOpenBrowser(argvs);
 
     /**
