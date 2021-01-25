@@ -1,4 +1,3 @@
-
 declare module 'mini-css-extract-plugin' {
   import { Configuration, Compiler } from 'webpack';
 

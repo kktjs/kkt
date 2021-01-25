@@ -54,12 +54,12 @@ if (argvs['config-overrides']) {
 }
 
 /**
- * Package [`react-scripts`](http://npmjs.com/react-scripts) directory location  
+ * Package [`react-scripts`](http://npmjs.com/react-scripts) directory location
  * - `<root path>/node_modules/react-scripts`
  */
 const reactScripts = path.join(require.resolve('react-scripts/package.json'), '..');
 /**
- * Package [`react-dev-utils`](http://npmjs.com/react-dev-utils) directory location  
+ * Package [`react-dev-utils`](http://npmjs.com/react-dev-utils) directory location
  * - `<root path>/node_modules/react-dev-utils`
  */
 const reactDevUtils = path.join(require.resolve('react-dev-utils/package.json'), '..');

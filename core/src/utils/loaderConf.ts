@@ -42,13 +42,17 @@ export type DevServerConfigFunction = (
 
 export type DevServerOptions = ParsedArgs & Pick<LoaderConfOptions, 'paths' | 'paths'>;
 export type WebpackConfiguration = Configuration & {
-  devServer?: WebpackDevServer.Configuration
-}
+  devServer?: WebpackDevServer.Configuration;
+};
 
 export type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
   devServer?: (config: WebpackDevServer.Configuration, options: DevServerOptions) => WebpackDevServer.Configuration;
-  default?: (conf: WebpackConfiguration, evn: string, options: LoaderConfOptions) => WebpackConfiguration | Promise<WebpackConfiguration>;
+  default?: (
+    conf: WebpackConfiguration,
+    evn: string,
+    options: LoaderConfOptions,
+  ) => WebpackConfiguration | Promise<WebpackConfiguration>;
 };
 
 export async function loaderConf(rcPath: string): Promise<KKTRC> {

@@ -1,10 +1,6 @@
 {
   "version": "6.6.2",
-  "packages": [
-    "core",
-    "example/*",
-    "packages/*"
-  ],
+  "packages": ["core", "example/*", "packages/*"],
   "command": {
     "create": {
       "homepage": "https://github.com/kktjs/kkt",
@@ -18,12 +14,8 @@
       "message": "chore(release): %s"
     },
     "bootstrap": {
-      "npmClientArgs": [
-        "--no-package-lock"
-      ],
-      "yarnClientArgs": [
-        "--no-yarn-lock"
-      ],
+      "npmClientArgs": ["--no-package-lock"],
+      "yarnClientArgs": ["--no-yarn-lock"],
       "forceLocal": true
     },
     "publish": {

@@ -20,7 +20,7 @@ export const cacheData = (ops: CacheData) => {
  */
 export const getCacheData = (keyName?: keyof CacheData) => {
   if (keyName) {
-    return data[keyName]
+    return data[keyName];
   }
   return data;
 };

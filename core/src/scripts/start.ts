@@ -26,7 +26,7 @@ export default async function build(argvs: ParsedArgs) {
     /**
      * Override DevServerConfig
      */
-    const overrideDevServerConfig: WebpackDevServer.Configuration = { headers: {'Access-Control-Allow-Origin': '*'} };
+    const overrideDevServerConfig: WebpackDevServer.Configuration = { headers: { 'Access-Control-Allow-Origin': '*' } };
 
     // Source maps are resource heavy and can cause out of memory issue for large source files.
     const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -49,9 +49,11 @@ export default async function build(argvs: ParsedArgs) {
          * Modify Client Server Port
          */
         await overridesChoosePort(overrideWebpackConf.devServer.port);
-        (Object.keys(overrideWebpackConf.devServer) as Array<keyof typeof overrideWebpackConf.devServer>).forEach((keyName) => {
-          (overrideDevServerConfig as any)[keyName] = overrideWebpackConf.devServer[keyName];
-        });
+        (Object.keys(overrideWebpackConf.devServer) as Array<keyof typeof overrideWebpackConf.devServer>).forEach(
+          (keyName) => {
+            (overrideDevServerConfig as any)[keyName] = overrideWebpackConf.devServer[keyName];
+          },
+        );
         delete overrideWebpackConf.devServer;
       }
       // override config in memory

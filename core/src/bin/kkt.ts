@@ -22,7 +22,7 @@ function help() {
   console.log('  $ \x1b[35mkkt\x1b[0m test');
 }
 
-;(async () => {
+(async () => {
   try {
     const args = process.argv.slice(2);
     const argvs = minimist(args);

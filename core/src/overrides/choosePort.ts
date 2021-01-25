@@ -19,6 +19,6 @@ export function overridesChoosePort(port?: number) {
       cacheData({ port: currentPort, defaultPort });
       resolve(currentPort);
     });
-  }
+  };
   require.cache[require.resolve(WebpackDevServerUtilsPath)].exports = devServerUtils;
 }
