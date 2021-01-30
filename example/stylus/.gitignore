@@ -1,15 +1,13 @@
+coverage
+build
 node_modules
 npm-debug.log*
 package-lock.json
-coverage
-build
+
+.eslintcache
 .DS_Store
 .cache
 .vscode
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 *.bak
 *.tem
