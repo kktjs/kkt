@@ -9,6 +9,7 @@ function RoutersController(props = {}) {
   const HelpLayout = resetProps.routerData['/help'].component;
   useEffect(() => {
     props.verify();
+    // eslint-disable-next-line
   }, [])
   // isAuthenticated = true 表示身份经过验证
   // 请求是否登录验证
