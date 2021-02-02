@@ -51,14 +51,14 @@
     "@kkt/scope-plugin-options": "6.6.2",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
-    "compile-less-cli": "1.6.0",
+    "compile-less-cli": "1.7.0",
     "husky": "4.3.8",
     "kkt": "6.6.2",
     "lint-staged": "10.5.3",
     "prettier": "2.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "tsbb": "2.0.5"
+    "tsbb": "2.0.7"
   },
   "eslintConfig": {
     "extends": [
