@@ -1,31 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-class RoutersController extends React.PureComponent {
-  componentDidMount() {
-    this.props.verify();
+function RoutersController(props = {}) {
+  const { resetProps, token, userData } = props;
+  const BasicLayout = resetProps.routerData['/'].component;
+  const UserLayout = resetProps.routerData['/login'].component;
+  const HelpLayout = resetProps.routerData['/help'].component;
+  useEffect(() => {
+    props.verify();
+  }, [])
+  // isAuthenticated = true 表示身份经过验证
+  // 请求是否登录验证
+  if (!props.isAuthenticated) {
+    return <span>是否登录的验证</span>;
   }
-  render() {
-    const { resetProps, token, userData } = this.props;
-    const BasicLayout = resetProps.routerData['/'].component;
-    const UserLayout = resetProps.routerData['/login'].component;
-    const HelpLayout = resetProps.routerData['/help'].component;
-    // isAuthenticated = true 表示身份经过验证
-    // 请求是否登录验证
-    if (!this.props.isAuthenticated) {
-      return <span>是否登录的验证</span>;
-    }
-    resetProps.token = token;
-    resetProps.userData = userData;
-    return (
-      <Switch>
-        <Route path="/login" render={(props) => <UserLayout {...props} {...resetProps} />} />
-        <Route path="/help" render={(props) => <HelpLayout {...props} {...resetProps} />} />
-        <Route path="/" render={(props) => <BasicLayout {...props} {...resetProps} />} />
-      </Switch>
-    );
-  }
+  resetProps.token = token;
+  resetProps.userData = userData;
+  return (
+    <Switch>
+      <Route path="/login" render={(props) => <UserLayout {...props} {...resetProps} />} />
+      <Route path="/help" render={(props) => <HelpLayout {...props} {...resetProps} />} />
+      <Route path="/" render={(props) => <BasicLayout {...props} {...resetProps} />} />
+    </Switch>
+  );
 }
 
 const mapState = ({ global }) => ({

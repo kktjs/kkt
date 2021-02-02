@@ -1,4 +1,8 @@
-// 拼接url参数
+/**
+ * 拼接 url 参数
+ * @param url 
+ * @param options 
+ */
 export function splitUrl(url: string, options: { [x: string]: any }) {
   let urlNew = url;
   const paramsArray: string[] = [];

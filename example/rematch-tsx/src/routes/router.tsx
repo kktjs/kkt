@@ -9,7 +9,7 @@ const dynamicWrapper = (models: string[], component: () => Promise<any>) =>
       models.map((m: string) => {
         return import(`../models/${m}.ts`).then((md) => {
           const modelData = md.default || md;
-          store.model({ name: m, ...modelData });
+          store.addModel({ name: m, ...modelData });
         });
       }),
     component,

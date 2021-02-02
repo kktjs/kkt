@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button } from 'uiw';
 import { DefaultProps } from '../../';
 
-export default class Home extends Component<DefaultProps> {
-  render() {
-    const { history } = this.props;
-    return (
-      <div>
-        首页
-        <Button onClick={() => history.push('/login')}>Logout</Button>
-      </div>
-    );
-  }
+function Home(props: DefaultProps) {
+  const { history } = props || {};
+  return (
+    <div>
+      首页
+      <Button onClick={() => history.push('/login')}>Logout</Button>
+    </div>
+  );
 }
+
+export default Home

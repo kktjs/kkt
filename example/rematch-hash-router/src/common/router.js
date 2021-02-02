@@ -9,7 +9,7 @@ const dynamicWrapper = (models, component) =>
       models.map((m) => {
         return import(`../models/${m}.js`).then((md) => {
           const modelData = md.default || md;
-          store.model({ name: m, ...modelData });
+          store.addModel({ name: m, ...modelData });
         });
       }),
     component,

@@ -5,12 +5,12 @@ export interface GlobalState {
   test?: string;
 }
 
-export default createModel({
+export default createModel()({
   state: {
     test: '测试全局State',
-  },
+  } as GlobalState,
   reducers: {
-    updateState: (state: any, payload: GlobalState): GlobalState => ({
+    updateState: (state, payload: GlobalState) => ({
       ...state,
       ...payload,
     }),
