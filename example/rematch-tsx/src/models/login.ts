@@ -20,10 +20,11 @@ export default createModel<RootModel>()({
   reducers: {
     updateState: (state, payload: LoginState): LoginState => ({ ...state, ...payload }),
   },
-  effects: () => ({
+  effects: (dispatch) => ({
     async submit(payload: LoginState['userData']) {
       await login({ ...payload } as  LoginState['userData']);
       history.push('/');
+      // dispatch.login.updateState({ token: '测试2' });
     },
   }),
 });

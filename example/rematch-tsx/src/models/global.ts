@@ -1,11 +1,11 @@
 import { createModel } from '@rematch/core';
-import { Dispatch } from './';
+import { RootModel } from './';
 
 export interface GlobalState {
   test?: string;
 }
 
-export default createModel()({
+export default createModel<RootModel>()({
   state: {
     test: '测试全局State',
   } as GlobalState,
@@ -15,10 +15,9 @@ export default createModel()({
       ...payload,
     }),
   },
-  effects: (dispatch: any) => ({
+  effects: (dispatch) => ({
     async verify() {
-      const dph = dispatch as Dispatch;
-      dph.global.updateState({ test: '测试2' });
+      dispatch.global.updateState({ test: '测试2' });
     },
   }),
 });
