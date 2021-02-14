@@ -1,8 +1,8 @@
-import webpack from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import lessModules from '@kkt/less-modules';
-import { LoaderConfOptions, WebpackConfiguration } from 'kkt';
+import { LoaderConfOptions } from 'kkt';
 
-export default (conf: WebpackConfiguration, env: string, options: LoaderConfOptions) => {
+export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
   conf = lessModules(conf, env, options);
   conf.output!.publicPath = './';
   const regexp = /(GenerateSW)/;

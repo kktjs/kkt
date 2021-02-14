@@ -1,13 +1,13 @@
 import path from 'path';
-import webpack from 'webpack';
-import { LoaderConfOptions, WebpackConfiguration } from 'kkt';
+import webpack, { Configuration } from 'webpack';
+import { LoaderConfOptions } from 'kkt';
 import WebpackDevServer from 'webpack-dev-server';
 import lessModules from '@kkt/less-modules';
 import rawModules from '@kkt/raw-modules';
 import scopePluginOptions from '@kkt/scope-plugin-options';
 import pkg from './package.json';
 
-export default (conf: WebpackConfiguration, env: string, options: LoaderConfOptions) => {
+export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
   conf = rawModules(conf, env, { ...options });
   conf = scopePluginOptions(conf, env, {
     ...options,
