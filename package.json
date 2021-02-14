@@ -56,7 +56,8 @@
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "updated": "lerna updated",
     "clean": "lerna clean",
-    "tsbb": "tsbb"
+    "tsbb": "tsbb",
+    "lerna": "lerna"
   },
   "husky": {
     "hooks": {
