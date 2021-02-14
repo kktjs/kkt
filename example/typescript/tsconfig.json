@@ -24,6 +24,6 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", ".kktrc.ts"],
   "exclude": ["build", "dist", "**/*.spec.ts", "**/*.test.ts"]
 }
