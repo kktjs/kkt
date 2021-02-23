@@ -14,7 +14,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@rematch/core": "2.0.0",
+    "@rematch/core": "2.0.1",
     "@rematch/loading": "2.0.0",
     "axios": "0.21.1",
     "history": "5.0.0",
