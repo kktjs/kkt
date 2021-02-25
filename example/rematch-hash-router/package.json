@@ -25,7 +25,7 @@
     "react-router-dom": "5.2.0"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.7.2",
+    "@kkt/less-modules": "6.7.1",
     "kkt": "6.7.2"
   },
   "eslintConfig": {
