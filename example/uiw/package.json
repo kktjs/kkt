@@ -1,6 +1,6 @@
 {
   "name": "@template/uiw",
-  "version": "6.7.0",
+  "version": "6.7.1",
   "description": "Use uiw for the project.",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
     "uiw": "4.7.12"
   },
   "devDependencies": {
-    "kkt": "6.7.0"
+    "kkt": "6.7.1"
   },
   "browserslist": {
     "production": [

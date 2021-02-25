@@ -1,6 +1,6 @@
 {
   "name": "@template/rematch-uiw",
-  "version": "6.7.0",
+  "version": "6.7.1",
   "description": "",
   "private": true,
   "scripts": {
@@ -26,8 +26,8 @@
     "uiw": "4.7.12"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.7.0",
-    "kkt": "6.7.0"
+    "@kkt/less-modules": "6.7.1",
+    "kkt": "6.7.1"
   },
   "eslintConfig": {
     "extends": [
