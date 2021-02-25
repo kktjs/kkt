@@ -1,7 +1,7 @@
-Basic Example for Scss
+Basic Example for Sass
 ===
 
-Use an example of `Scss`.
+Use an example of [`Scss`](https://github.com/sass/node-sass).
 
 ## Quick Start
 
