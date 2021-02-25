@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@kkt/less-modules": "6.7.0",
-    "@kkt/raw-modules": "6.7.0",
+    "@kkt/raw-modules": "6.6.3",
     "kkt": "6.7.0"
   },
   "browserslist": {
