@@ -25,7 +25,7 @@
     "uiw": "4.7.12"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.7.0",
+    "@kkt/less-modules": "6.6.3",
     "@kkt/raw-modules": "6.7.0",
     "@kkt/scope-plugin-options": "6.7.0",
     "@types/react": "17.0.2",
