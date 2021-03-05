@@ -18,7 +18,7 @@
     "src"
   ],
   "dependencies": {
-    "mocker-api": "2.8.1"
+    "mocker-api": "2.8.2"
   },
   "devDependencies": {
     "kkt": "6.7.2"
