@@ -18,7 +18,7 @@
     "src"
   ],
   "dependencies": {
-    "less": "^3.13.1",
+    "less": "^4.0.0",
     "less-loader": "^7.1.0"
   },
   "devDependencies": {
