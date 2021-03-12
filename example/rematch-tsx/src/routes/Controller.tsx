@@ -2,11 +2,13 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Dispatch, RootState } from '../models';
+import { getRouterData } from '../routes/router';
 
-type connectedProps = ReturnType<typeof mapState> & ReturnType<typeof mapDispatch>;
-type Props = connectedProps &
-  typeof Controller.defaultProps & {
-    routerData: any;
+type StateProps = ReturnType<typeof mapState>;
+type DispatchProps = ReturnType<typeof mapDispatch>;
+type Props = StateProps &
+  DispatchProps & {
+    routerData: typeof getRouterData;
   };
 
 const mapState = ({ global }: RootState) => ({
@@ -14,13 +16,12 @@ const mapState = ({ global }: RootState) => ({
   // userData: global.userData,
 });
 
-const mapDispatch = (dispatch: Dispatch) => ({
+const mapDispatch: any = (dispatch: Dispatch) => ({
   // verify: dispatch.global.verify,
   // verify: global.verify,
 });
 
 class Controller extends React.PureComponent<Props> {
-  static defaultProps = {};
   componentDidMount() {
     // this.props.verify();
   }

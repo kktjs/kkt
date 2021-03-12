@@ -11,12 +11,13 @@ const mapState = ({ login, loading }: RootState) => ({
   account: login.userData,
 });
 
-const mapDispatch = (dispatch: Dispatch) => ({
+const mapDispatch: any = (dispatch: Dispatch) => ({
   submit: dispatch.login.submit,
 });
 
-type connectedProps = ReturnType<typeof mapState> & ReturnType<typeof mapDispatch>;
-type Props = connectedProps & DefaultProps;
+type StateProps = ReturnType<typeof mapState>;
+type DispatchProps = ReturnType<typeof mapDispatch>;
+type Props = StateProps & DispatchProps & DefaultProps;
 
 function Login(props: Props) {
   const { loading } = props;
