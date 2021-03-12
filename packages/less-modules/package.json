@@ -18,8 +18,8 @@
     "src"
   ],
   "dependencies": {
-    "less": "^4.0.0",
-    "less-loader": "^8.0.0"
+    "less": "^4.1.1",
+    "less-loader": "^7.3.0"
   },
   "devDependencies": {
     "kkt": "6.7.2"
