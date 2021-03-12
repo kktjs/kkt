@@ -75,6 +75,6 @@
     "lint-staged": "10.5.4",
     "prettier": "2.2.1",
     "react-scripts": "4.0.3",
-    "tsbb": "2.0.11"
+    "tsbb": "2.1.0"
   }
 }
