@@ -4,8 +4,6 @@
     "module": "esnext",
     "jsx": "react-jsx",
     "declaration": true,
-    "outDir": "lib",
-    "rootDir": ".",
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -24,6 +22,5 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": ["src/**/*", ".kktrc.ts"],
-  "exclude": ["build", "dist", "**/*.spec.ts", "**/*.test.ts"]
+  "include": ["src", ".kktrc.ts"]
 }
