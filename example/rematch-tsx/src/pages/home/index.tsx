@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'uiw';
 import { DefaultProps } from '../../';
 
-function Home(props: DefaultProps) {
+export default function Home(props: DefaultProps) {
   const { history } = props || {};
   return (
     <div>
@@ -11,5 +11,3 @@ function Home(props: DefaultProps) {
     </div>
   );
 }
-
-export default Home;

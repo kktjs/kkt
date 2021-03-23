@@ -21,6 +21,9 @@ export default createModel<RootModel>()({
     updateState: (state, payload: LoginState): LoginState => ({ ...state, ...payload }),
   },
   effects: (dispatch) => ({
+    async logout(_) {
+      // await logout();
+    },
     async submit(payload: LoginState['userData']) {
       await login({ ...payload } as LoginState['userData']);
       history.push('/');

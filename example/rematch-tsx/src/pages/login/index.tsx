@@ -1,26 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Row, Col, Button, Input, Checkbox } from 'uiw';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import logo from '../../assets/logo-dark.svg';
 import styles from './index.module.less';
 import { RootState, Dispatch } from '../../models';
 import { DefaultProps } from '../../';
 
-const mapState = ({ login, loading }: RootState) => ({
-  loading: loading.effects.login.submit,
-  account: login.userData,
-});
+type Props = DefaultProps;
 
-const mapDispatch: any = (dispatch: Dispatch) => ({
-  submit: dispatch.login.submit,
-});
+export default function Login(props: Props) {
+  const { loading, token } = useSelector(({ loading, login }: RootState) => ({
+    loading: loading.effects.login.submit,
+    account: login.userData,
+    token: login.token,
+  }));
 
-type StateProps = ReturnType<typeof mapState>;
-type DispatchProps = ReturnType<typeof mapDispatch>;
-type Props = StateProps & DispatchProps & DefaultProps;
+  const dispatch = useDispatch<Dispatch>();
+  useEffect(() => {
+    if (token) {
+      dispatch.login.logout();
+    }
+    // eslint-disable-next-line
+  }, []);
 
-function Login(props: Props) {
-  const { loading } = props;
   return (
     <Row justify="center" align="middle" style={{ height: '100%' }}>
       <Col span="5">
@@ -38,7 +40,7 @@ function Login(props: Props) {
               err.filed = errorObj;
               throw err;
             }
-            props.submit({
+            dispatch.login.submit({
               username: current.username,
               password: current.password,
               terms: current.terms,
@@ -109,5 +111,3 @@ function Login(props: Props) {
     </Row>
   );
 }
-
-export default connect(mapState, mapDispatch)(Login);

@@ -10,7 +10,7 @@ export interface RootModel extends Models<RootModel>, FullModel {
 
 type FullModel = ExtraModelsFromLoading<RootModel>;
 
-export const models = { global } as RootModel;
+export const models = { global, login } as RootModel;
 export const store = init<RootModel, FullModel>({
   models,
   plugins: [loadingPlugin()],
