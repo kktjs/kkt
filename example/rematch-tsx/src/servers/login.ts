@@ -1,5 +1,5 @@
 import request from '../utils/request';
-import { LoginState } from '../models/login'
+import { LoginState } from '../models/login';
 
 /**
  * 提交登录

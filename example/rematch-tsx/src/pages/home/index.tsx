@@ -12,4 +12,4 @@ function Home(props: DefaultProps) {
   );
 }
 
-export default Home
+export default Home;

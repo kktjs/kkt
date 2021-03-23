@@ -13,16 +13,16 @@ export type LoginState = {
 };
 
 export default createModel<RootModel>()({
-  state: {
+  state: ({
     userData: null,
     token: null,
-  } as unknown as LoginState,
+  } as unknown) as LoginState,
   reducers: {
     updateState: (state, payload: LoginState): LoginState => ({ ...state, ...payload }),
   },
   effects: (dispatch) => ({
     async submit(payload: LoginState['userData']) {
-      await login({ ...payload } as  LoginState['userData']);
+      await login({ ...payload } as LoginState['userData']);
       history.push('/');
       // dispatch.login.updateState({ token: '测试2' });
     },

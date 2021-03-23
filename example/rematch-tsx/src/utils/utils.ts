@@ -1,7 +1,7 @@
 /**
  * 拼接 url 参数
- * @param url 
- * @param options 
+ * @param url
+ * @param options
  */
 export function splitUrl(url: string, options: { [x: string]: any }) {
   let urlNew = url;
