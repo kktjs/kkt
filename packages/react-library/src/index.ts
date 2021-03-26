@@ -134,7 +134,7 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
           terserOptions: {
             // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
           },
-        }),
+        }) as any,
       );
       conf.output.filename = minfilename.join('.');
       delete conf.optimization.runtimeChunk;
