@@ -17,6 +17,7 @@ function help() {
   console.log('  $ \x1b[35mkkt\x1b[0m build --app-src ./website');
   console.log('  $ \x1b[35mkkt\x1b[0m start');
   console.log('  $ \x1b[35mkkt\x1b[0m start --no-open-browser');
+  console.log('  $ \x1b[35mkkt\x1b[0m start --watch');
   console.log('  $ \x1b[35mkkt\x1b[0m start --no-clear-console');
   console.log('  $ \x1b[35mkkt\x1b[0m start --app-src ./website');
   console.log('  $ \x1b[35mkkt\x1b[0m test');

@@ -1,5 +1,5 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-import { Configuration } from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import { ParsedArgs } from 'minimist';
 import WebpackDevServer, { ProxyConfigArrayItem } from 'webpack-dev-server';
 import { KKTRC, DevServerConfigFunction } from '../utils/loaderConf';
@@ -75,9 +75,23 @@ export default async function build(argvs: ParsedArgs) {
       }
       return serverConf;
     };
-
-    // run original script
-    require(`${reactScripts}/scripts/start`);
+    // For real-time output of JS, For Chrome Plugin
+    if (argvs['watch']) {
+      const configFactory = require(`${reactScripts}/config/webpack.config`);
+      const config = configFactory('development');
+      const compiler = webpack(config);
+      // eslint-disable-next-line
+      compiler.watch({ ...config.watchOptions }, (err, stats) => {
+        if (err) {
+          console.log('❌ errors:', err);
+          return;
+        }
+        console.log('🚀 started!');
+      });
+    } else {
+      // run original script
+      require(`${reactScripts}/scripts/start`);
+    }
   } catch (error) {
     console.log('KKT:START:ERROR:', error);
   }
