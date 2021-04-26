@@ -4,8 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "kkt start --watch",
-    "build": "kkt build",
+    "start": "FAST_REFRESH=false BUILD_PATH=dist kkt start --watch --no-open-browser",
+    "build": "BUILD_PATH=dist kkt build",
     "test": "kkt test --env=jsdom",
     "test:coverage": "kkt test --env=jsdom --coverage"
   },
