@@ -151,7 +151,7 @@ jobs:
       - run: cp -rp example/markdown/markdown.zip ./zip
 
       - name: Compress react-component-tsx Example.
-        run: zip -r -y react-component-tsx.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        run: zip -r -y react-component-tsx.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "lib/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
         working-directory: example/react-component-tsx
       - run: cp -rp example/react-component-tsx/react-component-tsx.zip ./zip
 
