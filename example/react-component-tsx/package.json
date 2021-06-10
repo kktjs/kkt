@@ -1,6 +1,6 @@
 {
   "name": "@template/react-component-tsx",
-  "version": "6.9.0",
+  "version": "6.10.0",
   "description": "React Component Example for TypeScript.",
   "private": true,
   "main": "lib/cjs/index.js",
@@ -47,14 +47,14 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.9.0",
-    "@kkt/raw-modules": "6.9.0",
-    "@kkt/scope-plugin-options": "6.9.0",
+    "@kkt/less-modules": "6.10.0",
+    "@kkt/raw-modules": "6.10.0",
+    "@kkt/scope-plugin-options": "6.10.0",
     "@types/react": "17.0.11",
     "@types/react-dom": "17.0.7",
     "compile-less-cli": "1.8.0",
     "husky": "4.3.8",
-    "kkt": "6.9.0",
+    "kkt": "6.10.0",
     "lint-staged": "11.0.0",
     "prettier": "2.3.0",
     "react": "17.0.2",
