@@ -11,7 +11,11 @@ import { overridesChoosePort } from '../overrides/choosePort';
 import { miniCssExtractPlugin } from '../utils/miniCssExtractPlugin';
 import { cacheData } from '../utils/cacheData';
 
-export default async function build(argvs: ParsedArgs) {
+export interface Start extends ParsedArgs {
+  overridesWebpack?: (conf: Configuration) => Configuration;
+}
+
+export default async function start(argvs: Start) {
   try {
     const paths = await overridePaths(argvs);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.dev' : ''}`;
@@ -37,13 +41,17 @@ export default async function build(argvs: ParsedArgs) {
       if (kktrc && kktrc.proxySetup && typeof kktrc.proxySetup === 'function') {
         cacheData({ proxySetup: kktrc.proxySetup });
       }
-      const overrideWebpackConf = await overridesHandle(webpackConf, 'development', {
-        ...argvs,
-        devServerConfigHandle: createDevServerConfig,
-        shouldUseSourceMap,
-        paths,
-        kktrc,
-      });
+      const overrideWebpackConf = await overridesHandle(
+        argvs.overridesWebpack ? argvs.overridesWebpack(webpackConf) : webpackConf,
+        'development',
+        {
+          ...argvs,
+          devServerConfigHandle: createDevServerConfig,
+          shouldUseSourceMap,
+          paths,
+          kktrc,
+        },
+      );
       if (overrideWebpackConf.devServer) {
         /**
          * Modify Client Server Port

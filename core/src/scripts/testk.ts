@@ -3,7 +3,8 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'test';
 import { ParsedArgs } from 'minimist';
 import { reactScripts } from '../utils/path';
 
-export default async function build(argvs: ParsedArgs) {
+export interface Test extends ParsedArgs {}
+export default async function test(argvs: Test) {
   try {
     // run original script
     require(`${reactScripts}/scripts/test`);
