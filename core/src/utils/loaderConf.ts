@@ -10,16 +10,18 @@ import { OverridePaths } from '../overrides/paths';
 
 const tsOptions = {
   compilerOptions: {
+    sourceMap: false,
     target: 'es6',
     module: 'commonjs',
-    lib: ['dom', 'es2016', 'es2017'],
-    strictPropertyInitialization: false,
-    noUnusedLocals: false,
     moduleResolution: 'node',
-    allowSyntheticDefaultImports: true,
-    esModuleInterop: true,
+    allowJs: false,
+    declaration: true,
+    strict: true,
+    noUnusedLocals: true,
     experimentalDecorators: true,
-    emitDecoratorMetadata: true,
+    resolveJsonModule: true,
+    esModuleInterop: true,
+    removeComments: false,
   },
 };
 

@@ -1,6 +1,6 @@
-const { app, BrowserWindow } = require('electron');
+import { app, BrowserWindow } from 'electron';
 
-function createWindow() {
+app.on('ready', () => {
   // 创建浏览器窗口
   let win = new BrowserWindow({
     width: 800,
@@ -14,6 +14,4 @@ function createWindow() {
   } else {
     win.loadFile('./build/index.html');
   }
-}
-
-app.on('ready', createWindow);
+});
