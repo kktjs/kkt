@@ -4,8 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "SKIP_PREFLIGHT_CHECK=true kkt start",
-    "build": "SKIP_PREFLIGHT_CHECK=true kkt build"
+    "start": "kkt start",
+    "build": "kkt build"
   },
   "repository": {
     "type": "git",

@@ -51,24 +51,70 @@ jobs:
       - run: npm run hoist
       - run: npm run kkt:build
       - run: npm run lib:build
-      - run: npm run build && npm run bundle && bundle:min
-        working-directory: example/bundle
-      - run: npm run b:example:bundle.pro
-      - run: npm run b:example:bundle.min
-      - run: npm run b:example:bundle-react-component-tsx
-      - run: npm run b:example:less
-      - run: npm run b:example:markdown
-      - run: npm run b:example:react-component-tsx
-      - run: npm run b:example:rematch
-      - run: npm run b:example:rematch-hash-router
-      - run: npm run b:example:rematch-tsx
-      - run: npm run b:example:rematch-uiw
-      - run: npm run b:example:stylus
-      - run: npm run b:example:typescript
-      - run: npm run b:example:uiw
 
-      - run: npm run b:example:scss
-      - run: npm run b:example:basic
+      - name: example @template/basic
+        working-directory: example/basic
+        run: npm run build && npm run test:coverage
+
+      - name: example @template/bundle
+        working-directory: example/bundle
+        run: npm run build && npm run bundle && npm run bundle:min
+
+      - name: example @template/bundle-react-component-tsx
+        working-directory: example/bundle-react-component-tsx
+        run: npm run bundle && npm run bundle:min
+
+      - name: example @template/chrome-plugin
+        working-directory: example/chrome-plugin
+        run: npm run build && npm run test:coverage
+
+      # - name: example @template/electron
+      #   run: npm run build && npm run app:build
+      #   working-directory: example/electron
+
+      - name: example @template/less
+        working-directory: example/less
+        run: npm run build
+
+      - name: example @template/markdown
+        working-directory: example/markdown
+        run: npm run build
+
+      - name: example @template/react-component-tsx
+        working-directory: example/react-component-tsx
+        run: npm run build:lib && npm run doc
+
+      - name: example @template/rematch
+        working-directory: example/rematch
+        run: npm run build
+
+      - name: example @template/rematch-hash-router
+        working-directory: example/rematch-hash-router
+        run: npm run build
+
+      - name: example @template/rematch-tsx
+        working-directory: example/rematch-tsx
+        run: npm run build
+
+      - name: example @template/rematch-uiw
+        working-directory: example/rematch-uiw
+        run: npm run build
+
+      - name: example @template/scss
+        working-directory: example/scss
+        run: npm run build
+
+      - name: example @template/stylus
+        working-directory: example/stylus
+        run: npm run build
+
+      - name: example @template/typescript
+        working-directory: example/typescript
+        run: npm run build && npm run test:coverage
+
+      - name: example @template/uiw
+        working-directory: example/uiw
+        run: npm run build
 
       - name: Is a tag created auto?
         id: create_tag
