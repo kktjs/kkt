@@ -63,7 +63,7 @@ jobs:
         run: npm run build && npm run test:coverage
 
       - name: example @template/electron
-        run: npm run build && npm run app:build
+        run: npm run build && npm run build:main
         working-directory: example/electron
 
       - name: example @template/less

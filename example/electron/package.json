@@ -8,6 +8,7 @@
     "watch": "tsbb watch -s app --source-maps=none",
     "start": "kkt start --no-open-browser",
     "build": "GENERATE_SOURCEMAP=false kkt build",
+    "build:main": "tsbb build -s app --source-maps=none",
     "app": "NODE_ENV=dev ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",
     "app:build": "electron ."
   },
