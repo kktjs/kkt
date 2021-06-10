@@ -62,9 +62,9 @@ jobs:
         working-directory: example/chrome-plugin
         run: npm run build && npm run test:coverage
 
-      # - name: example @template/electron
-      #   run: npm run build && npm run app:build
-      #   working-directory: example/electron
+      - name: example @template/electron
+        run: npm run build && npm run app:build
+        working-directory: example/electron
 
       - name: example @template/less
         working-directory: example/less
