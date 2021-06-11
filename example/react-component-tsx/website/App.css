@@ -8,10 +8,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
 }
@@ -32,11 +28,8 @@ body {
 }
 
 .info {
-  text-align: left;
-  font-size: calc(10px + 2vmin);
-  width: 820px;;
-  padding-top: 10px;
-  overflow: auto;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  width: 620px;;
+  margin: 0 auto;
+  padding-top: 35px;
+  padding-bottom: 60px;
 }

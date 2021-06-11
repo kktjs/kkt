@@ -1,4 +1,5 @@
 import React from 'react';
+import MarkdownPreview from '@uiw/react-markdown-preview';
 import logo from './logo.svg';
 import './App.css';
 import Button from '../';
@@ -23,8 +24,8 @@ const App: React.FC = () => {
           <Button type="light">Light</Button>
           <Button type="dark">Dark</Button>
         </div>
-        <pre className="info">{MDStr}</pre>
       </header>
+      <MarkdownPreview source={MDStr} className="info" />
     </div>
   );
 };
