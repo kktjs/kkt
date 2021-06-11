@@ -1,6 +1,6 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 import webpack, { Configuration } from 'webpack';
-import { ParsedArgs } from 'minimist';
 import WebpackDevServer, { ProxyConfigArrayItem } from 'webpack-dev-server';
 import { KKTRC, DevServerConfigFunction } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory, proxySetup } from '../utils/path';
@@ -10,12 +10,9 @@ import { overridesClearConsole } from '../overrides/clearConsole';
 import { overridesChoosePort } from '../overrides/choosePort';
 import { miniCssExtractPlugin } from '../utils/miniCssExtractPlugin';
 import { cacheData } from '../utils/cacheData';
+import { StartArgs } from '..';
 
-export interface Start extends ParsedArgs {
-  overridesWebpack?: (conf: Configuration) => Configuration;
-}
-
-export default async function start(argvs: Start) {
+export default async function start(argvs: StartArgs) {
   try {
     const paths = await overridePaths(argvs);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.dev' : ''}`;

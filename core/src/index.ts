@@ -1,13 +1,14 @@
+import { Configuration } from 'webpack';
+import { ParsedArgs } from 'minimist';
+
 export * from './overrides/paths';
 export * from './utils/loaderConf';
 export * from './utils/getStyleLoaders';
 export * from './utils/path';
-export * from './scripts/build';
-export * from './scripts/start';
-export * from './scripts/testk';
 
-import build from './scripts/build';
-import start from './scripts/start';
-import test from './scripts/testk';
+export interface BuildArgs extends ParsedArgs {
+  overridesWebpack?: (conf: Configuration) => Configuration;
+}
 
-export { build, start, test };
+export interface StartArgs extends BuildArgs {}
+export interface TestArgs extends ParsedArgs {}
