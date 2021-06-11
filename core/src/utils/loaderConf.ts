@@ -69,20 +69,10 @@ export async function loaderConf(rcPath: string): Promise<KKTRC> {
       return kktrc;
     }
     if (fs.existsSync(confJsPath)) {
-      const { code } = babel.transformFileSync(confJsPath, {
-        presets: [
-          [
-            require.resolve('@tsbb/babel-preset-tsbb'),
-            {
-              targets: false,
-            },
-          ],
-        ],
+      require('@babel/register')({
+        presets: [[require.resolve('@tsbb/babel-preset-tsbb'), { targets: false }]],
       });
-
-      await fs.outputFile(cachePath, code);
-      kktrc = await import(cachePath);
-      await fs.remove(cachePath);
+      kktrc = await import(confJsPath);
     }
     return kktrc;
   } catch (error) {
