@@ -1,6 +1,6 @@
 {
   "name": "@kkt/scope-plugin-options",
-  "version": "6.10.2",
+  "version": "6.10.3",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "description": "This will modify the CRA ModuleScopePlugin plugin that prevents to import modules from outside the `src` directory.",
@@ -17,6 +17,6 @@
     "src"
   ],
   "devDependencies": {
-    "kkt": "6.10.2"
+    "kkt": "6.10.3"
   }
 }

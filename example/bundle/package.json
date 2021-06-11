@@ -1,6 +1,6 @@
 {
   "name": "@template/bundle",
-  "version": "6.10.2",
+  "version": "6.10.3",
   "main": "dist/bundle.js",
   "module": "src/components/index.js",
   "description": "",
@@ -23,9 +23,9 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.10.2",
-    "@kkt/react-library": "6.10.2",
-    "kkt": "6.10.2"
+    "@kkt/less-modules": "6.10.3",
+    "@kkt/react-library": "6.10.3",
+    "kkt": "6.10.3"
   },
   "eslintConfig": {
     "extends": [
