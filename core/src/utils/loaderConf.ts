@@ -2,9 +2,7 @@ import { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import { MockerOption, MockerProxyRoute } from 'mocker-api';
 import express from 'express';
-import * as babel from '@babel/core';
 import fs from 'fs-extra';
-import path from 'path';
 import { ParsedArgs } from 'minimist';
 import { OverridePaths } from '../overrides/paths';
 
@@ -61,7 +59,6 @@ export async function loaderConf(rcPath: string): Promise<KKTRC> {
   let kktrc: KKTRC = {};
   const confJsPath = `${rcPath}.js`;
   const confTsPath = `${rcPath}.ts`;
-  const cachePath = path.join(path.dirname(confJsPath), `~.${path.basename(confJsPath)}`);
   try {
     if (fs.existsSync(confTsPath)) {
       require('ts-node').register(tsOptions);
@@ -76,7 +73,6 @@ export async function loaderConf(rcPath: string): Promise<KKTRC> {
     }
     return kktrc;
   } catch (error) {
-    await fs.remove(cachePath);
     console.log('Invalid \x1b[31;1m .kktrc.js \x1b[0m file.\n', error);
     new Error('Invalid .kktrc.js file.');
     process.exit(1);
