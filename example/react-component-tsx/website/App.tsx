@@ -1,5 +1,6 @@
 import React from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
+import GitHubCorners from '@uiw/react-github-corners';
 import logo from './logo.svg';
 import './App.css';
 import Button from '../';
@@ -8,6 +9,7 @@ import MDStr from '../README.md';
 const App: React.FC = () => {
   return (
     <div className="App">
+      <GitHubCorners fixed href="https://github.com/kktjs/kkt" />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
