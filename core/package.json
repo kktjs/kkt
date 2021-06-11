@@ -45,7 +45,7 @@
     "@types/webpack-dev-server": "3.11.3",
     "fs-extra": "10.0.0",
     "minimist": "1.2.5",
-    "mocker-api": "2.9.0",
+    "mocker-api": "2.8.3",
     "react-scripts": "4.0.3",
     "request": "2.88.2",
     "sass": "1.34.1",
