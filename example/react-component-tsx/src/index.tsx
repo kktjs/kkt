@@ -16,8 +16,20 @@ export interface ButtonProps {
   htmlType?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
 export default function Button(props: ButtonProps = {}) {
-  const { prefixCls, type, size, active, disabled, block, basic, className, loading, children, htmlType, ...others } =
-    props;
+  const {
+    prefixCls = 'w-btn',
+    disabled = false,
+    active = false,
+    loading = false,
+    block = false,
+    basic = false,
+    htmlType = 'button',
+    type = 'light',
+    size = 'default',
+    className,
+    children,
+    ...others
+  } = props;
 
   const cls = [
     className,
