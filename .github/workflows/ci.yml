@@ -79,10 +79,10 @@ jobs:
         run: |
           npm run build:lib
           npm run doc
+          npm run test:coverage
           # The following changes are being made to your tsconfig.json file:
           #   - compilerOptions.noEmit must be true
           git checkout -f ./tsconfig.json
-          npm run test:coverage
 
       - name: example @template/rematch
         working-directory: example/rematch
