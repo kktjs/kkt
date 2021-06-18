@@ -2,9 +2,9 @@ import React from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import GitHubCorners from '@uiw/react-github-corners';
 import logo from './logo.svg';
-import './App.css';
 import Button from '../';
 import MDStr from '../README.md';
+import './App.css';
 
 const App: React.FC = () => {
   return (
