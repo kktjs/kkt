@@ -55,7 +55,7 @@
     "@uiw/react-github-corners": "1.4.0",
     "@uiw/react-markdown-preview": "3.1.1",
     "compile-less-cli": "1.8.0",
-    "husky": "4.3.8",
+    "husky": "6.0.0",
     "kkt": "6.10.4",
     "lint-staged": "11.0.0",
     "prettier": "2.3.1",
