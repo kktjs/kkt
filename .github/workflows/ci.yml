@@ -154,6 +154,7 @@ jobs:
       - run: npm install @jsdevtools/npm-publish -g
       - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./core/package.json
       - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/less-modules/package.json
+      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-library/package.json
       - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/raw-modules/package.json
       - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/scope-plugin-options/package.json
       - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/stylus-modules/package.json
