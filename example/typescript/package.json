@@ -27,6 +27,12 @@
     "@types/react-dom": "17.0.8",
     "kkt": "6.10.4"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
