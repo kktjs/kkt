@@ -173,7 +173,7 @@ jobs:
       - name: Compress basic-entry Example.
         run: zip -r -y basic-entry.zip . -x "node_modules/*" -x "build/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
         working-directory: example/basic-entry
-      - run: cp -rp example/basic/basic-entry.zip ./zip
+      - run: cp -rp example/basic-entry/basic-entry.zip ./zip
 
       - name: Compress bundle Example.
         run: zip -r -y bundle.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
