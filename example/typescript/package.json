@@ -25,7 +25,7 @@
     "@types/jest": "26.0.23",
     "@types/react": "17.0.14",
     "@types/react-dom": "17.0.9",
-    "kkt": "6.11.4"
+    "kkt": "6.11.0"
   },
   "eslintConfig": {
     "extends": [
