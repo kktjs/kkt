@@ -50,6 +50,10 @@ jobs:
         working-directory: example/basic
         run: npm run build && npm run test:coverage
 
+      - name: example @template/basic-entry
+        working-directory: example/basic-entry
+        run: npm run build && npm run test:coverage
+
       - name: example @template/bundle
         working-directory: example/bundle
         run: npm run build && npm run bundle && npm run bundle:min
@@ -165,6 +169,11 @@ jobs:
         run: zip -r -y basic.zip . -x "node_modules/*" -x "build/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
         working-directory: example/basic
       - run: cp -rp example/basic/basic.zip ./zip
+
+      - name: Compress basic-entry Example.
+        run: zip -r -y basic-entry.zip . -x "node_modules/*" -x "build/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/basic-entry
+      - run: cp -rp example/basic/basic-entry.zip ./zip
 
       - name: Compress bundle Example.
         run: zip -r -y bundle.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"

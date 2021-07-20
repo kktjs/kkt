@@ -1,0 +1,44 @@
+{
+  "name": "@template/basic-entry",
+  "version": "6.10.4",
+  "description": "The react base application.",
+  "private": true,
+  "scripts": {
+    "start": "kkt start --app-src=website",
+    "build": "kkt build --app-src=website",
+    "test": "kkt test --env=jsdom --app-src=website",
+    "test:coverage": "kkt test --env=jsdom --coverage --app-src=website"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kktjs/kkt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "kkt": "6.10.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -4,6 +4,7 @@ import { reactDevUtils } from '../utils/path';
 import { OverridePaths } from './paths';
 
 /**
+ * Fix `--app-src ./website`
  * [create-react-app/react-dev-utils/checkRequiredFiles.js](https://github.com/facebook/create-react-app/blob/0f6fc2bc71d78f0dcae67f3f08ce98a42fc0a57c/packages/react-dev-utils/checkRequiredFiles.js#L14-L30)
  */
 export function checkRequiredFiles(paths: OverridePaths) {

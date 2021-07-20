@@ -11,20 +11,12 @@
   "scripts": {
     "lib:----->>>": ">>>>>>>>>>>>>>>>>>>>>>>>>>>",
     "lib:watch": "npm run lib:watch:ts & npm run lib:watch:types",
-    "lib:watch:types": "lerna exec \"tsbb types --watch\" --scope @kkt/*",
+    "lib:watch:types": "lerna exec --parallel \"tsbb types --watch\" --scope @kkt/*",
     "lib:watch:ts": "lerna exec tsbb watch --scope @kkt/*",
     "lib:build:types": "lerna exec tsbb types --scope @kkt/*",
     "lib:build:ts": "lerna exec \"tsbb build --source-maps none\" --scope @kkt/*",
     "lib:build": "npm run lib:build:ts && npm run lib:build:types",
     "lib:<<<-----": "<<<<<<<<<<<<<<<<<<<<<<<<<<<",
-    "lib:one:----->>>": ">>>>>>>>>>>>>>>>>>>>>>>>>>>",
-    "lib:one:watch": "npm run lib:watch:ts & npm run lib:watch:types",
-    "lib:one:watch:types": "lerna exec \"tsbb types --watch\" --scope @kkt/less-modules",
-    "lib:one:watch:ts": "lerna exec tsbb watch --scope @kkt/less-modules",
-    "lib:one:build:types": "lerna exec tsbb types --scope @kkt/less-modules",
-    "lib:one:build:ts": "lerna exec \"tsbb build --source-maps none\" --scope @kkt/less-modules",
-    "lib:one:build": "npm run lib:build:ts && npm run lib:build:types",
-    "lib:one:<<<-----": "<<<<<<<<<<<<<<<<<<<<<<<<<<<",
     "kkt:----->>>": ">>>>>>>>>>>>>>>>>>>>>>>>>>>",
     "kkt:watch": "npm run kkt:watch:ts & npm run kkt:watch:types",
     "kkt:watch:types": "lerna exec \"tsbb types --watch\" --scope kkt",
@@ -37,7 +29,7 @@
     "kkt:<<<-----": "<<<<<<<<<<<<<<<<<<<<<<<<<<<",
     "build": "npm run kkt:build && npm run lib:build",
     "hoist": "lerna bootstrap --hoist",
-    "bootstrap": "lerna bootstrap --no-ci",
+    "bootstrap": "lerna bootstrap",
     "bootstrap:kkt": "lerna bootstrap --scope kkt",
     "bootstrap:basic": "lerna bootstrap --scope @template/basic",
     "bootstrap:markdown": "lerna bootstrap --scope @template/markdown",
@@ -55,6 +47,9 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "engines": {
+    "node": ">=12.0.0"
   },
   "lint-staged": {
     "*.{js,jsx,tsx,ts,less,md,json}": "prettier --write"
