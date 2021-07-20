@@ -1,6 +1,6 @@
 {
   "name": "@template/rematch",
-  "version": "6.10.4",
+  "version": "6.11.0",
   "description": "Use Rematch for the project.",
   "private": true,
   "scripts": {
@@ -26,8 +26,8 @@
     "redux": "4.1.0"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.10.4",
-    "kkt": "6.10.4"
+    "@kkt/less-modules": "6.11.0",
+    "kkt": "6.11.0"
   },
   "eslintConfig": {
     "extends": [
