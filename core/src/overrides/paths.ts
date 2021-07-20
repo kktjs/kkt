@@ -13,7 +13,7 @@ export type OverridePaths = Paths & {
  * - [create-react-app/react-scripts/react-scripts/config/paths.js](https://github.com/facebook/create-react-app/blob/0f6fc2bc71d78f0dcae67f3f08ce98a42fc0a57c/packages/react-scripts/config/paths.js#L83-L105)
  */
 export const overridePaths = (
-  argvs = undefined as ParsedArgs | undefined,
+  argvs?: ParsedArgs,
   opts: Record<string, string> = {},
 ): OverridePaths => {
   const pathsConfPath = `${reactScripts}/config/paths`;

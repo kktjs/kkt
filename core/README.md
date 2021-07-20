@@ -253,12 +253,22 @@ KKT uses the `homepage` field to determine the root URL in the built HTML file.
 
 ### Development
 
+Runs the project in development mode.  
+
 ```bash
-npm run hoist
+npm run bootstrap
 npm run build
 
 npm run lib:watch
 npm run kkt:watch
+```
+
+### Production
+
+Builds the app for production to the build folder.
+
+```bash
+npm run build
 ```
 
 ### Acknowledgements

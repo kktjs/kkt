@@ -10,11 +10,13 @@ import { overridesClearConsole } from '../overrides/clearConsole';
 import { overridesChoosePort } from '../overrides/choosePort';
 import { miniCssExtractPlugin } from '../utils/miniCssExtractPlugin';
 import { cacheData } from '../utils/cacheData';
+import { checkRequiredFiles } from '../overrides/checkRequired';
 import { StartArgs } from '..';
 
 export default async function start(argvs: StartArgs) {
   try {
     const paths = await overridePaths(argvs);
+    await checkRequiredFiles(paths);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.dev' : ''}`;
     const devServerConfigPath = `${reactScripts}/config/webpackDevServer.config.js`;
     const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);
