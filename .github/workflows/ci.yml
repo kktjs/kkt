@@ -52,7 +52,7 @@ jobs:
 
       - name: example @template/basic-entry
         working-directory: example/basic-entry
-        run: npm run build && npm run test:coverage
+        run: npm run build
 
       - name: example @template/bundle
         working-directory: example/bundle
