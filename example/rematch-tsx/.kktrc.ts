@@ -20,6 +20,9 @@ export default (conf: Configuration, env: 'development' | 'production', options:
       VERSION: JSON.stringify(pkg.version),
     }),
   );
+  if (env === 'production') {
+    conf.output = { ...conf.output, publicPath: './' };
+  }
   return conf;
 };
 
