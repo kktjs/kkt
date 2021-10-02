@@ -46,6 +46,10 @@ jobs:
       - run: npm run kkt:build
       - run: npm run lib:build
 
+      - run: mkdir -p build
+      - run: npm i markdown-to-html-cli -g
+      - run: markdown-to-html --output build/index.html
+
       - name: example @template/basic
         working-directory: example/basic
         run: npm run build && npm run test:coverage
@@ -152,6 +156,7 @@ jobs:
             ```
 
             ${{ steps.changelog.outputs.compareurl }}
+            
             ${{ steps.changelog.outputs.changelog }}
 
       - run: git status
