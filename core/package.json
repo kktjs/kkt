@@ -40,7 +40,7 @@
     "@testing-library/user-event": "^12.7.3",
     "@tsbb/babel-preset-tsbb": "1.14.2",
     "@types/fs-extra": "9.0.11",
-    "@types/minimist": "1.2.1",
+    "@types/minimist": "1.2.2",
     "@types/semver": "7.3.8",
     "@types/webpack": "4.41.27",
     "@types/webpack-dev-server": "3.11.3",
