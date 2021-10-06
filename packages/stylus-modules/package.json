@@ -19,7 +19,7 @@
     "src"
   ],
   "dependencies": {
-    "stylus": "^0.54.8",
+    "stylus": "^0.55.0",
     "stylus-loader": "^4.3.3"
   },
   "devDependencies": {
