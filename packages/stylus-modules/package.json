@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "stylus": "^0.55.0",
-    "stylus-loader": "^4.3.3"
+    "stylus-loader": "^6.0.0"
   },
   "devDependencies": {
     "kkt": "6.11.0"
