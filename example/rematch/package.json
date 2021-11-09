@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@rematch/core": "2.0.1",
-    "@rematch/loading": "2.0.1",
+    "@rematch/loading": "2.1.2",
     "axios": "0.21.2",
     "history": "5.0.1",
     "react": "17.0.2",
