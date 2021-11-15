@@ -42,7 +42,7 @@
     "@types/fs-extra": "9.0.13",
     "@types/minimist": "1.2.2",
     "@types/semver": "7.3.8",
-    "@types/webpack": "4.41.27",
+    "@types/webpack": "4.41.32",
     "@types/webpack-dev-server": "3.11.3",
     "fs-extra": "10.0.0",
     "minimist": "1.2.5",
@@ -53,6 +53,6 @@
     "semver": "7.3.5",
     "ts-node": "10.0.0",
     "typescript": "4.3.5",
-    "webpack": "4.44.2"
+    "webpack": "4.46.0"
   }
 }
