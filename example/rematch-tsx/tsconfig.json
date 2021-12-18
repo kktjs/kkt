@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,11 +13,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "jsx": "react-jsx",
-    "typeRoots": ["node_modules/@types"],
     "noFallthroughCasesInSwitch": true,
-    "noEmit": true
+    "noEmit": true,
+    "types": ["jest", "node"]
   },
-  "include": ["src", ".kktrc.ts"]
+  "include": ["src", "website", ".kktrc.ts"]
 }
