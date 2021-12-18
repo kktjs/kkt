@@ -10,20 +10,12 @@
   },
   "scripts": {
     "lib:----->>>": ">>>>>>>>>>>>>>>>>>>>>>>>>>>",
-    "lib:watch": "npm run lib:watch:ts & npm run lib:watch:types",
-    "lib:watch:types": "lerna exec --parallel \"tsbb types --watch\" --scope @kkt/*",
-    "lib:watch:ts": "lerna exec tsbb watch --scope @kkt/*",
-    "lib:build:types": "lerna exec tsbb types --scope @kkt/*",
-    "lib:build:ts": "lerna exec \"tsbb build --source-maps none\" --scope @kkt/*",
-    "lib:build": "npm run lib:build:ts && npm run lib:build:types",
+    "lib:watch": "lerna exec tsbb watch --no-esm --scope @kkt/*",
+    "lib:build": "lerna exec \"tsbb build --no-esm\" --scope @kkt/*",
     "lib:<<<-----": "<<<<<<<<<<<<<<<<<<<<<<<<<<<",
     "kkt:----->>>": ">>>>>>>>>>>>>>>>>>>>>>>>>>>",
-    "kkt:watch": "npm run kkt:watch:ts & npm run kkt:watch:types",
-    "kkt:watch:types": "lerna exec \"tsbb types --watch\" --scope kkt",
-    "kkt:watch:ts": "lerna exec tsbb watch --scope kkt",
-    "kkt:build:types": "lerna exec tsbb types --scope kkt",
-    "kkt:build:ts": "lerna exec \"tsbb build --source-maps none\" --scope kkt",
-    "kkt:build": "npm run kkt:build:ts && npm run kkt:build:types",
+    "kkt:watch": "lerna exec tsbb watch --scope kkt",
+    "kkt:build": "lerna exec \"tsbb build --no-esm\" --scope kkt",
     "kkt:test": "lerna exec tsbb test --scope kkt",
     "kkt:coverage": "lerna exec \"tsbb test --coverage\" --scope kkt",
     "kkt:<<<-----": "<<<<<<<<<<<<<<<<<<<<<<<<<<<",
@@ -39,6 +31,7 @@
     "ci:publish": "lerna publish from-package --yes",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "updated": "lerna updated",
+    "remove": "lerna exec \"rm -rf node_modules build\"",
     "clean": "lerna clean",
     "tsbb": "tsbb",
     "lerna": "lerna"
@@ -59,6 +52,6 @@
     "lerna": "4.0.0",
     "lint-staged": "11.2.0",
     "prettier": "2.4.1",
-    "tsbb": "2.2.1"
+    "tsbb": "3.5.4"
   }
 }
