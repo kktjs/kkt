@@ -1,4 +1,6 @@
 lib
+cjs
+esm
 build
 coverage
 node_modules
