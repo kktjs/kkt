@@ -17,7 +17,7 @@
     "ts:build": "tsbb build --target react",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "kkt test --env=jsdom --app-src=./website",
-    "coverage:kkt": "kkt test --env=jsdom --coverage --app-src=./website",
+    "coverage": "kkt test --env=jsdom --coverage --app-src=./website",
     "or:test:tsbb": "tsbb test --env=jsdom",
     "or:coverage:tsbb": "tsbb test --env=jsdom --coverage"
   },

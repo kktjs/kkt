@@ -58,7 +58,7 @@ jobs:
 
       - name: example @template/basic
         working-directory: example/basic
-        run: npm run build && npm run test:coverage
+        run: npm run build && npm run coverage
 
       - name: example @template/basic-entry
         working-directory: example/basic-entry
@@ -74,7 +74,7 @@ jobs:
 
       - name: example @template/chrome-plugin
         working-directory: example/chrome-plugin
-        run: npm run build && npm run test:coverage
+        run: npm run build && npm run coverage
 
       - name: example @template/electron
         run: npm run build && npm run build:main
@@ -91,9 +91,9 @@ jobs:
       - name: example @template/react-component-tsx
         working-directory: example/react-component-tsx
         run: |
-          npm run build:lib
+          npm run build
           npm run doc
-          npm run test:coverage
+          npm run coverage
           # The following changes are being made to your tsconfig.json file:
           #   - compilerOptions.noEmit must be true
           git checkout -f ./tsconfig.json
@@ -124,7 +124,7 @@ jobs:
 
       - name: example @template/typescript
         working-directory: example/typescript
-        run: npm run build && npm run test:coverage
+        run: npm run build && npm run coverage
 
       - name: example @template/uiw
         working-directory: example/uiw

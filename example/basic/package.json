@@ -7,7 +7,7 @@
     "start": "kkt start",
     "build": "kkt build",
     "test": "kkt test --env=jsdom",
-    "test:coverage": "kkt test --env=jsdom --coverage"
+    "coverage": "kkt test --env=jsdom --coverage"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   "dependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "web-vitals": "1.1.0"
+    "web-vitals": "^2.1.2"
   },
   "devDependencies": {
     "kkt": "6.11.0"

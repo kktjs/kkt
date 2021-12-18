@@ -7,7 +7,7 @@
     "start": "kkt start",
     "build": "kkt build",
     "test": "kkt test --env=jsdom",
-    "test:coverage": "kkt test --env=jsdom --coverage"
+    "coverage": "kkt test --env=jsdom --coverage"
   },
   "repository": {
     "type": "git",
