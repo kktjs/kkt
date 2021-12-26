@@ -16,7 +16,7 @@ export type ReactLibraryOptions = LoaderConfOptions & {
   main?: string;
   outputDir?: string;
   dependencies?: ExternalsObjectElement;
-  cssMinimizerPluginOptions?: CssMinimizerPlugin.Options;
+  cssMinimizerPluginOptions?: CssMinimizerPlugin.CssNanoOptionsExtended;
   miniCssExtractPluginOptions?: MiniCssExtractPlugin.PluginOptions;
 };
 

@@ -1,7 +1,11 @@
 process.env.NODE_ENV = 'development';
 
+import fs from 'fs';
 import webpack, { Configuration } from 'webpack';
-import WebpackDevServer, { ProxyConfigArrayItem } from 'webpack-dev-server';
+import WebpackDevServer from 'webpack-dev-server';
+import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
+import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
+import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
 import { KKTRC, DevServerConfigFunction } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory, proxySetup } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
@@ -55,7 +59,7 @@ export default async function start(argvs: StartArgs) {
         /**
          * Modify Client Server Port
          */
-        await overridesChoosePort(overrideWebpackConf.devServer.port);
+        await overridesChoosePort(Number(overrideWebpackConf.devServer.port));
         (Object.keys(overrideWebpackConf.devServer) as Array<keyof typeof overrideWebpackConf.devServer>).forEach(
           (keyName) => {
             (overrideDevServerConfig as any)[keyName] = overrideWebpackConf.devServer[keyName];
@@ -71,7 +75,7 @@ export default async function start(argvs: StartArgs) {
 
     // override config in memory
     require.cache[require.resolve(devServerConfigPath)].exports = (
-      proxy: ProxyConfigArrayItem[],
+      proxy: WebpackDevServer.ProxyArray,
       allowedHost: string,
     ) => {
       let serverConf = createDevServerConfig(proxy, allowedHost);
@@ -80,6 +84,35 @@ export default async function start(argvs: StartArgs) {
       } else {
         serverConf = { ...overrideDevServerConfig, ...serverConf };
       }
+      /**
+       * [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+       * (Use `node --trace-deprecation ...` to show where the warning was created)
+       * [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+       */
+      delete serverConf.onAfterSetupMiddleware;
+      delete serverConf.onBeforeSetupMiddleware;
+      serverConf.setupMiddlewares = (middlewares, devServer) => {
+        // Keep `evalSourceMapMiddleware`
+        // middlewares before `redirectServedPath` otherwise will not have any effect
+        // This lets us fetch source contents from webpack for the error overlay
+        devServer.app.use(evalSourceMapMiddleware(devServer));
+
+        if (fs.existsSync(paths.proxySetup)) {
+          // This registers user provided middleware for proxy reasons
+          require(paths.proxySetup)(devServer.app);
+        }
+
+        // Redirect to `PUBLIC_URL` or `homepage` from `package.json` if url not match
+        devServer.app.use(redirectServedPath(paths.publicUrlOrPath));
+
+        // This service worker file is effectively a 'no-op' that will reset any
+        // previous service worker registered for the same host:port combination.
+        // We do this in development to avoid hitting the production cache if
+        // it used the same host and port.
+        // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
+        devServer.app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
+        return middlewares;
+      };
       return serverConf;
     };
     // For real-time output of JS, For Chrome Plugin

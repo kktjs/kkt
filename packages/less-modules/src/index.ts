@@ -37,8 +37,11 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
       exclude: lessModuleRegex,
       use: getStyleLoaders(
         {
-          importLoaders: 1,
+          importLoaders: 3,
           sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
+          modules: {
+            mode: 'icss',
+          },
         },
         {
           ...options,
@@ -66,9 +69,11 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
       test: lessModuleRegex,
       use: getStyleLoaders(
         {
-          importLoaders: 1,
+          importLoaders: 3,
           sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
           modules: {
+            mode: 'local',
+            // @ts-ignore
             getLocalIdent: getCSSModuleLocalIdent,
           },
         },
@@ -91,16 +96,18 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
 
     // Exclude all less files (including module files) from file-loader
     conf.module.rules = conf.module.rules.map((rule) => {
-      if (rule.oneOf) {
-        rule.oneOf = rule.oneOf.map((item) => {
-          if (typeof item.loader === 'string' && /(file-loader)/.test(item.loader)) {
-            if (Array.isArray(item.exclude)) {
-              item.exclude.push(lessRegex);
-            }
-          }
-          return item;
-        });
-        rule.oneOf = loaders.concat(rule.oneOf);
+      if (typeof rule === 'object' && rule.oneOf) {
+        // rule.oneOf = rule.oneOf.map((item) => {
+        //   if (typeof item.loader === 'string' && /(file-loader)/.test(item.loader)) {
+        //     if (Array.isArray(item.exclude)) {
+        //       item.exclude.push(lessRegex);
+        //     }
+        //   }
+        //   return item;
+        // });
+        rule.oneOf = rule.oneOf.concat(loaders);
+        // rule.oneOf = loaders.concat(rule.oneOf);
+        console.log('rule:::::', rule.oneOf);
       }
       return rule;
     });

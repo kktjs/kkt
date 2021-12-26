@@ -36,7 +36,7 @@ export type LoaderConfOptions = ParsedArgs & {
 };
 
 export type DevServerConfigFunction = (
-  proxy: WebpackDevServer.ProxyConfigArrayItem[],
+  proxy: WebpackDevServer.ProxyArray,
   allowedHost: string,
 ) => WebpackDevServer.Configuration;
 

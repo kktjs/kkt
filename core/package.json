@@ -6,6 +6,8 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
+    "build": "tsbb build --file-names src/bin/kkt.ts --file-names src/scripts/build.ts --file-names src/overrides/config.ts --file-names src/scripts/start.ts --file-names src/scripts/testk.ts --no-esm",
+    "watch": "tsbb watch --file-names src/bin/kkt.ts --file-names src/scripts/build.ts --file-names src/overrides/config.ts --file-names src/scripts/start.ts --file-names src/scripts/testk.ts --no-esm",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
   },
@@ -35,24 +37,25 @@
   },
   "dependencies": {
     "@babel/register": "7.16.5",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.7.3",
-    "@tsbb/babel-preset-tsbb": "1.14.2",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@tsbb/babel-preset-tsbb": "1.15.0",
     "@types/fs-extra": "9.0.13",
     "@types/minimist": "1.2.2",
+    "@types/mini-css-extract-plugin": "2.4.0",
+    "@types/react-dev-utils": "9.0.9",
     "@types/semver": "7.3.8",
-    "@types/webpack": "4.41.27",
-    "@types/webpack-dev-server": "3.11.3",
+    "@types/webpack": "5.28.0",
     "fs-extra": "10.0.0",
     "minimist": "1.2.5",
-    "mocker-api": "2.9.2",
-    "react-scripts": "4.0.3",
-    "request": "2.88.2",
-    "sass": "1.42.1",
+    "mini-css-extract-plugin": "2.4.5",
+    "mocker-api": "2.9.4",
+    "react-scripts": "5.0.0",
+    "sass": "^1.45.1",
     "semver": "7.3.5",
-    "ts-node": "10.0.0",
+    "ts-node": "10.4.0",
     "typescript": "4.3.5",
-    "webpack": "4.44.2"
+    "webpack": "^5.65.0"
   }
 }

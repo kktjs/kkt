@@ -1,21 +1,57 @@
-import webpack, { RuleSetUseItem } from 'webpack';
+import { RuleSetUseItem, LoaderContext } from 'webpack';
 import postcssNormalize from 'postcss-normalize';
+// @ts-ignore
+import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
 import { ParsedArgs } from 'minimist';
 import { paths } from './path';
 
+/** https://github.com/webpack-contrib/css-loader/blob/master/test/validate-options.test.js */
 export interface CssOptions {
   importLoaders?: number;
+  import?:
+    | boolean
+    | {
+        filter: (url: string, media: unknown, resourcePath: string) => boolean;
+      };
   sourceMap?: boolean;
+  esModule?: boolean;
+  exportType?: 'array' | 'string' | 'css-style-sheet';
+  url?:
+    | boolean
+    | {
+        filter: (url: string, resourcePath: string) => boolean;
+      };
   modules?:
     | boolean
-    | string
+    | 'global'
+    | 'local'
+    | 'pure'
+    | 'icss'
     | {
+        mode?: 'global' | 'local' | 'pure' | 'icss' | (() => 'local');
         localIdentName?: string;
+        localIdentContext?: string;
+        localIdentHashSalt?: string;
+        localIdentHashFunction?: string;
+        localIdentHashDigest?: string;
+        localIdentHashDigestLength?: string;
+        localIdentRegExp?: string | RegExp;
+        exportGlobals?: boolean;
+        namedExport?: boolean;
+        exportOnlyLocals?: boolean;
+        exportLocalsConvention?:
+          | 'asIs'
+          | 'camelCase'
+          | 'camelCaseOnly'
+          | 'dashes'
+          | 'dashesOnly'
+          | ((localName: string) => string);
+        auto?: boolean | RegExp | (() => boolean);
         getLocalIdent?: (
-          context: webpack.loader.LoaderContext,
+          loaderContext: LoaderContext<unknown>,
+          // context: webpack.loader.LoaderContext,
           localIdentName: string,
           localName: string,
-          options: object,
         ) => string;
       };
 }
@@ -29,10 +65,7 @@ export type StyleLoadersOptions<T> = ParsedArgs & {
 
 /**
  * 方法来源
- * https://github.com/facebook/create-react-app/blob/39689239c18a1d77fb303e285b26beb1a4b650c0/packages/react-scripts/config/webpack.config.js#L107-L166
- * @param cssOptions
- * @param options
- * @param preProcessor
+ * https://github.com/facebook/create-react-app/blob/9673858a3715287c40aef9e800c431c7d45c05a2/packages/react-scripts/config/webpack.config.js#L118-L197
  */
 export const getStyleLoaders = <T>(
   cssOptions: CssOptions,
@@ -66,6 +99,7 @@ export const getStyleLoaders = <T>(
       // Necessary for external CSS imports to work
       // https://github.com/facebook/create-react-app/issues/2677
       ident: 'postcss',
+      config: false,
       plugins: () => [
         require('postcss-flexbugs-fixes'),
         require('postcss-preset-env')({
@@ -89,12 +123,12 @@ export const getStyleLoaders = <T>(
       options: {
         sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
         root: paths.appSrc,
-      } as any,
+      },
     });
     loaders.push({
       loader: require.resolve(preProcessor),
       options: {
-        sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
+        sourceMap: true,
         ...options.preProcessorOptions,
       },
     });

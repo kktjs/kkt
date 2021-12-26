@@ -17,6 +17,7 @@
     "src"
   ],
   "devDependencies": {
-    "kkt": "6.11.0"
+    "kkt": "6.11.0",
+    "webpack": "^5.65.0"
   }
 }

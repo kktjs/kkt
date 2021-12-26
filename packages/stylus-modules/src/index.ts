@@ -135,6 +135,8 @@ const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
           importLoaders: 1,
           sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
           modules: {
+            // @ts-ignore
+            //💥🔥🚨🚸🚫⛔️🔄 Upgrade `@types/react-dev-utils`
             getLocalIdent: getCSSModuleLocalIdent,
           },
         },
@@ -154,7 +156,7 @@ const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
 
     // Exclude all less files (including module files) from file-loader
     conf.module.rules = conf.module.rules.map((rule) => {
-      if (rule.oneOf) {
+      if (typeof rule === 'object' && rule.oneOf) {
         rule.oneOf = rule.oneOf.map((item) => {
           if (typeof item.loader === 'string' && /(file-loader)/.test(item.loader)) {
             if (Array.isArray(item.exclude)) {
