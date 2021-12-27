@@ -1,4 +1,4 @@
-import { Configuration, Plugin } from 'webpack';
+import { Configuration, WebpackPluginInstance } from 'webpack';
 import lessModules from '@kkt/less-modules';
 import { LoaderConfOptions } from 'kkt';
 
@@ -14,7 +14,7 @@ export default (conf: Configuration, env: 'development' | 'production', options:
         }
         return item;
       })
-      .filter(Boolean) as Plugin[];
+      .filter(Boolean) as WebpackPluginInstance[];
   }
   return conf;
 };

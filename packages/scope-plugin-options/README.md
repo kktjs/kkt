@@ -61,7 +61,6 @@ And you can now use CRA to build your library
 ### Configurations
 
 ```js
-
 import path from 'path';
 import scopePluginOptions from '@kkt/scope-plugin-options';
 
@@ -72,6 +71,16 @@ export default (conf, evn, options) => {
     ]
   });
 }
+```
+
+### API
+
+```ts
+type ReactLibraryOptions = LoaderConfOptions & {
+  allowedFiles?: ReadonlyArray<string>;
+  allowedPaths?: ReadonlyArray<string>;
+  appSrcs?: string | ReadonlyArray<string>;
+};
 ```
 
 ### License

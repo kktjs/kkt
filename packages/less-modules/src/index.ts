@@ -26,7 +26,7 @@ export type LessLoaderOptions = LessLoaderOptionsBase & {
 const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
   return function (conf: Configuration, evn: string, options = {} as LoaderConfOptions) {
     if (!conf) {
-      throw Error('KKT:ConfigPaths: there is no config file found');
+      throw Error('KKT:@kkt/less-modules: there is no config found');
     }
     options.isEnvProduction = evn === 'production';
     options.isEnvDevelopment = evn === 'development';

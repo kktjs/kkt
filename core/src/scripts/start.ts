@@ -79,16 +79,18 @@ export default async function start(argvs: StartArgs) {
       allowedHost: string,
     ) => {
       let serverConf = createDevServerConfig(proxy, allowedHost);
-      if (kktrc && kktrc.devServer && typeof kktrc.devServer === 'function') {
-        return kktrc.devServer({ ...overrideDevServerConfig, ...serverConf }, { ...argvs, paths });
-      } else {
-        serverConf = { ...overrideDevServerConfig, ...serverConf };
-      }
       /**
        * [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
        * (Use `node --trace-deprecation ...` to show where the warning was created)
        * [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
        */
+      delete serverConf.onAfterSetupMiddleware;
+      delete serverConf.onBeforeSetupMiddleware;
+      if (kktrc && kktrc.devServer && typeof kktrc.devServer === 'function') {
+        return kktrc.devServer({ ...overrideDevServerConfig, ...serverConf }, { ...argvs, paths });
+      } else {
+        serverConf = { ...overrideDevServerConfig, ...serverConf };
+      }
       delete serverConf.onAfterSetupMiddleware;
       delete serverConf.onBeforeSetupMiddleware;
       serverConf.setupMiddlewares = (middlewares, devServer) => {
