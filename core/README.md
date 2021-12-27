@@ -245,7 +245,7 @@ KKT uses the `homepage` field to determine the root URL in the built HTML file.
 ### Plugins & Loader
 
 - [@kkt/less-modules](https://github.com/kktjs/kkt/tree/master/packages/less-modules)
-- ~~[@kkt/mocker-api](https://github.com/kktjs/kkt/tree/master/packages/mocker-api)~~
+- ~~[@kkt/mocker-api](https://github.com/kktjs/kkt/tree/v6/packages/mocker-api)~~
 - [@kkt/raw-modules](https://github.com/kktjs/kkt/tree/master/packages/raw-modules)
 - [@kkt/react-library](https://github.com/kktjs/kkt/tree/master/packages/react-library)
 - [@kkt/scope-plugin-options](https://github.com/kktjs/kkt/tree/master/packages/scope-plugin-options)
