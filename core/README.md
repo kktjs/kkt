@@ -262,6 +262,8 @@ npm run build
 
 npm run lib:watch
 npm run kkt:watch
+
+npm run hoist
 ```
 
 ### Production
