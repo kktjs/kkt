@@ -2,6 +2,8 @@ import { RuleSetUseItem, LoaderContext } from 'webpack';
 import postcssNormalize from 'postcss-normalize';
 // @ts-ignore
 import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
+// @ts-ignore
+import postcssPresetEnv from 'postcss-preset-env';
 import { ParsedArgs } from 'minimist';
 import { paths } from './path';
 
@@ -96,23 +98,25 @@ export const getStyleLoaders = <T>(
     // package.json
     loader: require.resolve('postcss-loader'),
     options: {
-      // Necessary for external CSS imports to work
-      // https://github.com/facebook/create-react-app/issues/2677
-      ident: 'postcss',
-      config: false,
-      plugins: () => [
-        require('postcss-flexbugs-fixes'),
-        require('postcss-preset-env')({
-          autoprefixer: {
-            flexbox: 'no-2009',
-          },
-          stage: 3,
-        }),
-        // Adds PostCSS Normalize as the reset css with default options,
-        // so that it honors browserslist config in package.json
-        // which in turn let's users customize the target behavior as per their needs.
-        postcssNormalize(),
-      ],
+      postcssOptions: {
+        // Necessary for external CSS imports to work
+        // https://github.com/facebook/create-react-app/issues/2677
+        ident: 'postcss',
+        config: false,
+        plugins: [
+          postcssFlexbugsFixes(),
+          postcssPresetEnv({
+            autoprefixer: {
+              flexbox: 'no-2009',
+            },
+            stage: 3,
+          }),
+          // Adds PostCSS Normalize as the reset css with default options,
+          // so that it honors browserslist config in package.json
+          // which in turn let's users customize the target behavior as per their needs.
+          postcssNormalize(),
+        ],
+      },
       sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
     },
   });
