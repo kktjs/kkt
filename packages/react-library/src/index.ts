@@ -1,12 +1,14 @@
 import path from 'path';
 import fs from 'fs-extra';
-import { Configuration, ExternalsObjectElement } from 'webpack';
+import { Configuration } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import CssMinimizerPlugin, { BasePluginOptions, DefinedDefaultMinimizerAndOptions } from 'css-minimizer-webpack-plugin';
 import { overridePaths, LoaderConfOptions } from 'kkt';
 import './overridesCheckRequiredFiles';
 import { checkRequiredFiles } from './checkRequiredFiles';
-import TerserPlugin from 'terser-webpack-plugin';
+import TerserPlugin, {
+  DefinedDefaultMinimizerAndOptions as TerserPluginDefinedDefaultMinimizerAndOptions,
+} from 'terser-webpack-plugin';
 
 export type ReactLibraryOptions = LoaderConfOptions & {
   bundle?: boolean;
@@ -15,9 +17,10 @@ export type ReactLibraryOptions = LoaderConfOptions & {
   module?: string;
   main?: string;
   outputDir?: string;
-  dependencies?: ExternalsObjectElement;
-  cssMinimizerPluginOptions?: CssMinimizerPlugin.CssNanoOptionsExtended;
+  dependencies?: Configuration['externals'];
+  cssMinimizerPluginOptions?: BasePluginOptions & DefinedDefaultMinimizerAndOptions<any>;
   miniCssExtractPluginOptions?: MiniCssExtractPlugin.PluginOptions;
+  terserPluginOptions?: BasePluginOptions & TerserPluginDefinedDefaultMinimizerAndOptions<any>;
 };
 
 /** Output Dir */
@@ -89,16 +92,7 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
       filename: outFile,
       path: buildCacheDir,
     };
-    // string | RegExp | ExternalsObjectElement | ExternalsFunctionElement | ExternalsElement[]
-    let externals = {} as ExternalsObjectElement;
-    Object.keys(options.dependencies || {}).forEach((key) => {
-      if (typeof options.dependencies[key] === 'string') {
-        externals[key] = `commonjs ${key}`;
-      } else {
-        externals[key] = options.dependencies[key];
-      }
-    });
-    conf.externals = externals;
+    conf.externals = options.dependencies;
     /**
      * Clear all plugins from CRA webpack conf
      */
@@ -134,7 +128,8 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
           terserOptions: {
             // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
           },
-        }) as any,
+          ...options.terserPluginOptions,
+        }),
       );
       conf.output.filename = minfilename.join('.');
       delete conf.optimization.runtimeChunk;
