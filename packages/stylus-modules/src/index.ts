@@ -157,15 +157,7 @@ const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
     // Exclude all less files (including module files) from file-loader
     conf.module.rules = conf.module.rules.map((rule) => {
       if (typeof rule === 'object' && rule.oneOf) {
-        rule.oneOf = rule.oneOf.map((item) => {
-          if (typeof item.loader === 'string' && /(file-loader)/.test(item.loader)) {
-            if (Array.isArray(item.exclude)) {
-              item.exclude.push(sassRegex);
-            }
-          }
-          return item;
-        });
-        rule.oneOf = loaders.concat(rule.oneOf);
+        loaders.forEach((item) => rule.oneOf.splice(rule.oneOf.length - 1, 0, item));
       }
       return rule;
     });

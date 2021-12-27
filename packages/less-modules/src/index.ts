@@ -74,6 +74,7 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
           modules: {
             mode: 'local',
             // @ts-ignore
+            //💥🔥🚨🚸🚫⛔️🔄 Upgrade `@types/react-dev-utils`
             getLocalIdent: getCSSModuleLocalIdent,
           },
         },
