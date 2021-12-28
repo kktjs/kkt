@@ -102,10 +102,6 @@ jobs:
         working-directory: example/rematch
         run: npm run build
 
-      - name: example @template/rematch-hash-router
-        working-directory: example/rematch-hash-router
-        run: npm run build
-
       - name: example @template/rematch-tsx
         working-directory: example/rematch-tsx
         run: npm run build
@@ -230,11 +226,6 @@ jobs:
         run: zip -r -y rematch.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
         working-directory: example/rematch
       - run: cp -rp example/rematch/rematch.zip ./zip
-
-      - name: Compress rematch-hash-router Example.
-        run: zip -r -y rematch-hash-router.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
-        working-directory: example/rematch-hash-router
-      - run: cp -rp example/rematch-hash-router/rematch-hash-router.zip ./zip
 
       - name: Compress rematch-tsx Example.
         run: zip -r -y rematch-tsx.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
