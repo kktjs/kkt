@@ -72,7 +72,6 @@ export default async function start(argvs: StartArgs) {
         return overrideWebpackConf;
       };
     }
-
     // override config in memory
     require.cache[require.resolve(devServerConfigPath)].exports = (
       proxy: WebpackDevServer.ProxyArray,
@@ -98,10 +97,13 @@ export default async function start(argvs: StartArgs) {
         // middlewares before `redirectServedPath` otherwise will not have any effect
         // This lets us fetch source contents from webpack for the error overlay
         devServer.app.use(evalSourceMapMiddleware(devServer));
-
         if (fs.existsSync(paths.proxySetup)) {
           // This registers user provided middleware for proxy reasons
           require(paths.proxySetup)(devServer.app);
+        }
+        // Configure the `proxySetup` configuration in `.kktrc`.
+        if (fs.existsSync(proxySetup)) {
+          require(proxySetup)(devServer.app);
         }
 
         // Redirect to `PUBLIC_URL` or `homepage` from `package.json` if url not match

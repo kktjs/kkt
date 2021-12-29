@@ -75,7 +75,7 @@ You can download the following examples directly. [Download page](https://kktjs.
 - [**`markdown`**](https://github.com/kktjs/kkt/tree/master/example/markdown) - Use an example of `Markdown`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/markdown)
 - [**`react-component-tsx`**](https://github.com/kktjs/kkt/tree/master/example/react-component-tsx) - Create a project containing the website for the react component library.
 - [**`rematch-tsx`**](https://github.com/kktjs/kkt/tree/master/example/rematch-tsx) - Use [`Rematch`](https://github.com/rematch/rematch) example for TypeScript. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/rematch-tsx)
-- [**`rematch`**](https://github.com/kktjs/kkt/tree/master/example/rematch) - Use [`Rematch`](https://github.com/rematch/rematch) for the project. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/rematch)
+- [**`react-router`**](https://github.com/kktjs/kkt/tree/master/example/react-router) - Use [`react-router`](https://github.com/remix-run/react-router) for the project. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/react-router)
 - [**`scss`**](https://github.com/kktjs/kkt/tree/master/example/scss) - Use an example of `Scss`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/scss)
 - [**`stylus`**](https://github.com/kktjs/kkt/tree/master/example/stylus) - Use an example of `Stylus`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/stylus)
 - [**`typescript`**](https://github.com/kktjs/kkt/tree/master/example/typescript) - Use an example of `TypeScript`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/typescript)
@@ -94,6 +94,7 @@ npm install kkt --save-dev
 "dependencies": {
   ...
 -  "react-scripts": "4.0.1",
++  "kkt": "6.11.0",
   ....
 },
 "scripts": {

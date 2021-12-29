@@ -50,9 +50,6 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
           shouldUseSourceMap: options.shouldUseSourceMap,
           miniCssExtractPluginLoader: MiniCssExtractPlugin.loader,
           preProcessorOptions: {
-            lessOptions: {
-              javascriptEnabled: true,
-            },
             ...lessLoaderOptions,
           },
         },
@@ -85,9 +82,6 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
           shouldUseSourceMap: options.shouldUseSourceMap,
           miniCssExtractPluginLoader: MiniCssExtractPlugin.loader,
           preProcessorOptions: {
-            lessOptions: {
-              javascriptEnabled: true,
-            },
             ...lessLoaderOptions,
           },
         },

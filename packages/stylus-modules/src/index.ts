@@ -106,8 +106,11 @@ const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
       exclude: sassModuleRegex,
       use: getStyleLoaders(
         {
-          importLoaders: 1,
+          importLoaders: 3,
           sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
+          modules: {
+            mode: 'icss',
+          },
         },
         {
           ...options,
@@ -132,9 +135,10 @@ const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
       test: sassModuleRegex,
       use: getStyleLoaders(
         {
-          importLoaders: 1,
+          importLoaders: 3,
           sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
           modules: {
+            mode: 'local',
             // @ts-ignore
             //💥🔥🚨🚸🚫⛔️🔄 Upgrade `@types/react-dev-utils`
             getLocalIdent: getCSSModuleLocalIdent,
