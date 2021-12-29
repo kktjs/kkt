@@ -1,7 +1,7 @@
 {
-  "name": "@template/rematch",
+  "name": "@template/react-router",
   "version": "6.11.0",
-  "description": "Use Rematch for the project.",
+  "description": "Use react-router for the project.",
   "private": true,
   "scripts": {
     "start": "kkt start",
