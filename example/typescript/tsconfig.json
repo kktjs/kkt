@@ -12,7 +12,6 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "baseUrl": "./src",
-    "typeRoots": ["./node_modules/@types"],
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,6 +19,7 @@
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "isolatedModules": true,
+    "types": ["jest", "node"],
     "noEmit": true
   },
   "include": ["src", ".kktrc.ts"]
