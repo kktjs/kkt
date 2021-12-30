@@ -12,10 +12,7 @@ export type OverridePaths = Paths & {
  * @param {Record<string, string>} opts
  * - [create-react-app/react-scripts/react-scripts/config/paths.js](https://github.com/facebook/create-react-app/blob/0f6fc2bc71d78f0dcae67f3f08ce98a42fc0a57c/packages/react-scripts/config/paths.js#L83-L105)
  */
-export const overridePaths = (
-  argvs?: ParsedArgs,
-  opts: Record<string, string> = {},
-): OverridePaths => {
+export const overridePaths = (argvs?: ParsedArgs, opts: Record<string, string> = {}): OverridePaths => {
   const pathsConfPath = `${reactScripts}/config/paths`;
   const pathsConf = require(pathsConfPath);
   const _oldPaths = { ...pathsConf };
