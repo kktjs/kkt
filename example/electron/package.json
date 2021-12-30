@@ -1,7 +1,7 @@
 {
   "name": "@template/electron",
   "version": "6.11.0",
-  "description": "Electron example.",
+  "description": "Electron Example.",
   "main": "lib/main.js",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "build": "GENERATE_SOURCEMAP=false kkt build",
     "watch": "tsbb watch --no-esm --no-source-maps --entry app/main.ts",
     "build:main": "tsbb build --no-esm --no-source-maps --entry app/main.ts",
-    "app": "NODE_ENV=dev ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",
+    "app": "NODE_ENV=development ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",
     "app:build": "electron ."
   },
   "keywords": [

@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "outDir": "lib",
     "rootDir": ".",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -17,9 +16,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "declaration": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": ["jest", "node"]
   },
-  "include": ["src/**/*", ".kktrc.ts"],
-  "exclude": ["dist"]
+  "include": ["src", "website", ".kktrc.ts"]
 }
