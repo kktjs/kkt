@@ -16,6 +16,7 @@ npm install
 Runs the project in development mode.  
 
 ```bash
+npm run watch
 npm run start
 npm run app
 ```
