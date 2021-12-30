@@ -117,7 +117,7 @@ export const getStyleLoaders = <T>(
           postcssNormalize(),
         ],
       },
-      sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
+      sourceMap: cssOptions.sourceMap,
     },
   });
 
@@ -125,7 +125,12 @@ export const getStyleLoaders = <T>(
     loaders.push({
       loader: require.resolve('resolve-url-loader'),
       options: {
-        sourceMap: options.isEnvProduction ? options.shouldUseSourceMap : options.isEnvDevelopment,
+        sourceMap: cssOptions.sourceMap,
+        /**
+         * Build load *module.less, shows resolve-url-loader warning
+         * https://github.com/kktjs/kkt/issues/313
+         */
+        silent: true,
         root: paths.appSrc,
       },
     });
