@@ -67,7 +67,7 @@ export async function loaderConf(rcPath: string): Promise<KKTRC> {
     }
     if (fs.existsSync(confJsPath)) {
       require('@babel/register')({
-        presets: [[require.resolve('babel-preset-react-app'), { runtime: 'classic' }]],
+        presets: [[require.resolve('babel-preset-react-app'), { runtime: 'classic', useESModules: false }]],
       });
       kktrc = await import(confJsPath);
     }
