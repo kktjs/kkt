@@ -1,34 +1,45 @@
-import React from 'react';
-import dynamic from 'react-dynamic-loadable';
-import { store } from '../models';
+import React, { lazy, Suspense } from 'react';
+import { RouteObject } from 'react-router-dom';
+// import { store } from '../models';
 
-// wrapper of dynamic
-const dynamicWrapper = (models: string[], component: () => Promise<any>) =>
-  dynamic({
-    models: () =>
-      models.map((m: string) => {
-        return import(`../models/${m}.ts`).then((md) => {
-          const modelData = md.default || md;
-          store.addModel({ name: m, ...modelData });
-        });
-      }),
-    component,
-    LoadingComponent: () => <span>loading....</span>,
-  });
+export default function NoMatch() {
+  return (
+    <div>
+      <h2>It looks like you're lost...</h2>
+    </div>
+  );
+}
 
-export type RouterData = typeof getRouterData;
-
-export const getRouterData = {
-  '/login': {
-    component: dynamicWrapper([], () => import('../layouts/UserLayout')),
-  },
-  '/login/': {
-    component: dynamicWrapper(['login'], () => import('../pages/login')),
-  },
-  '/': {
-    component: dynamicWrapper([], () => import('../layouts/BasicLayout')),
-  },
-  '/home': {
-    component: dynamicWrapper([], () => import('../pages/home')),
-  },
+const Loadable = (Component: React.LazyExoticComponent<() => JSX.Element>, models?: string[]) => (props: any) => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Component {...props} />
+    </Suspense>
+  );
 };
+
+const BasicLayout = Loadable(lazy(() => import('../layouts/BasicLayout')));
+const LoginPage = Loadable(lazy(() => import('../pages/login')));
+const Home = Loadable(lazy(() => import('../pages/home')));
+
+export const routes: RouteObject[] = [
+  {
+    path: '/login',
+    element: <LoginPage />,
+  },
+  {
+    path: '/',
+    element: <BasicLayout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: '/home',
+        element: <Home />,
+      },
+      { path: '*', element: <NoMatch /> },
+    ],
+  },
+];

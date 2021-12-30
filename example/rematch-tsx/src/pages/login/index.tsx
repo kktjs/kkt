@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Form, Row, Col, Button, Input, Checkbox } from 'uiw';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { RootState, Dispatch } from '../../models';
 import logo from '../../assets/logo-dark.svg';
 import styles from './index.module.less';
-import { RootState, Dispatch } from '../../models';
-import { DefaultProps } from '../../';
 
-type Props = DefaultProps;
-
-export default function Login(props: Props) {
+export default function Login() {
   const { loading, token } = useSelector(({ loading, login }: RootState) => ({
     loading: loading.effects.login.submit,
     account: login.userData,
@@ -16,12 +14,21 @@ export default function Login(props: Props) {
   }));
 
   const dispatch = useDispatch<Dispatch>();
+  let navigate = useNavigate();
+
   useEffect(() => {
     if (token) {
       dispatch.login.logout();
     }
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
   return (
     <Row justify="center" align="middle" style={{ height: '100%' }}>

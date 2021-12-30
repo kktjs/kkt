@@ -1,27 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, withRouter, RouteComponentProps } from 'react-router-dom';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import history from './routes/history';
 import { store } from './models';
-import Controller from './routes/Controller';
-import { getRouterData } from './routes/router';
+import { routes } from './routes/router';
 
-export type DefaultProps = React.PropsWithChildren<RouteComponentProps<any>> & {
-  routerData: typeof getRouterData;
-};
-
-const Container = withRouter((props) => {
-  const routerData = getRouterData;
-  const resetProps: DefaultProps = { ...props, routerData };
-  return <Controller {...resetProps} />;
-});
+export default function App() {
+  const element = useRoutes(routes);
+  return element;
+}
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <Container />
-    </Router>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );

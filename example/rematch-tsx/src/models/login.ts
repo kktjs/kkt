@@ -1,6 +1,5 @@
 import { createModel } from '@rematch/core';
 import { login } from '../servers/login';
-import history from '../routes/history';
 import { RootModel } from './';
 
 export type LoginState = {
@@ -25,9 +24,10 @@ export default createModel<RootModel>()({
       // await logout();
     },
     async submit(payload: LoginState['userData']) {
-      await login({ ...payload } as LoginState['userData']);
-      history.push('/');
-      // dispatch.login.updateState({ token: '测试2' });
+      const data = await login({ ...payload } as LoginState['userData']);
+      if (data && data.token) {
+        dispatch.login.updateState({ token: data.token, userData: data });
+      }
     },
   }),
 });
