@@ -22,7 +22,7 @@
   "devDependencies": {
     "@kkt/less-modules": "6.11.0",
     "@kkt/react-library": "6.11.0",
-    "@types/react": "17.0.27",
+    "@types/react": "17.0.38",
     "@types/react-dom": "17.0.11",
     "kkt": "6.11.0"
   },
