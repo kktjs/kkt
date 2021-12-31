@@ -1,6 +1,6 @@
 {
   "name": "@kkt/raw-modules",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "description": "Makes it easy to use the webpack raw-loader.",
@@ -20,6 +20,6 @@
     "raw-loader": "^4.0.2"
   },
   "devDependencies": {
-    "kkt": "7.0.0"
+    "kkt": "7.0.1"
   }
 }
