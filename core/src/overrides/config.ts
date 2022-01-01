@@ -5,6 +5,6 @@ import { KKTRC, loaderConf } from '../utils/loaderConf';
 // before overrides scripts are read
 require(`${reactScripts}/config/env`);
 
-export default async (): Promise<KKTRC> => {
-  return loaderConf(configOverrides);
-};
+export default async function config(): Promise<KKTRC> {
+  return await loaderConf(configOverrides);
+}

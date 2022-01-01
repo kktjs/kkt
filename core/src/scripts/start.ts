@@ -15,6 +15,7 @@ import { overridesChoosePort } from '../overrides/choosePort';
 import { miniCssExtractPlugin } from '../utils/miniCssExtractPlugin';
 import { cacheData } from '../utils/cacheData';
 import { checkRequiredFiles } from '../overrides/checkRequired';
+import { loadSourceMapWarnning } from '../plugins/loadSourceMapWarnning';
 import { StartArgs } from '..';
 
 export default async function start(argvs: StartArgs) {
@@ -44,16 +45,17 @@ export default async function start(argvs: StartArgs) {
       if (kktrc && kktrc.proxySetup && typeof kktrc.proxySetup === 'function') {
         cacheData({ proxySetup: kktrc.proxySetup });
       }
+      const overrideOption = {
+        ...argvs,
+        devServerConfigHandle: createDevServerConfig,
+        shouldUseSourceMap,
+        paths,
+        kktrc,
+      };
       const overrideWebpackConf = await overridesHandle(
         argvs.overridesWebpack ? argvs.overridesWebpack(webpackConf) : webpackConf,
         'development',
-        {
-          ...argvs,
-          devServerConfigHandle: createDevServerConfig,
-          shouldUseSourceMap,
-          paths,
-          kktrc,
-        },
+        overrideOption,
       );
       if (overrideWebpackConf.devServer) {
         /**
@@ -67,10 +69,9 @@ export default async function start(argvs: StartArgs) {
         );
         delete overrideWebpackConf.devServer;
       }
+      loadSourceMapWarnning(overrideWebpackConf, 'development', overrideOption);
       // override config in memory
-      require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => {
-        return overrideWebpackConf;
-      };
+      require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => overrideWebpackConf;
     }
     // override config in memory
     require.cache[require.resolve(devServerConfigPath)].exports = (

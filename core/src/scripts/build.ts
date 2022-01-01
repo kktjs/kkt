@@ -6,6 +6,7 @@ import { reactScripts, isWebpackFactory } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
 import { miniCssExtractPlugin } from '../utils/miniCssExtractPlugin';
 import { checkRequiredFiles } from '../overrides/checkRequired';
+import { loadSourceMapWarnning } from '../plugins/loadSourceMapWarnning';
 import { BuildArgs } from '..';
 
 export default async function build(argvs: BuildArgs) {
@@ -21,14 +22,16 @@ export default async function build(argvs: BuildArgs) {
     if (overridesHandle && typeof overridesHandle === 'function') {
       // Source maps are resource heavy and can cause out of memory issue for large source files.
       const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
-      const defaultWepack = miniCssExtractPlugin(createWebpackConfig('production'));
-      const webpackConf = argvs.overridesWebpack ? argvs.overridesWebpack(defaultWepack) : defaultWepack;
-      const overrideWebpackConf = await overridesHandle(webpackConf, 'production', {
+      const overrideOption = {
         ...argvs,
         shouldUseSourceMap,
         paths,
         kktrc,
-      });
+      };
+      const defaultWepack = miniCssExtractPlugin(createWebpackConfig('production'));
+      const webpackConf = argvs.overridesWebpack ? argvs.overridesWebpack(defaultWepack) : defaultWepack;
+      const overrideWebpackConf = await overridesHandle(webpackConf, 'production', overrideOption);
+      loadSourceMapWarnning(overrideWebpackConf, 'development', overrideOption);
       // override config in memory
       require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => overrideWebpackConf;
     }
