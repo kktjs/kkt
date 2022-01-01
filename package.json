@@ -45,7 +45,6 @@
     "*.{js,jsx,tsx,ts,less,md,json}": "prettier --write"
   },
   "devDependencies": {
-    "eslint-config-react-app": "^7.0.0",
     "husky": "7.0.4",
     "lerna": "4.0.0",
     "lint-staged": "12.1.4",
