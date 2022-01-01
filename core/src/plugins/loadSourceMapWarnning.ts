@@ -1,4 +1,5 @@
 import FS from 'fs-extra';
+import path from 'path';
 import { Configuration } from 'webpack';
 import { LoaderConfOptions } from '../utils/loaderConf';
 
@@ -17,8 +18,17 @@ export function loadSourceMapWarnning(
       // ;(conf.module.rules[0] as any).exclude = /((@babel(?:\/|\\{1,2})runtime)|codesandbox-import-utils)/;
       (conf.module.rules[0] as any).options = {
         filterSourceMappingUrl: (url: string, resourcePath: string) => {
-          if (/\.(js|mjs|jsx|ts|tsx|css)$/.test(resourcePath) && !FS.existsSync(resourcePath)) {
-            return 'skip';
+          const sourceMapPath = path.join(path.dirname(resourcePath), url);
+          if (FS.existsSync(sourceMapPath)) {
+            const { sources = [] } = FS.readJsonSync(sourceMapPath);
+            if (Array.isArray(sources) && sources.length > 0) {
+              const isexists = sources
+                .map((item: string) => FS.existsSync(path.resolve(path.dirname(resourcePath), item)))
+                .find((item) => item === false);
+              if (isexists === false) {
+                return 'skip';
+              }
+            }
           }
           return true;
         },
