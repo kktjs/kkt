@@ -118,9 +118,9 @@ $ npm start
 $ npm run build
 ```
 
-## Configuration
+## Configuration File
 
-Supports `kktrc.js` and `kktrc.ts`.
+Supports `.kktrc.js` and `.kktrc.ts`.
 
 ```typescript
 import express from 'express';
