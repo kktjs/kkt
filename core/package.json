@@ -43,7 +43,7 @@
     "@types/fs-extra": "9.0.13",
     "@types/mini-css-extract-plugin": "2.4.0",
     "@types/minimist": "1.2.2",
-    "@types/react-dev-utils": "9.0.9",
+    "@types/react-dev-utils": "9.0.10",
     "@types/semver": "7.3.9",
     "eslint-config-react-app": "^7.0.0",
     "fs-extra": "10.0.0",
