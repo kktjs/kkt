@@ -4,7 +4,7 @@ import { Configuration } from 'webpack';
 import { KKTRC } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
-import { miniCssExtractPlugin } from '../utils/miniCssExtractPlugin';
+import { miniCssExtractPlugin } from '../plugins/miniCssExtractPlugin';
 import { checkRequiredFiles } from '../overrides/checkRequired';
 import { loadSourceMapWarnning } from '../plugins/loadSourceMapWarnning';
 import { BuildArgs } from '..';
@@ -28,10 +28,11 @@ export default async function build(argvs: BuildArgs) {
         paths,
         kktrc,
       };
-      const defaultWepack = miniCssExtractPlugin(createWebpackConfig('production'));
+      const defaultWepack = createWebpackConfig('production');
       const webpackConf = argvs.overridesWebpack ? argvs.overridesWebpack(defaultWepack) : defaultWepack;
-      const overrideWebpackConf = await overridesHandle(webpackConf, 'production', overrideOption);
-      loadSourceMapWarnning(overrideWebpackConf, 'development', overrideOption);
+      let overrideWebpackConf = await overridesHandle(webpackConf, 'production', overrideOption);
+      overrideWebpackConf = loadSourceMapWarnning(overrideWebpackConf, 'development', overrideOption);
+      overrideWebpackConf = miniCssExtractPlugin(overrideWebpackConf, 'development');
       // override config in memory
       require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => overrideWebpackConf;
     }

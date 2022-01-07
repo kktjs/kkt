@@ -4,7 +4,7 @@ import { ParsedArgs } from 'minimist';
 export * from './overrides/paths';
 export * from './utils/loaderConf';
 export * from './utils/getStyleLoaders';
-export * from './utils/miniCssExtractPlugin';
+export * from './plugins/miniCssExtractPlugin';
 export * from './utils/path';
 
 export interface BuildArgs extends ParsedArgs {

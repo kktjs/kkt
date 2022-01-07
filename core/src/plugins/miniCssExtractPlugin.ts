@@ -16,7 +16,11 @@ export { MiniCssExtractPlugin };
  * @param conf
  * @param options
  */
-export const miniCssExtractPlugin = (conf: Configuration, options: MiniCssExtractPlugin.PluginOptions = {}) => {
+export const miniCssExtractPlugin = (
+  conf: Configuration,
+  env: 'development' | 'production',
+  options: MiniCssExtractPlugin.PluginOptions = {},
+) => {
   const regexp = /(MiniCssExtractPlugin)/;
   conf.plugins = conf.plugins
     .map((item) => {
