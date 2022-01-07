@@ -1,9 +1,8 @@
 import path from 'path';
 import fs from 'fs-extra';
 import { Configuration } from 'webpack';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerPlugin, { BasePluginOptions, DefinedDefaultMinimizerAndOptions } from 'css-minimizer-webpack-plugin';
-import { overridePaths, LoaderConfOptions } from 'kkt';
+import { overridePaths, LoaderConfOptions, MiniCssExtractPlugin } from 'kkt';
 import './overridesCheckRequiredFiles';
 import { checkRequiredFiles } from './checkRequiredFiles';
 import TerserPlugin, {

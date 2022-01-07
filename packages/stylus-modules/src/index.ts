@@ -1,8 +1,7 @@
 import { Configuration, RuleSetRule } from 'webpack';
 import { ParsedArgs } from 'minimist';
 import getCSSModuleLocalIdent from 'react-dev-utils/getCSSModuleLocalIdent';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { getStyleLoaders, LoaderConfOptions } from 'kkt';
+import { getStyleLoaders, LoaderConfOptions, MiniCssExtractPlugin } from 'kkt';
 
 const sassRegex = /\.(styl)$/;
 const sassModuleRegex = /\.module\.(styl)$/;

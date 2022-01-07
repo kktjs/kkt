@@ -1,6 +1,8 @@
 import { Configuration } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
+export { MiniCssExtractPlugin };
+
 /**
  * Fix Conflicting order
  * https://github.com/webpack-contrib/mini-css-extract-plugin/issues/250#issuecomment-532483344

@@ -1,7 +1,6 @@
 import { Configuration, RuleSetRule } from 'webpack';
 import getCSSModuleLocalIdent from 'react-dev-utils/getCSSModuleLocalIdent';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { getStyleLoaders, LoaderConfOptions } from 'kkt';
+import { getStyleLoaders, LoaderConfOptions, MiniCssExtractPlugin } from 'kkt';
 
 const lessRegex = /\.(less)$/;
 const lessModuleRegex = /\.module\.(less)$/;
