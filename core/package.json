@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "7.0.5",
+  "version": "7.0.6",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "main": "lib/index.js",
@@ -47,8 +47,8 @@
     "@types/semver": "7.3.9",
     "eslint-config-react-app": "^7.0.0",
     "fs-extra": "10.0.0",
-    "minimist": "1.2.5",
     "mini-css-extract-plugin": "~2.4.5",
+    "minimist": "1.2.5",
     "mocker-api": "2.9.4",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
