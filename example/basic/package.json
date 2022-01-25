@@ -1,6 +1,6 @@
 {
   "name": "@template/basic",
-  "version": "7.0.6",
+  "version": "7.0.7",
   "description": "The react base application.",
   "private": true,
   "scripts": {
@@ -22,7 +22,7 @@
     "web-vitals": "^2.1.2"
   },
   "devDependencies": {
-    "kkt": "7.0.6"
+    "kkt": "7.0.7"
   },
   "browserslist": {
     "production": [
