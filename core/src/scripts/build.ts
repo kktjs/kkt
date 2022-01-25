@@ -28,11 +28,12 @@ export default async function build(argvs: BuildArgs) {
         paths,
         kktrc,
       };
-      const defaultWepack = createWebpackConfig('production');
-      const webpackConf = argvs.overridesWebpack ? argvs.overridesWebpack(defaultWepack) : defaultWepack;
-      let overrideWebpackConf = await overridesHandle(webpackConf, 'production', overrideOption);
-      overrideWebpackConf = loadSourceMapWarnning(overrideWebpackConf, 'development', overrideOption);
-      overrideWebpackConf = miniCssExtractPlugin(overrideWebpackConf, 'development');
+      let defaultWepack = createWebpackConfig('production');
+      defaultWepack = loadSourceMapWarnning(defaultWepack, 'development', overrideOption);
+      defaultWepack = miniCssExtractPlugin(defaultWepack, 'development');
+
+      let webpackConf = await overridesHandle(defaultWepack, 'production', overrideOption);
+      const overrideWebpackConf = argvs.overridesWebpack ? argvs.overridesWebpack(webpackConf) : webpackConf;
       // override config in memory
       require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => overrideWebpackConf;
     }

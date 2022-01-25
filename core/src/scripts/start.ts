@@ -40,7 +40,7 @@ export default async function start(argvs: StartArgs) {
     const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
     const overridesHandle = (kktrc.default || kktrc) as KKTRC['default'];
     if (overridesHandle && typeof overridesHandle === 'function') {
-      const webpackConf = createWebpackConfig('development');
+      let webpackConf = createWebpackConfig('development');
       await overridePaths(undefined, { proxySetup });
       if (kktrc && kktrc.proxySetup && typeof kktrc.proxySetup === 'function') {
         cacheData({ proxySetup: kktrc.proxySetup });
@@ -52,7 +52,9 @@ export default async function start(argvs: StartArgs) {
         paths,
         kktrc,
       };
-      let overrideWebpackConf = await overridesHandle(
+      webpackConf = loadSourceMapWarnning(webpackConf, 'development', overrideOption);
+      webpackConf = miniCssExtractPlugin(webpackConf, 'development');
+      const overrideWebpackConf = await overridesHandle(
         argvs.overridesWebpack ? argvs.overridesWebpack(webpackConf) : webpackConf,
         'development',
         overrideOption,
@@ -69,8 +71,6 @@ export default async function start(argvs: StartArgs) {
         );
         delete overrideWebpackConf.devServer;
       }
-      overrideWebpackConf = loadSourceMapWarnning(overrideWebpackConf, 'development', overrideOption);
-      overrideWebpackConf = miniCssExtractPlugin(overrideWebpackConf, 'development');
       // override config in memory
       require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => overrideWebpackConf;
     }
