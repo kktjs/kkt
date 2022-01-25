@@ -95,7 +95,7 @@ npm install kkt --save-dev
 "dependencies": {
   ...
 -  "react-scripts": "4.0.1",
-+  "kkt": "6.11.0",
++  "kkt": "7.0.6",
   ....
 },
 "scripts": {
