@@ -139,6 +139,9 @@ export default async function start(argvs: StartArgs) {
       require(`${reactScripts}/scripts/start`);
     }
   } catch (error) {
-    console.log('KKT:START:ERROR:', error);
+    const message = error && error.message ? error.message : '';
+    console.log('\x1b[31;1m KKT:START:ERROR: \x1b[0m\n', error);
+    new Error(`KKT:START:ERROR: \n ${message}`);
+    process.exit(1);
   }
 }

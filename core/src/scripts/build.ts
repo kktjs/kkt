@@ -40,6 +40,9 @@ export default async function build(argvs: BuildArgs) {
     // run original script
     await require(`${reactScripts}/scripts/build`);
   } catch (error) {
-    console.log('KKT:BUILD:ERROR:', error);
+    const message = error && error.message ? error.message : '';
+    console.log('\x1b[31;1m KKT:BUILD:ERROR: \x1b[0m\n', error);
+    new Error(`KKT:BUILD:ERROR: \n ${message}`);
+    process.exit(1);
   }
 }

@@ -73,8 +73,9 @@ export async function loaderConf(rcPath: string): Promise<KKTRC> {
     }
     return kktrc;
   } catch (error) {
+    const message = error && error.message ? error.message : '';
     console.log('Invalid \x1b[31;1m .kktrc.js \x1b[0m file.\n', error);
-    new Error('Invalid .kktrc.js file.');
+    new Error(`Invalid .kktrc.js file. \n ${message}`);
     process.exit(1);
   }
 }
