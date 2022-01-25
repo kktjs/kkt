@@ -280,6 +280,16 @@ npm run build
 
 [@timarney](https://github.com/timarney) for having created [react-app-rewired](https://github.com/timarney/react-app-rewired).
 
+**Alternatives**
+
+You can try customize-cra for a set of CRA 2.0 compatible rewirers, or any of the alternative projects and forks that aim to support 2.0:
+
+- [rescripts](https://github.com/rescripts/rescripts), an alternative framework for extending CRA configurations (supports 2.0+).
+- [react-scripts-rewired](https://github.com/marcopeg/create-react-app/blob/master/packages/react-scripts/README.md) for a fork of this project that aims to support CRA 2.0
+- [craco](https://github.com/sharegate/craco) Create React App Configuration Override, an easy and comprehensible configuration layer for create-react-app.
+- [react-app](https://github.com/kriasoft/react-app) Create React App with server-side code support.
+- [create-react-app-esbuild](https://github.com/pradel/create-react-app-esbuild) Use esbuild in your create-react-app for faster compilation, development and tests.
+
 ## License
 
 [MIT © Kenny Wong](https://github.com/kktjs/kkt/blob/master/LICENSE)
