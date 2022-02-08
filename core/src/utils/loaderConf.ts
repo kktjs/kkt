@@ -36,21 +36,43 @@ export type LoaderConfOptions = ParsedArgs & {
 };
 
 export type DevServerConfigFunction = (
-  proxy: WebpackDevServer.ProxyArray,
+  proxy: WebpackDevServer.Configuration['proxy'],
   allowedHost: string,
 ) => WebpackDevServer.Configuration;
 
 export type DevServerOptions = ParsedArgs & Pick<LoaderConfOptions, 'paths' | 'paths'>;
-export type WebpackConfiguration = Configuration & {
+export interface WebpackConfiguration extends Configuration {
   devServer?: WebpackDevServer.Configuration;
-};
+  /** Configuring the Proxy Manually */
+  proxySetup?: (app: express.Application) => MockerAPIOptions;
+}
 
 export type KKTRC = {
+  /**
+   * Still available, may be removed in the future. (仍然可用，将来可能会被删除。)
+   * The method has been moved elsewhere.
+   * @deprecated
+   *
+   * The following method is recommended
+   *
+   * @example
+   * ```ts
+   * export default (conf: WebpackConfiguration, evn: 'development' | 'production') => {
+   *   //....
+   *   conf.proxySetup = (app: express.Application): MockerAPIOptions => {
+   *     return {
+   *       path: path.resolve('./mocker/index.js'),
+   *     };
+   *   };
+   *   return conf;
+   * }
+   * ```
+   */
   proxySetup?: (app: express.Application) => MockerAPIOptions;
   devServer?: (config: WebpackDevServer.Configuration, options: DevServerOptions) => WebpackDevServer.Configuration;
   default?: (
     conf: WebpackConfiguration,
-    evn: string,
+    evn: 'development' | 'production',
     options: LoaderConfOptions,
   ) => WebpackConfiguration | Promise<WebpackConfiguration>;
 };

@@ -165,12 +165,38 @@ export const devServer = (config: WebpackDevServer.Configuration) => {
   // Return your customised Webpack Development Server config.
   return config;
 };
+```
 
-// Configuring the Proxy Manually
+Configuring the Proxy Manually.
+
+```typescript
+import express from 'express';
+import { createProxyMiddleware } from 'http-proxy-middleware';
+import { LoaderConfOptions, WebpackConfiguration, MockerAPIOptions } from 'kkt';
+export default (conf: WebpackConfiguration, evn: 'development' | 'production') => {
+  //....
+  conf.proxySetup = (app: express.Application): MockerAPIOptions => {
+    app.use('/api', createProxyMiddleware({
+      target: 'http://localhost:5000',
+      changeOrigin: true,
+    }));
+    return {
+      path: path.resolve('./mocker/index.js'),
+    };
+  };
+  return conf;
+}
+```
+
+Or use another way to manually configure the proxy.
+
+```typescript
 import express from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { MockerAPIOptions } from 'kkt';
-
+/**
+ * Still available, may be removed in the future. (仍然可用，将来可能会被删除。) 
+ */
 export const proxySetup = (app: express.Application): MockerAPIOptions => {
   app.use('/api', createProxyMiddleware({
     target: 'http://localhost:5000',

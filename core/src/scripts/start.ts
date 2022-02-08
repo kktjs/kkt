@@ -59,6 +59,12 @@ export default async function start(argvs: StartArgs) {
         'development',
         overrideOption,
       );
+
+      if (overrideWebpackConf.proxySetup && typeof overrideWebpackConf.proxySetup === 'function') {
+        cacheData({ proxySetup: overrideWebpackConf.proxySetup });
+        delete overrideWebpackConf.proxySetup;
+      }
+
       if (overrideWebpackConf.devServer) {
         /**
          * Modify Client Server Port
@@ -76,7 +82,7 @@ export default async function start(argvs: StartArgs) {
     }
     // override config in memory
     require.cache[require.resolve(devServerConfigPath)].exports = (
-      proxy: WebpackDevServer.ProxyArray,
+      proxy: WebpackDevServer.Configuration['proxy'],
       allowedHost: string,
     ) => {
       let serverConf = createDevServerConfig(proxy, allowedHost);

@@ -34,6 +34,10 @@ export default async function build(argvs: BuildArgs) {
 
       let webpackConf = await overridesHandle(defaultWepack, 'production', overrideOption);
       const overrideWebpackConf = argvs.overridesWebpack ? argvs.overridesWebpack(webpackConf) : webpackConf;
+
+      if (overrideWebpackConf.proxySetup && typeof overrideWebpackConf.proxySetup === 'function') {
+        delete overrideWebpackConf.proxySetup;
+      }
       // override config in memory
       require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => overrideWebpackConf;
     }
