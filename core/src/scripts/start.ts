@@ -31,10 +31,8 @@ export default async function start(argvs: StartArgs) {
     await overridesClearConsole(argvs);
     await overridesOpenBrowser(argvs);
 
-    /**
-     * Override DevServerConfig
-     */
-    const overrideDevServerConfig: WebpackDevServer.Configuration = { headers: { 'Access-Control-Allow-Origin': '*' } };
+    /** Override DevServerConfig */
+    let overrideDevServerConfig: WebpackDevServer.Configuration = { headers: { 'Access-Control-Allow-Origin': '*' } };
 
     // Source maps are resource heavy and can cause out of memory issue for large source files.
     const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -66,15 +64,9 @@ export default async function start(argvs: StartArgs) {
       }
 
       if (overrideWebpackConf.devServer) {
-        /**
-         * Modify Client Server Port
-         */
+        /** Modify Client Server Port */
         await overridesChoosePort(Number(overrideWebpackConf.devServer.port));
-        (Object.keys(overrideWebpackConf.devServer) as Array<keyof typeof overrideWebpackConf.devServer>).forEach(
-          (keyName) => {
-            (overrideDevServerConfig as any)[keyName] = overrideWebpackConf.devServer[keyName];
-          },
-        );
+        overrideDevServerConfig = Object.assign(overrideDevServerConfig, overrideWebpackConf.devServer);
         delete overrideWebpackConf.devServer;
       }
       // override config in memory

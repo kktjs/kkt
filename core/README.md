@@ -124,17 +124,23 @@ Supports `.kktrc.js` and `.kktrc.ts`.
 
 ```typescript
 import express from 'express';
+import { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import { LoaderConfOptions, MockerAPIOptions, DevServerOptions, WebpackConfiguration } from 'kkt';
+import { LoaderConfOptions, MockerAPIOptions, DevServerOptions } from 'kkt';
 
-type KKTRC = {
+export interface WebpackConfiguration extends Configuration {
+  devServer?: WebpackDevServer.Configuration;
+  /** Configuring the Proxy Manually */
+  proxySetup?: (app: express.Application) => MockerAPIOptions;
+}
+export declare type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
   devServer?: (config: WebpackDevServer.Configuration, options: DevServerOptions) => WebpackDevServer.Configuration;
-  default?: (conf: WebpackConfiguration, evn: string, options: LoaderConfOptions) => WebpackConfiguration | Promise<WebpackConfiguration>;
+  default?: (conf: WebpackConfiguration, evn: 'development' | 'production', options: LoaderConfOptions) => WebpackConfiguration | Promise<WebpackConfiguration>;
 };
 ```
 
-Example
+### Base Configuration Example
 
 ```typescript
 import webpack from 'webpack';
@@ -148,10 +154,11 @@ export default (conf: WebpackConfiguration, env: string, options: LoaderConfOpti
   conf = lessModules(conf, env, options);
   return conf;
 }
+```
 
-/**
- * Modify WebpackDevServer Configuration Example
- */
+### Modify WebpackDevServer Configuration Example
+
+```typescript
 export const devServer = (config: WebpackDevServer.Configuration) => {
   // Change the https certificate options to match your certificate, using the .env file to
   // set the file paths & passphrase.
@@ -167,7 +174,7 @@ export const devServer = (config: WebpackDevServer.Configuration) => {
 };
 ```
 
-Configuring the Proxy Manually.
+### Configuring the Proxy Manually
 
 ```typescript
 import express from 'express';
