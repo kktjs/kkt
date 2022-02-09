@@ -316,9 +316,13 @@ npm run build
 
 ## Contributors
 
+As always, thanks to our amazing contributors!
+
 <a href="https://github.com/kktjs/kkt/graphs/contributors">
   <img src="https://kktjs.github.io/kkt/CONTRIBUTORS.svg" />
 </a>
+
+Made with [github-action-contributors](https://github.com/jaywcjlove/github-action-contributors).
 
 ## License
 
