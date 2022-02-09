@@ -126,25 +126,37 @@ $ npm run build
       <h2 id="configuration-file"><a class="anchor" aria-hidden="true" tabindex="-1" href="#configuration-file"><span class="octicon octicon-link"></span></a>Configuration File</h2>
       <p>Supports <code>.kktrc.js</code> and <code>.kktrc.ts</code>.</p>
       <pre class="language-typescript"><code class="language-typescript"><span class="token keyword module">import</span> <span class="token imports">express</span> <span class="token keyword module">from</span> <span class="token string">'express'</span><span class="token punctuation">;</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">Configuration</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'webpack'</span><span class="token punctuation">;</span>
 <span class="token keyword module">import</span> <span class="token imports"><span class="token maybe-class-name">WebpackDevServer</span></span> <span class="token keyword module">from</span> <span class="token string">'webpack-dev-server'</span><span class="token punctuation">;</span>
-<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">LoaderConfOptions</span><span class="token punctuation">,</span> <span class="token maybe-class-name">MockerAPIOptions</span><span class="token punctuation">,</span> <span class="token maybe-class-name">DevServerOptions</span><span class="token punctuation">,</span> <span class="token maybe-class-name">WebpackConfiguration</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'kkt'</span><span class="token punctuation">;</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">LoaderConfOptions</span><span class="token punctuation">,</span> <span class="token maybe-class-name">MockerAPIOptions</span><span class="token punctuation">,</span> <span class="token maybe-class-name">DevServerOptions</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'kkt'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">type</span> <span class="token class-name"><span class="token constant">KKTRC</span></span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+<span class="token keyword module">export</span> <span class="token keyword">interface</span> <span class="token class-name"><span class="token maybe-class-name">WebpackConfiguration</span></span> <span class="token keyword">extends</span> <span class="token class-name"><span class="token maybe-class-name">Configuration</span></span> <span class="token punctuation">{</span>
+  devServer<span class="token operator">?</span><span class="token operator">:</span> <span class="token maybe-class-name">WebpackDevServer</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Configuration</span></span><span class="token punctuation">;</span>
+  <span class="token doc-comment comment">/** Configuring the Proxy Manually */</span>
+  proxySetup<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span>app<span class="token operator">:</span> express<span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Application</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token maybe-class-name">MockerAPIOptions</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword module">export</span> <span class="token keyword">declare</span> <span class="token keyword">type</span> <span class="token class-name"><span class="token constant">KKTRC</span></span> <span class="token operator">=</span> <span class="token punctuation">{</span>
   proxySetup<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span>app<span class="token operator">:</span> express<span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Application</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token maybe-class-name">MockerAPIOptions</span><span class="token punctuation">;</span>
   devServer<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span>config<span class="token operator">:</span> <span class="token maybe-class-name">WebpackDevServer</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Configuration</span></span><span class="token punctuation">,</span> options<span class="token operator">:</span> <span class="token maybe-class-name">DevServerOptions</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token maybe-class-name">WebpackDevServer</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Configuration</span></span><span class="token punctuation">;</span>
-  <span class="token keyword module">default</span><span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span>conf<span class="token operator">:</span> <span class="token maybe-class-name">WebpackConfiguration</span><span class="token punctuation">,</span> evn<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> options<span class="token operator">:</span> <span class="token maybe-class-name">LoaderConfOptions</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token maybe-class-name">WebpackConfiguration</span> <span class="token operator">|</span> <span class="token known-class-name class-name">Promise</span><span class="token operator">&#x3C;</span><span class="token maybe-class-name">WebpackConfiguration</span><span class="token operator">></span><span class="token punctuation">;</span>
+  <span class="token keyword module">default</span><span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span>conf<span class="token operator">:</span> <span class="token maybe-class-name">WebpackConfiguration</span><span class="token punctuation">,</span> evn<span class="token operator">:</span> <span class="token string">'development'</span> <span class="token operator">|</span> <span class="token string">'production'</span><span class="token punctuation">,</span> options<span class="token operator">:</span> <span class="token maybe-class-name">LoaderConfOptions</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token maybe-class-name">WebpackConfiguration</span> <span class="token operator">|</span> <span class="token known-class-name class-name">Promise</span><span class="token operator">&#x3C;</span><span class="token maybe-class-name">WebpackConfiguration</span><span class="token operator">></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code><div onclick="copied(this)" data-code="import express from &#x27;express&#x27;;
+import { Configuration } from &#x27;webpack&#x27;;
 import WebpackDevServer from &#x27;webpack-dev-server&#x27;;
-import { LoaderConfOptions, MockerAPIOptions, DevServerOptions, WebpackConfiguration } from &#x27;kkt&#x27;;
+import { LoaderConfOptions, MockerAPIOptions, DevServerOptions } from &#x27;kkt&#x27;;
 
-type KKTRC = {
+export interface WebpackConfiguration extends Configuration {
+  devServer?: WebpackDevServer.Configuration;
+  /** Configuring the Proxy Manually */
+  proxySetup?: (app: express.Application) => MockerAPIOptions;
+}
+export declare type KKTRC = {
   proxySetup?: (app: express.Application) => MockerAPIOptions;
   devServer?: (config: WebpackDevServer.Configuration, options: DevServerOptions) => WebpackDevServer.Configuration;
-  default?: (conf: WebpackConfiguration, evn: string, options: LoaderConfOptions) => WebpackConfiguration | Promise<WebpackConfiguration>;
+  default?: (conf: WebpackConfiguration, evn: &#x27;development&#x27; | &#x27;production&#x27;, options: LoaderConfOptions) => WebpackConfiguration | Promise<WebpackConfiguration>;
 };
 " class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-      <p>Example</p>
+      <h3 id="base-configuration-example"><a class="anchor" aria-hidden="true" tabindex="-1" href="#base-configuration-example"><span class="octicon octicon-link"></span></a>Base Configuration Example</h3>
       <pre class="language-typescript"><code class="language-typescript"><span class="token keyword module">import</span> <span class="token imports">webpack</span> <span class="token keyword module">from</span> <span class="token string">'webpack'</span><span class="token punctuation">;</span>
 <span class="token keyword module">import</span> <span class="token imports"><span class="token maybe-class-name">WebpackDevServer</span></span> <span class="token keyword module">from</span> <span class="token string">'webpack-dev-server'</span><span class="token punctuation">;</span>
 <span class="token keyword module">import</span> <span class="token imports">lessModules</span> <span class="token keyword module">from</span> <span class="token string">'@kkt/less-modules'</span><span class="token punctuation">;</span>
@@ -156,11 +168,20 @@ type KKTRC = {
   conf <span class="token operator">=</span> <span class="token function">lessModules</span><span class="token punctuation">(</span>conf<span class="token punctuation">,</span> env<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword control-flow">return</span> conf<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
+</code><div onclick="copied(this)" data-code="import webpack from &#x27;webpack&#x27;;
+import WebpackDevServer from &#x27;webpack-dev-server&#x27;;
+import lessModules from &#x27;@kkt/less-modules&#x27;;
+import { LoaderConfOptions, WebpackConfiguration } from &#x27;kkt&#x27;;
 
-<span class="token doc-comment comment">/**
- * Modify WebpackDevServer Configuration Example
- */</span>
-<span class="token keyword module">export</span> <span class="token keyword">const</span> <span class="token function-variable function">devServer</span> <span class="token operator">=</span> <span class="token punctuation">(</span>config<span class="token operator">:</span> <span class="token maybe-class-name">WebpackDevServer</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Configuration</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+export default (conf: WebpackConfiguration, env: string, options: LoaderConfOptions) => {
+  // The Webpack config to use when compiling your react app for development or production.
+  // ...add your webpack config
+  conf = lessModules(conf, env, options);
+  return conf;
+}
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+      <h3 id="modify-webpackdevserver-configuration-example"><a class="anchor" aria-hidden="true" tabindex="-1" href="#modify-webpackdevserver-configuration-example"><span class="octicon octicon-link"></span></a>Modify WebpackDevServer Configuration Example</h3>
+      <pre class="language-typescript"><code class="language-typescript"><span class="token keyword module">export</span> <span class="token keyword">const</span> <span class="token function-variable function">devServer</span> <span class="token operator">=</span> <span class="token punctuation">(</span>config<span class="token operator">:</span> <span class="token maybe-class-name">WebpackDevServer</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Configuration</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
   <span class="token comment">// Change the https certificate options to match your certificate, using the .env file to</span>
   <span class="token comment">// set the file paths &#x26; passphrase.</span>
   <span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -173,22 +194,7 @@ type KKTRC = {
   <span class="token comment">// Return your customised Webpack Development Server config.</span>
   <span class="token keyword control-flow">return</span> config<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code><div onclick="copied(this)" data-code="import webpack from &#x27;webpack&#x27;;
-import WebpackDevServer from &#x27;webpack-dev-server&#x27;;
-import lessModules from &#x27;@kkt/less-modules&#x27;;
-import { LoaderConfOptions, WebpackConfiguration } from &#x27;kkt&#x27;;
-
-export default (conf: WebpackConfiguration, env: string, options: LoaderConfOptions) => {
-  // The Webpack config to use when compiling your react app for development or production.
-  // ...add your webpack config
-  conf = lessModules(conf, env, options);
-  return conf;
-}
-
-/**
- * Modify WebpackDevServer Configuration Example
- */
-export const devServer = (config: WebpackDevServer.Configuration) => {
+</code><div onclick="copied(this)" data-code="export const devServer = (config: WebpackDevServer.Configuration) => {
   // Change the https certificate options to match your certificate, using the .env file to
   // set the file paths &#x26; passphrase.
   const fs = require(&#x27;fs&#x27;);
@@ -202,7 +208,7 @@ export const devServer = (config: WebpackDevServer.Configuration) => {
   return config;
 };
 " class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-      <p>Configuring the Proxy Manually.</p>
+      <h3 id="configuring-the-proxy-manually"><a class="anchor" aria-hidden="true" tabindex="-1" href="#configuring-the-proxy-manually"><span class="octicon octicon-link"></span></a>Configuring the Proxy Manually</h3>
       <pre class="language-typescript"><code class="language-typescript"><span class="token keyword module">import</span> <span class="token imports">express</span> <span class="token keyword module">from</span> <span class="token string">'express'</span><span class="token punctuation">;</span>
 <span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> createProxyMiddleware <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'http-proxy-middleware'</span><span class="token punctuation">;</span>
 <span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">LoaderConfOptions</span><span class="token punctuation">,</span> <span class="token maybe-class-name">WebpackConfiguration</span><span class="token punctuation">,</span> <span class="token maybe-class-name">MockerAPIOptions</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'kkt'</span><span class="token punctuation">;</span>
