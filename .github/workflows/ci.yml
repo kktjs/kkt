@@ -191,6 +191,11 @@ jobs:
         working-directory: example/bundle
       - run: cp -rp example/bundle/bundle.zip ./zip
 
+      - name: Compress bundle-node Example.
+        run: zip -r -y bundle-node.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
+        working-directory: example/bundle-node
+      - run: cp -rp example/bundle-node/bundle-node.zip ./zip
+
       - name: Compress bundle-react-component-tsx Example.
         run: zip -r -y bundle-react-component-tsx.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
         working-directory: example/bundle-react-component-tsx
@@ -311,7 +316,8 @@ jobs:
             <a target="__blank" href="https://github.com/kktjs/kkt">GitHub</a> ·
             <a target="__blank" href="https://github.com/kktjs/kkt/issues">Feedback</a> ·
             <a target="__blank" href="https://github.com/kktjs/create-kkt">Create KKT Project</a> ·
-            <a target="__blank" href="https://github.com/kktjs/kkt-ssr">KKT SSR</a>
+            <a target="__blank" href="https://github.com/kktjs/kkt-ssr">KKT SSR</a> ·
+            <a target="__blank" href="https://github.com/kktjs/kkt/tree/master/packages/nccr">NCC</a>
           </div>
           <div class="footer">
             Licensed under MIT. (Yes it's free and open-sourced)
