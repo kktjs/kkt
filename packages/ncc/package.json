@@ -8,6 +8,10 @@
   "bin": {
     "ncc": "./lib/index.js"
   },
+  "files": [
+    "lib",
+    "src"
+  ],
   "keywords": [
     "kkt",
     "ncc",

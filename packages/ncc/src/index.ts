@@ -6,11 +6,11 @@ import { BuildArgs, build } from 'kkt';
 import { overridePaths } from 'kkt/lib/overrides/paths';
 import { sync as gzipSize } from 'gzip-size';
 import filesize from 'filesize';
-import pkg from '../package.json';
 import './overrides';
 import { filterPlugins, removeLoaders } from './utils';
 
 function help() {
+  const { version } = require('../package.json');
   console.log('\n  Usage: \x1b[34;1mncc\x1b[0m [build] [input-file] [--help|h]');
   console.log('\n  Displays help information.');
   console.log('\n  Options:\n');
@@ -26,7 +26,7 @@ function help() {
   console.log('   $ \x1b[35mncc\x1b[0m build --minify');
   console.log('   $ \x1b[35mncc\x1b[0m build src/app.ts');
   console.log(`   $ \x1b[35mncc\x1b[0m build --source-map`);
-  console.log(`\n  \x1b[34;1m@kkt/ncc\x1b[0m \x1b[32;1mv${pkg.version || ''}\x1b[0m\n`);
+  console.log(`\n  \x1b[34;1m@kkt/ncc\x1b[0m \x1b[32;1mv${version || ''}\x1b[0m\n`);
 }
 
 interface NCCArgs extends BuildArgs {
@@ -109,7 +109,8 @@ process.on('exit', (code) => {
     }
     if (argvs.v || argvs.version) {
       data.nolog = true;
-      console.log(`\n \x1b[34;1m@kkt/ncc\x1b[0m \x1b[32;1mv${pkg.version || ''}\x1b[0m\n`);
+      const { version } = require('../package.json');
+      console.log(`\n \x1b[34;1m@kkt/ncc\x1b[0m \x1b[32;1mv${version || ''}\x1b[0m\n`);
       return;
     }
 
