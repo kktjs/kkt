@@ -1,0 +1,31 @@
+{
+  "name": "@template/bundle-node",
+  "version": "7.1.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "npm run bundle && npm run bundle:min",
+    "bundle": "ncc build src/app.ts",
+    "watch": "ncc start src/app.ts",
+    "bundle:min": "ncc build src/app.ts -m"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kktjs/kkt.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@types/hapi__hapi": "20.0.10",
+    "@hapi/hapi": "20.2.1"
+  },
+  "devDependencies": {
+    "@kkt/ncc": "1.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  }
+}
