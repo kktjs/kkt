@@ -9,7 +9,11 @@
   "keywords": [
     "kkt",
     "react",
-    "framework"
+    "framework",
+    "cra",
+    "build-tools",
+    "create-react-app",
+    "zero-configuration"
   ],
   "license": "MIT",
   "files": [

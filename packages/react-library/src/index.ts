@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import { Configuration } from 'webpack';
 import CssMinimizerPlugin, { BasePluginOptions, DefinedDefaultMinimizerAndOptions } from 'css-minimizer-webpack-plugin';
-import { overridePaths, LoaderConfOptions, MiniCssExtractPlugin } from 'kkt';
+import { overridePaths, Paths, LoaderConfOptions, MiniCssExtractPlugin } from 'kkt';
 import './overridesCheckRequiredFiles';
 import { checkRequiredFiles } from './checkRequiredFiles';
 import TerserPlugin, {
@@ -14,7 +14,9 @@ export type ReactLibraryOptions = LoaderConfOptions & {
   mini?: boolean;
   name?: string;
   module?: string;
-  main?: string;
+  isNotCheckHTML?: boolean;
+  overridePaths?: Partial<Paths>;
+  main: string;
   outputDir?: string;
   dependencies?: Configuration['externals'];
   cssMinimizerPluginOptions?: BasePluginOptions & DefinedDefaultMinimizerAndOptions<any>;
@@ -46,21 +48,25 @@ process.on('beforeExit', () => {
 });
 
 export default (conf: Configuration, env: string, options = {} as ReactLibraryOptions): Configuration => {
+  const { isNotCheckHTML = false } = options;
   if (!conf) {
     throw Error('KKT:ConfigPaths: there is no config file found');
+  }
+  if (!options.main) {
+    throw Error('KKT:ConfigPaths: main Required option.');
   }
   if (!options.bundle && options.paths) {
     /**
      * Remove validation first, then add validation
      * Warn and crash if required files are missing
      */
-    if (!checkRequiredFiles([options.paths.appHtml, options.paths.appIndexJs], false)) {
+    if (!checkRequiredFiles([options.paths.appHtml, options.paths.appIndexJs], isNotCheckHTML)) {
       process.exit(1);
     }
   }
 
   if (options.bundle) {
-    if (options.paths.appPath) {
+    if (options.paths && options.paths.appPath) {
       publicPath = path.join(options.paths.appPath, 'public');
       if (fs.existsSync(publicPath)) {
         publicPath = '';
@@ -73,9 +79,9 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
 
     /** 确保缓存目录存在 */
     fs.ensureDirSync(buildCacheDir);
-    overridePaths(undefined, { appBuild: buildCacheDir });
+    overridePaths(undefined, { appBuild: buildCacheDir, ...options.overridePaths });
 
-    const libraryName = path.basename(options.name);
+    const libraryName = path.basename(options.name || '');
     const entryFile = options.module;
     const outFile = path.basename(options.main);
     let minfilename = outFile.split('.');
@@ -85,12 +91,14 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
     conf.entry = path.resolve(entryFile);
     conf.devtool = false;
     conf.output = {
-      library: libraryName,
       // commonjs
       libraryTarget: 'umd',
       filename: outFile,
       path: buildCacheDir,
     };
+    if (libraryName) {
+      conf.output.library = libraryName;
+    }
     conf.externals = options.dependencies;
     /**
      * Clear all plugins from CRA webpack conf
