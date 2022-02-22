@@ -1,5 +1,5 @@
 {
-  "version": "7.1.0",
+  "version": "independent",
   "packages": ["core", "example/*", "packages/*"],
   "command": {
     "create": {
@@ -8,9 +8,7 @@
     },
     "version": {
       "allowBranch": "master",
-      "conventionalCommits": true,
       "exact": true,
-      "forcePublish": true,
       "message": "chore(release): %s"
     },
     "bootstrap": {

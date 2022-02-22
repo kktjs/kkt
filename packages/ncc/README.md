@@ -5,6 +5,14 @@ Simple CLI for compiling a Node.js module into a single file, together with all 
 
 ## Usage
 
+## Quick Start
+
+```bash
+$ npx create-kkt my-app -e bundle-node
+cd my-app
+npm install
+```
+
 ### Installation
 
 ```bash
