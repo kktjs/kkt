@@ -12,7 +12,7 @@ import { BuildArgs } from '..';
 export default async function build(argvs: BuildArgs) {
   const { isNotCheckHTML = false } = argvs || {};
   try {
-    const paths = await overridePaths(argvs, argvs.overridePaths);
+    const paths = overridePaths(argvs, argvs.overridePaths);
     await checkRequiredFiles(paths, isNotCheckHTML);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.prod' : ''}`;
     const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);

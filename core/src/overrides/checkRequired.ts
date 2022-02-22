@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import 'react-dev-utils/checkRequiredFiles';
 import { reactDevUtils } from '../utils/path';
 import { OverridePaths } from './paths';
 
@@ -9,14 +10,13 @@ import { OverridePaths } from './paths';
  */
 export function checkRequiredFiles(paths: OverridePaths, isNotCheckHTML: boolean) {
   const checkRequiredFilesPath = `${reactDevUtils}/checkRequiredFiles`;
-  require(checkRequiredFilesPath);
   require.cache[require.resolve(checkRequiredFilesPath)].exports = (files: fs.PathLike[]) => {
     files = files
       .map((item) => {
         if (/(\.html)$/.test(item as string) && isNotCheckHTML) {
           return;
         }
-        if (paths._oldPaths && item !== paths._oldPaths.appIndexJs) {
+        if (paths._oldPaths && item === paths._oldPaths.appIndexJs) {
           return paths.appIndexJs;
         }
         return item;

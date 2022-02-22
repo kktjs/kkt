@@ -71,6 +71,7 @@ You can download the following examples directly. [Download page](https://kktjs.
 
 - [**`basic`**](https://github.com/kktjs/kkt/tree/master/example/basic) - The [react](https://github.com/facebook/react) base application. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/basic)
 - [**`bundle`**](https://github.com/kktjs/kkt/tree/master/example/bundle) - Package the UMD package for developing the React component library.
+- [**`bundle-node`**](https://github.com/kktjs/kkt/tree/master/example/bundle-node) - Simple CLI for compiling a Node.js module into a single file.
 - [**`electron`**](https://github.com/kktjs/kkt/tree/master/example/electron) - Use an example of [`Electronjs`](https://github.com/electron).
 - [**`less`**](https://github.com/kktjs/kkt/tree/master/example/less) - Use an example of `Less`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/less)
 - [**`markdown`**](https://github.com/kktjs/kkt/tree/master/example/markdown) - Use an example of `Markdown`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/markdown)
@@ -285,6 +286,10 @@ KKT uses the `homepage` field to determine the root URL in the built HTML file.
 - [@kkt/react-library](https://github.com/kktjs/kkt/tree/master/packages/react-library)
 - [@kkt/scope-plugin-options](https://github.com/kktjs/kkt/tree/master/packages/scope-plugin-options)
 - [@kkt/stylus-modules](https://github.com/kktjs/kkt/tree/master/packages/stylus-modules)
+
+### Tools
+
+- [@kkt/ncc](https://github.com/kktjs/kkt/tree/master/packages/ncc)
 
 ### Development
 
