@@ -12,5 +12,5 @@
     "outDir": "lib",
     "baseUrl": "./"
   },
-  "include": ["src/**/*", "src/type/global.d.ts", "node_modules/kkt/node_modules/**/*"]
+  "include": ["src"]
 }
