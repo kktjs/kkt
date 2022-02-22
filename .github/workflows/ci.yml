@@ -5,7 +5,8 @@ on:
       - master
 
 env:
-  SKIP_PREFLIGHT_CHECK: true
+  # SKIP_PREFLIGHT_CHECK: true
+  CI: false
 jobs:
   windows:
     runs-on: windows-2019
