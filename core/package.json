@@ -24,6 +24,10 @@
     "redux-saga",
     "elm",
     "framework",
+    "cra",
+    "zero-configuration",
+    "build-tools",
+    "create-react-app",
     "frontend"
   ],
   "jest": {},

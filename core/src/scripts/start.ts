@@ -6,7 +6,7 @@ import WebpackDevServer from 'webpack-dev-server';
 import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
 import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
 import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
-import { KKTRC, DevServerConfigFunction } from '../utils/loaderConf';
+import { KKTRC, DevServerConfigFunction, WebpackConfiguration } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory, proxySetup } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
 import { overridesOpenBrowser } from '../overrides/openBrowser';
@@ -19,9 +19,10 @@ import { loadSourceMapWarnning } from '../plugins/loadSourceMapWarnning';
 import { StartArgs } from '..';
 
 export default async function start(argvs: StartArgs) {
+  const { isNotCheckHTML = false } = argvs || {};
   try {
-    const paths = await overridePaths(argvs);
-    await checkRequiredFiles(paths);
+    const paths = await overridePaths(argvs, argvs.overridePaths);
+    await checkRequiredFiles(paths, isNotCheckHTML);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.dev' : ''}`;
     const devServerConfigPath = `${reactScripts}/config/webpackDevServer.config.js`;
     const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);
@@ -36,9 +37,10 @@ export default async function start(argvs: StartArgs) {
 
     // Source maps are resource heavy and can cause out of memory issue for large source files.
     const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
-    const overridesHandle = (kktrc.default || kktrc) as KKTRC['default'];
+    const overridesHandle = kktrc.default || argvs.overridesWebpack;
+
     if (overridesHandle && typeof overridesHandle === 'function') {
-      let webpackConf = createWebpackConfig('development');
+      let webpackConf: WebpackConfiguration = createWebpackConfig('development');
       await overridePaths(undefined, { proxySetup });
       if (kktrc && kktrc.proxySetup && typeof kktrc.proxySetup === 'function') {
         cacheData({ proxySetup: kktrc.proxySetup });
@@ -50,13 +52,14 @@ export default async function start(argvs: StartArgs) {
         paths,
         kktrc,
       };
-      webpackConf = loadSourceMapWarnning(webpackConf, 'development', overrideOption);
+      webpackConf = argvs.overridesWebpack
+        ? argvs.overridesWebpack(webpackConf, 'production', overrideOption)
+        : webpackConf;
+      webpackConf = loadSourceMapWarnning(webpackConf);
       webpackConf = miniCssExtractPlugin(webpackConf, 'development');
-      const overrideWebpackConf = await overridesHandle(
-        argvs.overridesWebpack ? argvs.overridesWebpack(webpackConf) : webpackConf,
-        'development',
-        overrideOption,
-      );
+      const overrideWebpackConf = kktrc.default
+        ? await overridesHandle(webpackConf, 'development', overrideOption)
+        : webpackConf;
 
       if (overrideWebpackConf.proxySetup && typeof overrideWebpackConf.proxySetup === 'function') {
         cacheData({ proxySetup: overrideWebpackConf.proxySetup });
@@ -79,9 +82,11 @@ export default async function start(argvs: StartArgs) {
     ) => {
       let serverConf = createDevServerConfig(proxy, allowedHost);
       /**
-       * [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+       * [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE]
+       * DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
        * (Use `node --trace-deprecation ...` to show where the warning was created)
-       * [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+       * [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE]
+       * DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
        */
       delete serverConf.onAfterSetupMiddleware;
       delete serverConf.onBeforeSetupMiddleware;
@@ -127,10 +132,10 @@ export default async function start(argvs: StartArgs) {
       // eslint-disable-next-line
       compiler.watch({ ...config.watchOptions }, (err, stats) => {
         if (err) {
-          console.log('❌ errors:', err);
+          console.log('❌ KKT:ERR:', err);
           return;
         }
-        console.log('🚀 started!');
+        console.log('🚀 KKT: started!');
       });
     } else {
       // run original script

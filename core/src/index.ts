@@ -1,14 +1,23 @@
 import { ParsedArgs } from 'minimist';
-import { WebpackConfiguration } from './utils/loaderConf';
+import { WebpackConfiguration, LoaderConfOptions } from './utils/loaderConf';
 
+export { default as build } from './scripts/build';
+export { default as start } from './scripts/start';
 export * from './overrides/paths';
 export * from './utils/loaderConf';
 export * from './utils/getStyleLoaders';
 export * from './plugins/miniCssExtractPlugin';
 export * from './utils/path';
+import { Paths } from './utils/path';
 
 export interface BuildArgs extends ParsedArgs {
-  overridesWebpack?: (conf: WebpackConfiguration) => WebpackConfiguration;
+  isNotCheckHTML?: boolean;
+  overridePaths?: Partial<Paths>;
+  overridesWebpack?: (
+    conf: WebpackConfiguration,
+    env: 'development' | 'production',
+    options: LoaderConfOptions,
+  ) => WebpackConfiguration;
 }
 
 export interface StartArgs extends BuildArgs {}

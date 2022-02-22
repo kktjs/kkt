@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'production';
 
 import { Configuration } from 'webpack';
-import { KKTRC } from '../utils/loaderConf';
+import { KKTRC, WebpackConfiguration } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
 import { miniCssExtractPlugin } from '../plugins/miniCssExtractPlugin';
@@ -10,14 +10,15 @@ import { loadSourceMapWarnning } from '../plugins/loadSourceMapWarnning';
 import { BuildArgs } from '..';
 
 export default async function build(argvs: BuildArgs) {
+  const { isNotCheckHTML = false } = argvs || {};
   try {
-    const paths = await overridePaths(argvs);
-    await checkRequiredFiles(paths);
+    const paths = await overridePaths(argvs, argvs.overridePaths);
+    await checkRequiredFiles(paths, isNotCheckHTML);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.prod' : ''}`;
     const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);
     const overrides = require('../overrides/config');
     const kktrc: KKTRC = await overrides();
-    const overridesHandle = kktrc.default || kktrc;
+    const overridesHandle = kktrc.default || argvs.overridesWebpack;
 
     if (overridesHandle && typeof overridesHandle === 'function') {
       // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -28,23 +29,27 @@ export default async function build(argvs: BuildArgs) {
         paths,
         kktrc,
       };
-      let defaultWepack = createWebpackConfig('production');
-      defaultWepack = loadSourceMapWarnning(defaultWepack, 'development', overrideOption);
-      defaultWepack = miniCssExtractPlugin(defaultWepack, 'development');
+      let defaultWepack: WebpackConfiguration = createWebpackConfig('production');
+      defaultWepack = loadSourceMapWarnning(defaultWepack);
+      defaultWepack = miniCssExtractPlugin(defaultWepack, 'production');
+      defaultWepack = argvs.overridesWebpack
+        ? argvs.overridesWebpack(defaultWepack, 'production', overrideOption)
+        : defaultWepack;
+      let webpackConf = kktrc.default
+        ? await overridesHandle(defaultWepack, 'production', overrideOption)
+        : defaultWepack;
 
-      let webpackConf = await overridesHandle(defaultWepack, 'production', overrideOption);
-      const overrideWebpackConf = argvs.overridesWebpack ? argvs.overridesWebpack(webpackConf) : webpackConf;
-
-      if (overrideWebpackConf.proxySetup && typeof overrideWebpackConf.proxySetup === 'function') {
-        delete overrideWebpackConf.proxySetup;
+      if (webpackConf.proxySetup && typeof webpackConf.proxySetup === 'function') {
+        delete webpackConf.proxySetup;
       }
       // override config in memory
-      require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => overrideWebpackConf;
+      require.cache[require.resolve(webpackConfigPath)].exports = (env: string) => webpackConf;
     }
 
     // run original script
     await require(`${reactScripts}/scripts/build`);
   } catch (error) {
+    console.log('webpackConf:error:', JSON.stringify(error, null, 3));
     const message = error && error.message ? error.message : '';
     console.log('\x1b[31;1m KKT:BUILD:ERROR: \x1b[0m\n', error);
     new Error(`KKT:BUILD:ERROR: \n ${message}`);
