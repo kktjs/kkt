@@ -43,6 +43,7 @@ interface NCCArgs extends BuildArgs {
   out?: string;
   target?: string;
   minify?: boolean;
+  external?: string[];
   sourceMap?: boolean;
 }
 
@@ -180,6 +181,7 @@ process.on('exit', (code) => {
       conf.target = target;
       conf.mode = env === 'development' ? 'development' : 'production';
       conf.output = {};
+      if (argvs.external) conf.externals = argvs.external;
       if (conf.output) {
         conf.output.libraryTarget = 'commonjs';
         conf.output.path = outDir;
