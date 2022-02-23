@@ -2,7 +2,7 @@
 import minimist from 'minimist';
 import path from 'path';
 import fs from 'fs-extra';
-import { BuildArgs, build } from 'kkt';
+import { BuildArgs, build, start } from 'kkt';
 import { overridePaths } from 'kkt/lib/overrides/paths';
 import { sync as gzipSize } from 'gzip-size';
 import filesize from 'filesize';
@@ -11,7 +11,7 @@ import { filterPlugins, removeLoaders } from './utils';
 
 function help() {
   const { version } = require('../package.json');
-  console.log('\n  Usage: \x1b[34;1mncc\x1b[0m [build] [input-file] [--help|h]');
+  console.log('\n  Usage: \x1b[34;1mncc\x1b[0m [build|watch] [input-file] [--help|h]');
   console.log('\n  Displays help information.');
   console.log('\n  Options:\n');
   console.log('   --version, -v        ', 'Show version number');
@@ -32,6 +32,7 @@ function help() {
   console.log('   $ \x1b[35mncc\x1b[0m build');
   console.log('   $ \x1b[35mncc\x1b[0m build --out ./dist');
   console.log('   $ \x1b[35mncc\x1b[0m build --minify');
+  console.log('   $ \x1b[35mncc\x1b[0m watch --minify');
   console.log('   $ \x1b[35mncc\x1b[0m build src/app.ts');
   console.log(`   $ \x1b[35mncc\x1b[0m build --target web --library MyLibrary`);
   console.log(`   $ \x1b[35mncc\x1b[0m build --source-map`);
@@ -125,6 +126,7 @@ process.on('exit', (code) => {
 
     argvs.out = argvs.o = path.resolve(argvs.out || argvs.o || 'dist');
     argvs.minify = argvs.m = argvs.minify || argvs.m || false;
+    // argvs.watch = argvs.w = argvs.watch || argvs.w || false;
 
     const scriptName = argvs._[0];
     const inputFile = path.resolve(argvs._[1] || 'src/index.ts');
@@ -189,6 +191,7 @@ process.on('exit', (code) => {
       }
       return conf;
     };
+    data.minify = argvs.minify;
     if (scriptName === 'build') {
       await build({
         ...argvs,
@@ -196,8 +199,15 @@ process.on('exit', (code) => {
         isNotCheckHTML: true,
         overridePaths: { ...oPaths },
       });
+    } else if (scriptName === 'watch') {
+      await start({
+        ...argvs,
+        watch: true,
+        bundle: true,
+        isNotCheckHTML: true,
+        overridePaths: { ...oPaths },
+      });
     }
-    data.minify = argvs.minify;
   } catch (error) {
     console.log('\x1b[31m KKT:NCC:ERROR:\x1b[0m', error);
   }

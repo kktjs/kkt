@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run bundle && npm run bundle:min",
     "bundle": "ncc build src/app.ts",
-    "watch": "ncc start src/app.ts",
+    "watch": "ncc watch src/app.ts",
     "bundle:min": "ncc build src/app.ts -m"
   },
   "repository": {

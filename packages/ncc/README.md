@@ -37,7 +37,7 @@ Outputs the `Node.js` compact build of `input.js` into `dist/input.js`.
 ## Commands
 
 ```bash
-Usage: ncc [build] [input-file] [--help|h]
+Usage: ncc [build|watch] [input-file] [--help|h]
 
 Displays help information.
 
@@ -47,6 +47,8 @@ Options:
   --help, -h            Displays help information.
   -o, --out [dir]       Output directory for build (defaults to dist).
   -m, --minify          Minify output.
+  -t, --target          Instructs webpack to target a specific environment (defaults to node14).
+  -l, --library         Output a library exposing the exports of your entry point. The parameter "--target=web" works.
   -s, --source-map      Generate source map.
   -e, --external [mod]  Skip bundling 'mod'. Can be used many times.
 
@@ -55,7 +57,9 @@ Example:
   $ ncc build
   $ ncc build --out ./dist
   $ ncc build --minify
+  $ ncc watch --minify
   $ ncc build src/app.ts
+  $ ncc build --target web --library MyLibrary
   $ ncc build --source-map
 ```
 
