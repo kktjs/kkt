@@ -77,8 +77,8 @@ jobs:
         working-directory: example/bundle
         run: npm run build && npm run bundle && npm run bundle:min
 
-      - name: example @template/bundle-react-component-tsx
-        working-directory: example/bundle-react-component-tsx
+      - name: example @template/bundle-node
+        working-directory: example/bundle-node
         run: npm run bundle && npm run bundle:min
 
       - name: example @template/chrome-plugin
@@ -197,11 +197,6 @@ jobs:
         run: zip -r -y bundle-node.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
         working-directory: example/bundle-node
       - run: cp -rp example/bundle-node/bundle-node.zip ./zip
-
-      - name: Compress bundle-react-component-tsx Example.
-        run: zip -r -y bundle-react-component-tsx.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
-        working-directory: example/bundle-react-component-tsx
-      - run: cp -rp example/bundle-react-component-tsx/bundle-react-component-tsx.zip ./zip
 
       - name: Compress chrome-plugin Example.
         run: zip -r -y chrome-plugin.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
