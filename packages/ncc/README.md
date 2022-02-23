@@ -69,6 +69,12 @@ Example:
 
 Supports `.kktrc.js` and `.kktrc.ts`.
 
+## Example
+
+- [Github Action Contributors](https://github.com/jaywcjlove/github-action-contributors) Github action generates dynamic image URL for contributor list to display it!
+- [Generated Badges](https://github.com/jaywcjlove/generated-badges) Create a badge using GitHub Actions (no 3rd parties servers).
+- [Coverage Badges](https://github.com/jaywcjlove/coverage-badges-cli) Create coverage badges from coverage reports (no 3rd parties servers).
+
 ## Contributors
 
 As always, thanks to our amazing contributors!

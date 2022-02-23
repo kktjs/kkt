@@ -177,9 +177,10 @@ process.on('exit', (code) => {
       } else {
         conf.devtool = false;
       }
+      conf.module!.exprContextCritical = false;
       conf.amd = false;
       conf.target = target;
-      conf.mode = env === 'development' ? 'development' : 'production';
+      conf.mode = scriptName === 'watch' ? 'development' : 'production';
       conf.output = {};
       if (argvs.external) conf.externals = argvs.external;
       if (conf.output) {
