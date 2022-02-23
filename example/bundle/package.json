@@ -6,11 +6,11 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "kkt start",
+    "start": "FAST_REFRESH=false kkt start",
     "build": "kkt build",
     "released": "npm run bundle && npm run bundle:min",
-    "bundle": "kkt build --bundle",
-    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --mini"
+    "bundle": "ncc build src/components/button/index.jsx --target web --library Button",
+    "bundle:min": "ncc build src/components/button/index.jsx --target web --library Button -m"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,8 @@
   },
   "devDependencies": {
     "@kkt/less-modules": "7.1.1",
-    "@kkt/react-library": "7.1.1",
-    "kkt": "7.1.1"
+    "@kkt/ncc": "1.0.1",
+    "kkt": "7.1.2"
   },
   "eslintConfig": {
     "extends": [

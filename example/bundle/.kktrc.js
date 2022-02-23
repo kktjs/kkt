@@ -1,14 +1,9 @@
-import reactLibrary from '@kkt/react-library';
 import lessModules from '@kkt/less-modules';
-import pkg from './package.json';
 
 export default (conf, env, options) => {
   conf = lessModules(conf, env, options);
-  conf = reactLibrary(conf, env, {
-    ...options,
-    ...pkg,
-    // webpack externals options
-    dependencies: {
+  if (options.bundle) {
+    conf.externals = {
       react: {
         root: 'React',
         commonjs2: 'react',
@@ -21,8 +16,8 @@ export default (conf, env, options) => {
         commonjs: 'react-dom',
         amd: 'react-dom',
       },
-      'react-refresh': '0',
-    },
-  });
+    };
+  }
+  console.log('conf:', env, conf);
   return conf;
 };

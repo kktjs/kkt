@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@kkt/stylus-modules": "7.1.1",
-    "kkt": "7.1.1"
+    "kkt": "7.1.2"
   },
   "browserslist": {
     "production": [

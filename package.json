@@ -13,7 +13,10 @@
     "lib:----->>>": ">>>>>>>>>>>>>>>>>>>>>>>>>>>",
     "lib:watch": "lerna exec \"tsbb watch --no-esm\" --scope @kkt/*",
     "lib:watch:less": "lerna exec \"tsbb watch --no-esm\" --scope @kkt/less-modules",
+    "lib:watch:ncc": "lerna exec \"tsbb watch --no-esm\" --scope @kkt/ncc",
     "lib:build": "lerna exec \"tsbb build --no-esm\" --scope @kkt/*",
+    "lib:build:ncc": "lerna exec \"tsbb build --no-esm\" --scope @kkt/ncc",
+    "lib:build:less": "lerna exec \"tsbb build --no-esm\" --scope @kkt/less-modules",
     "lib:<<<-----": "<<<<<<<<<<<<<<<<<<<<<<<<<<<",
     "kkt:----->>>": ">>>>>>>>>>>>>>>>>>>>>>>>>>>",
     "kkt:watch": "lerna exec --scope kkt -- npm run watch",
@@ -28,7 +31,7 @@
     "bootstrap:basic": "lerna bootstrap --scope @template/basic",
     "bootstrap:markdown": "lerna bootstrap --scope @template/markdown",
     "bootstrap:example": "lerna bootstrap --scope @template/*",
-    "version": "lerna version --no-changelog --no-git-tag-version --no-push --yes",
+    "version": "lerna version --no-changelog --no-git-tag-version --no-push",
     "publish": "npm run build && lerna publish from-package",
     "ci:publish": "lerna publish from-package --yes",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
@@ -49,6 +52,6 @@
     "lerna": "4.0.0",
     "lint-staged": "12.3.3",
     "prettier": "2.5.1",
-    "tsbb": "3.5.4"
+    "tsbb": "3.7.0"
   }
 }
