@@ -20,7 +20,7 @@
     "@types/hapi__hapi": "20.0.10"
   },
   "devDependencies": {
-    "@kkt/ncc": "1.0.1"
+    "@kkt/ncc": "1.0.2"
   },
   "eslintConfig": {
     "extends": [

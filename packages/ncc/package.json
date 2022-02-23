@@ -1,6 +1,6 @@
 {
   "name": "@kkt/ncc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple CLI for compiling a Node.js module into a single file, together with all its dependencies, gcc-style.",
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "repository": "https://github.com/kktjs/kkt/tree/master/packages/ncc",
@@ -24,6 +24,6 @@
   ],
   "dependencies": {
     "css-minimizer-webpack-plugin": "3.3.1",
-    "kkt": "7.1.2"
+    "kkt": "7.1.3"
   }
 }
