@@ -1,6 +1,6 @@
 {
   "name": "@template/bundle",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "main": "dist/bundle.js",
   "module": "src/components/index.js",
   "description": "",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@kkt/less-modules": "7.1.1",
-    "@kkt/ncc": "1.0.2",
+    "@kkt/ncc": "1.0.3",
     "kkt": "7.1.3"
   },
   "eslintConfig": {
