@@ -1,4 +1,5 @@
 process.env.NODE_ENV = 'development';
+// process.env.NODE_ENV ||= 'development';
 
 import fs from 'fs';
 import webpack, { Configuration } from 'webpack';
@@ -38,7 +39,6 @@ export default async function start(argvs: StartArgs) {
     // Source maps are resource heavy and can cause out of memory issue for large source files.
     const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
     const overridesHandle = kktrc.default || argvs.overridesWebpack;
-
     if (overridesHandle && typeof overridesHandle === 'function') {
       let webpackConf: WebpackConfiguration = createWebpackConfig('development');
       await overridePaths(undefined, { proxySetup });
@@ -53,7 +53,7 @@ export default async function start(argvs: StartArgs) {
         kktrc,
       };
       webpackConf = argvs.overridesWebpack
-        ? argvs.overridesWebpack(webpackConf, 'production', overrideOption)
+        ? argvs.overridesWebpack(webpackConf, 'development', overrideOption)
         : webpackConf;
       webpackConf = loadSourceMapWarnning(webpackConf);
       webpackConf = miniCssExtractPlugin(webpackConf, 'development');

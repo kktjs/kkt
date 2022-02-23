@@ -289,7 +289,7 @@ KKT uses the `homepage` field to determine the root URL in the built HTML file.
 
 ### Tools
 
-- [@kkt/ncc](https://github.com/kktjs/kkt/tree/master/packages/ncc)
+- [@kkt/ncc](https://github.com/kktjs/kkt/tree/master/packages/ncc) Simple CLI for compiling a Node.js module into a single file. Supports TypeScript.
 
 ### Development
 
