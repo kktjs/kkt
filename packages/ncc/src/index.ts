@@ -172,7 +172,9 @@ process.on('exit', (code) => {
       }
       conf.entry = inputFile;
       if (argvs.sourceMap) {
-        conf.devtool = 'source-map';
+        conf.devtool = typeof argvs.sourceMap === 'boolean' ? 'source-map' : argvs.sourceMap;
+      } else {
+        conf.devtool = false;
       }
       conf.amd = false;
       conf.target = target;
