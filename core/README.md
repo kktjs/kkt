@@ -84,6 +84,10 @@ You can download the following examples directly. [Download page](https://kktjs.
 - [**`uiw`**](https://github.com/kktjs/kkt/tree/master/example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/uiw)
 
 
+### Tools
+
+[`@kkt/ncc`](https://github.com/kktjs/kkt/tree/master/packages/ncc) simple CLI for compiling a Node.js module into a single file. Supports TypeScript.
+
 ## How to rewire your create-react-app project
 
 > Create your app using [create-react-app](https://github.com/facebook/create-react-app) and then rewire it.
@@ -286,10 +290,6 @@ KKT uses the `homepage` field to determine the root URL in the built HTML file.
 - [@kkt/react-library](https://github.com/kktjs/kkt/tree/master/packages/react-library)
 - [@kkt/scope-plugin-options](https://github.com/kktjs/kkt/tree/master/packages/scope-plugin-options)
 - [@kkt/stylus-modules](https://github.com/kktjs/kkt/tree/master/packages/stylus-modules)
-
-### Tools
-
-- [@kkt/ncc](https://github.com/kktjs/kkt/tree/master/packages/ncc) Simple CLI for compiling a Node.js module into a single file. Supports TypeScript.
 
 ### Development
 

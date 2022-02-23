@@ -1,11 +1,11 @@
 process.env.NODE_ENV = 'development';
-// process.env.NODE_ENV ||= 'development';
 
 import fs from 'fs';
 import webpack, { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
 import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
+import clearConsole from 'react-dev-utils/clearConsole';
 import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
 import { KKTRC, DevServerConfigFunction, WebpackConfiguration } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory, proxySetup } from '../utils/path';
@@ -18,6 +18,8 @@ import { cacheData } from '../utils/cacheData';
 import { checkRequiredFiles } from '../overrides/checkRequired';
 import { loadSourceMapWarnning } from '../plugins/loadSourceMapWarnning';
 import { StartArgs } from '..';
+
+const today = () => new Date().toISOString().split('.')[0].replace('T', ' ');
 
 export default async function start(argvs: StartArgs) {
   const { isNotCheckHTML = false } = argvs || {};
@@ -129,13 +131,18 @@ export default async function start(argvs: StartArgs) {
       const configFactory = require(`${reactScripts}/config/webpack.config`);
       const config = configFactory('development');
       const compiler = webpack(config);
-      // eslint-disable-next-line
       compiler.watch({ ...config.watchOptions }, (err, stats) => {
         if (err) {
-          console.log('❌ KKT:ERR:', err);
+          console.log('❌ KKT:\x1b[31;1mERR\x1b[0m:', err);
           return;
         }
-        console.log('🚀 KKT: started!');
+        if (stats.hasErrors()) {
+          clearConsole();
+          console.log(`❌ KKT:\x1b[31;1mERR\x1b[0m: \x1b[35;1m${today()}\x1b[0m\n`, stats.toString());
+          return;
+        }
+        clearConsole();
+        console.log(`🚀 started! \x1b[35;1m${today()}\x1b[0m`);
       });
     } else {
       // run original script
