@@ -59,6 +59,10 @@ Example:
   $ ncc build --source-map
 ```
 
+## Configuration File
+
+Supports `.kktrc.js` and `.kktrc.ts`.
+
 ## Contributors
 
 As always, thanks to our amazing contributors!
