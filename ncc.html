@@ -110,32 +110,8 @@ Example:
         commonjs<span class="token operator">:</span> <span class="token string">'@codemirror/basic-setup'</span><span class="token punctuation">,</span>
         commonjs2<span class="token operator">:</span> <span class="token string">'@codemirror/basic-setup'</span><span class="token punctuation">,</span>
       <span class="token punctuation">}</span><span class="token punctuation">,</span>
-      <span class="token string">'@codemirror/state'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        root<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'CM'</span><span class="token punctuation">,</span> <span class="token string">'@codemirror/state'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-        commonjs<span class="token operator">:</span> <span class="token string">'@codemirror/state'</span><span class="token punctuation">,</span>
-        commonjs2<span class="token operator">:</span> <span class="token string">'@codemirror/state'</span><span class="token punctuation">,</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
-      <span class="token string">'@codemirror/view'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        root<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'CM'</span><span class="token punctuation">,</span> <span class="token string">'@codemirror/view'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-        commonjs<span class="token operator">:</span> <span class="token string">'@codemirror/view'</span><span class="token punctuation">,</span>
-        commonjs2<span class="token operator">:</span> <span class="token string">'@codemirror/view'</span><span class="token punctuation">,</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
-      <span class="token string">'@codemirror/theme-one-dark'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        root<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'CM'</span><span class="token punctuation">,</span> <span class="token string">'@codemirror/theme-one-dark'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-        commonjs<span class="token operator">:</span> <span class="token string">'@codemirror/theme-one-dark'</span><span class="token punctuation">,</span>
-        commonjs2<span class="token operator">:</span> <span class="token string">'@codemirror/theme-one-dark'</span><span class="token punctuation">,</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
       oneDark<span class="token operator">:</span> <span class="token punctuation">{</span>
         root<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'CM'</span><span class="token punctuation">,</span> <span class="token string">'@codemirror/theme-one-dark'</span><span class="token punctuation">,</span> <span class="token string">'oneDark'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
-      basicSetup<span class="token operator">:</span> <span class="token punctuation">{</span>
-        root<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'CM'</span><span class="token punctuation">,</span> <span class="token string">'@codemirror/basic-setup'</span><span class="token punctuation">,</span> <span class="token string">'basicSetup'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
-      <span class="token maybe-class-name">ViewUpdate</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        root<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'CM'</span><span class="token punctuation">,</span> <span class="token string">'@codemirror/view'</span><span class="token punctuation">,</span> <span class="token string">'ViewUpdate'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
-      <span class="token maybe-class-name">EditorView</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        root<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'CM'</span><span class="token punctuation">,</span> <span class="token string">'@codemirror/view'</span><span class="token punctuation">,</span> <span class="token string">'EditorView'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
       <span class="token punctuation">}</span><span class="token punctuation">,</span>
       <span class="token maybe-class-name">StateEffect</span><span class="token operator">:</span> <span class="token punctuation">{</span>
         root<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'CM'</span><span class="token punctuation">,</span> <span class="token string">'@codemirror/state'</span><span class="token punctuation">,</span> <span class="token string">'StateEffect'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -177,32 +153,8 @@ export default (conf: Configuration, env: &#x27;development&#x27; | &#x27;produc
         commonjs: &#x27;@codemirror/basic-setup&#x27;,
         commonjs2: &#x27;@codemirror/basic-setup&#x27;,
       },
-      &#x27;@codemirror/state&#x27;: {
-        root: [&#x27;CM&#x27;, &#x27;@codemirror/state&#x27;],
-        commonjs: &#x27;@codemirror/state&#x27;,
-        commonjs2: &#x27;@codemirror/state&#x27;,
-      },
-      &#x27;@codemirror/view&#x27;: {
-        root: [&#x27;CM&#x27;, &#x27;@codemirror/view&#x27;],
-        commonjs: &#x27;@codemirror/view&#x27;,
-        commonjs2: &#x27;@codemirror/view&#x27;,
-      },
-      &#x27;@codemirror/theme-one-dark&#x27;: {
-        root: [&#x27;CM&#x27;, &#x27;@codemirror/theme-one-dark&#x27;],
-        commonjs: &#x27;@codemirror/theme-one-dark&#x27;,
-        commonjs2: &#x27;@codemirror/theme-one-dark&#x27;,
-      },
       oneDark: {
         root: [&#x27;CM&#x27;, &#x27;@codemirror/theme-one-dark&#x27;, &#x27;oneDark&#x27;],
-      },
-      basicSetup: {
-        root: [&#x27;CM&#x27;, &#x27;@codemirror/basic-setup&#x27;, &#x27;basicSetup&#x27;],
-      },
-      ViewUpdate: {
-        root: [&#x27;CM&#x27;, &#x27;@codemirror/view&#x27;, &#x27;ViewUpdate&#x27;],
-      },
-      EditorView: {
-        root: [&#x27;CM&#x27;, &#x27;@codemirror/view&#x27;, &#x27;EditorView&#x27;],
       },
       StateEffect: {
         root: [&#x27;CM&#x27;, &#x27;@codemirror/state&#x27;, &#x27;StateEffect&#x27;],
