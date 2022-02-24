@@ -133,7 +133,7 @@ process.on('exit', (code) => {
       throw Error(`KKT:NCC: Example "build <input-file> [opts]".`);
     }
 
-    const fileName = argvs.filename || path.basename(inputFile).replace(/.(js|jsx?|mjs|tsx?)$/, '');
+    const fileName = argvs.filename || path.basename(inputFile).replace(/.(js|jsx?|cjs|mjs|tsx?)$/, '');
     const outDir = argvs.out;
 
     data.filename = `${fileName}${argvs.minify ? '.min.js' : '.js'}`;
