@@ -6,7 +6,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "FAST_REFRESH=false kkt start",
+    "start": "kkt start",
     "build": "kkt build",
     "released": "npm run bundle && npm run bundle:min",
     "bundle": "ncc build src/components/button/index.jsx --target web --library Button",

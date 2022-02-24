@@ -1,8 +1,6 @@
 import { ParsedArgs } from 'minimist';
 import { WebpackConfiguration, LoaderConfOptions } from './utils/loaderConf';
 
-export { default as build } from './scripts/build';
-export { default as start } from './scripts/start';
 export * from './overrides/paths';
 export * from './utils/loaderConf';
 export * from './utils/getStyleLoaders';

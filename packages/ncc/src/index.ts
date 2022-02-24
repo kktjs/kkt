@@ -2,7 +2,7 @@
 import minimist from 'minimist';
 import path from 'path';
 import fs from 'fs-extra';
-import { BuildArgs, build, start } from 'kkt';
+import { BuildArgs } from 'kkt';
 import { overridePaths } from 'kkt/lib/overrides/paths';
 import { sync as gzipSize } from 'gzip-size';
 import filesize from 'filesize';
@@ -198,14 +198,18 @@ process.on('exit', (code) => {
     };
     data.minify = argvs.minify;
     if (scriptName === 'build') {
-      await build({
+      await (
+        await import('kkt/lib/scripts/build')
+      ).default({
         ...argvs,
         bundle: true,
         isNotCheckHTML: true,
         overridePaths: { ...oPaths },
       });
     } else if (scriptName === 'watch') {
-      await start({
+      await (
+        await import('kkt/lib/scripts/start')
+      ).default({
         ...argvs,
         watch: true,
         bundle: true,

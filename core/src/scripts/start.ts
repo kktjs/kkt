@@ -7,8 +7,8 @@ import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
 import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
 import clearConsole from 'react-dev-utils/clearConsole';
 import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
-import { KKTRC, DevServerConfigFunction, WebpackConfiguration } from '../utils/loaderConf';
-import { reactScripts, isWebpackFactory, proxySetup } from '../utils/path';
+import { KKTRC, DevServerConfigFunction, WebpackConfiguration, loaderConf } from '../utils/loaderConf';
+import { reactScripts, isWebpackFactory, proxySetup, configOverrides } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
 import { overridesOpenBrowser } from '../overrides/openBrowser';
 import { overridesClearConsole } from '../overrides/clearConsole';
@@ -30,8 +30,8 @@ export default async function start(argvs: StartArgs) {
     const devServerConfigPath = `${reactScripts}/config/webpackDevServer.config.js`;
     const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);
     const createDevServerConfig: DevServerConfigFunction = require(devServerConfigPath);
-    const overrides = require('../overrides/config');
-    const kktrc: KKTRC = await overrides();
+    require('react-scripts/config/env');
+    const kktrc: KKTRC = await loaderConf(configOverrides);
     await overridesClearConsole(argvs);
     await overridesOpenBrowser(argvs);
 

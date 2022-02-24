@@ -6,8 +6,8 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsbb build --file-names src/bin/kkt.ts --file-names src/scripts/build.ts --file-names src/overrides/config.ts --file-names src/scripts/start.ts --file-names src/scripts/testk.ts --no-esm",
-    "watch": "tsbb watch --file-names src/bin/kkt.ts --file-names src/scripts/build.ts --file-names src/overrides/config.ts --file-names src/scripts/start.ts --file-names src/scripts/testk.ts --no-esm",
+    "build": "tsbb build --file-names src/bin/kkt.ts --file-names src/scripts/build.ts --file-names src/scripts/start.ts --file-names src/scripts/testk.ts --no-esm",
+    "watch": "tsbb watch --file-names src/bin/kkt.ts --file-names src/scripts/build.ts --file-names src/scripts/start.ts --file-names src/scripts/testk.ts --no-esm",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
   },

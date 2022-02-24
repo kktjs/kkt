@@ -1,7 +1,6 @@
 import FS from 'fs-extra';
 import path from 'path';
 import { Configuration } from 'webpack';
-import { LoaderConfOptions } from '../utils/loaderConf';
 
 /**
  * sourceMap source file does not exist #325
