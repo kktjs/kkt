@@ -86,32 +86,8 @@ export default (conf: Configuration, env: 'development' | 'production', options:
         commonjs: '@codemirror/basic-setup',
         commonjs2: '@codemirror/basic-setup',
       },
-      '@codemirror/state': {
-        root: ['CM', '@codemirror/state'],
-        commonjs: '@codemirror/state',
-        commonjs2: '@codemirror/state',
-      },
-      '@codemirror/view': {
-        root: ['CM', '@codemirror/view'],
-        commonjs: '@codemirror/view',
-        commonjs2: '@codemirror/view',
-      },
-      '@codemirror/theme-one-dark': {
-        root: ['CM', '@codemirror/theme-one-dark'],
-        commonjs: '@codemirror/theme-one-dark',
-        commonjs2: '@codemirror/theme-one-dark',
-      },
       oneDark: {
         root: ['CM', '@codemirror/theme-one-dark', 'oneDark'],
-      },
-      basicSetup: {
-        root: ['CM', '@codemirror/basic-setup', 'basicSetup'],
-      },
-      ViewUpdate: {
-        root: ['CM', '@codemirror/view', 'ViewUpdate'],
-      },
-      EditorView: {
-        root: ['CM', '@codemirror/view', 'EditorView'],
       },
       StateEffect: {
         root: ['CM', '@codemirror/state', 'StateEffect'],
