@@ -53,6 +53,7 @@ Options:
   -l, --library         Output a library exposing the exports of your entry point. The parameter "--target=web" works.
   -s, --source-map      Generate source map.
   -e, --external [mod]  Skip bundling 'mod'. Can be used many times.
+  --filename            output file name.
 
 Example:
 
@@ -67,7 +68,77 @@ Example:
 
 ## Configuration File
 
-Supports `.kktrc.js` and `.kktrc.ts`.
+Supports `.kktrc.js` and `.kktrc.ts`. Configuration [Example](https://github.com/uiwjs/react-codemirror/blob/880754a18ace17f40571330985d85e7eca770351/.kktrc.ts#L11-L74):
+
+```typescript
+import webpack, { Configuration } from 'webpack';
+import { LoaderConfOptions } from 'kkt';
+import lessModules from '@kkt/less-modules';
+
+export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
+  conf = lessModules(conf, env, options);
+  if (options.bundle) {
+    conf.output!.library = '@uiw/codemirror';
+    conf.output!.filename = `codemirror${options.minify ? '.min.js' : '.js'}`;
+    conf.externals = {
+      '@codemirror/basic-setup': {
+        root: ['CM', '@codemirror/basic-setup'],
+        commonjs: '@codemirror/basic-setup',
+        commonjs2: '@codemirror/basic-setup',
+      },
+      '@codemirror/state': {
+        root: ['CM', '@codemirror/state'],
+        commonjs: '@codemirror/state',
+        commonjs2: '@codemirror/state',
+      },
+      '@codemirror/view': {
+        root: ['CM', '@codemirror/view'],
+        commonjs: '@codemirror/view',
+        commonjs2: '@codemirror/view',
+      },
+      '@codemirror/theme-one-dark': {
+        root: ['CM', '@codemirror/theme-one-dark'],
+        commonjs: '@codemirror/theme-one-dark',
+        commonjs2: '@codemirror/theme-one-dark',
+      },
+      oneDark: {
+        root: ['CM', '@codemirror/theme-one-dark', 'oneDark'],
+      },
+      basicSetup: {
+        root: ['CM', '@codemirror/basic-setup', 'basicSetup'],
+      },
+      ViewUpdate: {
+        root: ['CM', '@codemirror/view', 'ViewUpdate'],
+      },
+      EditorView: {
+        root: ['CM', '@codemirror/view', 'EditorView'],
+      },
+      StateEffect: {
+        root: ['CM', '@codemirror/state', 'StateEffect'],
+      },
+      EditorState: {
+        root: ['CM', '@codemirror/basic-setup', 'EditorState'],
+      },
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react',
+      },
+      'react-dom': {
+        root: 'ReactDOM',
+        commonjs2: 'react-dom',
+        commonjs: 'react-dom',
+        amd: 'react-dom',
+      },
+    };
+  } else {
+    // ......
+  }
+  return conf;
+};
+
+```
 
 ## Example
 
