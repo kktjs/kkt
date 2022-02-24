@@ -28,6 +28,7 @@ function help() {
   );
   console.log('   -s, --source-map     ', 'Generate source map.');
   console.log('   -e, --external [mod] ', "Skip bundling 'mod'. Can be used many times.");
+  console.log('   --filename           ', 'output file name.');
   console.log('\n  Example:\n');
   console.log('   $ \x1b[35mncc\x1b[0m build');
   console.log('   $ \x1b[35mncc\x1b[0m build --out ./dist');
@@ -42,6 +43,7 @@ function help() {
 interface NCCArgs extends BuildArgs {
   out?: string;
   target?: string;
+  filename?: string;
   minify?: boolean;
   external?: string[];
   sourceMap?: boolean;
@@ -131,7 +133,7 @@ process.on('exit', (code) => {
       throw Error(`KKT:NCC: Example "build <input-file> [opts]".`);
     }
 
-    const fileName = path.basename(inputFile).replace(/.(js|jsx?|mjs|tsx?)$/, '');
+    const fileName = argvs.filename || path.basename(inputFile).replace(/.(js|jsx?|mjs|tsx?)$/, '');
     const outDir = argvs.out;
 
     data.filename = `${fileName}${argvs.minify ? '.min.js' : '.js'}`;
