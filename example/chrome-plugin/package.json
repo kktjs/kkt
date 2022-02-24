@@ -22,7 +22,7 @@
   "devDependencies": {
     "clean-webpack-plugin": "4.0.0",
     "filemanager-webpack-plugin": "6.1.7",
-    "kkt": "7.1.3"
+    "kkt": "7.1.4"
   },
   "eslintConfig": {
     "extends": [
