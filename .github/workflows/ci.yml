@@ -51,6 +51,7 @@ jobs:
       - run: mkdir -p build
       - run: npm i markdown-to-html-cli -g
       - run: markdown-to-html --output build/index.html
+      - run: markdown-to-html --source packages/ncc/README.md --output build/ncc.html
 
       - name: Generate Contributors Images
         uses: jaywcjlove/github-action-contributors@main

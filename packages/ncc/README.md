@@ -74,6 +74,8 @@ Supports `.kktrc.js` and `.kktrc.ts`.
 - [Github Action Contributors](https://github.com/jaywcjlove/github-action-contributors) Github action generates dynamic image URL for contributor list to display it!
 - [Generated Badges](https://github.com/jaywcjlove/generated-badges) Create a badge using GitHub Actions (no 3rd parties servers).
 - [Coverage Badges](https://github.com/jaywcjlove/coverage-badges-cli) Create coverage badges from coverage reports (no 3rd parties servers).
+- [@uiw/react-codemirror](https://github.com/uiwjs/react-codemirror) CodeMirror 6 component for React.
+- [uiw](https://github.com/uiwjs/uiw) A high quality UI Toolkit, A Component Library for React.
 
 ## Contributors
 

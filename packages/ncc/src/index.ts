@@ -50,6 +50,7 @@ interface NCCArgs extends BuildArgs {
 const data = {
   nolog: false,
   minify: false,
+  filename: '',
   file: '',
   min: '',
   minFilePath: '',
@@ -87,19 +88,13 @@ process.on('exit', (code) => {
     fs.writeFileSync(data.filePath, data.file);
     !data.minify &&
       console.log(
-        `   ${filesize(gzipSize(data.file))}  \x1b[30;1m${outputDir}/\x1b[0m\x1b[32m${path.basename(
-          data.filePath,
-        )}\x1b[0m.`,
+        `   ${filesize(gzipSize(data.file))}  \x1b[30;1m${outputDir}/\x1b[0m\x1b[32m${data.filename}\x1b[0m.`,
       );
   }
   if (!!data.min) {
     fs.writeFileSync(data.minFilePath, data.min);
     data.minify &&
-      console.log(
-        `   ${filesize(gzipSize(data.min))}  \x1b[30;1m${outputDir}/\x1b[0m\x1b[32m${path.basename(
-          data.minFilePath,
-        )}\x1b[0m.`,
-      );
+      console.log(`   ${filesize(gzipSize(data.min))}  \x1b[30;1m${outputDir}/\x1b[0m\x1b[32m${data.filename}\x1b[0m.`);
   }
   if (!!data.mapMinFile) {
     fs.writeFileSync(data.mapMinFilePath, data.mapMinFile);
@@ -138,6 +133,8 @@ process.on('exit', (code) => {
 
     const fileName = path.basename(inputFile).replace(/.(js|jsx?|mjs|tsx?)$/, '');
     const outDir = argvs.out;
+
+    data.filename = `${fileName}${argvs.minify ? '.min.js' : '.js'}`;
 
     data.minFilePath = path.resolve(argvs.out, `${fileName}.min.js`);
     data.filePath = path.resolve(argvs.out, `${fileName}.js`);
@@ -183,11 +180,9 @@ process.on('exit', (code) => {
       conf.mode = scriptName === 'watch' ? 'development' : 'production';
       conf.output = {};
       if (argvs.external) conf.externals = argvs.external;
-      if (conf.output) {
-        conf.output.libraryTarget = 'commonjs';
-        conf.output.path = outDir;
-        conf.output.filename = `${fileName}${argvs.minify ? '.min.js' : '.js'}`;
-      }
+      conf.output.libraryTarget = 'commonjs';
+      conf.output.path = outDir;
+      conf.output.filename = data.filename;
       if (isWeb) {
         conf.output.libraryTarget = 'umd';
         if (argvs.library) {
