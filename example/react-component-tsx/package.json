@@ -1,6 +1,6 @@
 {
   "name": "@template/react-component-tsx",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "description": "React Component Example for TypeScript.",
   "private": true,
   "main": "./cjs/index.js",
@@ -58,7 +58,7 @@
     "@types/react-test-renderer": "17.0.1",
     "compile-less-cli": "1.8.11",
     "husky": "7.0.4",
-    "kkt": "7.1.4",
+    "kkt": "7.1.5",
     "lint-staged": "12.3.4",
     "prettier": "2.5.1",
     "react-test-renderer": "17.0.2",

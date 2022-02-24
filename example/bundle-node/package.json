@@ -1,6 +1,6 @@
 {
   "name": "@template/bundle-node",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "description": "",
   "private": true,
   "scripts": {
@@ -20,7 +20,7 @@
     "@types/hapi__hapi": "20.0.10"
   },
   "devDependencies": {
-    "@kkt/ncc": "1.0.4"
+    "@kkt/ncc": "1.0.5"
   },
   "eslintConfig": {
     "extends": [

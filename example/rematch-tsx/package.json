@@ -1,6 +1,6 @@
 {
   "name": "@template/rematch-tsx",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "description": "Use Rematch & TypeScript for the project.",
   "private": true,
   "scripts": {
@@ -31,7 +31,7 @@
     "@types/react": "17.0.39",
     "@types/react-dom": "17.0.11",
     "@types/react-redux": "7.1.22",
-    "kkt": "7.1.4"
+    "kkt": "7.1.5"
   },
   "eslintConfig": {
     "extends": [
