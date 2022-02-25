@@ -53,22 +53,29 @@ const data = {
   nolog: false,
   minify: false,
   filename: '',
+  // .js file
   file: '',
-  min: '',
-  minFilePath: '',
   filePath: '',
+  fileMin: '',
+  fileMinPath: '',
+  // .js.map file
   mapFile: '',
   mapMinFile: '',
   mapMinFilePath: '',
   mapFilePath: '',
+  // .css file
+  cssFile: '',
+  cssFilePath: '',
+  cssMinFile: '',
+  cssMinFilePath: '',
 };
 
 process.on('beforeExit', () => {
   if (data.nolog) {
     return;
   }
-  if (fs.existsSync(data.minFilePath)) {
-    data.min = fs.readFileSync(data.minFilePath).toString();
+  if (fs.existsSync(data.fileMinPath)) {
+    data.fileMin = fs.readFileSync(data.fileMinPath).toString();
   }
   if (fs.existsSync(data.filePath)) {
     data.file = fs.readFileSync(data.filePath).toString();
@@ -78,6 +85,12 @@ process.on('beforeExit', () => {
   }
   if (fs.existsSync(data.mapFilePath)) {
     data.mapFile = fs.readFileSync(data.mapFilePath).toString();
+  }
+  if (fs.existsSync(data.cssFilePath)) {
+    data.cssFile = fs.readFileSync(data.cssFilePath).toString();
+  }
+  if (fs.existsSync(data.cssMinFilePath)) {
+    data.cssMinFile = fs.readFileSync(data.cssMinFilePath).toString();
   }
 });
 
@@ -93,16 +106,37 @@ process.on('exit', (code) => {
         `   ${filesize(gzipSize(data.file))}  \x1b[30;1m${outputDir}/\x1b[0m\x1b[32m${data.filename}\x1b[0m.`,
       );
   }
-  if (!!data.min) {
-    fs.writeFileSync(data.minFilePath, data.min);
+  if (!!data.fileMin) {
+    fs.writeFileSync(data.fileMinPath, data.fileMin);
     data.minify &&
-      console.log(`   ${filesize(gzipSize(data.min))}  \x1b[30;1m${outputDir}/\x1b[0m\x1b[32m${data.filename}\x1b[0m.`);
+      console.log(
+        `   ${filesize(gzipSize(data.fileMin))}  \x1b[30;1m${outputDir}/\x1b[0m\x1b[32m${data.filename}\x1b[0m.`,
+      );
   }
   if (!!data.mapMinFile) {
     fs.writeFileSync(data.mapMinFilePath, data.mapMinFile);
   }
   if (!!data.mapFile) {
     fs.writeFileSync(data.mapFilePath, data.mapFile);
+  }
+
+  if (!!data.cssFile) {
+    fs.writeFileSync(data.cssFilePath, data.cssFile);
+    !data.minify &&
+      console.log(
+        `   ${filesize(gzipSize(data.cssFile))}  \x1b[30;1m${outputDir}/\x1b[0m\x1b[32m${path.basename(
+          data.cssFilePath,
+        )}\x1b[0m.`,
+      );
+  }
+  if (!!data.cssMinFile) {
+    fs.writeFileSync(data.cssMinFilePath, data.cssMinFile);
+    data.minify &&
+      console.log(
+        `   ${filesize(gzipSize(data.cssMinFile))}  \x1b[30;1m${outputDir}/\x1b[0m\x1b[32m${path.basename(
+          data.cssMinFilePath,
+        )}\x1b[0m.`,
+      );
   }
   console.log(`\n`);
 });
@@ -124,7 +158,6 @@ process.on('exit', (code) => {
 
     argvs.out = argvs.o = path.resolve(argvs.out || argvs.o || 'dist');
     argvs.minify = argvs.m = argvs.minify || argvs.m || false;
-    // argvs.watch = argvs.w = argvs.watch || argvs.w || false;
 
     const scriptName = argvs._[0];
     const inputFile = path.resolve(argvs._[1] || 'src/index.ts');
@@ -138,13 +171,15 @@ process.on('exit', (code) => {
 
     data.filename = `${fileName}${argvs.minify ? '.min.js' : '.js'}`;
 
-    data.minFilePath = path.resolve(argvs.out, `${fileName}.min.js`);
     data.filePath = path.resolve(argvs.out, `${fileName}.js`);
-    data.mapFilePath = path.resolve(argvs.out, `${fileName}.min.js.map`);
+    data.fileMinPath = path.resolve(argvs.out, `${fileName}.min.js`);
     data.mapMinFilePath = path.resolve(argvs.out, `${fileName}.js.map`);
+    data.mapFilePath = path.resolve(argvs.out, `${fileName}.min.js.map`);
+    data.cssFilePath = path.resolve(argvs.out, `${fileName}.css`);
+    data.cssMinFilePath = path.resolve(argvs.out, `${fileName}.min.css`);
 
-    if (fs.existsSync(data.minFilePath)) {
-      data.min = fs.readFileSync(data.minFilePath).toString();
+    if (fs.existsSync(data.fileMinPath)) {
+      data.fileMin = fs.readFileSync(data.fileMinPath).toString();
     }
     if (fs.existsSync(data.filePath)) {
       data.file = fs.readFileSync(data.filePath).toString();
@@ -153,7 +188,13 @@ process.on('exit', (code) => {
       data.mapFile = fs.readFileSync(data.mapFilePath).toString();
     }
     if (fs.existsSync(data.mapMinFilePath)) {
-      data.mapMinFilePath = fs.readFileSync(data.mapMinFilePath).toString();
+      data.mapMinFile = fs.readFileSync(data.mapMinFilePath).toString();
+    }
+    if (fs.existsSync(data.cssFilePath)) {
+      data.cssFile = fs.readFileSync(data.cssFilePath).toString();
+    }
+    if (fs.existsSync(data.cssMinFilePath)) {
+      data.cssMinFile = fs.readFileSync(data.cssMinFilePath).toString();
     }
 
     const publicFolder = path.join(process.cwd(), 'node_modules', '.cache', 'kkt', '.~public');

@@ -18,6 +18,6 @@ export default (conf, env, options) => {
       },
     };
   }
-  console.log('conf:', env, conf);
+  // console.log('conf:', env, conf);
   return conf;
 };
