@@ -122,6 +122,8 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 - [Generated Badges](https://github.com/jaywcjlove/generated-badges) Create a badge using GitHub Actions (no 3rd parties servers).
 - [Coverage Badges](https://github.com/jaywcjlove/coverage-badges-cli) Create coverage badges from coverage reports (no 3rd parties servers).
 - [@uiw/react-codemirror](https://github.com/uiwjs/react-codemirror) CodeMirror 6 component for React.
+- [@uiw/react-split](https://github.com/uiwjs/react-split) A piece of view can be divided into areas where the width or height can be adjusted by dragging.
+- [@uiw/react-layout](https://github.com/uiwjs/react-layout) Layout component for React. Handling the overall layout of a page.
 - [uiw](https://github.com/uiwjs/uiw) A high quality UI Toolkit, A Component Library for React.
 
 ## Contributors
