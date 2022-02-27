@@ -105,7 +105,7 @@ Example:
     conf<span class="token punctuation">.</span><span class="token property-access">output</span><span class="token operator">!</span><span class="token punctuation">.</span><span class="token property-access">library</span> <span class="token operator">=</span> <span class="token string">'@uiw/codemirror'</span><span class="token punctuation">;</span>
     conf<span class="token punctuation">.</span><span class="token property-access">output</span><span class="token operator">!</span><span class="token punctuation">.</span><span class="token property-access">filename</span> <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">codemirror</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>options<span class="token punctuation">.</span><span class="token property-access">minify</span> <span class="token operator">?</span> <span class="token string">'.min.js'</span> <span class="token operator">:</span> <span class="token string">'.js'</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
     conf<span class="token punctuation">.</span><span class="token property-access">externals</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
-      <span class="token string">'@codemirror/basic-setup'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string-property property">'@codemirror/basic-setup'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
         root<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'CM'</span><span class="token punctuation">,</span> <span class="token string">'@codemirror/basic-setup'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
         commonjs<span class="token operator">:</span> <span class="token string">'@codemirror/basic-setup'</span><span class="token punctuation">,</span>
         commonjs2<span class="token operator">:</span> <span class="token string">'@codemirror/basic-setup'</span><span class="token punctuation">,</span>
@@ -125,7 +125,7 @@ Example:
         commonjs<span class="token operator">:</span> <span class="token string">'react'</span><span class="token punctuation">,</span>
         amd<span class="token operator">:</span> <span class="token string">'react'</span><span class="token punctuation">,</span>
       <span class="token punctuation">}</span><span class="token punctuation">,</span>
-      <span class="token string">'react-dom'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string-property property">'react-dom'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
         root<span class="token operator">:</span> <span class="token string">'ReactDOM'</span><span class="token punctuation">,</span>
         commonjs2<span class="token operator">:</span> <span class="token string">'react-dom'</span><span class="token punctuation">,</span>
         commonjs<span class="token operator">:</span> <span class="token string">'react-dom'</span><span class="token punctuation">,</span>
@@ -188,6 +188,8 @@ export default (conf: Configuration, env: &#x27;development&#x27; | &#x27;produc
         <li><a href="https://github.com/jaywcjlove/generated-badges">Generated Badges</a> Create a badge using GitHub Actions (no 3rd parties servers).</li>
         <li><a href="https://github.com/jaywcjlove/coverage-badges-cli">Coverage Badges</a> Create coverage badges from coverage reports (no 3rd parties servers).</li>
         <li><a href="https://github.com/uiwjs/react-codemirror">@uiw/react-codemirror</a> CodeMirror 6 component for React.</li>
+        <li><a href="https://github.com/uiwjs/react-split">@uiw/react-split</a> A piece of view can be divided into areas where the width or height can be adjusted by dragging.</li>
+        <li><a href="https://github.com/uiwjs/react-layout">@uiw/react-layout</a> Layout component for React. Handling the overall layout of a page.</li>
         <li><a href="https://github.com/uiwjs/uiw">uiw</a> A high quality UI Toolkit, A Component Library for React.</li>
       </ul>
       <h2 id="contributors"><a class="anchor" aria-hidden="true" tabindex="-1" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h2>
