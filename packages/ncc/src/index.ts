@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+
+process.env.FAST_REFRESH = 'false';
+
 import minimist from 'minimist';
 import path from 'path';
 import fs from 'fs-extra';
