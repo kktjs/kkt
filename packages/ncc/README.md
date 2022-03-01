@@ -130,6 +130,7 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 - [@uiw/react-textarea-code-editor](https://github.com/uiwjs/react-textarea-code-editor) A simple code editor with syntax highlighting.
 - [@uiw/react-heat-map](https://github.com/uiwjs/react-heat-map) A lightweight calendar heatmap react component.
 - [uiw](https://github.com/uiwjs/uiw) A high quality UI Toolkit, A Component Library for React.
+- [More...](https://github.com/kktjs/kkt/network/dependents?package_id=UGFja2FnZS0zMDE5ODU0NTI4)
 
 ## Contributors
 
