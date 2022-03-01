@@ -124,6 +124,11 @@ export default (conf: Configuration, env: 'development' | 'production', options:
 - [@uiw/react-codemirror](https://github.com/uiwjs/react-codemirror) CodeMirror 6 component for React.
 - [@uiw/react-split](https://github.com/uiwjs/react-split) A piece of view can be divided into areas where the width or height can be adjusted by dragging.
 - [@uiw/react-layout](https://github.com/uiwjs/react-layout) Layout component for React. Handling the overall layout of a page.
+- [@uiw/react-amap](https://github.com/uiwjs/react-amap) 基于 React 封装的高德地图组件。
+- [@uiw/react-baidu-map](https://github.com/uiwjs/react-baidu-map) 基于 React 封装的百度地图组件。
+- [@uiw/react-markdown-preview](https://github.com/uiwjs/react-markdown-preview) React component preview markdown text in web browser. 
+- [@uiw/react-textarea-code-editor](https://github.com/uiwjs/react-textarea-code-editor) A simple code editor with syntax highlighting.
+- [@uiw/react-heat-map](https://github.com/uiwjs/react-heat-map) A lightweight calendar heatmap react component.
 - [uiw](https://github.com/uiwjs/uiw) A high quality UI Toolkit, A Component Library for React.
 
 ## Contributors
