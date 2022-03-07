@@ -17,9 +17,8 @@ jobs:
           node-version: 14
 
       - name: Look Changelog
-        uses: jaywcjlove/changelog-generator@v1.4.8
+        uses: jaywcjlove/changelog-generator@v1.5.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           filter-author: (小弟调调™|Renovate Bot|renovate-bot)
           filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
 
@@ -35,13 +34,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-
-      - name: Look Changelog
-        uses: jaywcjlove/changelog-generator@v1.4.8
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          filter-author: (小弟调调™|Renovate Bot|renovate-bot)
-          filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
 
       - run: npm install --unsafe-perm
       - run: npm run hoist
@@ -59,12 +51,6 @@ jobs:
           filter-author: (renovate\[bot\]|renovate-bot|dependabot\[bot\])
           output: build/CONTRIBUTORS.svg
           avatarSize: 42
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
 
       - name: example @template/basic
         working-directory: example/basic
@@ -132,51 +118,6 @@ jobs:
         working-directory: example/uiw
         run: npm run build
 
-      - name: Is a tag created auto?
-        id: create_tag
-        uses: jaywcjlove/create-tag-action@v1.3.5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          package-path: ./core/package.json
-
-      - name: Generate Changelog
-        id: changelog
-        uses: jaywcjlove/changelog-generator@v1.4.8
-        if: steps.create_tag.outputs.successful
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          head-ref: ${{ steps.create_tag.outputs.version }}
-          filter-author: (小弟调调™|Renovate Bot|renovate-bot)
-          filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
-
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        if: steps.create_tag.outputs.successful
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          name: ${{ steps.changelog.outputs.tag }}
-          tag: ${{ steps.changelog.outputs.tag }}
-          body: |
-            [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/kkt@${{steps.changelog.outputs.version}}/file/README.md) [![npm version](https://img.shields.io/npm/v/kkt.svg)](https://www.npmjs.com/package/kkt) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/kkt)](https://bundlephobia.com/result?p=kkt@${{steps.changelog.outputs.version}})
-            
-            ```bash
-            npm i kkt@${{steps.changelog.outputs.version}}
-            ```
-
-            ${{ steps.changelog.outputs.compareurl }}
-            
-            ${{ steps.changelog.outputs.changelog }}
-
-      - run: git status
-      - run: npm install @jsdevtools/npm-publish -g
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./core/package.json
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/less-modules/package.json
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/ncc/package.json
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-library/package.json
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/raw-modules/package.json
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/scope-plugin-options/package.json
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/stylus-modules/package.json
-
       - run: mkdir -p zip
 
       - name: Compress basic Example.
@@ -188,16 +129,6 @@ jobs:
         run: zip -r -y basic-entry.zip . -x "node_modules/*" -x "build/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
         working-directory: example/basic-entry
       - run: cp -rp example/basic-entry/basic-entry.zip ./zip
-
-      - name: Compress bundle Example.
-        run: zip -r -y bundle.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
-        working-directory: example/bundle
-      - run: cp -rp example/bundle/bundle.zip ./zip
-
-      - name: Compress bundle-node Example.
-        run: zip -r -y bundle-node.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
-        working-directory: example/bundle-node
-      - run: cp -rp example/bundle-node/bundle-node.zip ./zip
 
       - name: Compress chrome-plugin Example.
         run: zip -r -y chrome-plugin.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
@@ -258,6 +189,61 @@ jobs:
         run: zip -r -y uiw.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
         working-directory: example/uiw
       - run: cp -rp example/uiw/uiw.zip ./zip
+
+      - name: get tag version
+        id: tag_version
+        uses: jaywcjlove/changelog-generator@v1.5.0
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          commit_message: ${{steps.tag_version.outputs.tag}} ${{ github.event.head_commit.message }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+
+      - name: Is a tag created auto?
+        id: create_tag
+        uses: jaywcjlove/create-tag-action@v1.3.5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          package-path: ./core/package.json
+
+      - name: Generate Changelog
+        id: changelog
+        uses: jaywcjlove/changelog-generator@v1.5.0
+        if: steps.create_tag.outputs.successful
+        with:
+          head-ref: ${{ steps.create_tag.outputs.version }}
+          filter-author: (小弟调调™|Renovate Bot|renovate-bot)
+          filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        if: steps.create_tag.outputs.successful
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: ${{ steps.changelog.outputs.tag }}
+          tag: ${{ steps.changelog.outputs.tag }}
+          body: |
+            [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/kkt@${{steps.changelog.outputs.version}}/file/README.md) [![npm version](https://img.shields.io/npm/v/kkt.svg)](https://www.npmjs.com/package/kkt) 
+            
+            Documentation ${{ steps.changelog.outputs.tag }}: https://raw.githack.com/kktjs/kkt/${{ steps.changelog.outputs.gh-pages-short-hash }}/index.html  
+            Comparing Changes: ${{ steps.changelog.outputs.compareurl }} 
+            
+            ```bash
+            npm i kkt@${{steps.changelog.outputs.version}}
+            ```
+            
+            ${{ steps.changelog.outputs.changelog }}
+
+      - run: git status
+      - run: npm install @jsdevtools/npm-publish -g
+      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./core/package.json
+      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/less-modules/package.json
+      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-library/package.json
+      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/raw-modules/package.json
+      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/scope-plugin-options/package.json
+      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/stylus-modules/package.json
 
       - name: Compress uiw Example.
         working-directory: zip
@@ -326,16 +312,10 @@ jobs:
           </body></html>
           EOF
 
-      - name: Generate Contributors Images
-        uses: jaywcjlove/github-action-contributors@main
-        with:
-          filter-author: (renovate\[bot\]|renovate-bot|dependabot\[bot\])
-          output: zip/CONTRIBUTORS.svg
-          avatarSize: 42
-
       - name: Upload *.zip Files
         uses: peaceiris/actions-gh-pages@v3
         with:
+          commit_message: ${{steps.tag_version.outputs.tag}} ${{ github.event.head_commit.message }}
           personal_token: ${{ secrets.PERSONAL_TOKEN_KKT }}
           external_repository: kktjs/zip
           force_orphan: true
@@ -345,6 +325,7 @@ jobs:
       - name: Upload *.zip Files
         uses: peaceiris/actions-gh-pages@v3
         with:
+          commit_message: ${{steps.tag_version.outputs.tag}} ${{ github.event.head_commit.message }}
           personal_token: ${{ secrets.PERSONAL_TOKEN_KKT }}
           external_repository: kktjs/zip
           force_orphan: true
