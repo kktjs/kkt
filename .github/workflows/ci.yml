@@ -41,9 +41,17 @@ jobs:
       - run: npm run lib:build
 
       - run: mkdir -p build
-      - run: npm i markdown-to-html-cli -g
-      - run: markdown-to-html --output build/index.html
-      - run: markdown-to-html --source packages/ncc/README.md --output build/ncc.html
+
+      - name: Converts kkt Markdown to HTML
+        uses: jaywcjlove/markdown-to-html-cli@main
+        with:
+          output: build/index.html
+
+      - name: Converts ncc Markdown to HTML
+        uses: jaywcjlove/markdown-to-html-cli@main
+        with:
+          source: packages/ncc/README.md
+          output: build/ncc.html
 
       - name: Generate Contributors Images
         uses: jaywcjlove/github-action-contributors@main
@@ -59,14 +67,6 @@ jobs:
       - name: example @template/basic-entry
         working-directory: example/basic-entry
         run: npm run build
-
-      - name: example @template/bundle
-        working-directory: example/bundle
-        run: npm run build && npm run bundle && npm run bundle:min
-
-      - name: example @template/bundle-node
-        working-directory: example/bundle-node
-        run: npm run bundle && npm run bundle:min
 
       - name: example @template/chrome-plugin
         working-directory: example/chrome-plugin
