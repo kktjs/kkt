@@ -1,6 +1,6 @@
 {
   "name": "@template/typescript",
-  "version": "7.1.2",
+  "version": "7.1.3",
   "description": "Use an example of TypeScript.",
   "private": true,
   "scripts": {
@@ -21,11 +21,11 @@
     "web-vitals": "^2.1.2"
   },
   "devDependencies": {
-    "@kkt/less-modules": "~7.1.1",
+    "@kkt/less-modules": "7.1.2",
     "@types/jest": "~27.4.1",
     "@types/react": "~18.0.0",
     "@types/react-dom": "~18.0.0",
-    "kkt": "~7.1.5"
+    "kkt": "7.1.6"
   },
   "eslintConfig": {
     "extends": [
