@@ -27,7 +27,7 @@
     "@types/react-dom": "18.0.0",
     "electron": "16.0.10",
     "kkt": "7.1.5",
-    "tsbb": "3.7.0"
+    "tsbb": "3.7.2"
   },
   "dependencies": {
     "react": "18.0.0",
