@@ -45,11 +45,13 @@ jobs:
       - name: Converts kkt Markdown to HTML
         uses: jaywcjlove/markdown-to-html-cli@main
         with:
+          github-corners: https://github.com/kktjs/kkt
           output: build/index.html
 
       - name: Converts ncc Markdown to HTML
         uses: jaywcjlove/markdown-to-html-cli@main
         with:
+          github-corners: https://github.com/kktjs/ncc
           source: packages/ncc/README.md
           output: build/ncc.html
 
@@ -192,7 +194,7 @@ jobs:
 
       - name: get tag version
         id: tag_version
-        uses: jaywcjlove/changelog-generator@v1.5.0
+        uses: jaywcjlove/changelog-generator@v1.5.3
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -210,7 +212,7 @@ jobs:
 
       - name: Generate Changelog
         id: changelog
-        uses: jaywcjlove/changelog-generator@v1.5.0
+        uses: jaywcjlove/changelog-generator@v1.5.3
         if: steps.create_tag.outputs.successful
         with:
           head-ref: ${{ steps.create_tag.outputs.version }}
