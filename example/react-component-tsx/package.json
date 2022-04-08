@@ -56,7 +56,7 @@
     "@types/react": "18.0.0",
     "@types/react-dom": "18.0.0",
     "@types/react-test-renderer": "17.0.1",
-    "compile-less-cli": "1.8.11",
+    "compile-less-cli": "1.8.13",
     "husky": "7.0.4",
     "kkt": "7.1.5",
     "lint-staged": "12.3.4",
