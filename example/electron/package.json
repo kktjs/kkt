@@ -22,16 +22,16 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@kkt/less-modules": "7.1.1",
-    "@types/react": "18.0.0",
-    "@types/react-dom": "18.0.0",
+    "@kkt/less-modules": "~7.1.1",
+    "@types/react": "~18.0.0",
+    "@types/react-dom": "~18.0.0",
     "electron": "~18.0.3",
-    "kkt": "7.1.5",
+    "kkt": "~7.1.5",
     "tsbb": "~3.7.0"
   },
   "dependencies": {
-    "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react": "~18.0.0",
+    "react-dom": "~18.0.0"
   },
   "eslintConfig": {
     "extends": [

@@ -21,9 +21,9 @@
     "src"
   ],
   "dependencies": {
-    "css-minimizer-webpack-plugin": "3.4.1"
+    "css-minimizer-webpack-plugin": "~3.4.1"
   },
   "devDependencies": {
-    "kkt": "7.1.5"
+    "kkt": "~7.1.5"
   }
 }

@@ -17,6 +17,6 @@
     "src"
   ],
   "devDependencies": {
-    "kkt": "7.1.5"
+    "kkt": "~7.1.5"
   }
 }

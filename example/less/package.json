@@ -14,12 +14,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react": "~18.0.0",
+    "react-dom": "~18.0.0"
   },
   "devDependencies": {
-    "@kkt/less-modules": "7.1.1",
-    "kkt": "7.1.5"
+    "@kkt/less-modules": "~7.1.1",
+    "kkt": "~7.1.5"
   },
   "browserslist": {
     "production": [

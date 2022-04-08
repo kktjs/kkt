@@ -16,12 +16,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "react": "18.0.0",
-    "react-dom": "18.0.0",
-    "uiw": "4.10.2"
+    "react": "~18.0.0",
+    "react-dom": "~18.0.0",
+    "uiw": "~4.10.2"
   },
   "devDependencies": {
-    "kkt": "7.1.5"
+    "kkt": "~7.1.5"
   },
   "browserslist": {
     "production": [

@@ -22,6 +22,6 @@
     "less-loader": "^10.2.0"
   },
   "devDependencies": {
-    "kkt": "7.1.5"
+    "kkt": "~7.1.5"
   }
 }
