@@ -17,10 +17,10 @@
     "@rematch/core": "2.2.0",
     "@rematch/loading": "2.1.2",
     "axios": "0.24.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
     "react-dynamic-loadable": "3.0.0",
-    "react-redux": "7.2.6",
+    "react-redux": "7.2.8",
     "react-router-dom": "6.2.1",
     "uiw": "4.10.2"
   },
@@ -28,9 +28,9 @@
     "@kkt/less-modules": "7.1.1",
     "@kkt/raw-modules": "7.1.1",
     "@kkt/scope-plugin-options": "7.1.1",
-    "@types/react": "17.0.39",
-    "@types/react-dom": "17.0.11",
-    "@types/react-redux": "7.1.22",
+    "@types/react": "18.0.0",
+    "@types/react-dom": "18.0.0",
+    "@types/react-redux": "7.1.23",
     "kkt": "7.1.5"
   },
   "eslintConfig": {
