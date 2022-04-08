@@ -52,7 +52,7 @@
     "eslint-config-react-app": "^7.0.0",
     "fs-extra": "10.0.1",
     "minimist": "1.2.6",
-    "mocker-api": "2.9.4",
+    "mocker-api": "2.9.5",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
