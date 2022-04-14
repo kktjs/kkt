@@ -20,6 +20,6 @@
     "raw-loader": "^4.0.2"
   },
   "devDependencies": {
-    "kkt": "7.1.6"
+    "kkt": "7.1.7"
   }
 }

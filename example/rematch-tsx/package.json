@@ -31,7 +31,7 @@
     "@types/react": "~18.0.0",
     "@types/react-dom": "~18.0.0",
     "@types/react-redux": "~7.1.23",
-    "kkt": "7.1.6"
+    "kkt": "7.1.7"
   },
   "eslintConfig": {
     "extends": [

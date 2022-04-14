@@ -21,7 +21,7 @@
     "uiw": "~4.10.2"
   },
   "devDependencies": {
-    "kkt": "7.1.6"
+    "kkt": "7.1.7"
   },
   "browserslist": {
     "production": [
