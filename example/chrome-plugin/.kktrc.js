@@ -2,7 +2,9 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import FileManagerPlugin from 'filemanager-webpack-plugin';
 
 export default (conf, env, options) => {
-  conf.output.publicPath = './';
+  if (env === 'production') {
+    conf.output = { ...conf.output, publicPath: './' };
+  }
   // const regexp = /(HotModuleReplacementPlugin)/;
   // conf.plugins = conf.plugins
   //   .map((item) => {
