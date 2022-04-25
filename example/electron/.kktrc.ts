@@ -4,7 +4,6 @@ import { LoaderConfOptions } from 'kkt';
 
 export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
   conf = lessModules(conf, env, options);
-  conf.output!.publicPath = './';
   const regexp = /(GenerateSW)/;
   if (conf.plugins) {
     conf.plugins = conf.plugins
@@ -15,6 +14,9 @@ export default (conf: Configuration, env: 'development' | 'production', options:
         return item;
       })
       .filter(Boolean) as WebpackPluginInstance[];
+  }
+  if (env === 'production') {
+    conf.output = { ...conf.output, publicPath: './' };
   }
   return conf;
 };
