@@ -47,6 +47,7 @@
     "@types/fs-extra": "~9.0.13",
     "@types/minimist": "~1.2.2",
     "@types/react-dev-utils": "~9.0.10",
+    "@types/testing-library__jest-dom": "^5.14.3",
     "@types/semver": "~7.3.9",
     "ajv": "^8.8.0",
     "eslint-config-react-app": "^7.0.0",
