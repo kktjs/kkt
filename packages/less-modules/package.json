@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "less": "^4.1.2",
-    "less-loader": "^10.2.0"
+    "less-loader": "^11.0.0"
   },
   "devDependencies": {
     "kkt": "^7.2.0"
