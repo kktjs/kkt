@@ -18,6 +18,9 @@
     "lib",
     "src"
   ],
+  "scripts": {
+    "watch": "tsbb watch --no-esm"
+  },
   "dependencies": {
     "stylus": "^0.57.0",
     "stylus-loader": "^6.2.0"

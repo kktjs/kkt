@@ -1,5 +1,4 @@
 {
-  "name": "kkt",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "private": true,
@@ -25,12 +24,6 @@
     "kkt:coverage": "lerna exec \"tsbb test --coverage\" --scope kkt",
     "kkt:<<<-----": "<<<<<<<<<<<<<<<<<<<<<<<<<<<",
     "build": "npm run kkt:build && npm run lib:build",
-    "hoist": "lerna bootstrap --hoist",
-    "bootstrap": "lerna bootstrap",
-    "bootstrap:kkt": "lerna bootstrap --scope kkt",
-    "bootstrap:basic": "lerna bootstrap --scope @template/basic",
-    "bootstrap:markdown": "lerna bootstrap --scope @template/markdown",
-    "bootstrap:example": "lerna bootstrap --scope @template/*",
     "version": "lerna version --no-changelog --no-git-tag-version --no-push",
     "publish": "npm run build && lerna publish from-package",
     "ci:publish": "lerna publish from-package --yes",
@@ -42,16 +35,24 @@
     "lerna": "lerna"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=16.0.0"
+  },
+  "workspaces": {
+    "packages": [
+      "core",
+      "example/*",
+      "packages/*"
+    ]
   },
   "lint-staged": {
     "*.{js,jsx,tsx,ts,less,md,json}": "prettier --write"
   },
   "devDependencies": {
-    "husky": "~7.0.4",
-    "lerna": "~4.0.0",
-    "lint-staged": "~12.3.7",
-    "prettier": "~2.6.0",
-    "tsbb": "~3.7.0"
+    "@babel/runtime": "^7.18.3",
+    "husky": "~8.0.0",
+    "lerna": "~5.1.0",
+    "lint-staged": "~13.0.0",
+    "prettier": "~2.7.0",
+    "tsbb": "^3.7.5"
   }
 }

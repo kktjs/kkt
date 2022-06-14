@@ -16,6 +16,9 @@
     "lib",
     "src"
   ],
+  "scripts": {
+    "watch": "tsbb watch --no-esm"
+  },
   "dependencies": {
     "raw-loader": "^4.0.2"
   },

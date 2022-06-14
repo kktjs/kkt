@@ -17,6 +17,9 @@
     "lib",
     "src"
   ],
+  "scripts": {
+    "watch": "tsbb watch --no-esm"
+  },
   "dependencies": {
     "less": "^4.1.2",
     "less-loader": "^10.2.0"
