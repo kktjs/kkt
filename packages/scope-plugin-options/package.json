@@ -16,6 +16,9 @@
     "lib",
     "src"
   ],
+  "scripts": {
+    "watch": "tsbb watch --no-esm"
+  },
   "devDependencies": {
     "kkt": "7.1.7"
   }

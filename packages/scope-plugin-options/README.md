@@ -61,22 +61,32 @@ import path from 'path';
 import scopePluginOptions from '@kkt/scope-plugin-options';
 
 export default (conf, evn, options) => {
-  return scopePluginOptions(conf, evn, {
-    allowedFiles: [
-      path.resolve(process.cwd(), 'README.md')
-    ]
-  });
+  return scopePluginOptions(conf, evn, false);
+}
+```
+
+Disable scopePlugin
+
+```js
+import path from 'path';
+import { disableScopePlugin } from '@kkt/scope-plugin-options';
+
+export default (conf, evn, options) => {
+  return disableScopePlugin(conf);
 }
 ```
 
 ### API
 
 ```ts
-type ReactLibraryOptions = LoaderConfOptions & {
+import { Configuration } from 'webpack';
+import { LoaderConfOptions } from 'kkt';
+export declare type ReactLibraryOptions = LoaderConfOptions & {
   allowedFiles?: ReadonlyArray<string>;
   allowedPaths?: ReadonlyArray<string>;
   appSrcs?: string | ReadonlyArray<string>;
 };
+export default function scopePluginOptions(conf: Configuration, env: string, options: ReactLibraryOptions | false): Configuration;
 ```
 
 ### License

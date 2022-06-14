@@ -9,15 +9,28 @@ export type ReactLibraryOptions = LoaderConfOptions & {
 
 const regexp = /(ModuleScopePlugin)/;
 
+export function disableScopePlugin(conf: Configuration) {
+  conf.resolve.plugins = conf.resolve.plugins
+    .map((plugin) => {
+      if (plugin.constructor && plugin.constructor.name && regexp.test(plugin.constructor.name)) {
+        return undefined;
+      }
+      return plugin;
+    })
+    .filter(Boolean);
+  return conf;
+}
+
 export default function scopePluginOptions(
   conf: Configuration,
   env: string,
-  options = {} as ReactLibraryOptions,
+  options: ReactLibraryOptions,
 ): Configuration {
   if (!conf) {
     throw Error('KKT:@kkt/scope-plugin-options: there is no config found');
   }
-  const { allowedFiles, appSrcs, allowedPaths } = options;
+  const { allowedFiles, appSrcs, allowedPaths } = options || {};
+
   const moduleScopePlugin = conf.resolve.plugins.find(
     (plugin) => plugin.constructor && plugin.constructor.name && regexp.test(plugin.constructor.name),
   );
