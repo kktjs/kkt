@@ -1,6 +1,6 @@
 {
   "name": "@template/basic-entry",
-  "version": "7.1.3",
+  "version": "7.2.0",
   "description": "The react base application.",
   "private": true,
   "scripts": {
@@ -19,7 +19,7 @@
     "react-dom": "~18.1.0"
   },
   "devDependencies": {
-    "kkt": "7.1.7"
+    "kkt": "^7.2.0"
   },
   "eslintConfig": {
     "extends": [

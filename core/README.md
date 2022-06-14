@@ -42,7 +42,7 @@ As of `KKT 6.x` this repo is "lightly" maintained mostly by the community at thi
 - 💝 Expose the configuration file entry and support webpack configuration.
 - 🚀 Supports [**creat-kkt**](https://github.com/kktjs/create-kkt) to create different instances.
 - ⛑ Jest test runner setup with defaults `kkt test`
-- 🐒 Simple CLI for compiling Node.js/Web modules to a single file with [`@kkt/ncc`](https://github.com/kktjs/kkt/tree/master/packages/ncc) support.
+- 🐒 Simple CLI for compiling Node.js/Web modules to a single file with [`@kkt/ncc`](https://github.com/kktjs/ncc) support.
 
 ## Usage
 
