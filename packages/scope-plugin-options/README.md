@@ -86,7 +86,8 @@ export declare type ReactLibraryOptions = LoaderConfOptions & {
   allowedPaths?: ReadonlyArray<string>;
   appSrcs?: string | ReadonlyArray<string>;
 };
-export default function scopePluginOptions(conf: Configuration, env: string, options: ReactLibraryOptions | false): Configuration;
+export declare function disableScopePlugin(conf: Configuration): Configuration;
+export default function scopePluginOptions(conf: Configuration, env: string, options: ReactLibraryOptions): Configuration;
 ```
 
 ### License
