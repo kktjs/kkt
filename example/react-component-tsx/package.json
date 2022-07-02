@@ -46,8 +46,8 @@
   "dependencies": {
     "@uiw/react-github-corners": "~1.5.14",
     "@uiw/react-markdown-preview": "~4.0.5",
-    "react": "~18.1.0",
-    "react-dom": "~18.1.0"
+    "react": "~18.2.0",
+    "react-dom": "~18.2.0"
   },
   "devDependencies": {
     "@kkt/less-modules": "^7.2.0",
@@ -61,7 +61,7 @@
     "kkt": "^7.2.0",
     "lint-staged": "~12.5.0",
     "prettier": "~2.7.0",
-    "react-test-renderer": "~18.1.0",
+    "react-test-renderer": "~18.2.0",
     "tsbb": "~3.7.0"
   },
   "eslintConfig": {
