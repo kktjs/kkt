@@ -99,6 +99,7 @@ export default async function start(argvs: StartArgs) {
       }
       delete serverConf.onAfterSetupMiddleware;
       delete serverConf.onBeforeSetupMiddleware;
+      const setupMiddlewares = overrideDevServerConfig.setupMiddlewares;
       serverConf.setupMiddlewares = (middlewares, devServer) => {
         // Keep `evalSourceMapMiddleware`
         // middlewares before `redirectServedPath` otherwise will not have any effect
@@ -122,6 +123,9 @@ export default async function start(argvs: StartArgs) {
         // it used the same host and port.
         // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
         devServer.app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
+        if (setupMiddlewares) {
+          return setupMiddlewares(middlewares, devServer);
+        }
         return middlewares;
       };
       return serverConf;

@@ -31,5 +31,9 @@ export default (conf: Configuration, env: 'development' | 'production', options:
  */
 export const devServer = (config: WebpackDevServer.Configuration) => {
   // Return your customised Webpack Development Server config.
+  // setupMiddlewares Example
+  config.setupMiddlewares = (middlewares, server) => {
+    return middlewares;
+  };
   return config;
 };
