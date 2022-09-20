@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@uiw/react-github-corners": "~1.5.14",
-    "@uiw/react-markdown-preview": "~4.0.5",
+    "@uiw/react-markdown-preview": "~4.1.0",
     "react": "~18.2.0",
     "react-dom": "~18.2.0"
   },
