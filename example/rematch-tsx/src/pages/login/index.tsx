@@ -85,7 +85,7 @@ export default function Login() {
             },
           }}
         >
-          {({ fields, canSubmit }) => {
+          {({ fields = {}, canSubmit }) => {
             return (
               <>
                 <Row>
@@ -102,7 +102,7 @@ export default function Login() {
                 </Row>
                 <Row>
                   <Col>
-                    <Button loading={!!loading} disabled={!canSubmit()} block type="dark" htmlType="submit">
+                    <Button loading={!!loading} disabled={!canSubmit!()} block type="dark" htmlType="submit">
                       登录
                     </Button>
                   </Col>
