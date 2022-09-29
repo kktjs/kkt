@@ -24,7 +24,7 @@
     "watch": "tsbb watch --no-esm"
   },
   "dependencies": {
-    "css-minimizer-webpack-plugin": "~3.4.1"
+    "css-minimizer-webpack-plugin": "~4.2.0"
   },
   "devDependencies": {
     "kkt": "^7.2.1"
