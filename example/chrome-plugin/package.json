@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "clean-webpack-plugin": "~4.0.0",
-    "filemanager-webpack-plugin": "~6.1.7",
+    "filemanager-webpack-plugin": "~7.0.0",
     "kkt": "^7.2.2"
   },
   "eslintConfig": {
