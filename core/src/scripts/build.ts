@@ -2,7 +2,7 @@ process.env.NODE_ENV = 'production';
 
 import { Configuration } from 'webpack';
 import { KKTRC, WebpackConfiguration, loaderConf } from '../utils/loaderConf';
-import { reactScripts, isWebpackFactory, configOverrides } from '../utils/path';
+import { reactScripts, isWebpackFactory, getConfPath } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
 import { miniCssExtractPlugin } from '../plugins/miniCssExtractPlugin';
 import { checkRequiredFiles } from '../overrides/checkRequired';
@@ -16,7 +16,7 @@ export default async function build(argvs: BuildArgs) {
     await checkRequiredFiles(paths, isNotCheckHTML);
     const webpackConfigPath = `${reactScripts}/config/webpack.config${!isWebpackFactory ? '.prod' : ''}`;
     const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);
-    const kktrc: KKTRC = await loaderConf(configOverrides);
+    const kktrc: KKTRC = await loaderConf(getConfPath(argvs.configName));
     const overridesHandle = kktrc.default || argvs.overridesWebpack;
 
     if (overridesHandle && typeof overridesHandle === 'function') {

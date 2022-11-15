@@ -11,6 +11,10 @@ import { Paths } from './utils/path';
 export interface BuildArgs extends ParsedArgs {
   isNotCheckHTML?: boolean;
   overridePaths?: Partial<Paths>;
+  /**
+   * Specify the configuration name. E.g: `.kktrc`
+   */
+  configName?: string;
   overridesWebpack?: (
     conf: WebpackConfiguration,
     env: 'development' | 'production',

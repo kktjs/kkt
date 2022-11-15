@@ -8,7 +8,7 @@ import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
 import clearConsole from 'react-dev-utils/clearConsole';
 import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
 import { KKTRC, DevServerConfigFunction, WebpackConfiguration, loaderConf } from '../utils/loaderConf';
-import { reactScripts, isWebpackFactory, proxySetup, configOverrides } from '../utils/path';
+import { reactScripts, isWebpackFactory, proxySetup, getConfPath } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
 import { overridesOpenBrowser } from '../overrides/openBrowser';
 import { overridesClearConsole } from '../overrides/clearConsole';
@@ -31,7 +31,7 @@ export default async function start(argvs: StartArgs) {
     const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);
     const createDevServerConfig: DevServerConfigFunction = require(devServerConfigPath);
     require('react-scripts/config/env');
-    const kktrc: KKTRC = await loaderConf(configOverrides);
+    const kktrc: KKTRC = await loaderConf(getConfPath(argvs.configName));
     await overridesClearConsole(argvs);
     await overridesOpenBrowser(argvs);
 
