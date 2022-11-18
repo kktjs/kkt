@@ -95,7 +95,7 @@ export default async function start(argvs: StartArgs) {
       if (kktrc && kktrc.devServer && typeof kktrc.devServer === 'function') {
         return kktrc.devServer({ ...overrideDevServerConfig, ...serverConf }, { ...argvs, paths });
       } else {
-        serverConf = { ...overrideDevServerConfig, ...serverConf };
+        serverConf = { ...serverConf, ...overrideDevServerConfig };
       }
       delete serverConf.onAfterSetupMiddleware;
       delete serverConf.onBeforeSetupMiddleware;
