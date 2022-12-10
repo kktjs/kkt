@@ -22,5 +22,7 @@ export interface BuildArgs extends ParsedArgs {
   ) => WebpackConfiguration;
 }
 
-export interface StartArgs extends BuildArgs {}
+export interface StartArgs extends BuildArgs {
+  docs?: string;
+}
 export interface TestArgs extends ParsedArgs {}

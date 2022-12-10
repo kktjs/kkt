@@ -2,25 +2,39 @@
 
 import minimist from 'minimist';
 
+const helpStr = `
+  Usage: kkt [start|build|test] [--help|h]
+
+    Displays help information.
+
+  Options:
+
+    --version, -v           Show version number
+    --help, -h              Displays help information.
+    --app-src               Specify the entry directory.
+    --docs                  Static asset preview in package(Dev mode works).
+    --no-open-browser       Do not open in browser.
+    --no-clear-console      Do not clear the command line information.
+
+  Example:
+
+  $ \x1b[35mkkt\x1b[0m build
+  $ \x1b[35mkkt\x1b[0m build --app-src ./website
+  $ \x1b[35mkkt\x1b[0m test
+  $ \x1b[35mkkt\x1b[0m test --env=jsdom
+  $ \x1b[35mkkt\x1b[0m test --env=jsdom --coverage
+  $ \x1b[35mkkt\x1b[0m start
+  $ \x1b[35mkkt\x1b[0m start --no-open-browser
+  $ \x1b[35mkkt\x1b[0m start --watch
+  $ \x1b[35mkkt\x1b[0m start --no-clear-console
+  $ \x1b[35mkkt\x1b[0m start --app-src ./website
+  \x1b[30;1m# Static asset preview in "@uiw/doc" package.\x1b[0m
+  \x1b[30;1m# Default preview:\x1b[0m \x1b[34;1mhttp://localhost:3000/_doc/\x1b[0m
+  $ \x1b[35mkkt\x1b[0m start --docs @uiw/doc/web
+`;
+
 function help() {
-  console.log('\n  Usage: kkt [start|build|test] [--help|h]');
-  console.log('\n  Displays help information.');
-  console.log('\n  Options:\n');
-  console.log('    --version, -v,', 'Show version number');
-  console.log('    --help, -h,', 'Displays help information.');
-  console.log('    --app-src,', 'Specify the entry directory.');
-  console.log('    --no-open-browser,', 'Do not open in browser.');
-  console.log('    --no-clear-console,', 'Do not clear the command line information.');
-  console.log('\n  Example:');
-  console.log('\n');
-  console.log('  $ \x1b[35mkkt\x1b[0m build');
-  console.log('  $ \x1b[35mkkt\x1b[0m build --app-src ./website');
-  console.log('  $ \x1b[35mkkt\x1b[0m start');
-  console.log('  $ \x1b[35mkkt\x1b[0m start --no-open-browser');
-  console.log('  $ \x1b[35mkkt\x1b[0m start --watch');
-  console.log('  $ \x1b[35mkkt\x1b[0m start --no-clear-console');
-  console.log('  $ \x1b[35mkkt\x1b[0m start --app-src ./website');
-  console.log('  $ \x1b[35mkkt\x1b[0m test');
+  console.log(helpStr);
 }
 
 (async () => {

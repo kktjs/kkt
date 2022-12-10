@@ -4,7 +4,7 @@
   "description": "Use uiw for the project.",
   "private": true,
   "scripts": {
-    "start": "kkt start",
+    "start": "kkt start --docs @uiw/doc/web",
     "build": "kkt build",
     "test": "kkt test --env=jsdom",
     "coverage": "kkt test --env=jsdom --coverage"
@@ -16,6 +16,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@uiw/doc": "~4.21.19",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
     "uiw": "~4.21.0"

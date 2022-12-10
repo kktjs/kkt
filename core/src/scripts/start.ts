@@ -17,6 +17,7 @@ import { miniCssExtractPlugin } from '../plugins/miniCssExtractPlugin';
 import { cacheData } from '../utils/cacheData';
 import { checkRequiredFiles } from '../overrides/checkRequired';
 import { loadSourceMapWarnning } from '../plugins/loadSourceMapWarnning';
+import { staticDocSetupMiddlewares } from '../plugins/staticDoc';
 import { StartArgs } from '..';
 
 const today = () => new Date().toISOString().split('.')[0].replace('T', ' ');
@@ -123,10 +124,8 @@ export default async function start(argvs: StartArgs) {
         // it used the same host and port.
         // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
         devServer.app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
-        if (setupMiddlewares) {
-          return setupMiddlewares(middlewares, devServer);
-        }
-        return middlewares;
+        const mds = setupMiddlewares ? setupMiddlewares(middlewares, devServer) : middlewares;
+        return staticDocSetupMiddlewares(mds, devServer, { ...argvs, paths });
       };
       return serverConf;
     };
