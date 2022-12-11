@@ -262,6 +262,9 @@ $ kkt start --app-src ./website
 # Static asset preview in "@uiw/doc" package.
 # Default preview: http://localhost:3000/_doc/
 $ kkt start --docs @uiw/doc/web
+# Specify a static website route "_uiw/doc"
+# Default preview: http://localhost:3000/_uiw/doc
+$ kkt start --docs @uiw/doc/web:_uiw/doc
 ```
 
 ### Home Page
