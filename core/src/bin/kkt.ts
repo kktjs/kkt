@@ -31,6 +31,9 @@ const helpStr = `
   \x1b[30;1m# Static asset preview in "@uiw/doc" package.\x1b[0m
   \x1b[30;1m# Default preview:\x1b[0m \x1b[34;1mhttp://localhost:3000/_doc/\x1b[0m
   $ \x1b[35mkkt\x1b[0m start --docs @uiw/doc/web
+  \x1b[30;1m# Specify a static website route\x1b[0m \x1b[34;1m"_uiw/doc"\x1b[0m
+  \x1b[30;1m# Default preview:\x1b[0m \x1b[34;1mhttp://localhost:3000/_uiw/doc\x1b[0m
+  $ \x1b[35mkkt\x1b[0m start --docs @uiw/doc/web:_uiw/doc
 `;
 
 function help() {

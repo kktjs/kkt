@@ -15,13 +15,23 @@ export const staticDocSetupMiddlewares = (
   options: StartArgs & DevServerOptions,
 ) => {
   if (options.docs) {
-    const [_, name] = options.docs.match(/^([a-zA-Z]+|@[a-zA-Z]+\/[a-zA-Z]+)\/?/i);
+    let dirPath = options.docs;
+    let route = '/_doc';
+    if (dirPath?.includes(':')) {
+      const arr = dirPath.split(':');
+      dirPath = arr[0];
+      route = arr[1];
+    }
+    if (!route.startsWith('/')) {
+      route = '/' + route;
+    }
+    const [_, name] = dirPath.match(/^([a-zA-Z]+|@[a-zA-Z]+\/[a-zA-Z]+)\/?/i);
     const pkgPath = resolvePackagePath(name, process.cwd());
     const docRoot = path.resolve(
       path.dirname(pkgPath).replace(new RegExp(`${name.replace('/', path.sep)}$`, 'ig'), ''),
-      options.docs,
+      dirPath,
     );
-    devServer.app.use('/_doc', express.static(docRoot));
+    devServer.app.use(route, express.static(docRoot));
   }
   return middlewares;
 };
