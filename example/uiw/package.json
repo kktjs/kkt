@@ -4,7 +4,7 @@
   "description": "Use uiw for the project.",
   "private": true,
   "scripts": {
-    "start": "kkt start --docs @uiw/doc/web:_doc",
+    "start": "kkt start --docs @uiw/doc/web:",
     "build": "kkt build",
     "test": "kkt test --env=jsdom",
     "coverage": "kkt test --env=jsdom --coverage"
