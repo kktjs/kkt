@@ -17,10 +17,17 @@ export function getDocsData(str: string = '') {
     route = '/' + route;
   }
   const [_, name] = dirPath.match(/^([a-zA-Z]+|@[a-zA-Z]+\/[a-zA-Z]+)\/?/i);
+  const pkgPath = resolvePackagePath(name, process.cwd());
+  const root = path.dirname(pkgPath).replace(new RegExp(`${name.replace('/', path.sep)}$`, 'ig'), '');
+  const [repath] = str.replace(name, '').split(':');
+  const docRoot = path.resolve(path.dirname(pkgPath) + repath);
   return {
     name,
     route,
     dirPath,
+    pkgPath,
+    root,
+    docRoot,
   };
 }
 
@@ -34,12 +41,7 @@ export const staticDocSetupMiddlewares = (
   options: StartArgs & DevServerOptions,
 ) => {
   if (options.docs) {
-    const { name, route, dirPath } = getDocsData(options.docs);
-    const pkgPath = resolvePackagePath(name, process.cwd());
-    const docRoot = path.resolve(
-      path.dirname(pkgPath).replace(new RegExp(`${name.replace('/', path.sep)}$`, 'ig'), ''),
-      dirPath,
-    );
+    const { route, docRoot } = getDocsData(options.docs);
     devServer.app.use(route, express.static(docRoot));
   }
   return middlewares;
