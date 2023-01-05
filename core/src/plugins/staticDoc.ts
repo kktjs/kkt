@@ -5,9 +5,8 @@ import resolvePackagePath from 'resolve-package-path';
 import { DevServerOptions } from '../utils/loaderConf';
 import { StartArgs } from '..';
 
-export function getDocsData(str: string = '') {
+export function getDocsData(str: string = '', route = '/_doc') {
   let dirPath = str;
-  let route = '/_doc';
   if (dirPath?.includes(':')) {
     const arr = dirPath.split(':');
     dirPath = arr[0];

@@ -1,0 +1,43 @@
+{
+  "name": "@template/docs",
+  "version": "7.3.2",
+  "description": "The react base application.",
+  "private": true,
+  "scripts": {
+    "start": "kkt start",
+    "build": "kkt build",
+    "doc": "kkt doc --path @uiw/doc/web",
+    "doc2": "kkt doc --path @uiw/doc/web:_uiw/doc --port 30002",
+    "doc3": "kkt doc --path @uiw/doc/web:_uiw/doc -p 30002",
+    "doc4": "kkt doc --path @uiw/doc/web:_uiw/doc -p 30002"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kktjs/kkt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "~18.2.0",
+    "react-dom": "~18.2.0",
+    "web-vitals": "^2.1.2"
+  },
+  "devDependencies": {
+    "kkt": "^7.3.2",
+    "@uiw/doc": "^4.21.23",
+    "@uiw/react-native-doc": "^3.0.7"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

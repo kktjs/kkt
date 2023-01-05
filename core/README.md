@@ -234,7 +234,7 @@ export const proxySetup = (app: express.Application): MockerAPIOptions => {
 ## Command Help
 
 ```bash
-Usage: kkt [start|build|test] [--help|h]
+Usage: kkt [start|build|test|doc] [--help|h]
 
   Displays help information.
 
@@ -265,6 +265,11 @@ $ kkt start --docs @uiw/doc/web
 # Specify a static website route "_uiw/doc"
 # Default preview: http://localhost:3000/_uiw/doc
 $ kkt start --docs @uiw/doc/web:_uiw/doc
+
+# Run static services separately
+$ kkt doc --path @uiw/doc/web
+$ kkt doc --path @uiw/doc/web:_uiw/doc --port 30002
+$ kkt doc --path @uiw/doc/web:_uiw/doc -p 30002
 ```
 
 ### Home Page

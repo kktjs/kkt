@@ -3,7 +3,7 @@
 import minimist from 'minimist';
 
 const helpStr = `
-  Usage: kkt [start|build|test] [--help|h]
+  Usage: kkt [start|build|test|doc] [--help|h]
 
     Displays help information.
 
@@ -34,6 +34,11 @@ const helpStr = `
   \x1b[30;1m# Specify a static website route\x1b[0m \x1b[34;1m"_uiw/doc"\x1b[0m
   \x1b[30;1m# Default preview:\x1b[0m \x1b[34;1mhttp://localhost:3000/_uiw/doc\x1b[0m
   $ \x1b[35mkkt\x1b[0m start --docs @uiw/doc/web:_uiw/doc
+  
+  \x1b[30;1m# Run static services separately\x1b[0m
+  $\x1b[35m kkt\x1b[0m doc --path\x1b[34;1m @uiw/doc/web\x1b[0m
+  $\x1b[35m kkt\x1b[0m doc --path\x1b[34;1m @uiw/doc/web:_uiw/doc\x1b[0m --port 30002
+  $\x1b[35m kkt\x1b[0m doc --path\x1b[34;1m @uiw/doc/web:_uiw/doc\x1b[0m -p 30002
 `;
 
 function help() {
@@ -53,8 +58,11 @@ function help() {
       return;
     }
     const scriptName = argvs._[0];
-    if (scriptName && /(^build|start|test)$/.test(scriptName)) {
-      if (scriptName === 'test') {
+    if (scriptName && /(^build|start|test|docs?)$/.test(scriptName)) {
+      if (/^docs?$/i.test(scriptName)) {
+        argvs.port = argvs.port || argvs.p;
+        await require('../scripts/doc')(argvs);
+      } else if (scriptName === 'test') {
         await require('../scripts/testk')(argvs);
       } else {
         await require(`../scripts/${scriptName}`)(argvs);
@@ -62,9 +70,7 @@ function help() {
     } else {
       console.log(`Unknown script "\x1b[1;37m${scriptName}\x1b[0m".`);
       console.log('Perhaps you need to update react-scripts?');
-      console.log(
-        'See: https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#updating-to-new-releases',
-      );
+      console.log('See: https://github.com/kktjs/kkt#command-help');
       help();
     }
   } catch (error) {
