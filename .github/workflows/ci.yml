@@ -17,7 +17,7 @@ jobs:
           node-version: 16
 
       - name: Look Changelog
-        uses: jaywcjlove/changelog-generator@v1.5.7
+        uses: jaywcjlove/changelog-generator@main
         with:
           filter-author: (小弟调调™|Renovate Bot|renovate-bot)
           filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
@@ -27,12 +27,13 @@ jobs:
       - run: npm run lib:build
 
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+          registry-url: 'https://registry.npmjs.org'
 
       - run: npm install
       - run: npm run kkt:build
@@ -193,7 +194,7 @@ jobs:
 
       - name: get tag version
         id: tag_version
-        uses: jaywcjlove/changelog-generator@v1.5.7
+        uses: jaywcjlove/changelog-generator@main
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -204,14 +205,14 @@ jobs:
 
       - name: Is a tag created auto?
         id: create_tag
-        uses: jaywcjlove/create-tag-action@v1.3.5
+        uses: jaywcjlove/create-tag-action@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           package-path: ./core/package.json
 
       - name: Generate Changelog
         id: changelog
-        uses: jaywcjlove/changelog-generator@v1.5.7
+        uses: jaywcjlove/changelog-generator@main
         if: steps.create_tag.outputs.successful
         with:
           head-ref: ${{ steps.create_tag.outputs.version }}
@@ -238,13 +239,48 @@ jobs:
             ${{ steps.changelog.outputs.changelog }}
 
       - run: git status
-      - run: npm install @jsdevtools/npm-publish -g
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./core/package.json
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/less-modules/package.json
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-library/package.json
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/raw-modules/package.json
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/scope-plugin-options/package.json
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/stylus-modules/package.json
+
+      - name: 📦 kkt publish to NPM
+        run: npm publish
+        working-directory: core
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
+
+      - name: 📦 @kkt/less-modules publish to NPM
+        run: npm publish
+        working-directory: packages/less-modules
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
+
+      - name: 📦 @kkt/raw-modules publish to NPM
+        run: npm publish
+        working-directory: packages/raw-modules
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
+
+      - name: 📦 @kkt/react-library publish to NPM
+        run: npm publish
+        working-directory: packages/react-library
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
+
+      - name: 📦 @kkt/scope-plugin-options publish to NPM
+        run: npm publish
+        working-directory: packages/scope-plugin-options
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
+
+      - name: 📦 @kkt/stylus-modules publish to NPM
+        run: npm publish
+        working-directory: packages/stylus-modules
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
 
       - name: Compress uiw Example.
         working-directory: zip
