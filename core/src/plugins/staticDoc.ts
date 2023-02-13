@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import WebpackDevServer from 'webpack-dev-server';
 import resolvePackagePath from 'resolve-package-path';
-import { DevServerOptions } from '../utils/loaderConf';
+import { DevServerOptions, WebpackConfiguration } from '../utils/loaderConf';
 import { StartArgs } from '..';
 
 export function getDocsData(str: string = '', route = '/_doc') {
@@ -37,11 +37,15 @@ export function getDocsData(str: string = '', route = '/_doc') {
 export const staticDocSetupMiddlewares = (
   middlewares: WebpackDevServer.Middleware[],
   devServer: WebpackDevServer,
-  options: StartArgs & DevServerOptions,
+  options: StartArgs & DevServerOptions & { config?: WebpackConfiguration },
 ) => {
   if (options.docs) {
     const { route, docRoot } = getDocsData(options.docs);
-    devServer.app.use(route, express.static(docRoot));
+    let routePath = route;
+    if (options.config?.output?.publicPath && typeof options.config.output.publicPath === 'string') {
+      routePath = options.config.output.publicPath.replace(/\/+$/, '') + route;
+    }
+    devServer.app.use(routePath, express.static(docRoot));
   }
   return middlewares;
 };

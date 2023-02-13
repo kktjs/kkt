@@ -43,24 +43,24 @@ export default async function start(argvs: StartArgs) {
     // Source maps are resource heavy and can cause out of memory issue for large source files.
     const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
     const overridesHandle = kktrc.default || argvs.overridesWebpack;
+    let webpackConf: WebpackConfiguration = createWebpackConfig('development');
+    await overridePaths(undefined, { proxySetup });
+    if (kktrc && kktrc.proxySetup && typeof kktrc.proxySetup === 'function') {
+      cacheData({ proxySetup: kktrc.proxySetup });
+    }
+    const overrideOption = {
+      ...argvs,
+      devServerConfigHandle: createDevServerConfig,
+      shouldUseSourceMap,
+      paths,
+      kktrc,
+    };
+    webpackConf = argvs.overridesWebpack
+      ? argvs.overridesWebpack(webpackConf, 'development', overrideOption)
+      : webpackConf;
+    webpackConf = loadSourceMapWarnning(webpackConf);
+    webpackConf = miniCssExtractPlugin(webpackConf, 'development');
     if (overridesHandle && typeof overridesHandle === 'function') {
-      let webpackConf: WebpackConfiguration = createWebpackConfig('development');
-      await overridePaths(undefined, { proxySetup });
-      if (kktrc && kktrc.proxySetup && typeof kktrc.proxySetup === 'function') {
-        cacheData({ proxySetup: kktrc.proxySetup });
-      }
-      const overrideOption = {
-        ...argvs,
-        devServerConfigHandle: createDevServerConfig,
-        shouldUseSourceMap,
-        paths,
-        kktrc,
-      };
-      webpackConf = argvs.overridesWebpack
-        ? argvs.overridesWebpack(webpackConf, 'development', overrideOption)
-        : webpackConf;
-      webpackConf = loadSourceMapWarnning(webpackConf);
-      webpackConf = miniCssExtractPlugin(webpackConf, 'development');
       const overrideWebpackConf = kktrc.default
         ? await overridesHandle(webpackConf, 'development', overrideOption)
         : webpackConf;
@@ -126,7 +126,7 @@ export default async function start(argvs: StartArgs) {
         // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
         devServer.app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
         const mds = setupMiddlewares ? setupMiddlewares(middlewares, devServer) : middlewares;
-        return staticDocSetupMiddlewares(mds, devServer, { ...argvs, paths });
+        return staticDocSetupMiddlewares(mds, devServer, { ...argvs, paths, config: webpackConf });
       };
       return serverConf;
     };

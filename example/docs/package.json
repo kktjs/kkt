@@ -4,7 +4,7 @@
   "description": "The react base application.",
   "private": true,
   "scripts": {
-    "start": "kkt start",
+    "start": "kkt start --docs @uiw/doc/web",
     "build": "kkt build",
     "doc": "kkt doc --path @uiw/doc/web",
     "doc2": "kkt doc --path @uiw/doc/web:_uiw/doc --port 30002",
