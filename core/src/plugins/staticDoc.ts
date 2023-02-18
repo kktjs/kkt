@@ -15,7 +15,7 @@ export function getDocsData(str: string = '', route = '/_doc') {
   if (!route.startsWith('/')) {
     route = '/' + route;
   }
-  const [_, name] = dirPath.match(/^([a-zA-Z]+|@[a-zA-Z]+\/[a-zA-Z]+)\/?/i);
+  const [_, name] = dirPath.match(/^([a-zA-Z\-]+|@[a-zA-Z\-]+\/[a-zA-Z\-]+)\/?/i);
   const pkgPath = resolvePackagePath(name, process.cwd());
   const root = path.dirname(pkgPath).replace(new RegExp(`${name.replace('/', path.sep)}$`, 'ig'), '');
   const [repath] = str.replace(name, '').split(':');

@@ -9,7 +9,8 @@
     "doc": "kkt doc --path @uiw/doc/web",
     "doc2": "kkt doc --path @uiw/doc/web:_uiw/doc --port 30002",
     "doc3": "kkt doc --path @uiw/doc/web:_uiw/doc -p 30002",
-    "doc4": "kkt doc --path @uiw/doc/web:_uiw/doc -p 30002"
+    "doc4": "kkt doc --path @uiw/doc/web:_uiw/doc -p 30002",
+    "doc5": "kkt doc --path @uiw/react-native-doc/doc/build -p 30002"
   },
   "repository": {
     "type": "git",
