@@ -1,6 +1,6 @@
 {
   "name": "@template/scss",
-  "version": "7.4.2",
+  "version": "7.4.3",
   "description": "Use an example of SCSS.",
   "private": true,
   "scripts": {
@@ -18,7 +18,7 @@
     "react-dom": "~18.2.0"
   },
   "devDependencies": {
-    "kkt": "^7.4.2"
+    "kkt": "^7.4.3"
   },
   "browserslist": {
     "production": [
