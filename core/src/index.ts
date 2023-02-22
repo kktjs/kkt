@@ -27,6 +27,6 @@ export type PrintInstructionsOption = ReturnType<typeof getDocsData> & StartArgs
 
 export interface StartArgs extends BuildArgs {
   docs?: string;
-  printInstructions: (option: PrintInstructionsOption) => void;
+  printInstructions?: (option: PrintInstructionsOption) => void;
 }
 export interface TestArgs extends ParsedArgs {}
