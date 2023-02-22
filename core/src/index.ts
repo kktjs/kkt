@@ -1,5 +1,6 @@
 import { ParsedArgs } from 'minimist';
-import { WebpackConfiguration, LoaderConfOptions } from './utils/loaderConf';
+import { WebpackConfiguration, LoaderConfOptions, DevServerOptions } from './utils/loaderConf';
+import { getDocsData } from './plugins/staticDoc';
 
 export * from './overrides/paths';
 export * from './utils/loaderConf';
@@ -22,7 +23,10 @@ export interface BuildArgs extends ParsedArgs {
   ) => WebpackConfiguration;
 }
 
+export type PrintInstructionsOption = ReturnType<typeof getDocsData> & StartArgs & DevServerOptions;
+
 export interface StartArgs extends BuildArgs {
   docs?: string;
+  printInstructions: (option: PrintInstructionsOption) => void;
 }
 export interface TestArgs extends ParsedArgs {}
