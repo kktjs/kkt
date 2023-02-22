@@ -23,7 +23,11 @@ export interface BuildArgs extends ParsedArgs {
   ) => WebpackConfiguration;
 }
 
-export type PrintInstructionsOption = ReturnType<typeof getDocsData> & StartArgs & DevServerOptions;
+export type PrintInstructionsOption<T = any> = ReturnType<typeof getDocsData> &
+  StartArgs &
+  DevServerOptions & {
+    createCompilerOption?: T;
+  };
 
 export interface StartArgs extends BuildArgs {
   docs?: string;
