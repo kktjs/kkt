@@ -27,7 +27,7 @@ export function overridesPrintInstructions(opt: OverridesPrintInstructionsOption
     }
     if (opt.docs && opt.printInstructions) {
       const docData = getDocsData(opt.docs);
-      opt.printInstructions({ ...opt, ...docData });
+      opt.printInstructions({ ...opt, ...docData, createCompilerOption: option });
     }
     return createCompiler(option);
   };
