@@ -39,6 +39,7 @@ const helpStr = `
   $\x1b[35m kkt\x1b[0m doc --path\x1b[34;1m @uiw/doc/web\x1b[0m
   $\x1b[35m kkt\x1b[0m doc --path\x1b[34;1m @uiw/doc/web:_uiw/doc\x1b[0m --port 30002
   $\x1b[35m kkt\x1b[0m doc --path\x1b[34;1m @uiw/doc/web:_uiw/doc\x1b[0m -p 30002
+  $\x1b[35m kkt\x1b[0m doc --path\x1b[34;1m ./build/doc\x1b[0m -p 30002
 `;
 
 function help() {

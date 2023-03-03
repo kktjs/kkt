@@ -270,6 +270,7 @@ $ kkt start --docs @uiw/doc/web:_uiw/doc
 $ kkt doc --path @uiw/doc/web
 $ kkt doc --path @uiw/doc/web:_uiw/doc --port 30002
 $ kkt doc --path @uiw/doc/web:_uiw/doc -p 30002
+$ kkt doc --path ./build/doc -p 30002
 ```
 
 ### Home Page

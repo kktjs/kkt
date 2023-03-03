@@ -1,4 +1,4 @@
-Basic Example
+Docs Preview Example
 ---
 
 The [react](https://github.com/facebook/react) base application.
@@ -6,14 +6,19 @@ The [react](https://github.com/facebook/react) base application.
 ## Quick Start
 
 ```bash
-$ npx create-kkt my-app -e basic
-cd my-app
-npm install
+kkt start --docs @uiw/doc/web
+kkt build
+kkt doc --path ./build -p 30009
+kkt doc --path @uiw/doc/web
+kkt doc --path @uiw/doc/web:_uiw/doc --port 30002
+kkt doc --path @uiw/doc/web:_uiw/doc -p 30002
+kkt doc --path @uiw/doc/web:_uiw/doc -p 30002
+kkt doc --path @uiw/react-native-doc/doc/build -p 30002
 ```
 
 ## Open in CodeSandbox
 
-[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/basic)
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/docs)
 
 ## Development
 

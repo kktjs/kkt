@@ -6,7 +6,8 @@
   "scripts": {
     "start": "kkt start --docs @uiw/doc/web",
     "build": "kkt build",
-    "doc": "kkt doc --path @uiw/doc/web",
+    "doc": "kkt doc --path ./build -p 30009",
+    "doc1": "kkt doc --path @uiw/doc/web",
     "doc2": "kkt doc --path @uiw/doc/web:_uiw/doc --port 30002",
     "doc3": "kkt doc --path @uiw/doc/web:_uiw/doc -p 30002",
     "doc4": "kkt doc --path @uiw/doc/web:_uiw/doc -p 30002",
@@ -22,6 +23,7 @@
   "dependencies": {
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
+    "react-router-dom": "^6.8.2",
     "web-vitals": "^2.1.2"
   },
   "devDependencies": {

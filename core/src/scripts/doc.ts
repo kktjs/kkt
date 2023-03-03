@@ -1,3 +1,5 @@
+import path from 'path';
+import fs from 'fs-extra';
 import express from 'express';
 import { getDocsData } from '../plugins/staticDoc';
 import { BuildArgs } from '..';
@@ -16,7 +18,11 @@ export interface DocsArgs extends BuildArgs {
 export default async function docs(argv: DocsArgs) {
   try {
     const { route, docRoot, dirPath, ...other } = getDocsData(argv.path, '/');
-    app.use(route, express.static(docRoot));
+    app.use(route, express.static(docRoot), (req, res, next) => {
+      const content = fs.readFileSync(path.resolve(docRoot, './index.html'));
+      res.send(content.toString());
+      next();
+    });
     const DEFAULT_PORT = parseInt(process.env.DOC_PORT, 10) || argv.port || 3002;
     const port = await choosePort(HOST, DEFAULT_PORT);
     app.listen(port, () => {
