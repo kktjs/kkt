@@ -1,3 +1,4 @@
+/** @type {import('kkt').MockerProxyRoute} */
 const proxy = {
   'GET /api/user': { id: 1, username: 'kenny', sex: 6 },
   'POST /api/login': (req, res) => {

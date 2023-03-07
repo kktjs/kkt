@@ -1,5 +1,6 @@
 let token = '';
 
+/** @type {import('kkt').MockerResultFunction} */
 module.exports.login = function (req, res) {
   const { password, username } = req.body;
   if (password === 'admin' && username === 'admin') {

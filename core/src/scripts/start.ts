@@ -13,7 +13,7 @@ import { overridePaths } from '../overrides/paths';
 import { overridesOpenBrowser } from '../overrides/openBrowser';
 import { overridesClearConsole } from '../overrides/clearConsole';
 import { overridesChoosePort } from '../overrides/choosePort';
-import { overridesPrintInstructions, OverridesPrintInstructionsOption } from '../overrides/printInstructions';
+import { overridesPrintInstructions } from '../overrides/printInstructions';
 import { miniCssExtractPlugin } from '../plugins/miniCssExtractPlugin';
 import { cacheData } from '../utils/cacheData';
 import { checkRequiredFiles } from '../overrides/checkRequired';

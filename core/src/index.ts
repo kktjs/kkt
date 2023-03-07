@@ -2,6 +2,7 @@ import { ParsedArgs } from 'minimist';
 import { WebpackConfiguration, LoaderConfOptions, DevServerOptions } from './utils/loaderConf';
 import { getDocsData } from './plugins/staticDoc';
 
+export * from 'mocker-api';
 export * from './overrides/paths';
 export * from './utils/loaderConf';
 export * from './utils/getStyleLoaders';
