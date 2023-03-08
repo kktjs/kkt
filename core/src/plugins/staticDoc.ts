@@ -41,8 +41,8 @@ export function getDocsData(str: string = '', route = '/_doc'): DocsDataResult {
     result.dirPath = arr[0];
     result.route = arr[1] || route;
   }
-  if (!route.startsWith('/')) {
-    route = '/' + route;
+  if (!result.route.startsWith('/')) {
+    result.route = '/' + result.route;
   }
   // relative directory
   if (fs.existsSync(path.resolve(dirPath))) {
