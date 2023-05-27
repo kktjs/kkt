@@ -5,12 +5,15 @@ export default function resolveFallback(conf: Configuration): Configuration {
     throw Error('KKT:@kkt/resolve-fallback: there is no config found');
   }
   conf.resolve.fallback = Object.assign(conf.resolve.fallback || {}, {
-    crypto: require.resolve('crypto-browserify'),
-    stream: require.resolve('stream-browserify'),
     assert: require.resolve('assert'),
+    buffer: require.resolve('buffer'),
+    fs: false,
+    path: false,
+    crypto: require.resolve('crypto-browserify'),
     http: require.resolve('stream-http'),
     https: require.resolve('https-browserify'),
-    os: require.resolve('os-browserify'),
+    os: require.resolve('os-browserify/browser'),
+    stream: require.resolve('stream-browserify'),
     url: require.resolve('url'),
   });
   conf.plugins = (conf.plugins || []).concat([
