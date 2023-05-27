@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@uiw/doc": "^4.21.23",
-    "@uiw/react-native-doc": "^3.0.7",
+    "@uiw/react-native-doc": "^4.0.0",
     "kkt": "^7.4.11"
   },
   "browserslist": {
