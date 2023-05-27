@@ -17,10 +17,8 @@
     "src"
   ],
   "scripts": {
+    "build": "tsbb build --no-esm",
     "watch": "tsbb watch --no-esm"
-  },
-  "devDependencies": {
-    "kkt": "^7.4.13"
   },
   "dependencies": {
     "assert": "^2.0.0",

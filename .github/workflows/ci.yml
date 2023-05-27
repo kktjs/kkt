@@ -23,8 +23,7 @@ jobs:
           filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
 
       - run: npm install
-      - run: npm run kkt:build
-      - run: npm run lib:build
+      - run: npm run build
 
   build:
     runs-on: ubuntu-latest
@@ -36,8 +35,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - run: npm install
-      - run: npm run kkt:build
-      - run: npm run lib:build
+      - run: npm run build
       - run: npm install
 
       - run: mkdir -p build
