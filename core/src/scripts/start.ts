@@ -6,6 +6,7 @@ import WebpackDevServer from 'webpack-dev-server';
 import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
 import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
 import clearConsole from 'react-dev-utils/clearConsole';
+import resolveFallback from '@kkt/resolve-fallback';
 import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
 import { KKTRC, DevServerConfigFunction, WebpackConfiguration, loaderConf } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory, proxySetup, getConfPath } from '../utils/path';
@@ -60,6 +61,7 @@ export default async function start(argvs: StartArgs) {
       : webpackConf;
     webpackConf = loadSourceMapWarnning(webpackConf);
     webpackConf = miniCssExtractPlugin(webpackConf, 'development');
+    webpackConf = resolveFallback(webpackConf);
     if (overridesHandle && typeof overridesHandle === 'function') {
       const overrideWebpackConf = kktrc.default
         ? await overridesHandle(webpackConf, 'development', overrideOption)

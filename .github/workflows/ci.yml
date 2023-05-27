@@ -282,6 +282,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
 
+      - name: 📦 @kkt/resolve-fallback publish to NPM
+        run: npm publish --access public
+        working-directory: packages/resolve-fallback
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
+
       - name: Compress uiw Example.
         working-directory: zip
         run: |

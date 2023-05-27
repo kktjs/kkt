@@ -1,6 +1,7 @@
 process.env.NODE_ENV = 'production';
 
 import { Configuration } from 'webpack';
+import resolveFallback from '@kkt/resolve-fallback';
 import { KKTRC, WebpackConfiguration, loaderConf } from '../utils/loaderConf';
 import { reactScripts, isWebpackFactory, getConfPath } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
@@ -30,6 +31,7 @@ export default async function build(argvs: BuildArgs) {
       };
       let defaultWepack: WebpackConfiguration = createWebpackConfig('production');
       defaultWepack = loadSourceMapWarnning(defaultWepack);
+      defaultWepack = resolveFallback(defaultWepack);
       defaultWepack = miniCssExtractPlugin(defaultWepack, 'production');
       defaultWepack = argvs.overridesWebpack
         ? argvs.overridesWebpack(defaultWepack, 'production', overrideOption)
