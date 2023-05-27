@@ -1,6 +1,6 @@
 {
   "name": "@kkt/resolve-fallback",
-  "version": "7.4.11",
+  "version": "7.4.12",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "description": "This will modify the CRA ModuleScopePlugin plugin that prevents to import modules from outside the `src` directory.",
@@ -20,7 +20,7 @@
     "watch": "tsbb watch --no-esm"
   },
   "devDependencies": {
-    "kkt": "^7.4.11"
+    "kkt": "^7.4.12"
   },
   "dependencies": {
     "assert": "^2.0.0",
