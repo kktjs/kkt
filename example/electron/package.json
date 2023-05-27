@@ -7,8 +7,8 @@
   "scripts": {
     "start": "kkt start --no-open-browser",
     "build": "GENERATE_SOURCEMAP=false kkt build",
-    "watch": "tsbb watch --no-esm --no-source-maps --entry app/main.ts",
-    "build:main": "tsbb build --no-esm --no-source-maps --entry app/main.ts",
+    "watch": "tsbb watch",
+    "build:main": "tsbb build",
     "app": "NODE_ENV=development ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",
     "app:build": "electron ."
   },
@@ -27,7 +27,7 @@
     "@types/react-dom": "~18.2.0",
     "electron": "~19.1.0",
     "kkt": "^7.4.13",
-    "tsbb": "~3.7.0"
+    "tsbb": "^4.1.5"
   },
   "dependencies": {
     "react": "~18.2.0",

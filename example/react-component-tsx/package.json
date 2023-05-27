@@ -12,8 +12,8 @@
   "scripts": {
     "doc": "kkt build --app-src ./website",
     "start": "kkt start --app-src ./website",
-    "build": "tsbb build && npm run css:build && npm run css:build:dist",
-    "watch": "tsbb watch & npm run css:watch",
+    "build": "tsbb build src/*.{tsx,ts} --use-babel --cjs cjs && npm run css:build && npm run css:build:dist",
+    "watch": "tsbb watch src/*.{tsx,ts} --use-babel --cjs cjs & npm run css:watch",
     "css:build": "compile-less -d src -o esm",
     "css:watch": "compile-less -d src -o esm --watch",
     "css:build:dist": "compile-less -d src --combine dist.css --rm-global",
@@ -62,7 +62,7 @@
     "lint-staged": "~13.2.0",
     "prettier": "~2.8.0",
     "react-test-renderer": "~18.2.0",
-    "tsbb": "~3.7.0"
+    "tsbb": "^4.1.5"
   },
   "eslintConfig": {
     "extends": [

@@ -19,5 +19,5 @@
     "noEmit": true,
     "types": ["jest", "node"]
   },
-  "include": ["src", "website", ".kktrc.ts"]
+  "include": ["src"]
 }

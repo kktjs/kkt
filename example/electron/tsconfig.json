@@ -1,25 +1,23 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    "rootDir": ".",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "sourceMap": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
-    "noEmit": true,
+    "baseUrl": ".",
     "jsx": "react-jsx",
+    "outDir": "lib",
+    "noFallthroughCasesInSwitch": true,
     "types": ["jest", "node"]
   },
-  "include": ["src", "website", ".kktrc.ts"]
+  "include": ["app"]
 }
