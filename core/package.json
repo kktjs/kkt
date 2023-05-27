@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "7.4.10",
+  "version": "7.4.11",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "main": "lib/index.js",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@babel/register": "~7.17.7",
-    "@kkt/resolve-fallback": "^7.4.10",
+    "@kkt/resolve-fallback": "^7.4.11",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^14.0.0",
