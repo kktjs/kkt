@@ -28,8 +28,8 @@
     "@kkt/less-modules": "^7.4.11",
     "@kkt/raw-modules": "^7.4.11",
     "@kkt/scope-plugin-options": "^7.4.11",
-    "@types/react": "~18.0.0",
-    "@types/react-dom": "~18.0.0",
+    "@types/react": "~18.2.0",
+    "@types/react-dom": "~18.2.0",
     "@types/react-redux": "~7.1.23",
     "kkt": "^7.4.11"
   },
