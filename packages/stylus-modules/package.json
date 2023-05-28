@@ -19,6 +19,7 @@
     "src"
   ],
   "scripts": {
+    "build": "tsbb build --no-esm",
     "watch": "tsbb watch --no-esm"
   },
   "dependencies": {

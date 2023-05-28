@@ -91,7 +91,7 @@ export type StylusLoaderOptions = LoaderConfOptions &
     ) => string;
   };
 
-const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
+const createStylusModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
   return function (conf: Configuration, evn: string, options = {} as ParsedArgs) {
     if (!conf) {
       throw Error('KKT:ConfigPaths: there is no config file found');
@@ -171,7 +171,7 @@ const createLessModule = (stylusLoaderOptions = {} as StylusLoaderOptions) => {
 /**
  * Use create-react-app to build react libraries. Support for regular less files and *.module.less files.
  */
-const module = createLessModule();
-(module as any).withLoaderOptions = createLessModule;
+const stylusModule = createStylusModule();
+(stylusModule as any).withLoaderOptions = createStylusModule;
 
-export default module;
+export default stylusModule;
