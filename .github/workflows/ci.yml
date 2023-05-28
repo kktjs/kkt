@@ -25,6 +25,10 @@ jobs:
       - run: npm install
       - run: npm run build
 
+      - name: kkt core
+        working-directory: core
+        run: npm run build
+
   build:
     runs-on: ubuntu-latest
     steps:
