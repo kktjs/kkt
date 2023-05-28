@@ -1,6 +1,6 @@
 {
   "name": "@kkt/stylus-modules",
-  "version": "7.4.16",
+  "version": "7.4.17",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "description": "Support for regular stylus files and *.module.styl files.",
@@ -27,6 +27,6 @@
     "stylus-loader": "^7.0.0"
   },
   "devDependencies": {
-    "kkt": "^7.4.16"
+    "kkt": "^7.4.17"
   }
 }

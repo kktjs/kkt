@@ -1,6 +1,6 @@
 {
   "name": "@template/docs",
-  "version": "7.4.16",
+  "version": "7.4.17",
   "description": "The react base application.",
   "private": true,
   "scripts": {
@@ -29,7 +29,7 @@
   "devDependencies": {
     "@uiw/doc": "^4.21.23",
     "@uiw/react-native-doc": "^4.0.0",
-    "kkt": "^7.4.16"
+    "kkt": "^7.4.17"
   },
   "browserslist": {
     "production": [
