@@ -1,6 +1,6 @@
 {
   "name": "@template/markdown",
-  "version": "7.4.13",
+  "version": "7.4.14",
   "description": "",
   "private": true,
   "scripts": {
@@ -18,9 +18,9 @@
     "react-dom": "~18.2.0"
   },
   "devDependencies": {
-    "@kkt/less-modules": "^7.4.13",
-    "@kkt/raw-modules": "^7.4.13",
-    "kkt": "^7.4.13"
+    "@kkt/less-modules": "^7.4.14",
+    "@kkt/raw-modules": "^7.4.14",
+    "kkt": "^7.4.14"
   },
   "browserslist": {
     "production": [

@@ -1,6 +1,6 @@
 {
   "name": "@template/react-router",
-  "version": "7.4.13",
+  "version": "7.4.14",
   "description": "Use react-router for the project.",
   "private": true,
   "scripts": {
@@ -20,8 +20,8 @@
     "react-router-dom": "~6.11.0"
   },
   "devDependencies": {
-    "@kkt/less-modules": "^7.4.13",
-    "kkt": "^7.4.13"
+    "@kkt/less-modules": "^7.4.14",
+    "kkt": "^7.4.14"
   },
   "eslintConfig": {
     "extends": [
