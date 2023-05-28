@@ -10,7 +10,7 @@ import { OverridePaths } from './paths';
  */
 export function checkRequiredFiles(paths: OverridePaths, isNotCheckHTML: boolean) {
   const checkRequiredFilesPath = `${reactDevUtils}/checkRequiredFiles`;
-  require.cache[require.resolve(checkRequiredFilesPath)].exports = (files: fs.PathLike[]) => {
+  require.cache[require.resolve(checkRequiredFilesPath)].exports = (files: (fs.PathLike | undefined)[] = []) => {
     files = files
       .map((item) => {
         if (/(\.html)$/.test(item as string) && isNotCheckHTML) {
@@ -26,15 +26,17 @@ export function checkRequiredFiles(paths: OverridePaths, isNotCheckHTML: boolean
     try {
       files.forEach((filePath) => {
         currentFilePath = filePath;
-        fs.accessSync(filePath, fs.constants.F_OK);
+        filePath && fs.accessSync(filePath, fs.constants.F_OK);
       });
       return true;
     } catch (err) {
-      const dirName = path.dirname(currentFilePath);
-      const fileName = path.basename(currentFilePath);
-      console.log('\x1b[1;31m Could not find a required file. \x1b[0m');
-      console.log(`\x1b[1;31m   Name:  \x1b[0m ${fileName}`);
-      console.log(`\x1b[1;31m   Searched in: \x1b[0m \x1b[1;36m${dirName}\x1b[0m`);
+      if (currentFilePath) {
+        const dirName = path.dirname(currentFilePath);
+        const fileName = path.basename(currentFilePath);
+        console.log('\x1b[1;31m Could not find a required file. \x1b[0m');
+        console.log(`\x1b[1;31m   Name:  \x1b[0m ${fileName}`);
+        console.log(`\x1b[1;31m   Searched in: \x1b[0m \x1b[1;36m${dirName}\x1b[0m`);
+      }
       return false;
     }
   };

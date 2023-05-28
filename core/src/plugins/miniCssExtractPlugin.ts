@@ -23,7 +23,7 @@ export const miniCssExtractPlugin = (
   options: MiniCssExtractPlugin.PluginOptions = {},
 ) => {
   const regexp = /(MiniCssExtractPlugin)/;
-  conf.plugins = conf.plugins
+  conf.plugins = (conf.plugins || [])
     .map((item) => {
       if (item.constructor && item.constructor.name && regexp.test(item.constructor.name)) {
         return new MiniCssExtractPlugin({

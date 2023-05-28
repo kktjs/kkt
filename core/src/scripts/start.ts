@@ -108,7 +108,7 @@ export default async function start(argvs: StartArgs) {
         // Keep `evalSourceMapMiddleware`
         // middlewares before `redirectServedPath` otherwise will not have any effect
         // This lets us fetch source contents from webpack for the error overlay
-        devServer.app.use(evalSourceMapMiddleware(devServer));
+        devServer.app && devServer.app.use(evalSourceMapMiddleware(devServer));
         if (fs.existsSync(paths.proxySetup)) {
           // This registers user provided middleware for proxy reasons
           require(paths.proxySetup)(devServer.app);
@@ -119,14 +119,14 @@ export default async function start(argvs: StartArgs) {
         }
 
         // Redirect to `PUBLIC_URL` or `homepage` from `package.json` if url not match
-        devServer.app.use(redirectServedPath(paths.publicUrlOrPath));
+        devServer.app && devServer.app.use(redirectServedPath(paths.publicUrlOrPath));
 
         // This service worker file is effectively a 'no-op' that will reset any
         // previous service worker registered for the same host:port combination.
         // We do this in development to avoid hitting the production cache if
         // it used the same host and port.
         // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
-        devServer.app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
+        devServer.app && devServer.app.use(noopServiceWorkerMiddleware(paths.publicUrlOrPath));
         const mds = setupMiddlewares ? setupMiddlewares(middlewares, devServer) : middlewares;
         return staticDocSetupMiddlewares(mds, devServer, { ...argvs, paths, config: webpackConf });
       };
@@ -142,7 +142,7 @@ export default async function start(argvs: StartArgs) {
           console.log('❌ KKT:\x1b[31;1mERR\x1b[0m:', err);
           return;
         }
-        if (stats.hasErrors()) {
+        if (stats && stats.hasErrors()) {
           clearConsole();
           console.log(`❌ KKT:\x1b[31;1mERR\x1b[0m: \x1b[35;1m${today()}\x1b[0m\n`, stats.toString());
           return;
@@ -156,7 +156,7 @@ export default async function start(argvs: StartArgs) {
       require(`${reactScripts}/scripts/start`);
     }
   } catch (error) {
-    const message = error && error.message ? error.message : '';
+    const message = error && error instanceof Error && error.message ? error.message : '';
     console.log('\x1b[31;1m KKT:START:ERROR: \x1b[0m\n', error);
     new Error(`KKT:START:ERROR: \n ${message}`);
     process.exit(1);

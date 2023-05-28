@@ -15,7 +15,7 @@ export default async function test(argvs: TestArgs) {
     // run original script
     require(`${reactScripts}/scripts/test`);
   } catch (error) {
-    const message = error && error.message ? error.message : '';
+    const message = error && error instanceof Error && error.message ? error.message : '';
     console.log('\x1b[31;1m KKT:TEST:ERROR: \x1b[0m\n', error);
     new Error(`KKT:TEST:ERROR: \n ${message}`);
     process.exit(1);

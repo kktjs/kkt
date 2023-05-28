@@ -41,25 +41,25 @@ export function getDocsData(str: string = '', route = '/_doc'): DocsDataResult {
     result.dirPath = arr[0];
     result.route = arr[1] || route;
   }
-  if (!result.route.startsWith('/')) {
+  if (result.route && !result.route.startsWith('/')) {
     result.route = '/' + result.route;
   }
   // relative directory
   if (fs.existsSync(path.resolve(dirPath))) {
     result.docRoot = path.resolve(dirPath);
-    result.pkgPath = resolvePackagePath(process.cwd(), process.cwd());
-    const pkg = fs.readJSONSync(result.pkgPath);
+    result.pkgPath = resolvePackagePath(process.cwd(), process.cwd()) || '';
+    const pkg = fs.readJSONSync(result.pkgPath!);
     result.name = pkg.name;
     result.route = '/';
     return result;
   }
 
-  const [_, name] = dirPath.match(/^([a-zA-Z\-]+|@[a-zA-Z\-]+\/[a-zA-Z\-]+)\/?/i);
+  const [_, name] = dirPath.match(/^([a-zA-Z\-]+|@[a-zA-Z\-]+\/[a-zA-Z\-]+)\/?/i) || [];
   result.name = name;
-  result.pkgPath = resolvePackagePath(name, process.cwd());
-  result.root = path.dirname(result.pkgPath).replace(new RegExp(`${name.replace('/', path.sep)}$`, 'ig'), '');
+  result.pkgPath = resolvePackagePath(name, process.cwd()) || '';
+  result.root = path.dirname(result.pkgPath!).replace(new RegExp(`${name.replace('/', path.sep)}$`, 'ig'), '');
   const [repath] = str.replace(name, '').split(':');
-  result.docRoot = path.resolve(path.dirname(result.pkgPath) + repath);
+  result.docRoot = path.resolve(path.dirname(result.pkgPath!) + repath);
   return { ...result };
 }
 
@@ -78,7 +78,9 @@ export const staticDocSetupMiddlewares = (
     if (options.config?.output?.publicPath && typeof options.config.output.publicPath === 'string') {
       routePath = options.config.output.publicPath.replace(/\/+$/, '') + route;
     }
-    devServer.app.use(routePath, express.static(docRoot));
+    if (routePath && docRoot) {
+      devServer.app && devServer.app.use(routePath, express.static(docRoot));
+    }
   }
   return middlewares;
 };

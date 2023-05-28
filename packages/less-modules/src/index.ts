@@ -104,7 +104,7 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
 /**
  * Use create-react-app to build react libraries. Support for regular less files and *.module.less files.
  */
-const module = createLessModule();
-(module as any).withLoaderOptions = createLessModule;
+const lessmodule = createLessModule();
+(lessmodule as any).withLoaderOptions = createLessModule;
 
-export default module;
+export default lessmodule;

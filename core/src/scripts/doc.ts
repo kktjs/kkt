@@ -18,12 +18,14 @@ export interface DocsArgs extends BuildArgs {
 export default async function docs(argv: DocsArgs) {
   try {
     const { route, docRoot, dirPath, ...other } = getDocsData(argv.path, '/');
-    app.use(route, express.static(docRoot), (req, res, next) => {
-      const content = fs.readFileSync(path.resolve(docRoot, './index.html'));
-      res.send(content.toString());
-      next();
-    });
-    const DEFAULT_PORT = parseInt(process.env.DOC_PORT, 10) || argv.port || 3002;
+    if (route && docRoot) {
+      app.use(route, express.static(docRoot), (req, res, next) => {
+        const content = fs.readFileSync(path.resolve(docRoot, './index.html'));
+        res.send(content.toString());
+        next();
+      });
+    }
+    const DEFAULT_PORT = (process.env.DOC_PORT && parseInt(process.env.DOC_PORT, 10)) || argv.port || 3002;
     const port = await choosePort(HOST, DEFAULT_PORT);
     app.listen(port, () => {
       const urls = prepareUrls(
@@ -38,7 +40,7 @@ export default async function docs(argv: DocsArgs) {
       console.log(`   On Your Network:  ${urls.localUrlForTerminal}`);
     });
   } catch (error) {
-    const message = error && error.message ? error.message : '';
+    const message = error && error instanceof Error && error.message ? error.message : '';
     console.log('\x1b[31;1m KKT:DOC:ERROR: \x1b[0m\n', error);
     new Error(`KKT:BUILD:ERROR: \n ${message}`);
     process.exit(1);
