@@ -1,6 +1,6 @@
 {
   "name": "@template/electron",
-  "version": "7.4.15",
+  "version": "7.4.16",
   "description": "Electron Example.",
   "main": "lib/main.js",
   "private": true,
@@ -22,11 +22,11 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@kkt/less-modules": "^7.4.15",
+    "@kkt/less-modules": "^7.4.16",
     "@types/react": "~18.2.0",
     "@types/react-dom": "~18.2.0",
     "electron": "~19.1.0",
-    "kkt": "^7.4.15",
+    "kkt": "^7.4.16",
     "tsbb": "^4.1.5"
   },
   "dependencies": {
