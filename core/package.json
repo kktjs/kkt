@@ -1,6 +1,6 @@
 {
   "name": "kkt",
-  "version": "7.4.17",
+  "version": "7.5.0",
   "description": "Create React apps with no build configuration, Cli tool for creating react apps.",
   "author": "Kenny Wong <wowohoo@qq.com> (https://github.com/jaywcjlove)",
   "main": "lib/index.js",
@@ -50,8 +50,8 @@
     "@types/react-dev-utils": "~9.0.10",
     "@types/semver": "~7.5.0",
     "@types/testing-library__jest-dom": "^5.14.3",
-    "auto-config-loader": "^1.5.0",
     "ajv": "^8.8.0",
+    "auto-config-loader": "^1.5.0",
     "eslint-config-react-app": "^7.0.0",
     "fs-extra": "~10.1.0",
     "minimist": "~1.2.6",

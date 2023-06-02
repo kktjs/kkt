@@ -126,7 +126,7 @@ $ npm run build
 
 ## Configuration File
 
-Supports `.kktrc.js` and `.kktrc.ts`. `@7.4+` above supports `.cjs`, `.mjs`, `.ts`, `.js`.
+Supports `.kktrc.js` and `.kktrc.ts`. `@7.5+` above supports `.cjs`, `.mjs`, `.ts`, `.js`.
 
 ```ts
 .kktrc.js

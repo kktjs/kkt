@@ -1,6 +1,6 @@
 {
   "name": "@kkt/scope-plugin-options",
-  "version": "7.4.17",
+  "version": "7.5.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "description": "This will modify the CRA ModuleScopePlugin plugin that prevents to import modules from outside the `src` directory.",
@@ -20,6 +20,6 @@
     "watch": "tsbb watch --no-esm"
   },
   "devDependencies": {
-    "kkt": "^7.4.17"
+    "kkt": "^7.5.0"
   }
 }
