@@ -33,29 +33,6 @@ const argvs = minimist(args);
 
 /** App Path */
 const projectDir = path.resolve(fs.realpathSync(process.cwd()));
-const customOpts = require(path.resolve(projectDir, 'package.json'))['kkt'] || {};
-
-function getConfPath(confName = '.kktrc') {
-  /**
-   * 默认从 package.json 指定配置文件目录和当前目录根目录 `.kktrc` 配置文件
-   * `<Project Root Path>/.kktrc`
-   *
-   * ```js
-   * {
-   *   "kkt": {
-   *     "path": "./config/.kktrc"
-   *   }
-   * }
-   * ```
-   */
-  let confPath = customOpts.path ? `${projectDir}/${customOpts.path}` : `${projectDir}/${confName}`;
-
-  if (argvs['config-overrides']) {
-    confPath = path.resolve(argvs['config-overrides']);
-  }
-  confPath = confPath.replace(/\.(js|ts)$/gi, '');
-  return path.resolve(confPath);
-}
 
 /**
  * Package [`react-scripts`](http://npmjs.com/react-scripts) directory location
@@ -87,10 +64,4 @@ const scriptPkg = require(`${reactScripts}/package.json`);
  */
 const isWebpackFactory = semver.gte(scriptPkg && scriptPkg.version, '2.1.2');
 
-/**
- * Compatible API
- * @deprecated
- */
-const configOverrides = getConfPath();
-
-export { proxySetup, projectDir, reactScripts, reactDevUtils, configOverrides, getConfPath, isWebpackFactory, paths };
+export { proxySetup, projectDir, reactScripts, reactDevUtils, isWebpackFactory, paths };

@@ -1,6 +1,7 @@
 process.env.NODE_ENV = 'development';
 
 import fs from 'fs';
+import path from 'path';
 import webpack, { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
@@ -8,8 +9,8 @@ import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
 import clearConsole from 'react-dev-utils/clearConsole';
 import resolveFallback from '@kkt/resolve-fallback';
 import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
-import { KKTRC, DevServerConfigFunction, WebpackConfiguration, loaderConf } from '../utils/loaderConf';
-import { reactScripts, isWebpackFactory, proxySetup, getConfPath } from '../utils/path';
+import { loaderConfig, WebpackConfiguration, DevServerConfigFunction } from '../utils/conf';
+import { reactScripts, isWebpackFactory, proxySetup } from '../utils/path';
 import { overridePaths } from '../overrides/paths';
 import { overridesOpenBrowser } from '../overrides/openBrowser';
 import { overridesClearConsole } from '../overrides/clearConsole';
@@ -34,7 +35,13 @@ export default async function start(argvs: StartArgs) {
     const createWebpackConfig: (env: string) => Configuration = require(webpackConfigPath);
     const createDevServerConfig: DevServerConfigFunction = require(devServerConfigPath);
     require('react-scripts/config/env');
-    const kktrc: KKTRC = await loaderConf(getConfPath(argvs.configName));
+    const configOverrides = argvs['config-overrides'];
+    const kktrc = await loaderConfig(argvs.configName || '.kktrc', {
+      /**
+       * Specify the directory where the configuration is located.
+       */
+      cwd: configOverrides ? path.resolve(process.cwd(), argvs['config-overrides']) : undefined,
+    });
     await overridesClearConsole(argvs);
     await overridesOpenBrowser(argvs);
 

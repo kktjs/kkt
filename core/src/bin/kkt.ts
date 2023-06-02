@@ -13,6 +13,7 @@ const helpStr = `
     --help, -h              Displays help information.
     --app-src               Specify the entry directory.
     --docs                  Static asset preview in package(Dev mode works).
+    --config-overrides      Specify the directory where the configuration is located.
     --no-open-browser       Do not open in browser.
     --no-clear-console      Do not clear the command line information.
 

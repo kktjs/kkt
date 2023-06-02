@@ -1,27 +1,10 @@
+import load, { AutoConfOption } from 'auto-config-loader';
 import { Configuration } from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
+import type WebpackDevServer from 'webpack-dev-server';
 import { MockerOption, MockerProxyRoute } from 'mocker-api';
-import express from 'express';
-import fs from 'fs-extra';
 import { ParsedArgs } from 'minimist';
+import type express from 'express';
 import { OverridePaths } from '../overrides/paths';
-
-const tsOptions = {
-  compilerOptions: {
-    sourceMap: false,
-    target: 'es6',
-    module: 'commonjs',
-    moduleResolution: 'node',
-    allowJs: false,
-    declaration: true,
-    strict: true,
-    noUnusedLocals: true,
-    experimentalDecorators: true,
-    resolveJsonModule: true,
-    esModuleInterop: true,
-    removeComments: false,
-  },
-};
 
 export type MockerAPIOptions = {
   path: string | string[] | MockerProxyRoute;
@@ -77,23 +60,12 @@ export type KKTRC = {
   ) => WebpackConfiguration | Promise<WebpackConfiguration>;
 };
 
-export async function loaderConf(rcPath: string): Promise<KKTRC> {
-  let kktrc: KKTRC = {};
-  const confJsPath = `${rcPath}.js`;
-  const confTsPath = `${rcPath}.ts`;
+export async function loaderConfig(namespace: string = 'kkt', option?: AutoConfOption<KKTRC>) {
+  /** Old ~~`.kktrc`~~ => New `kkt` */
+  const name = namespace.replace(/^\.(.*)rc$/g, '$1');
   try {
-    if (fs.existsSync(confTsPath)) {
-      require('ts-node').register(tsOptions);
-      kktrc = await import(confTsPath);
-      return kktrc;
-    }
-    if (fs.existsSync(confJsPath)) {
-      require('@babel/register')({
-        presets: [[require.resolve('babel-preset-react-app'), { runtime: 'classic', useESModules: false }]],
-      });
-      kktrc = await import(confJsPath);
-    }
-    return kktrc;
+    const data = load<KKTRC>(name, option);
+    return (data || {}) as KKTRC;
   } catch (error) {
     const message = error && error instanceof Error && error.message ? error.message : '';
     console.log('Invalid \x1b[31;1m .kktrc.js \x1b[0m file.\n', error);

@@ -3,7 +3,7 @@ import express from 'express';
 import path from 'path';
 import WebpackDevServer from 'webpack-dev-server';
 import resolvePackagePath from 'resolve-package-path';
-import { DevServerOptions, WebpackConfiguration } from '../utils/loaderConf';
+import { DevServerOptions, WebpackConfiguration } from '../utils/conf';
 import { StartArgs } from '..';
 
 export interface DocsDataResult {

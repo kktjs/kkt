@@ -1,4 +1,4 @@
-import { KKTRC } from './loaderConf';
+import { KKTRC } from './conf';
 
 type CacheData = {
   proxySetup?: KKTRC['proxySetup'];

@@ -126,7 +126,22 @@ $ npm run build
 
 ## Configuration File
 
-Supports `.kktrc.js` and `.kktrc.ts`.
+Supports `.kktrc.js` and `.kktrc.ts`. `@7.4+` above supports `.cjs`, `.mjs`, `.ts`, `.js`.
+
+```ts
+.kktrc.js
+.kktrc.ts
+.kktrc.cjs
+.kktrc.mjs
+.config/kktrc.js
+.config/kktrc.ts
+.config/kktrc.cjs
+.config/kktrc.mjs
+kkt.config.js
+kkt.config.ts
+kkt.config.cjs
+kkt.config.mjs
+```
 
 ```typescript
 import express from 'express';

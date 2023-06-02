@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { reactDevUtils } from '../utils/path';
 import { getDocsData } from '../plugins/staticDoc';
-import { DevServerOptions } from '../utils/loaderConf';
+import { DevServerOptions } from '../utils/conf';
 import { StartArgs } from '..';
 
 export type OverridesPrintInstructionsOption = StartArgs & DevServerOptions & {};
