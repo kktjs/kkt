@@ -41,6 +41,7 @@ export default async function start(argvs: StartArgs) {
        * Specify the directory where the configuration is located.
        */
       cwd: configOverrides ? path.resolve(process.cwd(), argvs['config-overrides']) : undefined,
+      ignoreLog: true,
     });
     await overridesClearConsole(argvs);
     await overridesOpenBrowser(argvs);

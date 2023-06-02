@@ -24,6 +24,7 @@ export default async function build(argvs: BuildArgs) {
        * Specify the directory where the configuration is located.
        */
       cwd: configOverrides ? path.resolve(process.cwd(), argvs['config-overrides']) : undefined,
+      ignoreLog: true,
     });
     const overridesHandle = kktrc.default || argvs.overridesWebpack;
 
