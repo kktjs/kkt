@@ -12,5 +12,8 @@ jobs:
           node-version: 16
 
       - run: npm install
-      - run: npm run kkt:build
-      - run: npm run lib:build
+      - run: npm run build
+
+      - name: kkt core
+        working-directory: core
+        run: npm run build
