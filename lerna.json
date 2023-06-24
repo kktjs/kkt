@@ -1,5 +1,4 @@
 {
   "version": "independent",
-  "packages": ["core", "example/*", "packages/*"],
-  "useWorkspaces": true
+  "packages": ["core", "example/*", "packages/*"]
 }
