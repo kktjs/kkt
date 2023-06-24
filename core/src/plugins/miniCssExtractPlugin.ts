@@ -25,7 +25,7 @@ export const miniCssExtractPlugin = (
   const regexp = /(MiniCssExtractPlugin)/;
   conf.plugins = (conf.plugins || [])
     .map((item) => {
-      if (item.constructor && item.constructor.name && regexp.test(item.constructor.name)) {
+      if (item && item.constructor && item.constructor.name && regexp.test(item.constructor.name)) {
         return new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
