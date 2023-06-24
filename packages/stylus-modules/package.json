@@ -23,7 +23,7 @@
     "watch": "tsbb watch --no-esm"
   },
   "dependencies": {
-    "stylus": "^0.58.0",
+    "stylus": "^0.59.0",
     "stylus-loader": "^7.0.0"
   },
   "devDependencies": {
