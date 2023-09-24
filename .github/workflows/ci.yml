@@ -10,11 +10,14 @@ env:
 jobs:
   windows:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Look Changelog
         uses: jaywcjlove/changelog-generator@main
@@ -247,49 +250,49 @@ jobs:
       - run: git status
 
       - name: 📦 kkt publish to NPM
-        run: npm publish
+        run: npm publish --access public --provenance
         working-directory: core
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
 
       - name: 📦 @kkt/less-modules publish to NPM
-        run: npm publish
+        run: npm publish --access public --provenance
         working-directory: packages/less-modules
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
 
       - name: 📦 @kkt/raw-modules publish to NPM
-        run: npm publish
+        run: npm publish --access public --provenance
         working-directory: packages/raw-modules
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
 
       - name: 📦 @kkt/react-library publish to NPM
-        run: npm publish
+        run: npm publish --access public --provenance
         working-directory: packages/react-library
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
 
       - name: 📦 @kkt/scope-plugin-options publish to NPM
-        run: npm publish
+        run: npm publish --access public --provenance
         working-directory: packages/scope-plugin-options
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
 
       - name: 📦 @kkt/stylus-modules publish to NPM
-        run: npm publish
+        run: npm publish --access public --provenance
         working-directory: packages/stylus-modules
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'
 
       - name: 📦 @kkt/resolve-fallback publish to NPM
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         working-directory: packages/resolve-fallback
         continue-on-error: true
         env:

@@ -9,11 +9,69 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - run: npm install
       - run: npm run build
 
       - name: kkt core
         working-directory: core
+        run: npm run build
+
+      - name: example @template/basic
+        working-directory: example/basic
+        run: npm run build && npm run coverage
+
+      - name: example @template/basic-entry
+        working-directory: example/basic-entry
+        run: npm run build
+
+      - name: example @template/chrome-plugin
+        working-directory: example/chrome-plugin
+        run: npm run build && npm run coverage
+
+      - name: example @template/electron
+        run: npm run build && npm run build:main
+        working-directory: example/electron
+
+      - name: example @template/less
+        working-directory: example/less
+        run: npm run build
+
+      - name: example @template/markdown
+        working-directory: example/markdown
+        run: npm run build
+
+      - name: example @template/react-component-tsx
+        working-directory: example/react-component-tsx
+        run: |
+          npm run build
+          npm run doc
+          npm run coverage
+          # The following changes are being made to your tsconfig.json file:
+          #   - compilerOptions.noEmit must be true
+          git checkout -f ./tsconfig.json
+
+      - name: example @template/react-router
+        working-directory: example/react-router
+        run: npm run build
+
+      - name: example @template/rematch-tsx
+        working-directory: example/rematch-tsx
+        run: npm run build
+
+      - name: example @template/scss
+        working-directory: example/scss
+        run: npm run build
+
+      - name: example @template/stylus
+        working-directory: example/stylus
+        run: npm run build
+
+      - name: example @template/typescript
+        working-directory: example/typescript
+        run: npm run build && npm run coverage
+
+      - name: example @template/uiw
+        working-directory: example/uiw
         run: npm run build
