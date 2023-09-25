@@ -62,7 +62,7 @@
     "mocker-api": "~2.9.5",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-loader": "^6.2.1",
+    "postcss-loader": "^7.0.0",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^9.0.0",
     "react-scripts": ">=2.1.3",
