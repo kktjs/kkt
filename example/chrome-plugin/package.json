@@ -1,6 +1,6 @@
 {
   "name": "@template/chrome-plugin",
-  "version": "7.5.2",
+  "version": "7.5.3",
   "description": "",
   "private": true,
   "scripts": {
@@ -22,7 +22,7 @@
   "devDependencies": {
     "clean-webpack-plugin": "~4.0.0",
     "filemanager-webpack-plugin": "~8.0.0",
-    "kkt": "^7.5.2"
+    "kkt": "^7.5.3"
   },
   "eslintConfig": {
     "extends": [
