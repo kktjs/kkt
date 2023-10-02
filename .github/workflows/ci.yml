@@ -111,18 +111,29 @@ jobs:
 
       - run: mkdir -p build
 
-      - name: Converts kkt Markdown to HTML
-        uses: jaywcjlove/markdown-to-html-cli@main
-        with:
-          github-corners: https://github.com/kktjs/kkt
-          output: build/index.html
-
       - name: Converts ncc Markdown to HTML
         uses: jaywcjlove/markdown-to-html-cli@main
         with:
           github-corners: https://github.com/kktjs/ncc
           source: packages/ncc/README.md
           output: build/ncc.html
+
+      - name: Create idoc config.
+        working-directory: core
+        run: |
+          cat > idoc.yml << EOF
+          site: "KKT {{version}}"
+          menus:
+            KKT: https://kktjs.github.io/kkt/
+            NCC: index.html
+            Create-KKT: https://kktjs.github.io/create-kkt/
+            Zip: https://kktjs.github.io/zip/
+          EOF
+  
+      - run: npm install idoc@1.27.2 -g
+      - run: idoc
+        working-directory: core
+      - run: cp -rp core/dist/* ./build
 
       - name: Generate Contributors Images
         uses: jaywcjlove/github-action-contributors@main
