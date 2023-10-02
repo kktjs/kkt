@@ -124,8 +124,8 @@ jobs:
           cat > idoc.yml << EOF
           site: "KKT {{version}}"
           menus:
-            KKT: https://kktjs.github.io/kkt/
-            NCC: index.html
+            KKT: index.html
+            NCC: https://kktjs.github.io/ncc/
             Create-KKT: https://kktjs.github.io/create-kkt/
             Zip: https://kktjs.github.io/zip/
           EOF
