@@ -33,7 +33,7 @@ Create React apps with no build configuration, Cli tool for creating react apps.
 
 As of `KKT 6.x` this repo is "lightly" maintained mostly by the community at this point.
 
-### Features:
+## Features:
 
 - ⏱ The code was rewritten using TypeScript.
 - ♻️ Recompile the code when project files get added, removed or modified.
@@ -366,7 +366,7 @@ As always, thanks to our amazing contributors!
   <img src="https://kktjs.github.io/kkt/CONTRIBUTORS.svg" />
 </a>
 
-Made with [github-action-contributors](https://github.com/jaywcjlove/github-action-contributors).
+Made with [contributors](https://github.com/jaywcjlove/github-action-contributors).
 
 ## License
 
