@@ -91,9 +91,9 @@ const createLessModule = (lessLoaderOptions = {} as LessLoaderOptions) => {
     });
 
     // Exclude all less files (including module files) from file-loader
-    conf.module.rules = conf.module.rules.map((rule) => {
-      if (typeof rule === 'object' && rule.oneOf) {
-        loaders.forEach((item) => rule.oneOf.splice(rule.oneOf.length - 1, 0, item));
+    conf.module!.rules = conf.module?.rules?.map((rule) => {
+      if (rule && typeof rule === 'object' && rule.oneOf) {
+        loaders.forEach((item) => rule.oneOf?.splice(rule.oneOf.length - 1, 0, item));
       }
       return rule;
     });

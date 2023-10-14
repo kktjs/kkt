@@ -26,8 +26,8 @@ const rawModules = (conf: Configuration, env: string, options = {} as ReactLibra
     },
   ];
   // Exclude all less files (including module files) from file-loader
-  conf.module.rules = conf.module.rules.map((rule) => {
-    if (typeof rule === 'object' && rule.oneOf && Array.isArray(rule.oneOf)) {
+  conf.module!.rules = conf.module?.rules?.map((rule) => {
+    if (rule && typeof rule === 'object' && rule.oneOf && Array.isArray(rule.oneOf)) {
       rule.oneOf = [...loaders, ...rule.oneOf];
     }
     return rule;
