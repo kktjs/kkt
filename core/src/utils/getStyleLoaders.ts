@@ -1,4 +1,5 @@
 import { RuleSetUseItem, LoaderContext } from 'webpack';
+// @ts-ignore
 import postcssNormalize from 'postcss-normalize';
 // @ts-ignore
 import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
