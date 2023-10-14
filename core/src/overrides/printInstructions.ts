@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import { reactDevUtils } from '../utils/path';
 import { getDocsData } from '../plugins/staticDoc';
 import { DevServerOptions } from '../utils/conf';
@@ -18,12 +17,8 @@ export function overridesPrintInstructions(opt: OverridesPrintInstructionsOption
   devServerUtils.createCompiler = (option: any) => {
     if (opt.docs && !opt.printInstructions) {
       const { route } = getDocsData(opt.docs);
-      option.urls.localUrlForTerminal += `\n  ${chalk.bold('Docs Local:')}       ${
-        option.urls?.localUrlForTerminal
-      }${route}\n`;
-      option.urls.lanUrlForTerminal += `\n  ${chalk.bold('Docs On Your Network:')}   ${
-        option.urls?.lanUrlForTerminal
-      }${route}\n`;
+      option.urls.localUrlForTerminal += `\n  \\033[1mDocs Local:\\033[0m       ${option.urls?.localUrlForTerminal}${route}\n`;
+      option.urls.lanUrlForTerminal += `\n  \\033[1mDocs On Your Network:\\033[0m   ${option.urls?.lanUrlForTerminal}${route}\n`;
     }
     if (opt.docs && opt.printInstructions) {
       const docData = getDocsData(opt.docs);

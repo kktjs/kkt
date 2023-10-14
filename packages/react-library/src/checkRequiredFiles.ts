@@ -1,6 +1,5 @@
 import path from 'path';
 import fs from 'fs';
-import chalk from 'chalk';
 
 /**
  * Checked `paths.appHtml`, `paths.appIndexJs`
@@ -21,9 +20,9 @@ export const checkRequiredFiles = (files: string[], isNotCheckHTML = true) => {
     if (currentFilePath) {
       const dirName = path.dirname(currentFilePath);
       const fileName = path.basename(currentFilePath);
-      console.log(chalk.red('Could not find a required file.'));
-      console.log(chalk.red('  Name: ') + chalk.cyan(fileName));
-      console.log(chalk.red('  Searched in: ') + chalk.cyan(dirName));
+      console.log('\\033[1mCould not find a required file.\\033[0m');
+      console.log('  \\033[1mName: \\033[0m' + `\\033[36m${fileName}\\033[0m`);
+      console.log('  \\033[1mSearched in: \\033[0m' + `\\033[36m${dirName}\\033[0m`);
     }
     return false;
   }
