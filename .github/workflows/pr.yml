@@ -57,6 +57,10 @@ jobs:
         working-directory: example/react-router
         run: npm run build
 
+      - name: example @template/react-router-ts
+        working-directory: example/react-router-ts
+        run: npm run build
+
       - name: example @template/rematch-tsx
         working-directory: example/rematch-tsx
         run: npm run build

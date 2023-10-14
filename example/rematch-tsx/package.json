@@ -21,15 +21,15 @@
     "react-dom": "~18.2.0",
     "react-dynamic-loadable": "~3.0.0",
     "react-redux": "~7.2.8",
-    "react-router-dom": "~6.16.0",
+    "react-router-dom": "^6.16.0",
     "uiw": "^4.21.18"
   },
   "devDependencies": {
     "@kkt/less-modules": "^7.5.3",
     "@kkt/raw-modules": "^7.5.3",
     "@kkt/scope-plugin-options": "^7.5.3",
-    "@types/react": "~18.2.0",
-    "@types/react-dom": "~18.2.0",
+    "@types/react": "^18.2.28",
+    "@types/react-dom": "^18.2.13",
     "@types/react-redux": "~7.1.23",
     "kkt": "^7.5.3"
   },
