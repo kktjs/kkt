@@ -1,6 +1,6 @@
 {
   "name": "@kkt/react-library",
-  "version": "7.5.3",
+  "version": "7.5.4",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "description": "Use create-react-app to build react libraries.",
@@ -27,6 +27,6 @@
     "css-minimizer-webpack-plugin": "~3.4.1"
   },
   "devDependencies": {
-    "kkt": "^7.5.3"
+    "kkt": "^7.5.4"
   }
 }
