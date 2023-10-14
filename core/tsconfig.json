@@ -5,6 +5,7 @@
     "strict": true,
     "declaration": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "moduleResolution": "node16",
     "skipLibCheck": true,
