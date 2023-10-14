@@ -10,9 +10,9 @@ export type ReactLibraryOptions = LoaderConfOptions & {
 const regexp = /(ModuleScopePlugin)/;
 
 export function disableScopePlugin(conf: Configuration) {
-  conf.resolve.plugins = conf.resolve.plugins
-    .map((plugin) => {
-      if (plugin.constructor && plugin.constructor.name && regexp.test(plugin.constructor.name)) {
+  conf.resolve!.plugins = conf.resolve?.plugins
+    ?.map((plugin) => {
+      if (plugin && plugin.constructor && plugin.constructor.name && regexp.test(plugin.constructor.name)) {
         return undefined;
       }
       return plugin;
@@ -31,8 +31,8 @@ export default function scopePluginOptions(
   }
   const { allowedFiles, appSrcs, allowedPaths } = options || {};
 
-  const moduleScopePlugin = conf.resolve.plugins.find(
-    (plugin) => plugin.constructor && plugin.constructor.name && regexp.test(plugin.constructor.name),
+  const moduleScopePlugin = conf.resolve?.plugins?.find(
+    (plugin) => plugin?.constructor && plugin.constructor.name && regexp.test(plugin.constructor.name),
   );
   if (moduleScopePlugin && typeof moduleScopePlugin === 'object') {
     if (allowedFiles && Array.isArray(allowedFiles)) {

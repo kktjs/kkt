@@ -15,6 +15,7 @@
     "lib:<<<-----": "<<<<<<<<<<<<<<<<<<<<<<<<<<<",
     "kkt:----->>>": ">>>>>>>>>>>>>>>>>>>>>>>>>>>",
     "kkt:watch": "lerna exec --scope kkt -- npm run watch",
+    "kkt:build": "lerna exec --scope kkt -- npm run build",
     "kkt:test": "lerna exec tsbb test --scope kkt",
     "kkt:coverage": "lerna exec \"tsbb test --coverage\" --scope kkt",
     "kkt:<<<-----": "<<<<<<<<<<<<<<<<<<<<<<<<<<<",

@@ -4,7 +4,7 @@ export default function resolveFallback(conf: Configuration): Configuration {
   if (!conf) {
     throw Error('KKT:@kkt/resolve-fallback: there is no config found');
   }
-  conf.resolve.fallback = Object.assign(conf.resolve.fallback || {}, {
+  conf.resolve!.fallback = Object.assign(conf.resolve?.fallback || {}, {
     assert: require.resolve('assert'),
     buffer: require.resolve('buffer'),
     fs: false,
@@ -16,7 +16,7 @@ export default function resolveFallback(conf: Configuration): Configuration {
     stream: require.resolve('stream-browserify'),
     url: require.resolve('url'),
   });
-  conf.module.rules.unshift({
+  conf.module?.rules?.unshift({
     test: /\.m?js$/,
     resolve: {
       fullySpecified: false, // disable the behavior

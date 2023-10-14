@@ -88,7 +88,9 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
     fileName = minfilename[0] || libraryName;
     minfilename.splice(1, 0, 'min');
 
-    conf.entry = path.resolve(entryFile);
+    if (entryFile) {
+      conf.entry = path.resolve(entryFile);
+    }
     conf.devtool = false;
     conf.output = {
       // commonjs
@@ -105,10 +107,10 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
      */
     const regexp = /(MiniCssExtractPlugin)/;
     conf.plugins = conf.plugins
-      .map((item) => {
-        if (item.constructor && item.constructor.name && !regexp.test(item.constructor.name)) {
+      ?.map((item) => {
+        if (item && item.constructor && item.constructor.name && !regexp.test(item.constructor.name)) {
           return null;
-        } else if (regexp.test(item.constructor.name)) {
+        } else if (item && regexp.test(item.constructor.name)) {
           return new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
@@ -126,7 +128,7 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
         minimizer: [],
       };
     } else {
-      conf.plugins.push(new CssMinimizerPlugin({ ...options.cssMinimizerPluginOptions }));
+      conf.plugins?.push(new CssMinimizerPlugin({ ...options.cssMinimizerPluginOptions }));
       conf.optimization!.minimizer!.push(
         new TerserPlugin({
           // cache: true,
@@ -139,8 +141,8 @@ export default (conf: Configuration, env: string, options = {} as ReactLibraryOp
         }),
       );
       conf.output.filename = minfilename.join('.');
-      delete conf.optimization.runtimeChunk;
-      delete conf.optimization.splitChunks;
+      delete conf.optimization?.runtimeChunk;
+      delete conf.optimization?.splitChunks;
     }
   }
   return conf;
