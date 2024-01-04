@@ -72,10 +72,6 @@ jobs:
         working-directory: example/react-router-ts
         run: npm run build
 
-      - name: example @template/rematch-tsx
-        working-directory: example/rematch-tsx
-        run: npm run build
-
       - name: example @template/scss
         working-directory: example/scss
         run: npm run build
@@ -188,9 +184,6 @@ jobs:
         working-directory: example/react-router-ts
         run: npm run build
 
-      - name: example @template/rematch-tsx
-        working-directory: example/rematch-tsx
-        run: npm run build
 
       - name: example @template/scss
         working-directory: example/scss
@@ -259,11 +252,6 @@ jobs:
         run: zip -r -y react-router-ts.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
         working-directory: example/react-router-ts
       - run: cp -rp example/react-router-ts/react-router-ts.zip ./zip
-
-      - name: Compress rematch-tsx Example.
-        run: zip -r -y rematch-tsx.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
-        working-directory: example/rematch-tsx
-      - run: cp -rp example/rematch-tsx/rematch-tsx.zip ./zip
 
       - name: Compress scss Example.
         run: zip -r -y scss.zip . -x "node_modules/*" -x "build/*" -x "dist/*" -x "coverage/*" -x ".eslintcache" -x "sandbox.config.json"
