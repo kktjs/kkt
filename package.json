@@ -8,7 +8,7 @@
     "url": "https://github.com/kktjs/kkt.git"
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "lib:----->>>": ">>>>>>>>>>>>>>>>>>>>>>>>>>>",
     "lib:watch": "lerna exec \"tsbb watch --no-esm\" --scope @kkt/*",
     "lib:watch:less": "lerna exec \"tsbb watch --no-esm\" --scope @kkt/less-modules",
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.18.3",
-    "husky": "~8.0.0",
+    "husky": "^9.0.11",
     "lerna": "~7.3.0",
     "lint-staged": "^15.0.0",
     "prettier": "~3.0.0",
