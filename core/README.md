@@ -74,18 +74,18 @@ $ yarn create kkt my-app -e `<Example Name>`
 
 You can download the following examples directly. [Download page](https://kktjs.github.io/zip/).
 
-- [**`basic`**](https://github.com/kktjs/kkt/tree/master/example/basic) - The [react](https://github.com/facebook/react) base application. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/basic)
-- [**`bundle`**](https://github.com/kktjs/kkt/tree/master/example/bundle) - Package the UMD package for developing the React component library.
+- [**`basic`**](https://github.com/kktjs/kkt/tree/master/example/basic) - The [react](https://github.com/facebook/react) base application.[`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/basic) or [`Open in Codeanywhere`](https://app.codeanywhere.com/#https://github.com/kktjs/kkt/tree/master/example/basic)
+- [**`bundle`**](https://github.com/kktjs/kkt/tree/master/example/bundle) - Package the UMD package for developing the React component library. 
 - [**`bundle-node`**](https://github.com/kktjs/kkt/tree/master/example/bundle-node) - Simple CLI for compiling a Node.js module into a single file.
 - [**`electron`**](https://github.com/kktjs/kkt/tree/master/example/electron) - Use an example of [`Electronjs`](https://github.com/electron).
-- [**`less`**](https://github.com/kktjs/kkt/tree/master/example/less) - Use an example of `Less`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/less)
-- [**`markdown`**](https://github.com/kktjs/kkt/tree/master/example/markdown) - Use an example of `Markdown`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/markdown)
+- [**`less`**](https://github.com/kktjs/kkt/tree/master/example/less) - Use an example of `Less`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/less) or [`Open in Codeanywhere`](https://app.codeanywhere.com/#https://github.com/kktjs/kkt/tree/master/example/less)
+- [**`markdown`**](https://github.com/kktjs/kkt/tree/master/example/markdown) - Use an example of `Markdown`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/markdown) or [`Open in Codeanywhere`](https://app.codeanywhere.com/#https://github.com/kktjs/kkt/tree/master/example/markdown)
 - [**`react-component-tsx`**](https://github.com/kktjs/kkt/tree/master/example/react-component-tsx) - Create a project containing the website for the react component library.
-- [**`react-router`**](https://github.com/kktjs/kkt/tree/master/example/react-router) - Use [`react-router`](https://github.com/remix-run/react-router) for the project. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/react-router)
-- [**`scss`**](https://github.com/kktjs/kkt/tree/master/example/scss) - Use an example of `Scss`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/scss)
-- [**`stylus`**](https://github.com/kktjs/kkt/tree/master/example/stylus) - Use an example of `Stylus`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/stylus)
-- [**`typescript`**](https://github.com/kktjs/kkt/tree/master/example/typescript) - Use an example of `TypeScript`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/typescript)
-- [**`uiw`**](https://github.com/kktjs/kkt/tree/master/example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/uiw)
+- [**`react-router`**](https://github.com/kktjs/kkt/tree/master/example/react-router) - Use [`react-router`](https://github.com/remix-run/react-router) for the project. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/react-router) or [`Open in Codeanywhere`](https://app.codeanywhere.com/#https://github.com/kktjs/kkt/tree/master/example/react-router)
+- [**`scss`**](https://github.com/kktjs/kkt/tree/master/example/scss) - Use an example of `Scss`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/scss) or [`Open in Codeanywhere`](https://app.codeanywhere.com/#https://github.com/kktjs/kkt/tree/master/example/scss)
+- [**`stylus`**](https://github.com/kktjs/kkt/tree/master/example/stylus) - Use an example of `Stylus`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/stylus) or [`Open in Codeanywhere`](https://app.codeanywhere.com/#https://github.com/kktjs/kkt/tree/master/example/stylus)
+- [**`typescript`**](https://github.com/kktjs/kkt/tree/master/example/typescript) - Use an example of `TypeScript`. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/typescript) or [`Open in Codeanywhere`](https://app.codeanywhere.com/#https://github.com/kktjs/kkt/tree/master/example/typescript)
+- [**`uiw`**](https://github.com/kktjs/kkt/tree/master/example/uiw) - Use [`uiw`](https://uiwjs.github.io/) for the project. [`Open in CodeSandbox`](https://codesandbox.io/s/github/kktjs/kkt/tree/master/example/uiw) or [`Open in Codeanywhere`](https://app.codeanywhere.com/#https://github.com/kktjs/kkt/tree/master/example/uiw)
 
 
 ### Tools
