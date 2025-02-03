@@ -56,6 +56,13 @@ npm install kkt
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/s/github/kktjs/kkt-codesandbox-tamplate)
 
+## Develop
+You can also open this project in a browser-based IDE like Codeanywhere for development.
+
+<a href="https://app.codeanywhere.com/#https://github.com/kktjs/kkt/tree/master/example/basic">
+  <img src="https://codeanywhere.com/img/open-in-codeanywhere-btn.svg" alt="Open in Codeanywhere" width="150">
+</a>
+
 ## Example
 
 Initialize the project from one of the examples, Let's quickly create a react application:
